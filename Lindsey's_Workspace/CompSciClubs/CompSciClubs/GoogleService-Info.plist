@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>850964757434-76c4d2o6gbtvo3uirjbc9n3t8t0espnv.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.850964757434-76c4d2o6gbtvo3uirjbc9n3t8t0espnv</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD28jeIjSbSj2KYLX2JjW9SXVD4ok6zpG4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>850964757434</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>Lindsey-Gray.CompSciClubs</string>
+	<key>PROJECT_ID</key>
+	<string>helloworld-lg</string>
+	<key>STORAGE_BUCKET</key>
+	<string>helloworld-lg.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:850964757434:ios:7f68bf9d1645d562</string>
+	<key>DATABASE_URL</key>
+	<string>https://helloworld-lg.firebaseio.com</string>
+</dict>
+</plist>
