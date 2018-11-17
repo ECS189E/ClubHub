@@ -53,6 +53,28 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="l9Z-YY-IaJ" id="RJg-Qe-AXZ">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="149.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hBS-79-2NC">
+                                                    <rect key="frame" x="16" y="11" width="343" height="128"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWc-Cj-Jgf">
+                                                    <rect key="frame" x="131.5" y="58" width="112" height="34"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <state key="normal" title="Upload Image"/>
+                                                    <connections>
+                                                        <action selector="uploadImageTapped:" destination="PHS-aO-xCN" eventType="touchUpInside" id="F6b-SK-Mdl"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="hBS-79-2NC" firstAttribute="bottom" secondItem="RJg-Qe-AXZ" secondAttribute="bottomMargin" id="GIT-2H-F6O"/>
+                                                <constraint firstItem="hBS-79-2NC" firstAttribute="top" secondItem="RJg-Qe-AXZ" secondAttribute="topMargin" id="LPN-By-ZvZ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="hBS-79-2NC" secondAttribute="trailing" id="aV4-pW-bfq"/>
+                                                <constraint firstItem="DWc-Cj-Jgf" firstAttribute="centerX" secondItem="RJg-Qe-AXZ" secondAttribute="centerX" id="bQ6-jk-qNr"/>
+                                                <constraint firstItem="hBS-79-2NC" firstAttribute="leading" secondItem="RJg-Qe-AXZ" secondAttribute="leadingMargin" id="dCJ-qq-0QF"/>
+                                                <constraint firstItem="DWc-Cj-Jgf" firstAttribute="centerY" secondItem="RJg-Qe-AXZ" secondAttribute="centerY" id="t8E-5j-vEO"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="startDateCell" id="ijy-ZJ-0Jz" userLabel="StartDateCell">
@@ -242,10 +264,12 @@
                         <outlet property="detailsTextField" destination="IWF-5V-hn8" id="dl9-11-BLl"/>
                         <outlet property="endDateTextField" destination="wAQ-jF-FV6" id="tJ3-WN-5xf"/>
                         <outlet property="endTimeTextField" destination="cue-EN-B2q" id="yQi-Ok-EpZ"/>
+                        <outlet property="imageView" destination="hBS-79-2NC" id="1Ux-dM-lce"/>
                         <outlet property="locationTextField" destination="4Lo-dB-VLC" id="pP8-QN-Nyc"/>
                         <outlet property="nameTextField" destination="knn-Ah-mWo" id="yCx-Sf-8La"/>
                         <outlet property="startDateTextField" destination="far-8v-rmv" id="Il6-Ei-vKe"/>
                         <outlet property="startTimeTextField" destination="Dpy-U1-xYR" id="3FZ-b9-EnR"/>
+                        <outlet property="uploadImageButton" destination="DWc-Cj-Jgf" id="lMe-El-n3m"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qya-0x-Icx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -283,6 +307,9 @@
                                         <rect key="frame" x="0.0" y="88" width="110" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal" title="Delete Event"/>
+                                        <connections>
+                                            <action selector="deleteEventTapped:" destination="ZrT-JY-XCN" eventType="touchUpInside" id="ppW-lC-xRq"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gkY-qR-ftF">
                                         <rect key="frame" x="0.0" y="132" width="110" height="34"/>

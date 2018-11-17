@@ -99,8 +99,23 @@ struct EventsApi {
         }
     }
     
-    // FIXME: implement
-    static func deleteEvent(id: String, completion: @escaping ApiCompletion) {}
+    // FIXME: throw error if does not exist
+    static func deleteEvent(id: String, completion: @escaping ApiCompletion) {
+        let db = Firestore.firestore()
+        let settings = db.settings
+        settings.areTimestampsInSnapshotsEnabled = true
+        db.settings = settings
+        
+        // delete event
+        db.collection("Events").document(id).delete() { err in
+            if let err = err {
+                completion(nil, "Error deleting event: \(err)")
+            } else {
+                // Return deletion status
+                completion(true, nil)
+            }
+        }
+    }
     
     static func getEvent(id: String, completion: @escaping ApiCompletion) {
         let db = Firestore.firestore()
@@ -148,7 +163,7 @@ struct EventsApi {
         
         db.collection("Events").getDocuments() { (querySnapshot, err) in
             if let err = err {
-                completion(nil, "Error getting event: \(err)")
+                completion(nil, "Error getting events: \(err)")
             } else {
                 for document in querySnapshot!.documents {
                     // Get start time from timestamp

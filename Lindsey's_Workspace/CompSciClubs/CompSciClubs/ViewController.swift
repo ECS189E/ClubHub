@@ -11,7 +11,9 @@ import UIKit
 
 class ViewController: UIViewController, EditEventDelegate{
     
-    var id: String = "4LCtWNiwjkIt5vPlxDy4"
+    var updateId: String = "4LCtWNiwjkIt5vPlxDy4"
+    //var updateId: String = "1" //does not exist
+    var deleteId: String = "61Hy7FmZyg9BEmcpsXxX"
     var event: Event?
     
     func editEventCompleted() {
@@ -22,9 +24,21 @@ class ViewController: UIViewController, EditEventDelegate{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        testGetEvent()
-
-        // Do any additional setup after loading the view.
+        getEvent(id: updateId) // get event for update test
+    }
+    
+    // Test Api.deleteEvent()
+    @IBAction func deleteEventTapped(_ sender: Any) {
+        EventsApi.deleteEvent(id: deleteId) { data, err in
+            switch(data, err) {
+            case(.some(_), nil):
+                print("Event \(self.deleteId) deleted")
+            case(nil, .some(let err)):
+                print("Delete error: \(err)")
+            default:
+                print("Error deleting event \(self.deleteId)")
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -41,15 +55,16 @@ class ViewController: UIViewController, EditEventDelegate{
         }
     }
 
-    func testGetEvent() {
+    // test Api.getEvent()
+    func getEvent(id: String) {
         EventsApi.getEvent(id: id) { data, err in
             switch(data, err) {
             case(.some(let data), nil):
                 self.event = data as? Event
             case(nil, .some(let err)):
-                print("Error: \(err)")
+                print("Get update event error: \(err)")
             default:
-                print("Error getting event \(self.id)")
+                print("Error getting event \(id)")
             }
         }
     }

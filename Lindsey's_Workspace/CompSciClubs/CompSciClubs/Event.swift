@@ -8,14 +8,14 @@ import UIKit
 import Foundation
 
 class Event {
-    var id: String?
+    var id: String? // id to locate event database
     var name: String?
     var startTime: Date?
     var endTime: Date?
     var location: String?
     var club: String?  // FIXME: var club: Club? when club class made
     var details: String?
-    //var mainPhoto: UIImage?
+    var mainPhoto: UIImage?
     //var photos: [UIImage]?
     
     // Default
@@ -27,7 +27,7 @@ class Event {
         self.location = nil
         self.club = nil
         self.details = nil
-        //self.mainPhoto = nil
+        self.mainPhoto = nil
         //self.photos = nil
     }
     
@@ -39,7 +39,7 @@ class Event {
         self.location = location
         self.club = club
         self.details = details
-        //self.mainPhoto = nil
+        //self.mainPhoto = mainPhoto
         //self.photos = nil
     }
     

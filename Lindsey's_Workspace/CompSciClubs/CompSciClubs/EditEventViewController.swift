@@ -14,9 +14,11 @@ protocol EditEventDelegate {
     func editEventCompleted()
 }
 
-class EditEventViewController: UITableViewController{
+class EditEventViewController: UITableViewController,  UINavigationControllerDelegate{
 
     @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var uploadImageButton: UIButton!
     @IBOutlet weak var startDateTextField: UITextField!
     @IBOutlet weak var startTimeTextField: UITextField!
     @IBOutlet weak var endDateTextField: UITextField!
@@ -51,7 +53,7 @@ class EditEventViewController: UITableViewController{
         
         // if editing an existing event
         if let event = event {
-            if event.id  == nil { // must have an id to update the database
+            if event.id  == nil { // must have an id to update 
                 print("Error") // FIXME: add error handling
             }
         // else create a new event and init dates
@@ -71,6 +73,7 @@ class EditEventViewController: UITableViewController{
         locationTextField.text = event?.location
         detailsTextField.text = event?.details
 
+        imageView.isHidden = true
     }
     
     @IBAction func nameEdited(_ sender: Any) {
@@ -117,6 +120,14 @@ class EditEventViewController: UITableViewController{
         }
         event?.printEvent()
     }
+    
+    @IBAction func uploadImageTapped(_ sender: Any) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
+        self.present(imagePicker, animated: true)
+    }
+    
     
 }
 
@@ -214,5 +225,21 @@ extension EditEventViewController: DateTimePopUpDelegate {
             }
         }
     }
+}
+
+// Source: https://www.youtube.com/watch?v=krZzC6abaoE
+extension EditEventViewController : UIImagePickerControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        imageView.image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        imageView.backgroundColor = UIColor.clear
+        imageView.isHidden = false
+        // FIXME: label shows when tapped
+        uploadImageButton.titleLabel?.isHidden = true
+        event?.mainPhoto = imageView.image
+        self.dismiss(animated: true)
+    }
+    
+    public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true)    }
 }
 
