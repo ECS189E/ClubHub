@@ -11,8 +11,7 @@ import UIKit
 
 class ViewController: UIViewController, EditEventDelegate{
     
-    var updateId: String = "4LCtWNiwjkIt5vPlxDy4"
-    //var updateId: String = "1" //does not exist
+    var updateId: String = "7SrOD9MbJVuQOSmOUQD7"
     var deleteId: String = "ZTKSlUMBT24jqkIOsAss"
     var event: Event?
     

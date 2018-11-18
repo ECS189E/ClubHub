@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/lindseygray/OneDrive/School/Fall 2018/ECS189E/Project/ClubHub/Lindsey&apos;s_Workspace/CompSciClubs/CompSciClubs/EventDetailsViewController.swift">
+   </FileRef>
+   <FileRef
       location = "group:CompSciClubs.xcodeproj">
    </FileRef>
    <FileRef

@@ -56,7 +56,7 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hBS-79-2NC">
                                                     <rect key="frame" x="16" y="11" width="343" height="128"/>
-                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" white="0.84509667522831033" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWc-Cj-Jgf">
                                                     <rect key="frame" x="131.5" y="58" width="112" height="34"/>
@@ -316,7 +316,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal" title="All Events"/>
                                         <connections>
-                                            <segue destination="Mde-iY-xaP" kind="show" id="Pr4-sf-V7f"/>
+                                            <segue destination="T21-s4-xTC" kind="show" id="q5P-br-Szk"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -336,32 +336,46 @@
             <point key="canvasLocation" x="111" y="33"/>
         </scene>
         <!--Events Table View Controller-->
-        <scene sceneID="F1N-dR-Bc4">
+        <scene sceneID="z9Z-0G-iXu">
             <objects>
-                <tableViewController storyboardIdentifier="eventsTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Mde-iY-xaP" customClass="EventsTableViewController" customModule="CompSciClubs" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="4il-Gu-CPT">
+                <tableViewController storyboardIdentifier="eventTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="T21-s4-xTC" customClass="EventsTableViewController" customModule="CompSciClubs" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="mhg-x9-8WB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="eventCell" id="kYa-sG-buY">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="eventCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="eventCell" id="v6P-wI-1Yk" customClass="EventCell" customModule="CompSciClubs" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kYa-sG-buY" id="p1D-K4-K5k">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="v6P-wI-1Yk" id="cAe-AK-SVb">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2iQ-dq-CuI">
+                                            <rect key="frame" x="336" y="8.5" width="34" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="a7x-6Z-RSy"/>
+                                            </constraints>
+                                            <state key="normal" title="Save"/>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="2iQ-dq-CuI" secondAttribute="bottom" constant="5" id="Wrk-Ra-SeQ"/>
+                                        <constraint firstAttribute="trailing" secondItem="2iQ-dq-CuI" secondAttribute="trailing" constant="5" id="Ywy-EU-2hg"/>
+                                        <constraint firstItem="2iQ-dq-CuI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="cAe-AK-SVb" secondAttribute="leading" constant="20" symbolic="YES" id="n2K-Wv-SMg"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="Mde-iY-xaP" id="QXf-vr-0hd"/>
-                            <outlet property="delegate" destination="Mde-iY-xaP" id="l9K-hT-Zay"/>
+                            <outlet property="dataSource" destination="T21-s4-xTC" id="4wS-3z-Uw7"/>
+                            <outlet property="delegate" destination="T21-s4-xTC" id="2Hs-uC-u62"/>
                         </connections>
                     </tableView>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dyk-aE-xg5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xJG-iR-bmO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="993" y="444"/>
+            <point key="canvasLocation" x="1013" y="453"/>
         </scene>
         <!--dateTimePopUpViewController-->
         <scene sceneID="Ncc-8O-d5O">

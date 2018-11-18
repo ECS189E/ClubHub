@@ -9,7 +9,7 @@
 
 import UIKit
 
-class EventsTableViewController: UITableViewController {
+class EventsTableViewController: UITableViewController, EventCellDelegate {
     
     var events: [Event]?
     
@@ -26,6 +26,9 @@ class EventsTableViewController: UITableViewController {
         dateFormatter.dateFormat = "EE MMM dd, yyyy"
         timeFormatter.dateFormat = "hh:mm a"
         
+        tableView.register(EventCell.self, forCellReuseIdentifier: "eventCell")
+        tableView.rowHeight = 150
+
         EventsApi.getEvents() { data, error in
             switch(data, error){
             case(nil, .some(let error)):
@@ -47,17 +50,37 @@ class EventsTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+    
+    func saveEventTapped(_ sender: EventCell) {
+        print("Save Tapped!")
+        guard let indexPath = tableView.indexPath(for: sender) else { return }
+        events?[indexPath.row].printEvent()
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.events?.count ?? 0
     }
-
     
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        guard let events = self.events else {
+            return UITableViewCell()
+        }
+        
+        let event = events[indexPath.row]
+        
+        // the identifier is like the type of the cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as! EventCell
+        
+        cell.delegate = self
+        cell.name = event.name
+        cell.eventImage = event.mainPhoto ?? UIImage(named: "testImage")
+        cell.startTime = event.startTime
+        
+        return cell
+    }
+
+ /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let events = self.events else {
@@ -84,9 +107,16 @@ class EventsTableViewController: UITableViewController {
         
         return cell
     }
+ */
     
 
-    // Provided functions to override
+    // Other provided functions to override
+    
+    /*
+     override func numberOfSections(in tableView: UITableView) -> Int {
+     return 1
+     }
+     */
     
     /*
     // Override to support conditional editing of the table view.
@@ -120,16 +150,6 @@ class EventsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
         return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
     */
 
