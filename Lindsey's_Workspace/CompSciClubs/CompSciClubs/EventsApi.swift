@@ -190,7 +190,7 @@ struct EventsApi {
                                     endTime: endTime,
                                     location: document.data()["location"] as? String? ?? nil,
                                     club: document.data()["club"] as? String? ?? nil,
-                                    details: document.data()["details"] as? String? ?? nil)
+                                    details: document.data()["details"] as? String? ?? nil))
                 }
                 // return event as data
                 completion(events, nil)
