@@ -97,7 +97,7 @@ class EditEventViewController: UITableViewController,  UINavigationControllerDel
                         print("Event updated")
                         self.delegate?.editEventCompleted()
                     case(nil, .some(let err)):
-                        print("Error: \(err)")
+                        print(err)
                     default:
                         print("Error: could not update event")
                 }
@@ -112,7 +112,7 @@ class EditEventViewController: UITableViewController,  UINavigationControllerDel
                     self.event?.id = (data as! Event).id
                     self.delegate?.editEventCompleted()
                 case(nil, .some(let err)):
-                    print("Error: \(err)")
+                    print(err)
                 default:
                     print("Error: could not add event")
                 }

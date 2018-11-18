@@ -23,6 +23,7 @@ struct EventsApi {
     
         // Check if name is set (must have name)
         if let name = event?.name {
+            
             // Add a new document with a generated ID
             ref = db.collection("Events").addDocument(data: [
                 "name": name,
@@ -99,20 +100,31 @@ struct EventsApi {
         }
     }
     
-    // FIXME: throw error if does not exist
     static func deleteEvent(id: String, completion: @escaping ApiCompletion) {
         let db = Firestore.firestore()
         let settings = db.settings
         settings.areTimestampsInSnapshotsEnabled = true
         db.settings = settings
         
-        // delete event
-        db.collection("Events").document(id).delete() { err in
-            if let err = err {
-                completion(nil, "Error deleting event: \(err)")
+        let ref = db.collection("Events").document(id)
+        
+        // check if event exists, then delete it
+        ref.getDocument { (document, err) in
+            if let document = document, document.exists {
+                if let err = err {
+                    completion(nil, "Error deleting event: \(err)")
+                } else {
+                    ref.delete() { err in
+                        if let err = err {
+                            completion(nil, "Error deleting event: \(err)")
+                        } else {
+                            // Return deletion status
+                            completion(true, nil)
+                        }
+                    }
+                }
             } else {
-                // Return deletion status
-                completion(true, nil)
+                completion(nil, "Error deleting event: does not exits")
             }
         }
     }
@@ -178,7 +190,7 @@ struct EventsApi {
                                     endTime: endTime,
                                     location: document.data()["location"] as? String? ?? nil,
                                     club: document.data()["club"] as? String? ?? nil,
-                                    details: document.data()["details"] as? String? ?? nil))
+                                    details: document.data()["details"] as? String? ?? nil)
                 }
                 // return event as data
                 completion(events, nil)

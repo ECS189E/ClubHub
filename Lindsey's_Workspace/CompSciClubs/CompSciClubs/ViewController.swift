@@ -13,7 +13,7 @@ class ViewController: UIViewController, EditEventDelegate{
     
     var updateId: String = "4LCtWNiwjkIt5vPlxDy4"
     //var updateId: String = "1" //does not exist
-    var deleteId: String = "61Hy7FmZyg9BEmcpsXxX"
+    var deleteId: String = "ZTKSlUMBT24jqkIOsAss"
     var event: Event?
     
     func editEventCompleted() {
@@ -34,7 +34,7 @@ class ViewController: UIViewController, EditEventDelegate{
             case(.some(_), nil):
                 print("Event \(self.deleteId) deleted")
             case(nil, .some(let err)):
-                print("Delete error: \(err)")
+                print(err)
             default:
                 print("Error deleting event \(self.deleteId)")
             }
@@ -62,7 +62,7 @@ class ViewController: UIViewController, EditEventDelegate{
             case(.some(let data), nil):
                 self.event = data as? Event
             case(nil, .some(let err)):
-                print("Get update event error: \(err)")
+                print(err)
             default:
                 print("Error getting event \(id)")
             }
