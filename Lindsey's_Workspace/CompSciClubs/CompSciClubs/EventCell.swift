@@ -12,19 +12,25 @@ import UIKit
 class EventCell: UITableViewCell {
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var eventImageView: UIImageView!
+    @IBOutlet var clubLabel: UILabel!
     @IBOutlet var eventStartTimeLabel: UILabel!
     
-    func initEventCell(name: String?, startTime: Date?, image: UIImage?) {
+    func initEventCell(name: String?, startTime: Date?, club: String?, image: UIImage?) {
         
-        // format cell UI
+        // allow for a dynamic amount of lines for labels
         nameLabel.lineBreakMode = .byWordWrapping
+        clubLabel.lineBreakMode = .byWordWrapping
         nameLabel.numberOfLines = 0
+        clubLabel.numberOfLines = 0
         
         if let name = name {
             nameLabel.text = name
         }
         if let image = image {
             eventImageView.image = image
+        }
+        if let club = club {
+            clubLabel.text = club
         }
         if let startTime = startTime {
             let dateFormatter = DateFormatter()

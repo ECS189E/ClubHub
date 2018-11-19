@@ -22,12 +22,12 @@ struct EventsApi {
         var ref: DocumentReference? = nil
     
         // Check if name is set (must have name)
-        if let name = event?.name {
+        if let name = event?.name, let startTime = event?.startTime {
             
             // Add a new document with a generated ID
             ref = db.collection("Events").addDocument(data: [
                 "name": name,
-                "startTime": event?.startTime ?? NSNull(),
+                "startTime": startTime,
                 "endTime": event?.endTime ?? NSNull(),
                 "location": event?.location ?? NSNull(),
                 "club": event?.club ?? NSNull(),
@@ -42,7 +42,7 @@ struct EventsApi {
                 }
             }
         } else {
-            completion(nil, "Error adding event")
+            completion(nil, "Error adding event, must provide a name and start time")
         }
     }
 

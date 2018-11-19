@@ -12,9 +12,12 @@ import UIKit
 class EventsTableViewController: UITableViewController{
     
     var events: [Event]?
+    var filteredEvents = [Event]()
     
     let dateFormatter = DateFormatter()
     let timeFormatter = DateFormatter()
+    
+    let searchController = UISearchController(searchResultsController: nil)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +28,14 @@ class EventsTableViewController: UITableViewController{
         // format appearence of dates
         dateFormatter.dateFormat = "EE MMM dd, yyyy"
         timeFormatter.dateFormat = "hh:mm a"
+        
+        // Source: https://www.raywenderlich.com/472-uisearchcontroller-tutorial-getting-started
+        // Setup the Search Controller
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+
 
         EventsApi.getEvents() { data, error in
             switch(data, error){
@@ -32,6 +43,12 @@ class EventsTableViewController: UITableViewController{
                 print(error)
             case(.some(let data), nil):
                 self.events = data as? [Event]
+                
+                // sort events by start time
+                self.events = self.events?.sorted(by: { $0.startTime?.compare($1.startTime ?? Date()) == .orderedAscending })
+                // remove events that have already passed
+                self.events = self.events?.filter { $0.startTime ?? Date() >= Date() }
+                
                 self.tableView.reloadData()
             default:
                 print("Error getting events")
@@ -49,6 +66,10 @@ class EventsTableViewController: UITableViewController{
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isFiltering() {
+            return filteredEvents.count
+        }
+        
         return self.events?.count ?? 0
     }
     
@@ -58,7 +79,12 @@ class EventsTableViewController: UITableViewController{
             return UITableViewCell()
         }
         
-        let event = events[indexPath.row]
+        let event: Event
+        if isFiltering() {
+            event = filteredEvents[indexPath.row]
+        } else {
+            event = events[indexPath.row]
+        }
         
         // the identifier is like the type of the cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as! EventCell
@@ -66,7 +92,7 @@ class EventsTableViewController: UITableViewController{
         //FIXME: Debugging
         event.mainImage = UIImage(named: "testImage")
 
-        cell.initEventCell(name: event.name, startTime: event.startTime, image: event.mainImage)
+        cell.initEventCell(name: event.name, startTime: event.startTime, club: event.club, image: event.mainImage)
         cell.contentView.isUserInteractionEnabled = false // make button clickable
         
         return cell
@@ -81,9 +107,47 @@ class EventsTableViewController: UITableViewController{
     }
     
 }
+
+// Search bar
+extension EventsTableViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+    
+    // Private instance methods
+    func searchBarIsEmpty() -> Bool {
+        // Returns true if the text is empty or nil
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    func filterContentForSearchText(_ searchText: String, scope: String = "All") {
+        guard let events = events else {
+            return
+        }
+        
+        // filter events by names and clubs matching the serach text
+        filteredEvents = events.filter{ event in
+            event.name?.lowercased().contains(searchText.lowercased()) ?? false
+            || event.club?.lowercased().contains(searchText.lowercased()) ?? false
+        }
+        
+        // sort filtered events
+        filteredEvents = filteredEvents.sorted(by: { $0.startTime?.compare($1.startTime ?? Date()) == .orderedAscending })
+        
+        tableView.reloadData()
+    }
+    
+    func isFiltering() -> Bool {
+        return searchController.isActive && !searchBarIsEmpty()
+    }
+
+
+}
+
     
 
-    // Other provided functions to override
+    // Other provided tableview functions to override
     
     /*
      override func numberOfSections(in tableView: UITableView) -> Int {
