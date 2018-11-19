@@ -59,7 +59,11 @@
                                                     <color key="backgroundColor" white="0.84509667522831033" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWc-Cj-Jgf">
-                                                    <rect key="frame" x="131.5" y="58" width="112" height="34"/>
+                                                    <rect key="frame" x="62.5" y="37.5" width="250" height="75"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="75" id="P1b-OQ-R7X"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="a8r-pu-36C"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <state key="normal" title="Upload Image"/>
                                                     <connections>
@@ -274,7 +278,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qya-0x-Icx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="993" y="-327"/>
+            <point key="canvasLocation" x="992.79999999999995" y="-327.88605697151428"/>
         </scene>
         <!--Main-->
         <scene sceneID="iSa-DP-ncX">

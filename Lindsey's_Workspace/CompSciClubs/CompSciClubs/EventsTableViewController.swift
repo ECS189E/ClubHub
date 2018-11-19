@@ -74,7 +74,7 @@ class EventsTableViewController: UITableViewController, EventCellDelegate {
         
         cell.delegate = self
         cell.name = event.name
-        cell.eventImage = event.mainPhoto ?? UIImage(named: "testImage")
+        cell.eventImage = event.mainImage ?? UIImage(named: "testImage")
         cell.startTime = event.startTime
         
         return cell

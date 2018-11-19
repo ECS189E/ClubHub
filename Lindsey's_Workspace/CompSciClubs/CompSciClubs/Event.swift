@@ -15,8 +15,8 @@ class Event {
     var location: String?
     var club: String?  // FIXME: var club: Club? when club class made
     var details: String?
-    var mainPhoto: UIImage?
-    //var photos: [UIImage]?
+    var mainImage: UIImage?
+    //var images: [UIImage]?
     
     // Default
     init() {
@@ -27,8 +27,8 @@ class Event {
         self.location = nil
         self.club = nil
         self.details = nil
-        self.mainPhoto = nil
-        //self.photos = nil
+        self.mainImage = nil
+        //self.images = nil
     }
     
     init(id: String?, name: String?, startTime: Date?, endTime: Date?, location: String?, club: String?, details: String?) {
@@ -39,8 +39,8 @@ class Event {
         self.location = location
         self.club = club
         self.details = details
-        //self.mainPhoto = mainPhoto
-        //self.photos = nil
+        //self.mainImage = mainImage
+        //self.images = nil
     }
     
     func printEvent() {

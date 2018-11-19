@@ -73,7 +73,16 @@ class EditEventViewController: UITableViewController,  UINavigationControllerDel
         locationTextField.text = event?.location
         detailsTextField.text = event?.details
 
-        imageView.isHidden = true
+        // init event image
+        if let image =  event?.mainImage {
+            imageView.image = image
+            uploadImageButton.setTitle("Upload Image", for: .normal)
+            imageView.isHidden = true
+        } else {
+            uploadImageButton.setTitle("Upload Image", for: .normal)
+            imageView.isHidden = true
+        }
+        
     }
     
     @IBAction func nameEdited(_ sender: Any) {
@@ -233,9 +242,8 @@ extension EditEventViewController : UIImagePickerControllerDelegate {
         imageView.image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         imageView.backgroundColor = UIColor.clear
         imageView.isHidden = false
-        // FIXME: label shows when tapped
-        uploadImageButton.titleLabel?.isHidden = true
-        event?.mainPhoto = imageView.image
+        uploadImageButton.setTitle("", for: .normal)
+        event?.mainImage = imageView.image
         self.dismiss(animated: true)
     }
     
