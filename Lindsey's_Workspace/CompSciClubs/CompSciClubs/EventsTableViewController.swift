@@ -9,7 +9,7 @@
 
 import UIKit
 
-class EventsTableViewController: UITableViewController, EventCellDelegate {
+class EventsTableViewController: UITableViewController{
     
     var events: [Event]?
     
@@ -25,9 +25,6 @@ class EventsTableViewController: UITableViewController, EventCellDelegate {
         // format appearence of dates
         dateFormatter.dateFormat = "EE MMM dd, yyyy"
         timeFormatter.dateFormat = "hh:mm a"
-        
-        tableView.register(EventCell.self, forCellReuseIdentifier: "eventCell")
-        tableView.rowHeight = 150
 
         EventsApi.getEvents() { data, error in
             switch(data, error){
@@ -51,12 +48,6 @@ class EventsTableViewController: UITableViewController, EventCellDelegate {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
-    func saveEventTapped(_ sender: EventCell) {
-        print("Save Tapped!")
-        guard let indexPath = tableView.indexPath(for: sender) else { return }
-        events?[indexPath.row].printEvent()
-    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.events?.count ?? 0
     }
@@ -72,42 +63,24 @@ class EventsTableViewController: UITableViewController, EventCellDelegate {
         // the identifier is like the type of the cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as! EventCell
         
-        cell.delegate = self
-        cell.name = event.name
-        cell.eventImage = event.mainImage ?? UIImage(named: "testImage")
-        cell.startTime = event.startTime
-        
-        return cell
-    }
+        //FIXME: Debugging
+        event.mainImage = UIImage(named: "testImage")
 
- /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        guard let events = self.events else {
-            return UITableViewCell()
-        }
-        
-        let event = events[indexPath.row]
-        
-        // the identifier is like the type of the cell
-        let cell = tableView.dequeueReusableCell(withIdentifier: "eventCall") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "eventCell")
-        
-        // Set cell values
-        cell.textLabel?.text = event.name ?? ""
-        cell.detailTextLabel?.text = "Start Time: \(event.startTime.map{self.dateFormatter.string(from: $0)} ?? "")"
-/*
-            "End Time: \(event.endTime.map{self.dateFormatter.string(from: $0)} ?? "") \n"
-            "Location: \(event.location ?? "")\n"
-        
-            "Club: \(event.club ?? "")\n"
-            "Description: \(event.details ?? "")"
- */
-        
-        event.printEvent()
+        cell.initEventCell(name: event.name, startTime: event.startTime, image: event.mainImage)
+        cell.contentView.isUserInteractionEnabled = false // make button clickable
         
         return cell
     }
- */
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "eventDetailsViewController") as! EventDetailsViewController
+        viewController.event = self.events.map { $0[indexPath.row] }
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+}
     
 
     // Other provided functions to override
@@ -153,4 +126,3 @@ class EventsTableViewController: UITableViewController, EventCellDelegate {
     }
     */
 
-}
