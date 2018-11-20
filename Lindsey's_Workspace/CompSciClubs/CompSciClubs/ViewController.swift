@@ -49,6 +49,7 @@ class ViewController: UIViewController, EditEventDelegate{
             let dest = segue.destination as! EditEventViewController
             dest.delegate = self
             dest.event = event
+            //dest.event = Event()
         default:
             return
         }

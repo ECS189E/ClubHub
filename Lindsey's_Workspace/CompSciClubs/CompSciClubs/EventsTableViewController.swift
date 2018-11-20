@@ -36,7 +36,6 @@ class EventsTableViewController: UITableViewController{
         navigationItem.searchController = searchController
         definesPresentationContext = true
 
-
         EventsApi.getEvents() { data, error in
             switch(data, error){
             case(nil, .some(let error)):

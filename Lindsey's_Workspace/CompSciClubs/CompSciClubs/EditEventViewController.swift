@@ -53,8 +53,9 @@ class EditEventViewController: UITableViewController,  UINavigationControllerDel
         
         // if editing an existing event
         if let event = event {
-            if event.id  == nil { // must have an id to update 
-                print("Error") // FIXME: add error handling
+            if event.id  == nil { // must have an id to update
+                navigationController?.popViewController(animated: true)  //FIXME: move to view will appear?
+                print("Error updating event: no id")
             }
         // else create a new event and init dates
         } else {
@@ -98,6 +99,13 @@ class EditEventViewController: UITableViewController,  UINavigationControllerDel
     }
     
     @IBAction func doneTapped(_ sender: Any) {
+        
+        // Require name and start time
+        guard let _ = event?.name, let _ = event?.startTime else{
+            print("Error adding event, must provide a name and start time")
+            return
+        }
+        
         // if updating an existing event
         if let _ = event?.id {
             EventsApi.updateEvent(event: event) { data, err in
@@ -200,24 +208,6 @@ extension EditEventViewController: DateTimePopUpDelegate {
                 self.event?.endTime = date
             case (self.startTimeTextField):
                 self.event?.startTime = date
-                
-                /* START FIXME: Buggy code
-                 // update end time if it is greater than start time
-                if date > self.event?.endTime ?? date {
-                    // Change hour and minute of end time to one hour past start time
-                    let startComponents = Calendar.current.dateComponents(
-                        [.hour, .minute],
-                        from: date)
-                    var endComponents = Calendar.current.dateComponents(
-                        [.year, .month, .day, .hour, .minute, .weekday, .weekOfYear],
-                        from: self.event?.endTime ?? date)
-                    endComponents.hour = startComponents.hour
-                    endComponents.minute = startComponents.minute
-                    
-                    // update end time
-                    self.event?.endTime = Calendar.current.date(from: endComponents)?.addingTimeInterval(60 * 60)
-                }
-                 // END FIXME */
                 
             case (self.endTimeTextField):
                 self.event?.endTime = date
