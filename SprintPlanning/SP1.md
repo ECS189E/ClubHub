@@ -47,7 +47,7 @@ Planned out the flow of the app and researched how the flow would play out into 
 Created a class with basic information such as name IDs, club IDs, and events IDs
 
 ### Doing:
-1. Login  <https://github.com/ECS189E/ClubHub/tree/master/Sravya_Workspace/AccountSetup> 
+1. Login  <https://github.com/ECS189E/ClubHub/commit/86849686b03596bc509a5059e51e89952ce5abfd>
 I am working on the login however it is not complete yet
 
 * Club/User Profile and Club API  
