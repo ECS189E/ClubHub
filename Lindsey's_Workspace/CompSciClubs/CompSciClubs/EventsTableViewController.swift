@@ -64,6 +64,22 @@ class EventsTableViewController: UITableViewController{
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if #available(iOS 11.0, *) {
+            // Show search bar at init
+            navigationItem.hidesSearchBarWhenScrolling = false
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if #available(iOS 11.0, *) {
+            // hide search bar when scrolling
+            navigationItem.hidesSearchBarWhenScrolling = true
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltering() {
             return filteredEvents.count

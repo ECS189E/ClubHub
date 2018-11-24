@@ -19,6 +19,7 @@ class EditEventViewController: UITableViewController,  UINavigationControllerDel
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var uploadImageButton: UIButton!
+    @IBOutlet weak var deleteImageButton: UIButton!
     @IBOutlet weak var startDateTextField: UITextField!
     @IBOutlet weak var startTimeTextField: UITextField!
     @IBOutlet weak var endDateTextField: UITextField!
@@ -77,11 +78,13 @@ class EditEventViewController: UITableViewController,  UINavigationControllerDel
         // init event image
         if let image =  event?.mainImage {
             imageView.image = image
-            uploadImageButton.setTitle("Upload Image", for: .normal)
-            imageView.isHidden = true
+            uploadImageButton.setTitle("", for: .normal)
+            imageView.isHidden = false
+            deleteImageButton.isHidden = false
         } else {
             uploadImageButton.setTitle("Upload Image", for: .normal)
             imageView.isHidden = true
+            deleteImageButton.isHidden = true
         }
         
     }
@@ -145,6 +148,14 @@ class EditEventViewController: UITableViewController,  UINavigationControllerDel
         self.present(imagePicker, animated: true)
     }
     
+    @IBAction func deleteImageTapped(_ sender: Any) {
+        imageView.image = UIImage()
+        event?.mainImage = nil
+        uploadImageButton.setTitle("Upload Image", for: .normal)
+        imageView.isHidden = true
+        deleteImageButton.isHidden = true
+        
+    }
     
 }
 
@@ -234,6 +245,7 @@ extension EditEventViewController : UIImagePickerControllerDelegate {
         imageView.isHidden = false
         uploadImageButton.setTitle("", for: .normal)
         event?.mainImage = imageView.image
+        deleteImageButton.isHidden = false
         self.dismiss(animated: true)
     }
     

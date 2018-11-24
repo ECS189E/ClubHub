@@ -47,40 +47,55 @@
                         <sections>
                             <tableViewSection id="vsn-2w-UsL">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="150" id="l9Z-YY-IaJ">
-                                        <rect key="frame" x="0.0" y="59.5" width="375" height="150"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="200" id="l9Z-YY-IaJ">
+                                        <rect key="frame" x="0.0" y="59.5" width="375" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="l9Z-YY-IaJ" id="RJg-Qe-AXZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="149.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="199.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hBS-79-2NC">
-                                                    <rect key="frame" x="16" y="11" width="343" height="128"/>
+                                                    <rect key="frame" x="16" y="11" width="343" height="158.5"/>
                                                     <color key="backgroundColor" white="0.84509667522831033" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWc-Cj-Jgf">
-                                                    <rect key="frame" x="16" y="11" width="343" height="128"/>
+                                                <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWc-Cj-Jgf">
+                                                    <rect key="frame" x="16" y="11" width="343" height="158.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <state key="normal" title="Upload Image"/>
                                                     <connections>
                                                         <action selector="uploadImageTapped:" destination="PHS-aO-xCN" eventType="touchUpInside" id="F6b-SK-Mdl"/>
                                                     </connections>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sxl-jM-sKI">
+                                                    <rect key="frame" x="305" y="169.5" width="50" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="9hQ-XS-oWR"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="LCs-cg-MH0"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="16"/>
+                                                    <state key="normal" title="Delete"/>
+                                                    <connections>
+                                                        <action selector="deleteImageTapped:" destination="PHS-aO-xCN" eventType="touchUpInside" id="v8y-Na-I7b"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="DWc-Cj-Jgf" secondAttribute="bottom" id="65G-Nn-DZJ"/>
-                                                <constraint firstItem="hBS-79-2NC" firstAttribute="bottom" secondItem="RJg-Qe-AXZ" secondAttribute="bottomMargin" id="GIT-2H-F6O"/>
+                                                <constraint firstItem="hBS-79-2NC" firstAttribute="bottom" secondItem="DWc-Cj-Jgf" secondAttribute="bottom" id="3RU-rZ-deF"/>
+                                                <constraint firstAttribute="trailing" secondItem="Sxl-jM-sKI" secondAttribute="trailing" constant="20" id="4Mv-Yr-Kup"/>
+                                                <constraint firstAttribute="bottom" secondItem="Sxl-jM-sKI" secondAttribute="bottom" id="Cy1-To-VQU"/>
+                                                <constraint firstItem="Sxl-jM-sKI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RJg-Qe-AXZ" secondAttribute="leading" constant="20" symbolic="YES" id="FsN-QL-0rT"/>
                                                 <constraint firstItem="hBS-79-2NC" firstAttribute="top" secondItem="RJg-Qe-AXZ" secondAttribute="topMargin" id="LPN-By-ZvZ"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="DWc-Cj-Jgf" secondAttribute="trailing" id="XRm-bh-jdv"/>
                                                 <constraint firstItem="DWc-Cj-Jgf" firstAttribute="top" secondItem="RJg-Qe-AXZ" secondAttribute="topMargin" id="XZW-vA-zPn"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="hBS-79-2NC" secondAttribute="trailing" id="aV4-pW-bfq"/>
                                                 <constraint firstItem="hBS-79-2NC" firstAttribute="leading" secondItem="RJg-Qe-AXZ" secondAttribute="leadingMargin" id="dCJ-qq-0QF"/>
                                                 <constraint firstItem="DWc-Cj-Jgf" firstAttribute="leading" secondItem="RJg-Qe-AXZ" secondAttribute="leadingMargin" id="fDf-Im-y9k"/>
+                                                <constraint firstItem="Sxl-jM-sKI" firstAttribute="top" secondItem="hBS-79-2NC" secondAttribute="bottom" id="lJN-68-RuS"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="startDateCell" id="ijy-ZJ-0Jz" userLabel="StartDateCell">
-                                        <rect key="frame" x="0.0" y="209.5" width="375" height="45"/>
+                                        <rect key="frame" x="0.0" y="259.5" width="375" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ijy-ZJ-0Jz" id="b2H-xI-UpY">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44.5"/>
@@ -125,7 +140,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="endDateCell" id="CBx-4H-do9" userLabel="EndDateCell">
-                                        <rect key="frame" x="0.0" y="254.5" width="375" height="45"/>
+                                        <rect key="frame" x="0.0" y="304.5" width="375" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CBx-4H-do9" id="VQL-xK-nIo">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44.5"/>
@@ -170,7 +185,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="locationCell" id="U5b-UO-Mev" userLabel="LocationCell">
-                                        <rect key="frame" x="0.0" y="299.5" width="375" height="45"/>
+                                        <rect key="frame" x="0.0" y="349.5" width="375" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="U5b-UO-Mev" id="OUs-fu-SE7">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44.5"/>
@@ -209,7 +224,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="descriptionCell" id="us3-FU-MlQ" userLabel="DescriptionCell">
-                                        <rect key="frame" x="0.0" y="344.5" width="375" height="45"/>
+                                        <rect key="frame" x="0.0" y="394.5" width="375" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="us3-FU-MlQ" id="hcS-Z9-Sbu">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44.5"/>
@@ -263,6 +278,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="deleteImageButton" destination="Sxl-jM-sKI" id="1XJ-Xg-AH8"/>
                         <outlet property="detailsTextField" destination="IWF-5V-hn8" id="dl9-11-BLl"/>
                         <outlet property="endDateTextField" destination="wAQ-jF-FV6" id="tJ3-WN-5xf"/>
                         <outlet property="endTimeTextField" destination="cue-EN-B2q" id="yQi-Ok-EpZ"/>
