@@ -31,7 +31,7 @@ class Event {
         //self.images = nil
     }
     
-    init(id: String?, name: String?, startTime: Date?, endTime: Date?, location: String?, club: String?, details: String?) {
+    init(id: String?, name: String?, startTime: Date?, endTime: Date?, location: String?, club: String?, details: String?, mainImage: UIImage?) {
         self.id = id
         self.name = name
         self.startTime = startTime
@@ -39,7 +39,7 @@ class Event {
         self.location = location
         self.club = club
         self.details = details
-        //self.mainImage = mainImage
+        self.mainImage = mainImage
         //self.images = nil
     }
     

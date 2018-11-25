@@ -86,7 +86,6 @@ class EditEventViewController: UITableViewController,  UINavigationControllerDel
             imageView.isHidden = true
             deleteImageButton.isHidden = true
         }
-        
     }
     
     @IBAction func nameEdited(_ sender: Any) {
@@ -246,6 +245,7 @@ extension EditEventViewController : UIImagePickerControllerDelegate {
         uploadImageButton.setTitle("", for: .normal)
         event?.mainImage = imageView.image
         deleteImageButton.isHidden = false
+        
         self.dismiss(animated: true)
     }
     

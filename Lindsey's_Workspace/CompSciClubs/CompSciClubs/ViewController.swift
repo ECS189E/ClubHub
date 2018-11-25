@@ -11,8 +11,8 @@ import UIKit
 
 class ViewController: UIViewController, EditEventDelegate{
     
-    var updateId: String = "7SrOD9MbJVuQOSmOUQD7"
-    var deleteId: String = "ZTKSlUMBT24jqkIOsAss"
+    var updateId: String = "FIcpOWlpIziJoxwEmWD0"
+    var deleteId: String = "9SiWiJuWv8GdqTbz53E4"
     var userEvents = ["4LCtWNiwjkIt5vPlxDy4", "FIcpOWlpIziJoxwEmWD0"]
     var event: Event?
     

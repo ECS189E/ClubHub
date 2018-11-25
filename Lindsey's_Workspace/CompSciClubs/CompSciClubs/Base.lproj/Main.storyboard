@@ -59,7 +59,7 @@
                                                     <color key="backgroundColor" white="0.84509667522831033" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWc-Cj-Jgf">
-                                                    <rect key="frame" x="16" y="11" width="343" height="158.5"/>
+                                                    <rect key="frame" x="21" y="16" width="333" height="148.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <state key="normal" title="Upload Image"/>
                                                     <connections>
@@ -80,16 +80,16 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="hBS-79-2NC" firstAttribute="bottom" secondItem="DWc-Cj-Jgf" secondAttribute="bottom" id="3RU-rZ-deF"/>
+                                                <constraint firstItem="hBS-79-2NC" firstAttribute="bottom" secondItem="DWc-Cj-Jgf" secondAttribute="bottom" constant="5" id="3RU-rZ-deF"/>
                                                 <constraint firstAttribute="trailing" secondItem="Sxl-jM-sKI" secondAttribute="trailing" constant="20" id="4Mv-Yr-Kup"/>
                                                 <constraint firstAttribute="bottom" secondItem="Sxl-jM-sKI" secondAttribute="bottom" id="Cy1-To-VQU"/>
                                                 <constraint firstItem="Sxl-jM-sKI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RJg-Qe-AXZ" secondAttribute="leading" constant="20" symbolic="YES" id="FsN-QL-0rT"/>
                                                 <constraint firstItem="hBS-79-2NC" firstAttribute="top" secondItem="RJg-Qe-AXZ" secondAttribute="topMargin" id="LPN-By-ZvZ"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="DWc-Cj-Jgf" secondAttribute="trailing" id="XRm-bh-jdv"/>
-                                                <constraint firstItem="DWc-Cj-Jgf" firstAttribute="top" secondItem="RJg-Qe-AXZ" secondAttribute="topMargin" id="XZW-vA-zPn"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="DWc-Cj-Jgf" secondAttribute="trailing" constant="5" id="XRm-bh-jdv"/>
+                                                <constraint firstItem="DWc-Cj-Jgf" firstAttribute="top" secondItem="RJg-Qe-AXZ" secondAttribute="topMargin" constant="5" id="XZW-vA-zPn"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="hBS-79-2NC" secondAttribute="trailing" id="aV4-pW-bfq"/>
                                                 <constraint firstItem="hBS-79-2NC" firstAttribute="leading" secondItem="RJg-Qe-AXZ" secondAttribute="leadingMargin" id="dCJ-qq-0QF"/>
-                                                <constraint firstItem="DWc-Cj-Jgf" firstAttribute="leading" secondItem="RJg-Qe-AXZ" secondAttribute="leadingMargin" id="fDf-Im-y9k"/>
+                                                <constraint firstItem="DWc-Cj-Jgf" firstAttribute="leading" secondItem="RJg-Qe-AXZ" secondAttribute="leadingMargin" constant="5" id="fDf-Im-y9k"/>
                                                 <constraint firstItem="Sxl-jM-sKI" firstAttribute="top" secondItem="hBS-79-2NC" secondAttribute="bottom" id="lJN-68-RuS"/>
                                             </constraints>
                                         </tableViewCellContentView>
