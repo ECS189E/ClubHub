@@ -1,15 +1,20 @@
 //
-//  EventsTableViewController.swift
+//  EventsFeedViewController.swift
 //  CompSciClubs
 //
-//  Created by Lindsey Gray on 11/13/18.
+//  Created by Lindsey Gray on 11/24/18.
 //  Copyright © 2018 Lindsey Gray. All rights reserved.
 //
-// Displays a list of all events
 
 import UIKit
 
-class EventsTableViewController: UITableViewController{
+class EventsFeedViewController: UIViewController {
+    @IBOutlet weak var eventsTableView: UITableView!
+    @IBOutlet weak var allEventsButton: UIButton!
+    @IBOutlet weak var myEventButton: UIButton!
+    
+    var allEvents: [Event]?
+    var userEvents: [String]? // Array of user saved event ids
     
     var events: [Event]?
     var filteredEvents = [Event]()
@@ -18,12 +23,14 @@ class EventsTableViewController: UITableViewController{
     let timeFormatter = DateFormatter()
     
     let searchController = UISearchController(searchResultsController: nil)
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        eventsTableView.delegate = self
+        eventsTableView.dataSource = self
         viewInit()
     }
-        
+    
     func viewInit() {
         // format appearence of dates
         dateFormatter.dateFormat = "EE MMM dd, yyyy"
@@ -35,52 +42,54 @@ class EventsTableViewController: UITableViewController{
         searchController.obscuresBackgroundDuringPresentation = false
         navigationItem.searchController = searchController
         definesPresentationContext = true
-
+        
+        allEventsButton.alpha = 1.0
+        myEventButton.alpha = 0.5
+        
         EventsApi.getEvents() { data, error in
             switch(data, error){
             case(nil, .some(let error)):
                 print(error)
             case(.some(let data), nil):
-                self.events = data as? [Event]
+                self.allEvents = data as? [Event]
                 
                 // sort events by start time
-                self.events = self.events?.sorted(by: { $0.startTime?.compare($1.startTime ?? Date()) == .orderedAscending })
+                self.allEvents = self.allEvents?.sorted(by: { $0.startTime?.compare($1.startTime ?? Date()) == .orderedAscending })
                 // remove events that have already passed
-                self.events = self.events?.filter { $0.startTime ?? Date() >= Date() }
+                self.allEvents = self.allEvents?.filter { $0.startTime ?? Date() >= Date() }
                 
-                self.tableView.reloadData()
+                self.events = self.allEvents
+                self.eventsTableView.reloadData()
             default:
                 print("Error getting events")
                 
             }
         }
-        
-        // Provided code
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+    }
+    
+    @IBAction func allEventsButtonTapped(_ sender: Any) {
+        searchController.isActive = false // cancel serach
+        allEventsButton.alpha = 1.0
+        myEventButton.alpha = 0.5
+        events = allEvents
+        eventsTableView.reloadData()
+    }
+    
+    @IBAction func myEventsButtonTapped(_ sender: Any) {
+        searchController.isActive = false // cancel search
+        allEventsButton.alpha = 0.5
+        myEventButton.alpha = 1.0
+        events = allEvents?.filter{ event in
+            userEvents?.contains(event.id ?? "") ?? false }
+        eventsTableView.reloadData()
+    }
+    
+}
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-    }
+// TableView funtions
+extension EventsFeedViewController: UITableViewDelegate, UITableViewDataSource {
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        if #available(iOS 11.0, *) {
-            // Show search bar at init
-            navigationItem.hidesSearchBarWhenScrolling = false
-        }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if #available(iOS 11.0, *) {
-            // hide search bar when scrolling
-            navigationItem.hidesSearchBarWhenScrolling = true
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltering() {
             return filteredEvents.count
         }
@@ -88,7 +97,7 @@ class EventsTableViewController: UITableViewController{
         return self.events?.count ?? 0
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let events = self.events else {
             return UITableViewCell()
@@ -106,25 +115,25 @@ class EventsTableViewController: UITableViewController{
         
         //FIXME: Debugging
         event.mainImage = UIImage(named: "testImage")
-
+        
         cell.initEventCell(name: event.name, startTime: event.startTime, club: event.club, image: event.mainImage)
         cell.contentView.isUserInteractionEnabled = false // make button clickable
         
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "eventDetailsViewController") as! EventDetailsViewController
         viewController.event = self.events.map { $0[indexPath.row] }
         self.navigationController?.pushViewController(viewController, animated: true)
     }
-    
+
 }
 
 // Search bar
-extension EventsTableViewController: UISearchResultsUpdating {
+extension EventsFeedViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!)
@@ -144,64 +153,18 @@ extension EventsTableViewController: UISearchResultsUpdating {
         // filter events by names and clubs matching the serach text
         filteredEvents = events.filter{ event in
             event.name?.lowercased().contains(searchText.lowercased()) ?? false
-            || event.club?.lowercased().contains(searchText.lowercased()) ?? false
+                || event.club?.lowercased().contains(searchText.lowercased()) ?? false
         }
         
         // sort filtered events
         filteredEvents = filteredEvents.sorted(by: { $0.startTime?.compare($1.startTime ?? Date()) == .orderedAscending })
         
-        tableView.reloadData()
+        eventsTableView.reloadData()
     }
     
     func isFiltering() -> Bool {
         return searchController.isActive && !searchBarIsEmpty()
     }
-
-
+    
+    
 }
-
-    
-
-    // Other provided tableview functions to override
-    
-    /*
-     override func numberOfSections(in tableView: UITableView) -> Int {
-     return 1
-     }
-     */
-    
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-

@@ -13,6 +13,7 @@ class ViewController: UIViewController, EditEventDelegate{
     
     var updateId: String = "7SrOD9MbJVuQOSmOUQD7"
     var deleteId: String = "ZTKSlUMBT24jqkIOsAss"
+    var userEvents = ["4LCtWNiwjkIt5vPlxDy4", "FIcpOWlpIziJoxwEmWD0"]
     var event: Event?
     
     func editEventCompleted() {
@@ -49,7 +50,9 @@ class ViewController: UIViewController, EditEventDelegate{
             let dest = segue.destination as! EditEventViewController
             dest.delegate = self
             dest.event = event
-            //dest.event = Event()
+        case("allEvents"):
+            let dest = segue.destination as! EventsFeedViewController
+            dest.userEvents = userEvents
         default:
             return
         }

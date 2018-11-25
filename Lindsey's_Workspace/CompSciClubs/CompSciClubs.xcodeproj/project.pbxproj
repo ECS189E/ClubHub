@@ -15,16 +15,16 @@
 		D10016E92197D83B00B7B353 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D10016E72197D83B00B7B353 /* LaunchScreen.storyboard */; };
 		D10016F42197D83B00B7B353 /* CompSciClubsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10016F32197D83B00B7B353 /* CompSciClubsTests.swift */; };
 		D10016FF2197D83B00B7B353 /* CompSciClubsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10016FE2197D83B00B7B353 /* CompSciClubsUITests.swift */; };
-		D10C105821A2831400CF2ACD /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10C105721A2831400CF2ACD /* EventDetailsViewController.swift */; };
 		D129952F21A1105C00CA3496 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D129952E21A1105C00CA3496 /* EventCell.swift */; };
 		D147CFF7219B7BAE002ECB6A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D147CFF6219B7BAE002ECB6A /* ViewController.swift */; };
-		D147CFF9219B8254002ECB6A /* EventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D147CFF8219B8254002ECB6A /* EventsTableViewController.swift */; };
 		D1B2E38A21992E3C00DEF935 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B2E38921992E3C00DEF935 /* Event.swift */; };
 		D1B2E38C2199349C00DEF935 /* ViewController+keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B2E38B2199349C00DEF935 /* ViewController+keyboard.swift */; };
 		D1B2E38E2199452000DEF935 /* DateTimePopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B2E38D2199452000DEF935 /* DateTimePopUpViewController.swift */; };
 		D1B2E3902199485A00DEF935 /* EditEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B2E38F2199485A00DEF935 /* EditEventViewController.swift */; };
 		D1B2E394219A557600DEF935 /* EventsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B2E393219A557600DEF935 /* EventsApi.swift */; };
 		D1B2E396219A5A4D00DEF935 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D1B2E395219A5A4D00DEF935 /* GoogleService-Info.plist */; };
+		D1CEF0E821AA1D710070AE44 /* EventsFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CEF0E721AA1D710070AE44 /* EventsFeedViewController.swift */; };
+		D1CEF0EA21AA1EB60070AE44 /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CEF0E921AA1EB60070AE44 /* EventDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,16 +61,16 @@
 		D10016FA2197D83B00B7B353 /* CompSciClubsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CompSciClubsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D10016FE2197D83B00B7B353 /* CompSciClubsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompSciClubsUITests.swift; sourceTree = "<group>"; };
 		D10017002197D83B00B7B353 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D10C105721A2831400CF2ACD /* EventDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
 		D129952E21A1105C00CA3496 /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		D147CFF6219B7BAE002ECB6A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D147CFF8219B8254002ECB6A /* EventsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTableViewController.swift; sourceTree = "<group>"; };
 		D1B2E38921992E3C00DEF935 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		D1B2E38B2199349C00DEF935 /* ViewController+keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+keyboard.swift"; sourceTree = "<group>"; };
 		D1B2E38D2199452000DEF935 /* DateTimePopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimePopUpViewController.swift; sourceTree = "<group>"; };
 		D1B2E38F2199485A00DEF935 /* EditEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventViewController.swift; sourceTree = "<group>"; };
 		D1B2E393219A557600DEF935 /* EventsApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsApi.swift; sourceTree = "<group>"; };
 		D1B2E395219A5A4D00DEF935 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D1CEF0E721AA1D710070AE44 /* EventsFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsFeedViewController.swift; sourceTree = "<group>"; };
+		D1CEF0E921AA1EB60070AE44 /* EventDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,10 +136,10 @@
 				D10016DF2197D83A00B7B353 /* Main.storyboard */,
 				D147CFF6219B7BAE002ECB6A /* ViewController.swift */,
 				D129952E21A1105C00CA3496 /* EventCell.swift */,
-				D147CFF8219B8254002ECB6A /* EventsTableViewController.swift */,
-				D10C105721A2831400CF2ACD /* EventDetailsViewController.swift */,
+				D1CEF0E721AA1D710070AE44 /* EventsFeedViewController.swift */,
 				D1B2E38F2199485A00DEF935 /* EditEventViewController.swift */,
 				D1B2E38D2199452000DEF935 /* DateTimePopUpViewController.swift */,
+				D1CEF0E921AA1EB60070AE44 /* EventDetailsViewController.swift */,
 				D1B2E38B2199349C00DEF935 /* ViewController+keyboard.swift */,
 				D1B2E38921992E3C00DEF935 /* Event.swift */,
 				D1B2E393219A557600DEF935 /* EventsApi.swift */,
@@ -380,16 +380,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1CEF0EA21AA1EB60070AE44 /* EventDetailsViewController.swift in Sources */,
 				D147CFF7219B7BAE002ECB6A /* ViewController.swift in Sources */,
 				D1B2E394219A557600DEF935 /* EventsApi.swift in Sources */,
 				D129952F21A1105C00CA3496 /* EventCell.swift in Sources */,
 				D1B2E3902199485A00DEF935 /* EditEventViewController.swift in Sources */,
 				D10016E42197D83A00B7B353 /* CompSciClubs.xcdatamodeld in Sources */,
+				D1CEF0E821AA1D710070AE44 /* EventsFeedViewController.swift in Sources */,
 				D1B2E38E2199452000DEF935 /* DateTimePopUpViewController.swift in Sources */,
 				D1B2E38C2199349C00DEF935 /* ViewController+keyboard.swift in Sources */,
-				D147CFF9219B8254002ECB6A /* EventsTableViewController.swift in Sources */,
 				D10016DC2197D83A00B7B353 /* AppDelegate.swift in Sources */,
-				D10C105821A2831400CF2ACD /* EventDetailsViewController.swift in Sources */,
 				D1B2E38A21992E3C00DEF935 /* Event.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
