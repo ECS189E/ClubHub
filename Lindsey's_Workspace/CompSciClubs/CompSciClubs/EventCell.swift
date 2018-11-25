@@ -15,28 +15,36 @@ class EventCell: UITableViewCell {
     @IBOutlet var clubLabel: UILabel!
     @IBOutlet var eventStartTimeLabel: UILabel!
     
-    func initEventCell(name: String?, startTime: Date?, club: String?, image: UIImage?) {
+    func initEventCell(name: String?, startTime: Date?, club: String?, image: UIImage?, dateFormat: String?) {
         
         // allow for a dynamic amount of lines for labels
-        nameLabel.lineBreakMode = .byWordWrapping
-        clubLabel.lineBreakMode = .byWordWrapping
-        nameLabel.numberOfLines = 0
-        clubLabel.numberOfLines = 0
+        if nameLabel != nil {
+            nameLabel.lineBreakMode = .byWordWrapping
+            nameLabel.numberOfLines = 0
+        }
+        if clubLabel != nil {
+            clubLabel.lineBreakMode = .byWordWrapping
+            clubLabel.numberOfLines = 0
+        }
         
-        if let name = name {
+        if let name = name, let _ = nameLabel {
             nameLabel.text = name
         }
-        if let image = image {
+        if let image = image, let _ = eventImageView {
             eventImageView.image = image
         }
-        if let club = club {
+        if let club = club, let _ = clubLabel {
             clubLabel.text = club
         }
-        if let startTime = startTime {
+        if let startTime = startTime, let _ = eventStartTimeLabel {
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "EE MMM dd hh:mm a"
+            
+            if let dateFormat = dateFormat {
+                dateFormatter.dateFormat = dateFormat
+            } else {
+                dateFormatter.dateFormat = "EE MMM dd hh:mm a"
+            }
             eventStartTimeLabel.text = dateFormatter.string(from: startTime)
         }
-        
     }
 }

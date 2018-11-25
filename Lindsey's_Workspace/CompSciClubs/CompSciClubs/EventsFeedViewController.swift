@@ -113,9 +113,7 @@ extension EventsFeedViewController: UITableViewDelegate, UITableViewDataSource {
         // the identifier is like the type of the cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as! EventCell
         
-        cell.initEventCell(name: event.name, startTime: event.startTime, club: event.club, image: event.mainImage ?? UIImage(named: "testImage"))  //FIXME: debugging
-        cell.contentView.isUserInteractionEnabled = false // make button clickable
-        
+        cell.initEventCell(name: event.name, startTime: event.startTime, club: event.club, image: event.mainImage ?? UIImage(named: "testImage"), dateFormat: "EE MMM dd hh:mm a")  //FIXME: debugging clickable
         return cell
     }
     

@@ -303,10 +303,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rF7-o0-9Sg">
-                                <rect key="frame" x="132.5" y="250.5" width="110" height="166"/>
+                                <rect key="frame" x="130" y="228.5" width="115" height="210"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SvU-ip-gVe">
-                                        <rect key="frame" x="0.0" y="0.0" width="110" height="34"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="115" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal" title="Add Event"/>
                                         <connections>
@@ -314,7 +314,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="haf-dO-99d">
-                                        <rect key="frame" x="0.0" y="44" width="110" height="34"/>
+                                        <rect key="frame" x="0.0" y="44" width="115" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal" title="Update Event"/>
                                         <connections>
@@ -322,7 +322,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vH5-kR-oiF">
-                                        <rect key="frame" x="0.0" y="88" width="110" height="34"/>
+                                        <rect key="frame" x="0.0" y="88" width="115" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal" title="Delete Event"/>
                                         <connections>
@@ -330,11 +330,19 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gkY-qR-ftF">
-                                        <rect key="frame" x="0.0" y="132" width="110" height="34"/>
+                                        <rect key="frame" x="0.0" y="132" width="115" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal" title="All Events"/>
                                         <connections>
                                             <segue destination="h9M-nO-BV0" kind="show" identifier="allEvents" id="zdt-GA-VnN"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OoU-0N-l13">
+                                        <rect key="frame" x="0.0" y="176" width="115" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="Events by Day"/>
+                                        <connections>
+                                            <segue destination="DZA-xf-nrY" kind="show" identifier="eventsByDay" id="JCS-1P-dNx"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -352,6 +360,100 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nSX-PB-N3N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="111" y="33"/>
+        </scene>
+        <!--Day Events View Controller-->
+        <scene sceneID="43e-DC-xtM">
+            <objects>
+                <viewController storyboardIdentifier="dayEventsView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="DZA-xf-nrY" customClass="DayEventsViewController" customModule="CompSciClubs" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VF5-lq-mC3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zJj-jv-dbD">
+                                <rect key="frame" x="10" y="224" width="355" height="423"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="eventCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="dayEventCell" id="s5Y-Tb-HCA" customClass="EventCell" customModule="CompSciClubs" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="355" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="s5Y-Tb-HCA" id="see-xW-j0P">
+                                            <rect key="frame" x="0.0" y="0.0" width="355" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="axQ-lx-OPo">
+                                                    <rect key="frame" x="10" y="10" width="335" height="23.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gO3-ow-HRo">
+                                                            <rect key="frame" x="0.0" y="0.0" width="217.5" height="23.5"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Time" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OlD-H8-NOX">
+                                                            <rect key="frame" x="217.5" y="0.0" width="117.5" height="23.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="OlD-H8-NOX" secondAttribute="bottom" id="E8n-0d-ISm"/>
+                                                        <constraint firstItem="gO3-ow-HRo" firstAttribute="leading" secondItem="axQ-lx-OPo" secondAttribute="leading" id="JZq-mE-495"/>
+                                                        <constraint firstItem="gO3-ow-HRo" firstAttribute="top" secondItem="axQ-lx-OPo" secondAttribute="top" id="NfK-K7-yob"/>
+                                                        <constraint firstItem="OlD-H8-NOX" firstAttribute="top" secondItem="axQ-lx-OPo" secondAttribute="top" id="S3p-jn-sg8"/>
+                                                        <constraint firstAttribute="trailing" secondItem="OlD-H8-NOX" secondAttribute="trailing" id="ScK-vL-V0l"/>
+                                                        <constraint firstItem="OlD-H8-NOX" firstAttribute="width" secondItem="gO3-ow-HRo" secondAttribute="width" constant="-100" id="ro9-Oj-4rQ"/>
+                                                        <constraint firstAttribute="bottom" secondItem="gO3-ow-HRo" secondAttribute="bottom" id="tEJ-5B-hNe"/>
+                                                    </constraints>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="axQ-lx-OPo" firstAttribute="top" secondItem="see-xW-j0P" secondAttribute="top" constant="10" id="4Os-qZ-piY"/>
+                                                <constraint firstItem="axQ-lx-OPo" firstAttribute="leading" secondItem="see-xW-j0P" secondAttribute="leading" constant="10" id="7Ag-Oi-Jxn"/>
+                                                <constraint firstAttribute="bottom" secondItem="axQ-lx-OPo" secondAttribute="bottom" constant="10" id="NU4-Hp-9G7"/>
+                                                <constraint firstAttribute="trailing" secondItem="axQ-lx-OPo" secondAttribute="trailing" constant="10" id="sPl-Px-Maq"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="eventStartTimeLabel" destination="OlD-H8-NOX" id="jfM-bh-t4S"/>
+                                            <outlet property="nameLabel" destination="gO3-ow-HRo" id="jx8-Am-30e"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="lIC-cv-YEO">
+                                <rect key="frame" x="15" y="69" width="375" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="hez-bZ-Gkt"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="564814306.88417196">
+                                    <!--2018-11-25 04:51:46 +0000-->
+                                </date>
+                                <connections>
+                                    <action selector="datePicked:" destination="DZA-xf-nrY" eventType="valueChanged" id="ycm-s3-L9I"/>
+                                </connections>
+                            </datePicker>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="zzB-ej-73E" firstAttribute="bottom" secondItem="zJj-jv-dbD" secondAttribute="bottom" constant="20" id="2bG-QO-Ons"/>
+                            <constraint firstItem="lIC-cv-YEO" firstAttribute="leading" secondItem="zzB-ej-73E" secondAttribute="leading" constant="15" id="65L-Kk-dtX"/>
+                            <constraint firstItem="zJj-jv-dbD" firstAttribute="top" secondItem="lIC-cv-YEO" secondAttribute="bottom" constant="5" id="X6C-z3-424"/>
+                            <constraint firstItem="lIC-cv-YEO" firstAttribute="top" secondItem="zzB-ej-73E" secondAttribute="top" constant="5" id="cmA-d8-bg6"/>
+                            <constraint firstItem="zJj-jv-dbD" firstAttribute="leading" secondItem="zzB-ej-73E" secondAttribute="leading" constant="10" id="dXN-O2-6PA"/>
+                            <constraint firstItem="lIC-cv-YEO" firstAttribute="trailing" secondItem="zzB-ej-73E" secondAttribute="trailing" constant="15" id="qld-My-yEn"/>
+                            <constraint firstItem="zzB-ej-73E" firstAttribute="trailing" secondItem="zJj-jv-dbD" secondAttribute="trailing" constant="10" id="yNb-ku-sgu"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="zzB-ej-73E"/>
+                    </view>
+                    <connections>
+                        <outlet property="datePicker" destination="lIC-cv-YEO" id="06S-E3-X9Q"/>
+                        <outlet property="eventsTableView" destination="zJj-jv-dbD" id="Ivy-WO-KiL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kUH-wu-Fir" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="109.59999999999999" y="764.16791604197908"/>
         </scene>
         <!--Events Feed View Controller-->
         <scene sceneID="eRg-6b-mNe">

@@ -12,9 +12,10 @@ import UIKit
 class ViewController: UIViewController, EditEventDelegate{
     
     var updateId: String = "FIcpOWlpIziJoxwEmWD0"
-    var deleteId: String = "9SiWiJuWv8GdqTbz53E4"
+    var deleteId: String = "zBEU1ZujRNmN9Nrl8MIa"
     var userEvents = ["4LCtWNiwjkIt5vPlxDy4", "FIcpOWlpIziJoxwEmWD0"]
     var event: Event?
+    var events: [Event]?
     
     func editEventCompleted() {
         //self.dismiss(animated: true)
@@ -24,7 +25,11 @@ class ViewController: UIViewController, EditEventDelegate{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        getEvent(id: updateId) // get event for update test
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        getEvent(id: updateId)
+        getEvents()
     }
     
     // Test Api.deleteEvent()
@@ -53,6 +58,9 @@ class ViewController: UIViewController, EditEventDelegate{
         case("allEvents"):
             let dest = segue.destination as! EventsFeedViewController
             dest.userEvents = userEvents
+        case("eventsByDay"):
+            let dest = segue.destination as! DayEventsViewController
+            dest.allEvents = events
         default:
             return
         }
@@ -68,6 +76,26 @@ class ViewController: UIViewController, EditEventDelegate{
                 print(err)
             default:
                 print("Error getting event \(id)")
+            }
+        }
+    }
+    
+    func getEvents() {
+        // Get events
+        EventsApi.getEvents() { data, error in
+            switch(data, error){
+            case(nil, .some(let error)):
+                print(error)
+            case(.some(let data), nil):
+                self.events = data as? [Event]
+                
+                // sort events by start time
+                self.events = self.events?.sorted(by: { $0.startTime?.compare($1.startTime ?? Date()) == .orderedAscending })
+                // remove events that have already passed
+                self.events = self.events?.filter { $0.startTime ?? Date() >= Date() }
+            default:
+                print("Error getting events")
+                
             }
         }
     }
