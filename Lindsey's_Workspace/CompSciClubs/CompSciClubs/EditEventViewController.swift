@@ -24,8 +24,8 @@ class EditEventViewController: UITableViewController,  UINavigationControllerDel
     @IBOutlet weak var startTimeTextField: UITextField!
     @IBOutlet weak var endDateTextField: UITextField!
     @IBOutlet weak var endTimeTextField: UITextField!
-    @IBOutlet weak var locationTextField: UITextField!
-    @IBOutlet weak var detailsTextField: UITextField!
+    @IBOutlet weak var locationTextView: UITextView!
+    @IBOutlet weak var detailsTextView: UITextView!
     
     var delegate: EditEventDelegate?
     
@@ -47,6 +47,11 @@ class EditEventViewController: UITableViewController,  UINavigationControllerDel
     
     func viewInit() {
         tableView.keyboardDismissMode = .onDrag
+        
+        // format text views
+        locationTextView.isEditable = true
+        detailsTextView.isEditable = true
+        
         
         // format appearence of dates
         dateFormatter.dateFormat = "EE MMM dd, yyyy"
@@ -72,8 +77,8 @@ class EditEventViewController: UITableViewController,  UINavigationControllerDel
         endDateTextField.text = dateFormatter.string(from: event?.endTime ?? Date())
         startTimeTextField.text = timeFormatter.string(from: event?.startTime ?? Date())
         endTimeTextField.text = timeFormatter.string(from: event?.endTime ?? Date())
-        locationTextField.text = event?.location
-        detailsTextField.text = event?.details
+        locationTextView.text = event?.location
+        detailsTextView.text = event?.details
 
         // init event image
         if let image =  event?.mainImage {
@@ -88,19 +93,12 @@ class EditEventViewController: UITableViewController,  UINavigationControllerDel
         }
     }
     
-    @IBAction func nameEdited(_ sender: Any) {
-        event?.name = nameTextField.text?.trimmingCharacters(in: .whitespaces)
-    }
-    
-    @IBAction func locationEdited(_ sender: Any) {
-        event?.location = locationTextField.text?.trimmingCharacters(in: .whitespaces)
-    }
-    
-    @IBAction func detailsEdited(_ sender: Any) {
-        event?.details = detailsTextField.text?.trimmingCharacters(in: .whitespaces)
-    }
-    
     @IBAction func doneTapped(_ sender: Any) {
+        // Update event info
+        event?.name =
+            nameTextField.text?.trimmingCharacters(in: .whitespaces)
+        event?.details = detailsTextView.text?.trimmingCharacters(in: .whitespaces)
+        event?.location = locationTextView.text?.trimmingCharacters(in: .whitespaces)
         
         // Require name and start time
         guard let _ = event?.name, let _ = event?.startTime else{
