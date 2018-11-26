@@ -158,7 +158,7 @@ class EditEventViewController: UITableViewController,  UINavigationControllerDel
 
 
 // UITextFieldDelegate functions
-extension EditEventViewController {
+extension EditEventViewController: UITextFieldDelegate {
     
     // Istantiates date/time pop up view if certain text fields are edited
     func textFieldDidBeginEditing(_ textField: UITextField) {
