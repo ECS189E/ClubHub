@@ -1,6 +1,0 @@
-framework module Pods_ClubHubUITests {
-  umbrella header "Pods-ClubHubUITests-umbrella.h"
-
-  export *
-  module * { export * }
-}
