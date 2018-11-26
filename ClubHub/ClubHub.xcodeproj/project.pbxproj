@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3767815A21AC76E50016533D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3767815921AC76E50016533D /* GoogleService-Info.plist */; };
 		D136411621AC64F0007A7B22 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D136411521AC64F0007A7B22 /* AppDelegate.swift */; };
-		D136411821AC64F0007A7B22 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D136411721AC64F0007A7B22 /* ViewController.swift */; };
 		D136411B21AC64F0007A7B22 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D136411921AC64F0007A7B22 /* Main.storyboard */; };
 		D136411E21AC64F0007A7B22 /* ClubHub.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D136411C21AC64F0007A7B22 /* ClubHub.xcdatamodeld */; };
 		D136412021AC64F1007A7B22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D136411F21AC64F1007A7B22 /* Assets.xcassets */; };
@@ -20,6 +19,10 @@
 		D136419D21AC6F98007A7B22 /* Varshini in Resources */ = {isa = PBXBuildFile; fileRef = D136419921AC6F98007A7B22 /* Varshini */; };
 		D136419E21AC6F98007A7B22 /* Sravya in Resources */ = {isa = PBXBuildFile; fileRef = D136419A21AC6F98007A7B22 /* Sravya */; };
 		D136419F21AC6F98007A7B22 /* Lindsey in Resources */ = {isa = PBXBuildFile; fileRef = D136419B21AC6F98007A7B22 /* Lindsey */; };
+		D1835C7C21AC7C8D00A1F3DD /* Lindsey.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1835C7A21AC7C8C00A1F3DD /* Lindsey.storyboard */; };
+		D1835C7F21AC7C9900A1F3DD /* Cindy.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1835C7D21AC7C9900A1F3DD /* Cindy.storyboard */; };
+		D1835C8221AC7CA400A1F3DD /* Sravya.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1835C8021AC7CA400A1F3DD /* Sravya.storyboard */; };
+		D1835C8521AC7CAB00A1F3DD /* Varshini.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1835C8321AC7CAB00A1F3DD /* Varshini.storyboard */; };
 		E750A9DFA6023FA1C9A57307 /* Pods_ClubHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2470BC19246848A351389907 /* Pods_ClubHub.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,7 +52,6 @@
 		970100C9EFECC528E1638691 /* Pods-ClubHub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClubHub.release.xcconfig"; path = "Pods/Target Support Files/Pods-ClubHub/Pods-ClubHub.release.xcconfig"; sourceTree = "<group>"; };
 		D136411221AC64F0007A7B22 /* ClubHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClubHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D136411521AC64F0007A7B22 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D136411721AC64F0007A7B22 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D136411A21AC64F0007A7B22 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D136411D21AC64F0007A7B22 /* ClubHub.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ClubHub.xcdatamodel; sourceTree = "<group>"; };
 		D136411F21AC64F1007A7B22 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -65,6 +67,10 @@
 		D136419921AC6F98007A7B22 /* Varshini */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Varshini; sourceTree = "<group>"; };
 		D136419A21AC6F98007A7B22 /* Sravya */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sravya; sourceTree = "<group>"; };
 		D136419B21AC6F98007A7B22 /* Lindsey */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Lindsey; sourceTree = "<group>"; };
+		D1835C7B21AC7C8C00A1F3DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Lindsey.storyboard; sourceTree = "<group>"; };
+		D1835C7E21AC7C9900A1F3DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Cindy.storyboard; sourceTree = "<group>"; };
+		D1835C8121AC7CA400A1F3DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Sravya.storyboard; sourceTree = "<group>"; };
+		D1835C8421AC7CAB00A1F3DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Varshini.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,8 +144,11 @@
 			isa = PBXGroup;
 			children = (
 				D136411521AC64F0007A7B22 /* AppDelegate.swift */,
-				D136411721AC64F0007A7B22 /* ViewController.swift */,
 				D136411921AC64F0007A7B22 /* Main.storyboard */,
+				D1835C7A21AC7C8C00A1F3DD /* Lindsey.storyboard */,
+				D1835C7D21AC7C9900A1F3DD /* Cindy.storyboard */,
+				D1835C8021AC7CA400A1F3DD /* Sravya.storyboard */,
+				D1835C8321AC7CAB00A1F3DD /* Varshini.storyboard */,
 				D136411F21AC64F1007A7B22 /* Assets.xcassets */,
 				D136412121AC64F1007A7B22 /* LaunchScreen.storyboard */,
 				3767815921AC76E50016533D /* GoogleService-Info.plist */,
@@ -280,10 +289,14 @@
 			files = (
 				D136419C21AC6F98007A7B22 /* Cindy in Resources */,
 				3767815A21AC76E50016533D /* GoogleService-Info.plist in Resources */,
+				D1835C8521AC7CAB00A1F3DD /* Varshini.storyboard in Resources */,
+				D1835C8221AC7CA400A1F3DD /* Sravya.storyboard in Resources */,
 				D136412321AC64F1007A7B22 /* LaunchScreen.storyboard in Resources */,
 				D136419E21AC6F98007A7B22 /* Sravya in Resources */,
+				D1835C7F21AC7C9900A1F3DD /* Cindy.storyboard in Resources */,
 				D136419F21AC6F98007A7B22 /* Lindsey in Resources */,
 				D136412021AC64F1007A7B22 /* Assets.xcassets in Resources */,
+				D1835C7C21AC7C8D00A1F3DD /* Lindsey.storyboard in Resources */,
 				D136419D21AC6F98007A7B22 /* Varshini in Resources */,
 				D136411B21AC64F0007A7B22 /* Main.storyboard in Resources */,
 			);
@@ -432,7 +445,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D136411E21AC64F0007A7B22 /* ClubHub.xcdatamodeld in Sources */,
-				D136411821AC64F0007A7B22 /* ViewController.swift in Sources */,
 				D136411621AC64F0007A7B22 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -483,6 +495,38 @@
 				D136412221AC64F1007A7B22 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		D1835C7A21AC7C8C00A1F3DD /* Lindsey.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D1835C7B21AC7C8C00A1F3DD /* Base */,
+			);
+			name = Lindsey.storyboard;
+			sourceTree = "<group>";
+		};
+		D1835C7D21AC7C9900A1F3DD /* Cindy.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D1835C7E21AC7C9900A1F3DD /* Base */,
+			);
+			name = Cindy.storyboard;
+			sourceTree = "<group>";
+		};
+		D1835C8021AC7CA400A1F3DD /* Sravya.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D1835C8121AC7CA400A1F3DD /* Base */,
+			);
+			name = Sravya.storyboard;
+			sourceTree = "<group>";
+		};
+		D1835C8321AC7CAB00A1F3DD /* Varshini.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D1835C8421AC7CAB00A1F3DD /* Base */,
+			);
+			name = Varshini.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
