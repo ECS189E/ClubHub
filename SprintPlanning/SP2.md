@@ -42,6 +42,7 @@ https://trello.com/b/Kk6IVYPB/ecs-189e-the-xcoders
 
 ### Done:
 1. Rough draft of event details view controller
+<https://github.com/ECS189E/ClubHub/commit/9a1a5effc9cdb74ffa1e0a1d278fad6647f5dcea>
 
 ### Planned:
 1.  Continue event details view controller
