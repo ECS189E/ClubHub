@@ -6,7 +6,7 @@ target 'ClubHub' do
   use_frameworks!
 
   # Pods for ClubHub
-
+  pod 'FSCalendar'
   pod 'JTAppleCalendar', '~> 7.0'
   pod 'Firebase/Core'
   pod 'Firebase/Firestore'

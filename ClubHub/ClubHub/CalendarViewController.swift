@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  CalendarViewController.swift
 //  SimpleCal
 //
 //  Created by Srivarshini Ananta on 11/24/18.
@@ -9,7 +9,7 @@
 import UIKit
 import FSCalendar
 
-class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
+class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
     
     @IBOutlet weak var calendar: FSCalendar!
     @IBOutlet weak var eventBar: UITextView!

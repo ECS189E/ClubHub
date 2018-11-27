@@ -11,9 +11,9 @@ import UIKit
 
 class EventTestingViewController: UIViewController, EditEventDelegate{
     
-    var updateId: String = "FIcpOWlpIziJoxwEmWD0"
-    var deleteId: String = "zBEU1ZujRNmN9Nrl8MIa"
-    var userEvents = ["4LCtWNiwjkIt5vPlxDy4", "FIcpOWlpIziJoxwEmWD0"]
+    var updateId: String = "gQw9MV6xYVPScFjumrgR"
+    var deleteId: String = "gQw9MV6xYVPScFjumrgR"
+    var userEvents = ["gQw9MV6xYVPScFjumrgR", "FIcpOWlpIziJoxwEmWD0"]
     var event: Event?
     var events: [Event]?
     

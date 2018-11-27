@@ -170,7 +170,9 @@ extension EditEventViewController: UITextFieldDelegate {
             popUpTextField = textField
             
             // Init pop up view controller
-            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "dateTimePopUpViewController") as! DateTimePopUpViewController
+            //FIXME: change "Lindsey" to "Main"
+            //let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "dateTimePopUpViewController") as! DateTimePopUpViewController
+            let vc = UIStoryboard(name: "Lindsey", bundle: nil).instantiateViewController(withIdentifier: "dateTimePopUpViewController") as! DateTimePopUpViewController
             vc.delegate = self
             
             // send date to pop up view

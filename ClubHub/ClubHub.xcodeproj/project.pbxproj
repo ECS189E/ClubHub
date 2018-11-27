@@ -15,7 +15,6 @@
 		D136412321AC64F1007A7B22 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D136412121AC64F1007A7B22 /* LaunchScreen.storyboard */; };
 		D136412E21AC64F1007A7B22 /* ClubHubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D136412D21AC64F1007A7B22 /* ClubHubTests.swift */; };
 		D136413921AC64F1007A7B22 /* ClubHubUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D136413821AC64F1007A7B22 /* ClubHubUITests.swift */; };
-		D136419D21AC6F98007A7B22 /* Varshini in Resources */ = {isa = PBXBuildFile; fileRef = D136419921AC6F98007A7B22 /* Varshini */; };
 		D1835C7C21AC7C8D00A1F3DD /* Lindsey.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1835C7A21AC7C8C00A1F3DD /* Lindsey.storyboard */; };
 		D1835C7F21AC7C9900A1F3DD /* Cindy.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1835C7D21AC7C9900A1F3DD /* Cindy.storyboard */; };
 		D1835C8221AC7CA400A1F3DD /* Sravya.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1835C8021AC7CA400A1F3DD /* Sravya.storyboard */; };
@@ -29,6 +28,7 @@
 		D1835CCC21AC870700A1F3DD /* DayEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1835CC421AC870700A1F3DD /* DayEventsViewController.swift */; };
 		D1835CCD21AC870700A1F3DD /* EventsFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1835CC521AC870700A1F3DD /* EventsFeedViewController.swift */; };
 		D1835CCF21AC935100A1F3DD /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1835CCE21AC935100A1F3DD /* Event.swift */; };
+		D1835CD321AD0D3000A1F3DD /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1835CD221AD0D3000A1F3DD /* CalendarViewController.swift */; };
 		E750A9DFA6023FA1C9A57307 /* Pods_ClubHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2470BC19246848A351389907 /* Pods_ClubHub.framework */; };
 /* End PBXBuildFile section */
 
@@ -69,7 +69,6 @@
 		D136413421AC64F1007A7B22 /* ClubHubUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClubHubUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D136413821AC64F1007A7B22 /* ClubHubUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubHubUITests.swift; sourceTree = "<group>"; };
 		D136413A21AC64F1007A7B22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D136419921AC6F98007A7B22 /* Varshini */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Varshini; sourceTree = "<group>"; };
 		D1835C7B21AC7C8C00A1F3DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Lindsey.storyboard; sourceTree = "<group>"; };
 		D1835C7E21AC7C9900A1F3DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Cindy.storyboard; sourceTree = "<group>"; };
 		D1835C8121AC7CA400A1F3DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Sravya.storyboard; sourceTree = "<group>"; };
@@ -83,6 +82,7 @@
 		D1835CC421AC870700A1F3DD /* DayEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEventsViewController.swift; sourceTree = "<group>"; };
 		D1835CC521AC870700A1F3DD /* EventsFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsFeedViewController.swift; sourceTree = "<group>"; };
 		D1835CCE21AC935100A1F3DD /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		D1835CD221AD0D3000A1F3DD /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +158,9 @@
 				D136411521AC64F0007A7B22 /* AppDelegate.swift */,
 				D136411921AC64F0007A7B22 /* Main.storyboard */,
 				D1835C7A21AC7C8C00A1F3DD /* Lindsey.storyboard */,
+				D1835C7D21AC7C9900A1F3DD /* Cindy.storyboard */,
+				D1835C8021AC7CA400A1F3DD /* Sravya.storyboard */,
+				D1835C8321AC7CAB00A1F3DD /* Varshini.storyboard */,
 				D1835CBF21AC870500A1F3DD /* DateTimePopUpViewController.swift */,
 				D1835CC421AC870700A1F3DD /* DayEventsViewController.swift */,
 				D1835CBE21AC870500A1F3DD /* EditEventViewController.swift */,
@@ -167,15 +170,12 @@
 				D1835CC321AC870600A1F3DD /* EventsApi.swift */,
 				D1835CC521AC870700A1F3DD /* EventsFeedViewController.swift */,
 				D1835CC021AC870500A1F3DD /* EventTestingViewController.swift */,
-				D1835C7D21AC7C9900A1F3DD /* Cindy.storyboard */,
-				D1835C8021AC7CA400A1F3DD /* Sravya.storyboard */,
-				D1835C8321AC7CAB00A1F3DD /* Varshini.storyboard */,
+				D1835CD221AD0D3000A1F3DD /* CalendarViewController.swift */,
 				D136411F21AC64F1007A7B22 /* Assets.xcassets */,
 				D136412121AC64F1007A7B22 /* LaunchScreen.storyboard */,
 				3767815921AC76E50016533D /* GoogleService-Info.plist */,
 				D136412421AC64F1007A7B22 /* Info.plist */,
 				D136411C21AC64F0007A7B22 /* ClubHub.xcdatamodeld */,
-				D136419921AC6F98007A7B22 /* Varshini */,
 			);
 			path = ClubHub;
 			sourceTree = "<group>";
@@ -312,7 +312,6 @@
 				D1835C7F21AC7C9900A1F3DD /* Cindy.storyboard in Resources */,
 				D136412021AC64F1007A7B22 /* Assets.xcassets in Resources */,
 				D1835C7C21AC7C8D00A1F3DD /* Lindsey.storyboard in Resources */,
-				D136419D21AC6F98007A7B22 /* Varshini in Resources */,
 				D136411B21AC64F0007A7B22 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -383,6 +382,7 @@
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
@@ -408,6 +408,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
@@ -459,6 +460,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1835CD321AD0D3000A1F3DD /* CalendarViewController.swift in Sources */,
 				D1835CC921AC870700A1F3DD /* EventDetailsViewController.swift in Sources */,
 				D1835CCF21AC935100A1F3DD /* Event.swift in Sources */,
 				D1835CCC21AC870700A1F3DD /* DayEventsViewController.swift in Sources */,
