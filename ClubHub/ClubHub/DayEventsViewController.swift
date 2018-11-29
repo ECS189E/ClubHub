@@ -66,7 +66,7 @@ extension DayEventsViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         // FIXME: change "Lindsey" to "Main"
         //let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let storyboard = UIStoryboard(name: "Lindsey", bundle: nil)
+        let storyboard = UIStoryboard(name: "Cindy", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "eventDetailsViewController") as! EventDetailsViewController
         viewController.event = self.events.map { $0[indexPath.row] }
         self.navigationController?.pushViewController(viewController, animated: true)
