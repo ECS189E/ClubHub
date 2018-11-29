@@ -48,9 +48,10 @@ class EventTestingViewController: UIViewController, EditEventDelegate{
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch(segue.identifier) {
-        case("editEvent"):
+        case("addEvent"):
             let dest = segue.destination as! EditEventViewController
             dest.delegate = self
+            dest.event = nil
         case("updateEvent"):
             let dest = segue.destination as! EditEventViewController
             dest.delegate = self

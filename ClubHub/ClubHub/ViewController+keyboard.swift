@@ -14,12 +14,3 @@ extension UIViewController: UITextFieldDelegate{
         self.view.endEditing(true)
     }
 }
-
-/* FIXME: does not work
-extension UITableViewController{
-    // Resigns keyboard if outside of an editable object is tapped
-    override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
-}
-*/

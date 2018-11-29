@@ -22,7 +22,7 @@ struct EventsApi {
         var ref: DocumentReference? = nil
         
         // Add a new document with a generated ID
-        ref = db.collection("Events").addDocument(data: [
+        ref = db.collection("events").addDocument(data: [
             "name": event?.name ?? NSNull(),
             "startTime": event?.startTime ?? NSNull(),
             "endTime": event?.endTime ?? NSNull(),
@@ -39,7 +39,7 @@ struct EventsApi {
                 // add event image to storage
                 if let image = event?.mainImage, let id = event?.id{
                     let ref = Storage.storage().reference().child("images").child(id)
-                    if let data = image.pngData() {
+                    if let data = image.jpeg(.lowest) {
                         ref.putData(data, metadata: nil) {metadata, err in
                             if let err = err {
                                 print(err)
@@ -67,7 +67,7 @@ struct EventsApi {
         }
         
         // Upload event data
-        let ref = db.collection("Events").document(id)
+        let ref = db.collection("events").document(id)
         let batch = db.batch()
         
         // Add changes to the batch
@@ -110,7 +110,7 @@ struct EventsApi {
                 // Store image
                 if let image = event?.mainImage{
                     let ref = Storage.storage().reference().child("images").child(id)
-                    if let data = image.pngData() {
+                    if let data = image.jpeg(.lowest) {
                         ref.putData(data, metadata: nil) {metadata, err in
                             if let err = err {
                                 print(err)
@@ -133,7 +133,7 @@ struct EventsApi {
         settings.areTimestampsInSnapshotsEnabled = true
         db.settings = settings
         
-        let ref = db.collection("Events").document(id)
+        let ref = db.collection("events").document(id)
         
         // check if event exists, then delete it
         ref.getDocument { (document, err) in
@@ -170,7 +170,7 @@ struct EventsApi {
         
         var event: Event? = nil
         
-        let ref = db.collection("Events").document(id);
+        let ref = db.collection("events").document(id);
         
         ref.getDocument { (document, err) in
             if let document = document, document.exists {
@@ -236,7 +236,7 @@ struct EventsApi {
         
         var events: [Event]? = []
         
-        db.collection("Events").getDocuments() { (querySnapshot, err) in
+        db.collection("events").getDocuments() { (querySnapshot, err) in
             if let err = err {
                 completion(nil, "Error getting events: \(err)")
             } else {

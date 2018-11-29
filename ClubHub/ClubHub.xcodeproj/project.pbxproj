@@ -19,7 +19,6 @@
 		D1835C7F21AC7C9900A1F3DD /* Cindy.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1835C7D21AC7C9900A1F3DD /* Cindy.storyboard */; };
 		D1835C8221AC7CA400A1F3DD /* Sravya.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1835C8021AC7CA400A1F3DD /* Sravya.storyboard */; };
 		D1835C8521AC7CAB00A1F3DD /* Varshini.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1835C8321AC7CAB00A1F3DD /* Varshini.storyboard */; };
-		D1835CC621AC870700A1F3DD /* EditEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1835CBE21AC870500A1F3DD /* EditEventViewController.swift */; };
 		D1835CC721AC870700A1F3DD /* DateTimePopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1835CBF21AC870500A1F3DD /* DateTimePopUpViewController.swift */; };
 		D1835CC821AC870700A1F3DD /* EventTestingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1835CC021AC870500A1F3DD /* EventTestingViewController.swift */; };
 		D1835CC921AC870700A1F3DD /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1835CC121AC870500A1F3DD /* EventDetailsViewController.swift */; };
@@ -29,6 +28,9 @@
 		D1835CCD21AC870700A1F3DD /* EventsFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1835CC521AC870700A1F3DD /* EventsFeedViewController.swift */; };
 		D1835CCF21AC935100A1F3DD /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1835CCE21AC935100A1F3DD /* Event.swift */; };
 		D1835CD321AD0D3000A1F3DD /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1835CD221AD0D3000A1F3DD /* CalendarViewController.swift */; };
+		D184193A21AF39E900373875 /* EditEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D184193921AF39E900373875 /* EditEventViewController.swift */; };
+		D184193C21AF40AF00373875 /* ViewController+keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D184193B21AF40AF00373875 /* ViewController+keyboard.swift */; };
+		D184193E21AF5FC200373875 /* UIImage+JPEG.swift in Sources */ = {isa = PBXBuildFile; fileRef = D184193D21AF5FC100373875 /* UIImage+JPEG.swift */; };
 		E750A9DFA6023FA1C9A57307 /* Pods_ClubHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2470BC19246848A351389907 /* Pods_ClubHub.framework */; };
 /* End PBXBuildFile section */
 
@@ -73,7 +75,6 @@
 		D1835C7E21AC7C9900A1F3DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Cindy.storyboard; sourceTree = "<group>"; };
 		D1835C8121AC7CA400A1F3DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Sravya.storyboard; sourceTree = "<group>"; };
 		D1835C8421AC7CAB00A1F3DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Varshini.storyboard; sourceTree = "<group>"; };
-		D1835CBE21AC870500A1F3DD /* EditEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventViewController.swift; sourceTree = "<group>"; };
 		D1835CBF21AC870500A1F3DD /* DateTimePopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimePopUpViewController.swift; sourceTree = "<group>"; };
 		D1835CC021AC870500A1F3DD /* EventTestingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTestingViewController.swift; sourceTree = "<group>"; };
 		D1835CC121AC870500A1F3DD /* EventDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +84,9 @@
 		D1835CC521AC870700A1F3DD /* EventsFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsFeedViewController.swift; sourceTree = "<group>"; };
 		D1835CCE21AC935100A1F3DD /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		D1835CD221AD0D3000A1F3DD /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		D184193921AF39E900373875 /* EditEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventViewController.swift; sourceTree = "<group>"; };
+		D184193B21AF40AF00373875 /* ViewController+keyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewController+keyboard.swift"; sourceTree = "<group>"; };
+		D184193D21AF5FC100373875 /* UIImage+JPEG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+JPEG.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,16 +165,18 @@
 				D1835C7D21AC7C9900A1F3DD /* Cindy.storyboard */,
 				D1835C8021AC7CA400A1F3DD /* Sravya.storyboard */,
 				D1835C8321AC7CAB00A1F3DD /* Varshini.storyboard */,
+				D1835CD221AD0D3000A1F3DD /* CalendarViewController.swift */,
 				D1835CBF21AC870500A1F3DD /* DateTimePopUpViewController.swift */,
 				D1835CC421AC870700A1F3DD /* DayEventsViewController.swift */,
-				D1835CBE21AC870500A1F3DD /* EditEventViewController.swift */,
+				D184193921AF39E900373875 /* EditEventViewController.swift */,
 				D1835CCE21AC935100A1F3DD /* Event.swift */,
+				D1835CC321AC870600A1F3DD /* EventsApi.swift */,
 				D1835CC221AC870600A1F3DD /* EventCell.swift */,
 				D1835CC121AC870500A1F3DD /* EventDetailsViewController.swift */,
-				D1835CC321AC870600A1F3DD /* EventsApi.swift */,
 				D1835CC521AC870700A1F3DD /* EventsFeedViewController.swift */,
 				D1835CC021AC870500A1F3DD /* EventTestingViewController.swift */,
-				D1835CD221AD0D3000A1F3DD /* CalendarViewController.swift */,
+				D184193D21AF5FC100373875 /* UIImage+JPEG.swift */,
+				D184193B21AF40AF00373875 /* ViewController+keyboard.swift */,
 				D136411F21AC64F1007A7B22 /* Assets.xcassets */,
 				D136412121AC64F1007A7B22 /* LaunchScreen.storyboard */,
 				3767815921AC76E50016533D /* GoogleService-Info.plist */,
@@ -460,16 +466,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D184193E21AF5FC200373875 /* UIImage+JPEG.swift in Sources */,
 				D1835CD321AD0D3000A1F3DD /* CalendarViewController.swift in Sources */,
+				D184193A21AF39E900373875 /* EditEventViewController.swift in Sources */,
 				D1835CC921AC870700A1F3DD /* EventDetailsViewController.swift in Sources */,
 				D1835CCF21AC935100A1F3DD /* Event.swift in Sources */,
 				D1835CCC21AC870700A1F3DD /* DayEventsViewController.swift in Sources */,
 				D1835CCB21AC870700A1F3DD /* EventsApi.swift in Sources */,
 				D1835CCD21AC870700A1F3DD /* EventsFeedViewController.swift in Sources */,
 				D1835CC721AC870700A1F3DD /* DateTimePopUpViewController.swift in Sources */,
-				D1835CC621AC870700A1F3DD /* EditEventViewController.swift in Sources */,
 				D1835CC821AC870700A1F3DD /* EventTestingViewController.swift in Sources */,
 				D136411E21AC64F0007A7B22 /* ClubHub.xcdatamodeld in Sources */,
+				D184193C21AF40AF00373875 /* ViewController+keyboard.swift in Sources */,
 				D136411621AC64F0007A7B22 /* AppDelegate.swift in Sources */,
 				D1835CCA21AC870700A1F3DD /* EventCell.swift in Sources */,
 			);
