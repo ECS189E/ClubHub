@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="ZrT-JY-XCN" kind="relationship" relationship="rootViewController" id="RLX-iY-LOG"/>
+                        <segue destination="pe7-ur-gMX" kind="relationship" relationship="rootViewController" id="SKq-5o-3y0"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jOu-1v-dsi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -34,7 +34,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="CdM-l7-1nn">
-                                <rect key="frame" x="0.0" y="104" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="60" width="414" height="818"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter event name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cIU-Mr-utb" userLabel="Name">
                                         <rect key="frame" x="10" y="0.0" width="394" height="75"/>
@@ -304,7 +304,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D1p-Mi-8gV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="992.75362318840587" y="-328.125"/>
+            <point key="canvasLocation" x="993" y="-453"/>
         </scene>
         <!--Main-->
         <scene sceneID="iSa-DP-ncX">
@@ -371,7 +371,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nSX-PB-N3N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="111" y="33"/>
+            <point key="canvasLocation" x="114" y="33"/>
         </scene>
         <!--Day Events View Controller-->
         <scene sceneID="43e-DC-xtM">
@@ -382,7 +382,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zJj-jv-dbD">
-                                <rect key="frame" x="10" y="248" width="394" height="594"/>
+                                <rect key="frame" x="10" y="204" width="394" height="638"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="eventCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="dayEventCell" id="s5Y-Tb-HCA" customClass="EventCell" customModule="ClubHub" customModuleProvider="target">
@@ -434,7 +434,7 @@
                                 </prototypes>
                             </tableView>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="lIC-cv-YEO">
-                                <rect key="frame" x="15" y="93" width="414" height="150"/>
+                                <rect key="frame" x="15" y="49" width="414" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="hez-bZ-Gkt"/>
                                 </constraints>
@@ -465,7 +465,165 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kUH-wu-Fir" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="109.59999999999999" y="764.16791604197908"/>
+            <point key="canvasLocation" x="114" y="-717"/>
+        </scene>
+        <!--Club Testing View Controller-->
+        <scene sceneID="YJy-lq-5Le">
+            <objects>
+                <viewController storyboardIdentifier="clubTestingViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pe7-ur-gMX" customClass="ClubTestingViewController" customModule="ClubHub" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3qf-g6-qYm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="tJq-xR-Osn">
+                                <rect key="frame" x="164" y="388" width="86" height="120"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qCr-2F-JZL">
+                                        <rect key="frame" x="0.0" y="0.0" width="86" height="30"/>
+                                        <state key="normal" title="Add Club"/>
+                                        <connections>
+                                            <action selector="addClubTapped:" destination="pe7-ur-gMX" eventType="touchUpInside" id="mH2-93-WRQ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kYI-hH-hwp">
+                                        <rect key="frame" x="0.0" y="30" width="86" height="30"/>
+                                        <state key="normal" title="Update Club"/>
+                                        <connections>
+                                            <action selector="updateClubTapped:" destination="pe7-ur-gMX" eventType="touchUpInside" id="aKh-OW-g51"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7eT-X8-dBK">
+                                        <rect key="frame" x="0.0" y="60" width="86" height="30"/>
+                                        <state key="normal" title="Delete Club"/>
+                                        <connections>
+                                            <action selector="deleteClubTapped:" destination="pe7-ur-gMX" eventType="touchUpInside" id="hlw-Rb-LgI"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rn5-WN-D8w">
+                                        <rect key="frame" x="0.0" y="90" width="86" height="30"/>
+                                        <state key="normal" title="All Clubs"/>
+                                        <connections>
+                                            <segue destination="tTD-L7-IkW" kind="show" identifier="allClubs" id="tmd-uf-KLN"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="tJq-xR-Osn" firstAttribute="centerX" secondItem="3qf-g6-qYm" secondAttribute="centerX" id="8Mu-IL-8RY"/>
+                            <constraint firstItem="tJq-xR-Osn" firstAttribute="centerY" secondItem="3qf-g6-qYm" secondAttribute="centerY" id="kIy-OK-Mf0"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="jI6-ed-WHP"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="lZ8-yk-fTj"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jPO-tP-z9m" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="168" y="956"/>
+        </scene>
+        <!--Club List View Controller-->
+        <scene sceneID="JOX-BE-hT1">
+            <objects>
+                <viewController storyboardIdentifier="clubListViewConroller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tTD-L7-IkW" customClass="ClubListViewController" customModule="ClubHub" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="txx-iz-zRz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="unp-dQ-jKv">
+                                <rect key="frame" x="0.0" y="88" width="414" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3sx-5a-org">
+                                        <rect key="frame" x="0.0" y="0.0" width="205.5" height="30"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="All Clubs">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="allClubsButtonTapped:" destination="tTD-L7-IkW" eventType="touchUpInside" id="hMz-JY-MUR"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lDQ-6g-Lzc">
+                                        <rect key="frame" x="208.5" y="0.0" width="205.5" height="30"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="My Clubs">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="myClubsButtonTapped:" destination="tTD-L7-IkW" eventType="touchUpInside" id="jc0-Lr-t7m"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="lDQ-6g-Lzc" firstAttribute="width" secondItem="3sx-5a-org" secondAttribute="width" id="1XR-qt-vRh"/>
+                                    <constraint firstItem="lDQ-6g-Lzc" firstAttribute="height" secondItem="3sx-5a-org" secondAttribute="height" id="CKF-Of-Rch"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="leA-Zn-Yfn"/>
+                            </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cn2-1S-4jY">
+                                <rect key="frame" x="0.0" y="123" width="414" height="739"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="eventCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="clubCell" rowHeight="280" id="5nc-dS-gKA" userLabel="Club Cell" customClass="ClubCell" customModule="ClubHub" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="280"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5nc-dS-gKA" id="S3T-3Y-AUu">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="279.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xch-gh-jKG">
+                                                    <rect key="frame" x="5" y="15" width="404" height="39.5"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4oc-Hm-6dV" userLabel="Club Image View">
+                                                    <rect key="frame" x="5" y="62" width="404" height="200"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="200" id="KJv-wD-pfF"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="4oc-Hm-6dV" secondAttribute="bottom" constant="15" id="0XC-Pl-pKJ"/>
+                                                <constraint firstItem="xch-gh-jKG" firstAttribute="top" secondItem="S3T-3Y-AUu" secondAttribute="top" constant="15" id="0zK-tY-oqF"/>
+                                                <constraint firstItem="xch-gh-jKG" firstAttribute="leading" secondItem="S3T-3Y-AUu" secondAttribute="leading" constant="5" id="9Cw-Zj-baE"/>
+                                                <constraint firstAttribute="trailing" secondItem="xch-gh-jKG" secondAttribute="trailing" constant="5" id="Sk3-fr-R0w"/>
+                                                <constraint firstAttribute="trailing" secondItem="4oc-Hm-6dV" secondAttribute="trailing" constant="5" id="ZFr-JD-4Jc"/>
+                                                <constraint firstItem="4oc-Hm-6dV" firstAttribute="leading" secondItem="S3T-3Y-AUu" secondAttribute="leading" constant="5" id="bdf-OI-aed"/>
+                                                <constraint firstItem="4oc-Hm-6dV" firstAttribute="top" secondItem="xch-gh-jKG" secondAttribute="bottom" constant="10" id="rMy-iO-am4"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="clubImageView" destination="4oc-Hm-6dV" id="tS5-k7-B6w"/>
+                                            <outlet property="nameLabel" destination="xch-gh-jKG" id="CWt-Td-B1g"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="x0A-0u-zWF" firstAttribute="trailing" secondItem="unp-dQ-jKv" secondAttribute="trailing" id="3UA-05-Hgd"/>
+                            <constraint firstItem="cn2-1S-4jY" firstAttribute="trailing" secondItem="x0A-0u-zWF" secondAttribute="trailing" id="3qp-46-rQg"/>
+                            <constraint firstItem="cn2-1S-4jY" firstAttribute="top" secondItem="unp-dQ-jKv" secondAttribute="bottom" constant="5" id="G48-mf-Apk"/>
+                            <constraint firstItem="unp-dQ-jKv" firstAttribute="top" secondItem="x0A-0u-zWF" secondAttribute="top" id="No1-Ld-tq1"/>
+                            <constraint firstItem="unp-dQ-jKv" firstAttribute="leading" secondItem="x0A-0u-zWF" secondAttribute="leading" id="SxS-wM-bxo"/>
+                            <constraint firstItem="cn2-1S-4jY" firstAttribute="leading" secondItem="x0A-0u-zWF" secondAttribute="leading" id="YBd-ze-wch"/>
+                            <constraint firstItem="cn2-1S-4jY" firstAttribute="top" secondItem="unp-dQ-jKv" secondAttribute="bottom" constant="5" id="nih-gK-0Nt"/>
+                            <constraint firstItem="x0A-0u-zWF" firstAttribute="bottom" secondItem="cn2-1S-4jY" secondAttribute="bottom" id="raq-Wy-Hry"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="x0A-0u-zWF"/>
+                    </view>
+                    <connections>
+                        <outlet property="allClubsButton" destination="3sx-5a-org" id="CNU-Na-eii"/>
+                        <outlet property="clubsTableView" destination="cn2-1S-4jY" id="S37-DB-4dq"/>
+                        <outlet property="myClubButton" destination="lDQ-6g-Lzc" id="VqV-AI-cvd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vS1-WH-CEu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1037.68115942029" y="955.58035714285711"/>
         </scene>
         <!--Events Feed View Controller-->
         <scene sceneID="eRg-6b-mNe">
@@ -476,7 +634,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="XWX-GU-OMo">
-                                <rect key="frame" x="10" y="93" width="394" height="30"/>
+                                <rect key="frame" x="10" y="49" width="394" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CY7-f7-wad">
                                         <rect key="frame" x="0.0" y="0.0" width="195.5" height="30"/>
@@ -500,20 +658,22 @@
                                     </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="7iV-7H-dS3" firstAttribute="top" secondItem="bXA-41-diC" secondAttribute="top" id="3qj-vz-mgn"/>
+                                    <constraint firstItem="7iV-7H-dS3" firstAttribute="trailing" secondItem="bXA-41-diC" secondAttribute="trailing" id="8q3-oa-kDs"/>
                                     <constraint firstItem="7iV-7H-dS3" firstAttribute="width" secondItem="CY7-f7-wad" secondAttribute="width" id="QiZ-23-VVp"/>
                                     <constraint firstItem="7iV-7H-dS3" firstAttribute="height" secondItem="CY7-f7-wad" secondAttribute="height" id="aXG-M5-ZVi"/>
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="bXA-41-diC"/>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="17H-jq-Zm7">
-                                <rect key="frame" x="0.0" y="128" width="414" height="734"/>
+                                <rect key="frame" x="0.0" y="84" width="414" height="778"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="eventCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="eventCell" rowHeight="374" id="pVB-MT-dNV" customClass="EventCell" customModule="ClubHub" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="374"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="eventCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="eventCell" rowHeight="375" id="pVB-MT-dNV" userLabel="Event Cell" customClass="EventCell" customModule="ClubHub" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="375"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pVB-MT-dNV" id="0hh-Ws-Tcq">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="373.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="374.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Iv6-Ab-vkR">
@@ -529,13 +689,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Date" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DUL-e1-p2u">
-                                                    <rect key="frame" x="5" y="338" width="404" height="20.5"/>
+                                                    <rect key="frame" x="5" y="339" width="404" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Club" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ege-EH-nh8">
-                                                    <rect key="frame" x="25" y="259" width="364" height="74"/>
+                                                    <rect key="frame" x="25" y="259" width="364" height="75"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -587,7 +747,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZAm-gp-ctr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="993" y="406"/>
+            <point key="canvasLocation" x="993" y="212"/>
         </scene>
         <!--dateTimePopUpViewController-->
         <scene sceneID="Ncc-8O-d5O">
@@ -650,7 +810,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A4i-NW-h2q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1933" y="-328"/>
+            <point key="canvasLocation" x="1797" y="-453"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

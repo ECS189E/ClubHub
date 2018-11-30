@@ -45,7 +45,7 @@ struct EventsApi {
                 
                 // add event image to storage
                 if let image = event?.image, let id = event?.id{
-                    let ref = Storage.storage().reference().child("images").child(id)
+                    let ref = Storage.storage().reference().child("eventImages").child(id)
                     if let data = image.jpeg(.lowest) {
                         ref.putData(data, metadata: nil) {metadata, err in
                             if let err = err {
@@ -121,7 +121,7 @@ struct EventsApi {
             } else {
                 // Store image
                 if let image = event?.image{
-                    let ref = Storage.storage().reference().child("images").child(id)
+                    let ref = Storage.storage().reference().child("eventImages").child(id)
                     if let data = image.jpeg(.lowest) {
                         ref.putData(data, metadata: nil) {metadata, err in
                             if let err = err {
@@ -159,7 +159,7 @@ struct EventsApi {
                         } else {
                             // if deleted sucessfully and has an image, delete image too
                             if (document.data()?["image"] as! Bool) {
-                                let imageRef = Storage.storage().reference().child("images").child(ref.documentID)
+                                let imageRef = Storage.storage().reference().child("eventImages").child(ref.documentID)
                                 imageRef.delete() { err in
                                     if let err = err {
                                         completion(nil, "Error deleting event image: \(err)")
@@ -204,7 +204,7 @@ struct EventsApi {
                     
                     // if event has an image, get the image and create the event
                     if (document.data()?["image"] as? Bool) ?? false {
-                        let ref = Storage.storage().reference().child("images").child(id)
+                        let ref = Storage.storage().reference().child("eventImages").child(id)
                         ref.getData(maxSize: 8192 * 8192) { data, err in
                             switch(data, err){
                             case(.some(let data), nil):

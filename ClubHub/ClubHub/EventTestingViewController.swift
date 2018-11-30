@@ -12,7 +12,7 @@ import UIKit
 class EventTestingViewController: UIViewController, EditEventDelegate{
     
     var updateId: String = "6FNTgxwQDIwg1By1ua7G"
-    var userEvents = ["Hyhm8u7rwxoI5avhbpDu"]
+    var userEvents = ["6FNTgxwQDIwg1By1ua7G", "Xlt2jEHlyaaJT8Xxx93K"]
     var event: Event? = Event(id: nil, name: nil, startTime: nil, endTime: nil, location: nil, club: nil, details: nil, image: nil)
     var delEvent: Event? = Event(id: "6FNTgxwQDIwg1By1ua7G", name: nil, startTime: nil, endTime: nil, location: nil, club: nil, details: nil, image: nil)
     var events: [Event]?

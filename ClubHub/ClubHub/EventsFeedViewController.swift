@@ -18,8 +18,10 @@ class EventsFeedViewController: UIViewController {
     var allEvents: [Event]? = [] // All unfilterd events
     var filteredEvents = [Event]() // Events filtered by search bar
     var eventLoadDate = Date() // Date to load next set of events form
+    //FIXME: update for deployment
     var loadLimit: Int = 2 // Number of events to load at time (MUST BE > 1)
     var loadedEvents: Int = 0 // Number of events that have been loaded
+    var userEventsDisplayed: Bool = false // True if "My Events" tapped
     
     let dateFormatter = DateFormatter()
     let timeFormatter = DateFormatter()
@@ -57,6 +59,7 @@ class EventsFeedViewController: UIViewController {
         allEventsButton.alpha = 1.0
         myEventButton.alpha = 0.5
         events = allEvents
+        userEventsDisplayed = false
         eventsTableView.reloadData()
     }
     
@@ -67,6 +70,7 @@ class EventsFeedViewController: UIViewController {
         myEventButton.alpha = 1.0
         events = allEvents?.filter{ event in
             userEvents?.contains(event.id ?? "") ?? false }
+        userEventsDisplayed = true
         eventsTableView.reloadData()
     }
     
@@ -97,6 +101,13 @@ class EventsFeedViewController: UIViewController {
                                     $0.startTime ?? Date() >= Date() }
                                 
                                 self.events = self.allEvents
+                                
+                                // Filter if currenlty displayin user events
+                                if self.userEventsDisplayed {
+                                    self.events = self.allEvents?.filter{ event in
+                                        self.userEvents?.contains(event.id ?? "") ?? false }
+                                }
+                                
                                 self.eventsTableView.reloadData()
                                 
                                 // set the next date to load based on last loaded
@@ -149,8 +160,8 @@ extension EventsFeedViewController: UITableViewDelegate, UITableViewDataSource, 
         cell.initEventCell(name: event.name,
                            startTime: event.startTime,
                            club: event.club,
-                           image: event.image ?? UIImage(named: "testImage"),
-                           dateFormat: "EE MMM dd hh:mm a")  //FIXME: debugging clickable
+                           image: event.image ?? UIImage(named: "testImage"), //FIXME: for testing
+                           dateFormat: "EE MMM dd hh:mm a") 
         return cell
     }
     
