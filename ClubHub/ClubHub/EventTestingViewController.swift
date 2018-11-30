@@ -11,10 +11,10 @@ import UIKit
 
 class EventTestingViewController: UIViewController, EditEventDelegate{
     
-    var updateId: String = "gQw9MV6xYVPScFjumrgR"
-    var deleteId: String = "gQw9MV6xYVPScFjumrgR"
-    var userEvents = ["gQw9MV6xYVPScFjumrgR", "FIcpOWlpIziJoxwEmWD0"]
-    var event: Event?
+    var updateId: String = "6FNTgxwQDIwg1By1ua7G"
+    var userEvents = ["Hyhm8u7rwxoI5avhbpDu"]
+    var event: Event? = Event(id: nil, name: nil, startTime: nil, endTime: nil, location: nil, club: nil, details: nil, image: nil)
+    var delEvent: Event? = Event(id: "6FNTgxwQDIwg1By1ua7G", name: nil, startTime: nil, endTime: nil, location: nil, club: nil, details: nil, image: nil)
     var events: [Event]?
     
     func editEventCompleted() {
@@ -25,23 +25,23 @@ class EventTestingViewController: UIViewController, EditEventDelegate{
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        getEvent(id: updateId)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        getEvent(id: updateId)
         getEvents()
     }
     
     // Test Api.deleteEvent()
     @IBAction func deleteEventTapped(_ sender: Any) {
-        EventsApi.deleteEvent(id: deleteId) { data, err in
+        EventsApi.deleteEvent(event: delEvent) { data, err in
             switch(data, err) {
             case(.some(_), nil):
-                print("Event \(self.deleteId) deleted")
+                print("Event \(self.delEvent?.id ?? "") deleted")
             case(nil, .some(let err)):
                 print(err)
             default:
-                print("Error deleting event \(self.deleteId)")
+                print("Error deleting event \(self.delEvent?.id ?? "")")
             }
         }
     }
@@ -82,18 +82,25 @@ class EventTestingViewController: UIViewController, EditEventDelegate{
     }
     
     func getEvents() {
-        // Get events
-        EventsApi.getEvents() { data, error in
+        EventsApi.getEventsIDs(startDate: nil, limit: nil) { data, error in
             switch(data, error){
             case(nil, .some(let error)):
                 print(error)
             case(.some(let data), nil):
-                self.events = data as? [Event]
-                
-                // sort events by start time
-                self.events = self.events?.sorted(by: { $0.startTime?.compare($1.startTime ?? Date()) == .orderedAscending })
-                // remove events that have already passed
-                self.events = self.events?.filter { $0.startTime ?? Date() >= Date() }
+                if let eventIds = data as? [String?] {
+                    for id in eventIds {
+                        EventsApi.getEvent(id: id ?? "") { data, error in
+                            switch(data, error){
+                            case(nil, .some(let error)):
+                                print(error)
+                            case(.some(let data), nil):
+                                self.events?.append(data as! Event)
+                            default:
+                                print("Error getting event \(id ?? "")")
+                            }
+                        }
+                    }
+                }
             default:
                 print("Error getting events")
                 

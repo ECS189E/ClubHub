@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+// Usage: let data = image.jpeg(.lowest)
+
 // Source: https://stackoverflow.com/questions/29726643/how-to-compress-of-reduce-the-size-of-an-image-before-uploading-to-parse-as-pffi
 extension UIImage {
     enum JPEGQuality: CGFloat {

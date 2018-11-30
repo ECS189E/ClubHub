@@ -21,6 +21,12 @@ struct EventsApi {
         
         var ref: DocumentReference? = nil
         
+        var hasImage: Bool = false
+        // check for event image
+        if (event?.image) != nil {
+            hasImage = true
+        }
+
         // Add a new document with a generated ID
         ref = db.collection("events").addDocument(data: [
             "name": event?.name ?? NSNull(),
@@ -28,7 +34,8 @@ struct EventsApi {
             "endTime": event?.endTime ?? NSNull(),
             "location": event?.location ?? NSNull(),
             "club": event?.club ?? NSNull(),
-            "details": event?.details ?? NSNull()
+            "details": event?.details ?? NSNull(),
+            "image": hasImage
         ]) { err in
             if let err = err {
                 completion(nil, "Error adding event: \(err)")
@@ -37,7 +44,7 @@ struct EventsApi {
                 event?.id = ref?.documentID
                 
                 // add event image to storage
-                if let image = event?.mainImage, let id = event?.id{
+                if let image = event?.image, let id = event?.id{
                     let ref = Storage.storage().reference().child("images").child(id)
                     if let data = image.jpeg(.lowest) {
                         ref.putData(data, metadata: nil) {metadata, err in
@@ -101,6 +108,11 @@ struct EventsApi {
             "details": details
             ], forDocument: ref)
         }
+        if (event?.image) != nil {
+            batch.updateData([
+                "image": true
+                ], forDocument: ref)
+        }
         
         // Commit the batch
         batch.commit() { err in
@@ -108,7 +120,7 @@ struct EventsApi {
                 completion(nil, "Error updating event: \(err)")
             } else {
                 // Store image
-                if let image = event?.mainImage{
+                if let image = event?.image{
                     let ref = Storage.storage().reference().child("images").child(id)
                     if let data = image.jpeg(.lowest) {
                         ref.putData(data, metadata: nil) {metadata, err in
@@ -127,13 +139,13 @@ struct EventsApi {
         }
     }
     
-    static func deleteEvent(id: String, completion: @escaping ApiCompletion) {
+    static func deleteEvent(event: Event?, completion: @escaping ApiCompletion) {
         let db = Firestore.firestore()
         let settings = db.settings
         settings.areTimestampsInSnapshotsEnabled = true
         db.settings = settings
         
-        let ref = db.collection("events").document(id)
+        let ref = db.collection("events").document(event?.id ?? "")
         
         // check if event exists, then delete it
         ref.getDocument { (document, err) in
@@ -144,16 +156,22 @@ struct EventsApi {
                     ref.delete() { err in
                         if let err = err {
                             completion(nil, "Error deleting event: \(err)")
-                        }
-                        
-                    } // delete event image to storage  FIXME: do together?
-                    let imageRef = Storage.storage().reference().child("images").child(id)
-                    imageRef.delete() { err in
-                        if let err = err {
-                            completion(nil, "Error deleting event image: \(err)")
+                        } else {
+                            // if deleted sucessfully and has an image, delete image too
+                            if (document.data()?["image"] as! Bool) {
+                                let imageRef = Storage.storage().reference().child("images").child(ref.documentID)
+                                imageRef.delete() { err in
+                                    if let err = err {
+                                        completion(nil, "Error deleting event image: \(err)")
+                                    } else {
+                                        completion(true, nil)
+                                    }
+                                }
+                            } else {
+                                completion(true, nil)
+                            }
                         }
                     }
-                    completion(true, nil)
                 }
                 
             } else {
@@ -177,113 +195,79 @@ struct EventsApi {
                 if let err = err {
                     completion(nil, "Error getting event: \(err)")
                 } else {
-                    let ref = Storage.storage().reference().child("images").child(id)
-                    ref.getData(maxSize: 8192 * 8192) { data, err in
-                        switch(data, err){
-                        case(.some(let data), nil):
-                            let image = UIImage(data: data)
-                            
-                            // Get start time from timestamp
-                            let startTime: Date? = (document.data()?["startTime"] as! Timestamp).dateValue()
-                            // Get end time from timestamp
-                            let endTime: Date? = (document.data()?["endTime"] as! Timestamp).dateValue()
-                            
-                            // Add event
-                            event = Event(id: document.documentID,
-                                          name: document.data()?["name"] as? String? ?? nil,
-                                          startTime: startTime,
-                                          endTime: endTime,
-                                          location: document.data()?["location"] as? String? ?? nil,
-                                          club: document.data()?["club"] as? String? ?? nil,
-                                          details: document.data()?["details"] as? String? ?? nil,
-                                          mainImage: image)
-                            // return event as data
-                            completion(event, nil)
-                            
-                        case(nil, .some(_)):
-                            // Get start time from timestamp
-                            let startTime: Date? = (document.data()?["startTime"] as! Timestamp).dateValue()
-                            // Get end time from timestamp
-                            let endTime: Date? = (document.data()?["endTime"] as! Timestamp).dateValue()
-                            
-                            // Add event
-                            event = Event(id: document.documentID,
-                                          name: document.data()?["name"] as? String? ?? nil,
-                                          startTime: startTime,
-                                          endTime: endTime,
-                                          location: document.data()?["location"] as? String? ?? nil,
-                                          club: document.data()?["club"] as? String? ?? nil,
-                                          details: document.data()?["details"] as? String? ?? nil,
-                                          mainImage: nil)
-                            // return event as data
-                            completion(event, nil)
-                        default:
-                            completion(nil, "Error getting event")
+                    // Get start time from timestamp
+                    let startTime: Date? =
+                        (document.data()?["startTime"] as! Timestamp).dateValue()
+                    // Get end time from timestamp
+                    let endTime: Date? = (
+                        document.data()?["endTime"] as! Timestamp).dateValue()
+                    
+                    // if event has an image, get the image and create the event
+                    if (document.data()?["image"] as? Bool) ?? false {
+                        let ref = Storage.storage().reference().child("images").child(id)
+                        ref.getData(maxSize: 8192 * 8192) { data, err in
+                            switch(data, err){
+                            case(.some(let data), nil):
+                                let image = UIImage(data: data)
+
+                                // Add event
+                                event = Event(id: document.documentID,
+                                              name: document.data()?["name"] as? String? ?? nil,
+                                              startTime: startTime,
+                                              endTime: endTime,
+                                              location: document.data()?["location"] as? String? ?? nil,
+                                              club: document.data()?["club"] as? String? ?? nil,
+                                              details: document.data()?["details"] as? String? ?? nil,
+                                              image: image)
+                                // return event as data
+                                completion(event, nil)
+                            default:
+                                completion(nil, "Error getting event: could not get image")
+                            }
                         }
+                    // else event does not have an image, create event without an image
+                    } else {
+                        // Add event
+                        event = Event(id: document.documentID,
+                                      name: document.data()?["name"] as? String? ?? nil,
+                                      startTime: startTime,
+                                      endTime: endTime,
+                                      location: document.data()?["location"] as? String? ?? nil,
+                                      club: document.data()?["club"] as? String? ?? nil,
+                                      details: document.data()?["details"] as? String? ?? nil,
+                                      image: nil)
+                        // return event as data
+                        completion(event, nil)
                     }
                 }
+            // Could not get event, document does not exist
             } else {
                 completion(nil, "Error getting event: does not exist")
             }
         }
     }
     
-    static func getEvents(completion: @escaping ApiCompletion) {
+    static func getEventsIDs(startDate: Date?, limit: Int?, completion: @escaping ApiCompletion) {
         let db = Firestore.firestore()
         let settings = db.settings
         settings.areTimestampsInSnapshotsEnabled = true
         db.settings = settings
         
-        var events: [Event]? = []
+        var eventIDs: [String]? = []
         
-        db.collection("events").getDocuments() { (querySnapshot, err) in
+        db.collection("events").order(by: "startTime")
+                               .whereField("startTime", isGreaterThan: startDate ?? Date())
+                               .limit(to: limit ?? 1000)
+                               .getDocuments() { (querySnapshot, err) in
             if let err = err {
                 completion(nil, "Error getting events: \(err)")
             } else {
                 for document in querySnapshot!.documents {
-                    let ref = Storage.storage().reference().child("images").child(document.documentID)
-                    ref.getData(maxSize: 8192 * 8192) { data, err in
-                        switch(data, err){
-                        case(.some(let data), nil):
-                            let image = UIImage(data: data)
-                            
-                            // Get start time from timestamp
-                            let startTime: Date? = (document.data()["startTime"] as! Timestamp).dateValue()
-                            // Get end time from timestamp
-                            let endTime: Date? = (document.data()["endTime"] as! Timestamp).dateValue()
-                            
-                            // Add event with image
-                            events?.append (Event(id: document.documentID,
-                                           name: document.data()["name"] as? String? ?? nil,
-                                          startTime: startTime,
-                                          endTime: endTime,
-                                          location: document.data()["location"] as? String? ?? nil,
-                                          club: document.data()["club"] as? String? ?? nil,
-                                          details: document.data()["details"] as? String? ?? nil,
-                                          mainImage: image))
-                        case(nil, .some(_)):
-                            // Get start time from timestamp
-                            let startTime: Date? = (document.data()["startTime"] as! Timestamp).dateValue()
-                            // Get end time from timestamp
-                            let endTime: Date? = (document.data()["endTime"] as! Timestamp).dateValue()
-                            
-                            // Add event without image
-                            events?.append (Event(id: document.documentID,
-                                           name: document.data()["name"] as? String? ?? nil,
-                                          startTime: startTime,
-                                          endTime: endTime,
-                                          location: document.data()["location"] as? String? ?? nil,
-                                          club: document.data()["club"] as? String? ?? nil,
-                                          details: document.data()["details"] as? String? ?? nil,
-                                          mainImage: nil))
-                        default:
-                            completion(nil, "Error getting event")
-                        } // switch
-                    completion(events, nil)
-                    } // closure
-                } // for
-            } // else no err
-        } // getDocuments
+                    eventIDs?.append(document.documentID)
+                }
+                completion(eventIDs, nil)
+            }
+        }
     }
     
 }

@@ -13,11 +13,13 @@ class EventsFeedViewController: UIViewController {
     @IBOutlet weak var allEventsButton: UIButton!
     @IBOutlet weak var myEventButton: UIButton!
     
-    var allEvents: [Event]?
     var userEvents: [String]? // Array of user saved event ids
-    
-    var events: [Event]?
-    var filteredEvents = [Event]()
+    var events: [Event]?  // Events curretly loaded into table
+    var allEvents: [Event]? = [] // All unfilterd events
+    var filteredEvents = [Event]() // Events filtered by search bar
+    var eventLoadDate = Date() // Date to load next set of events form
+    var loadLimit: Int = 2 // Number of events to load at time (MUST BE > 1)
+    var loadedEvents: Int = 0 // Number of events that have been loaded
     
     let dateFormatter = DateFormatter()
     let timeFormatter = DateFormatter()
@@ -35,6 +37,11 @@ class EventsFeedViewController: UIViewController {
         // format appearence of dates
         dateFormatter.dateFormat = "EE MMM dd, yyyy"
         timeFormatter.dateFormat = "hh:mm a"
+        // Init selected events view buttons
+        allEventsButton.alpha = 1.0
+        myEventButton.alpha = 0.5
+        
+        getEvents()
         
         // Source: https://www.raywenderlich.com/472-uisearchcontroller-tutorial-getting-started
         // Setup the Search Controller
@@ -42,31 +49,9 @@ class EventsFeedViewController: UIViewController {
         searchController.obscuresBackgroundDuringPresentation = false
         navigationItem.searchController = searchController
         definesPresentationContext = true
-        
-        allEventsButton.alpha = 1.0
-        myEventButton.alpha = 0.5
-        
-        EventsApi.getEvents() { data, error in
-            switch(data, error){
-            case(nil, .some(let error)):
-                print(error)
-            case(.some(let data), nil):
-                self.allEvents = data as? [Event]
-                
-                // sort events by start time
-                self.allEvents = self.allEvents?.sorted(by: { $0.startTime?.compare($1.startTime ?? Date()) == .orderedAscending })
-                // remove events that have already passed
-                self.allEvents = self.allEvents?.filter { $0.startTime ?? Date() >= Date() }
-                
-                self.events = self.allEvents
-                self.eventsTableView.reloadData()
-            default:
-                print("Error getting events")
-                
-            }
-        }
     }
     
+    // load all events into table and set button appearence
     @IBAction func allEventsButtonTapped(_ sender: Any) {
         searchController.isActive = false // cancel serach
         allEventsButton.alpha = 1.0
@@ -75,6 +60,7 @@ class EventsFeedViewController: UIViewController {
         eventsTableView.reloadData()
     }
     
+    // load user events into table and set button appearence
     @IBAction func myEventsButtonTapped(_ sender: Any) {
         searchController.isActive = false // cancel search
         allEventsButton.alpha = 0.5
@@ -84,16 +70,62 @@ class EventsFeedViewController: UIViewController {
         eventsTableView.reloadData()
     }
     
+    // Get events loadLimit number of events from database starting from eventLoadDate
+    func getEvents() {
+        EventsApi.getEventsIDs(startDate: eventLoadDate, limit: loadLimit) { data, error in
+            switch(data, error){
+            case(nil, .some(let error)):
+                print(error)
+            case(.some(let data), nil):
+                if let eventIds = data as? [String?] {
+                    self.loadedEvents += eventIds.count
+                    
+                    for id in eventIds {
+                        EventsApi.getEvent(id: id ?? "") { data, error in
+                            switch(data, error){
+                            case(nil, .some(let error)):
+                                print(error)
+                            case(.some(let data), nil):
+                                let event = data as! Event
+                                self.allEvents?.append(event)
+                                
+                                // sort events by start time
+                                self.allEvents
+                                    = self.allEvents?.sorted(by: { $0.startTime?.compare($1.startTime ?? Date()) == .orderedAscending })
+                                // remove events that have already passed
+                                self.allEvents = self.allEvents?.filter {
+                                    $0.startTime ?? Date() >= Date() }
+                                
+                                self.events = self.allEvents
+                                self.eventsTableView.reloadData()
+                                
+                                // set the next date to load based on last loaded
+                                if id == eventIds[eventIds.count - 1],
+                                    let startTime = event.startTime{
+                                    self.eventLoadDate = startTime.addingTimeInterval(1)
+                                }
+                            default:
+                                print("Error getting event \(id ?? "")")
+                            }
+                        }
+                    }
+                }
+            default:
+                print("Error getting events")
+                
+            }
+        }
+    }
+    
 }
 
 // TableView funtions
-extension EventsFeedViewController: UITableViewDelegate, UITableViewDataSource {
+extension EventsFeedViewController: UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltering() {
             return filteredEvents.count
         }
-        
         return self.events?.count ?? 0
     }
     
@@ -111,22 +143,38 @@ extension EventsFeedViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         // the identifier is like the type of the cell
-        let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as! EventCell
+        let cell =
+            tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath) as! EventCell
         
-        cell.initEventCell(name: event.name, startTime: event.startTime, club: event.club, image: event.mainImage ?? UIImage(named: "testImage"), dateFormat: "EE MMM dd hh:mm a")  //FIXME: debugging clickable
+        cell.initEventCell(name: event.name,
+                           startTime: event.startTime,
+                           club: event.club,
+                           image: event.image ?? UIImage(named: "testImage"),
+                           dateFormat: "EE MMM dd hh:mm a")  //FIXME: debugging clickable
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        // FIXME: change "Lindsey" to "Main"
+        // FIXME: change "Cindy" to "Main"
         //let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let storyboard = UIStoryboard(name: "Cindy", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "eventDetailsViewController") as! EventDetailsViewController
         viewController.event = self.events.map { $0[indexPath.row] }
         self.navigationController?.pushViewController(viewController, animated: true)
     }
-
+    
+    // Load more events when the bottom of the table is scrolled to
+    // Source: https://stackoverflow.com/questions/20269474/uitableview-load-more-when-scrolling-to-bottom-like-facebook-application
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        // UITableView only moves in one direction, y axis
+        let currentOffset = scrollView.contentOffset.y
+        let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
+        // Change 10.0 to adjust the distance from bottom
+        if maximumOffset - currentOffset <= 10.0 {
+            self.getEvents()
+        }
+    }
 }
 
 // Search bar
@@ -154,7 +202,9 @@ extension EventsFeedViewController: UISearchResultsUpdating {
         }
         
         // sort filtered events
-        filteredEvents = filteredEvents.sorted(by: { $0.startTime?.compare($1.startTime ?? Date()) == .orderedAscending })
+        filteredEvents =
+            filteredEvents.sorted(by:
+                {$0.startTime?.compare($1.startTime ?? Date()) == .orderedAscending })
         
         eventsTableView.reloadData()
     }
@@ -162,6 +212,4 @@ extension EventsFeedViewController: UISearchResultsUpdating {
     func isFiltering() -> Bool {
         return searchController.isActive && !searchBarIsEmpty()
     }
-    
-    
 }

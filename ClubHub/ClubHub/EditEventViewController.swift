@@ -93,7 +93,7 @@ class EditEventViewController: UIViewController {
         detailsTextView.text = event?.details
         
         // init event image
-        if let image =  event?.mainImage {
+        if let image =  event?.image {
             imageView.image = image
             uploadImageButton.setTitle("", for: .normal)
             imageView.isHidden = false
@@ -119,6 +119,11 @@ class EditEventViewController: UIViewController {
         // Require name and start time
         guard let _ = event?.name, let _ = event?.startTime else{
             print("Error adding event, must provide a name and start time")
+            return
+        }
+        // check for empyt event name
+        if event?.name?.trimmingCharacters(in: .whitespaces) == "" {
+            print("Error adding event, must provide a name")
             return
         }
         
@@ -163,7 +168,7 @@ class EditEventViewController: UIViewController {
     
     @IBAction func deleteImageTapped(_ sender: Any) {
         imageView.image = UIImage()
-        event?.mainImage = nil
+        event?.image = nil
         uploadImageButton.setTitle("Upload Image", for: .normal)
         imageView.isHidden = true
         deleteImageButton.isHidden = true
@@ -305,12 +310,12 @@ extension EditEventViewController: DateTimePopUpDelegate {
 // Source: https://www.youtube.com/watch?v=krZzC6abaoE
 extension EditEventViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        imageView.image = info[UIImagePickerController.InfoKey.originalImage]
-            as? UIImage
+        imageView.image =
+            info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         imageView.backgroundColor = UIColor.clear
         imageView.isHidden = false
         uploadImageButton.setTitle("", for: .normal)
-        event?.mainImage = imageView.image
+        event?.image = imageView.image
         deleteImageButton.isHidden = false
         
         self.dismiss(animated: true)
