@@ -8,24 +8,45 @@
 // Test view controller
 
 import UIKit
+import Firebase
+import GoogleSignIn
 
-class EventTestingViewController: UIViewController, EditEventDelegate{
+
+class EventTestingViewController: UIViewController, EditEventDelegate, GIDSignInUIDelegate{
     
-    var updateId: String = "6FNTgxwQDIwg1By1ua7G"
-    var userEvents = ["6FNTgxwQDIwg1By1ua7G", "Xlt2jEHlyaaJT8Xxx93K"]
+    var updateId: String = "DVScwlXbwYDRhj15Gbka"
+    var userEvents: [String]?
+    var saveUserEvent = "9BPkBiOBDlZWpkLK85DQ"
     var event: Event? = Event(id: nil, name: nil, startTime: nil, endTime: nil, location: nil, club: nil, details: nil, image: nil)
-    var delEvent: Event? = Event(id: "6FNTgxwQDIwg1By1ua7G", name: nil, startTime: nil, endTime: nil, location: nil, club: nil, details: nil, image: nil)
+    var delEvent: Event? = Event(id: "9BPkBiOBDlZWpkLK85DQ", name: nil, startTime: nil, endTime: nil, location: nil, club: nil, details: nil, image: nil)
     var events: [Event]?
     
-    func editEventCompleted() {
-        //self.dismiss(animated: true)
-        self.navigationController?.popViewController(animated: true)
-    }
+    @IBOutlet weak var signInButton: GIDSignInButton!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().signIn()
+        
         getEvent(id: updateId)
+        getUserEvents()
+        
+        /*
+        UserApi.initUserData() { data, err in
+            switch(data, err) {
+            case(.some(_), nil):
+                print("User init successful")
+            case(nil, .some(let err)):
+                print(err)
+            default:
+                print("Error init user data")
+            }
+        }
+        */
+        
+        let user = Auth.auth().currentUser?.uid
+        print("------------------- User:  \(user ?? "") -------------------")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,6 +66,33 @@ class EventTestingViewController: UIViewController, EditEventDelegate{
             }
         }
     }
+
+    @IBAction func saveEventTapped(_ sender: Any) {
+        UserApi.saveEvent(eventID: saveUserEvent) { data, err in
+            switch(data, err) {
+            case(.some(_), nil):
+                print("Event Saved")
+            case(nil, .some(let err)):
+                print(err)
+            default:
+                print("Error saving event")
+            }
+        }
+    }
+    
+    @IBAction func deleteSavedEventTapped(_ sender: Any) {
+        UserApi.deleteSavedEvent(eventID: saveUserEvent) { data, err in
+            switch(data, err) {
+            case(.some(_), nil):
+                print("User event deleted")
+            case(nil, .some(let err)):
+                print(err)
+            default:
+                print("Error deleting user event")
+            }
+        }
+    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch(segue.identifier) {
@@ -65,6 +113,12 @@ class EventTestingViewController: UIViewController, EditEventDelegate{
         default:
             return
         }
+    }
+    
+    
+    func editEventCompleted() {
+        //self.dismiss(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
 
     // test Api.getEvent()
@@ -104,6 +158,19 @@ class EventTestingViewController: UIViewController, EditEventDelegate{
             default:
                 print("Error getting events")
                 
+            }
+        }
+    }
+    
+    func getUserEvents() {
+        UserApi.getUserEvents() { data, err in
+            switch(data, err) {
+            case(.some(let data), nil):
+                self.userEvents = data as? [String]
+            case(nil, .some(let err)):
+                print(err)
+            default:
+                print("Error getting user events")
             }
         }
     }

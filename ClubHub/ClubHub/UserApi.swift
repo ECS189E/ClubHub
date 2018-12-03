@@ -70,7 +70,7 @@ struct UserApi {
                         if let err = err {
                             completion(nil, "Error saving event: \(err)")
                         } else {
-                            completion(true, nil)
+                            completion(userEvents, nil)
                         }
                     }
                 }
@@ -113,7 +113,7 @@ struct UserApi {
                         if let err = err {
                             completion(nil, "Error deleting saved event: \(err)")
                         } else {
-                            completion(true, nil)
+                            completion(userEvents, nil)
                         }
                     }
                 }
@@ -156,7 +156,7 @@ struct UserApi {
                         if let err = err {
                             completion(nil, "Error saving club: \(err)")
                         } else {
-                            completion(true, nil)
+                            completion(userClubs, nil)
                         }
                     }
                 }
@@ -199,7 +199,7 @@ struct UserApi {
                         if let err = err {
                             completion(nil, "Error deleting saved club: \(err)")
                         } else {
-                            completion(true, nil)
+                            completion(userClubs, nil)
                         }
                     }
                 }

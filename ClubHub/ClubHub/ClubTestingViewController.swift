@@ -10,9 +10,10 @@ import UIKit
 
 class ClubTestingViewController: UIViewController {
     
-    var updateId: String = "oWHGwRY5SQeRIWmEIsOT"
-    var userClubs: [String] = ["xLeqourzzQXn9efnXHrY", "KREGUOnzx4eO1hy2P86U"]
-    var delClub: Club? = Club(id: "xLeqourzzQXn9efnXHrY", name: nil, details: nil, image: nil)
+    var updateId: String = "mNhp7PMaqzuvRq31nCsQ"
+    var userClubs: [String]?
+    var saveUserClub = "mNhp7PMaqzuvRq31nCsQ"
+    var delClub: Club? = Club(id: "KREGUOnzx4eO1hy2P86U", name: nil, details: nil, image: nil)
     var clubs: [Club]?
     //var club: Club?
     var club: Club? = Club(id: "xLeqourzzQXn9efnXHrY", name: "Women in Computer Science", details: nil, image: UIImage(named: "testImage"))
@@ -21,6 +22,7 @@ class ClubTestingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getClubs()
+        getUserClubs()
         getClub(id: updateId)
     }
     
@@ -71,6 +73,33 @@ class ClubTestingViewController: UIViewController {
         }
     }
     
+    @IBAction func saveClubTapped(_ sender: Any) {
+        UserApi.saveClub(clubID: saveUserClub) { data, err in
+            switch(data, err) {
+            case(.some(_), nil):
+                print("Club Saved")
+            case(nil, .some(let err)):
+                print(err)
+            default:
+                print("Error saving club")
+            }
+        }
+    }
+    
+    @IBAction func deleteSavedClubTapped(_ sender: Any) {
+        UserApi.deleteSavedClub(clubID: saveUserClub) { data, err in
+            switch(data, err) {
+            case(.some(_), nil):
+                print("User club deleted")
+            case(nil, .some(let err)):
+                print(err)
+            default:
+                print("Error deleting user club")
+            }
+        }
+    }
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch(segue.identifier) {
         case("allClubs"):
@@ -118,6 +147,19 @@ class ClubTestingViewController: UIViewController {
             default:
                 print("Error getting clubs")
                 
+            }
+        }
+    }
+    
+    func getUserClubs() {
+        UserApi.getUserClubs() { data, err in
+            switch(data, err) {
+            case(.some(let data), nil):
+                self.userClubs = data as? [String]
+            case(nil, .some(let err)):
+                print(err)
+            default:
+                print("Error getting user clubs")
             }
         }
     }
