@@ -28,7 +28,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         
         calendarListedEvents.delegate = self
         calendarListedEvents.dataSource = self
-        dateFormatter.dateFormat = "hh:mm a"
+        dateFormatter.dateFormat = "h:mm a"
         getEvents()
     }
     
@@ -92,7 +92,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
         // the identifier is like the type of the cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "calendarEventCell", for: indexPath) as! EventCell
         
-        cell.initEventCell(name: event.name, startTime: event.startTime, club: event.club, image: nil, dateFormat: "hh:mm a")  //FIXME: debugging
+        cell.initEventCell(name: event.name, startTime: event.startTime, club: event.club, image: nil, dateFormat: "h:mm a")  //FIXME: debugging
         
         return cell
     }
