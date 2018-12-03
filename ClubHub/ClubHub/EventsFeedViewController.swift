@@ -19,7 +19,7 @@ class EventsFeedViewController: UIViewController {
     var filteredEvents = [Event]() // Events filtered by search bar
     var eventLoadDate = Date() // Date to load next set of events form
     //FIXME: update for deployment
-    var loadLimit: Int = 2 // Number of events to load at time (MUST BE > 1)
+    var loadLimit: Int = 10 // Number of events to load at time (MUST BE > 1)
     var loadedEvents: Int = 0 // Number of events that have been loaded
     var userEventsDisplayed: Bool = false // True if "My Events" tapped
     
@@ -36,14 +36,19 @@ class EventsFeedViewController: UIViewController {
     }
     
     func viewInit() {
+        getEvents()
+        getUserEvents()
+        
         // format appearence of dates
-        dateFormatter.dateFormat = "EE MMM dd, yyyy"
-        timeFormatter.dateFormat = "hh:mm a"
+        dateFormatter.dateFormat = "EE MMM d, yyyy"
+        timeFormatter.dateFormat = "h:mm a"
         // Init selected events view buttons
         allEventsButton.alpha = 1.0
+        allEventsButton.layer.cornerRadius =
+            allEventsButton.frame.size.height/7
         myEventButton.alpha = 0.5
-        
-        getEvents()
+        myEventButton.layer.cornerRadius =
+            myEventButton.frame.size.height/7
         
         // Source: https://www.raywenderlich.com/472-uisearchcontroller-tutorial-getting-started
         // Setup the Search Controller
@@ -128,6 +133,19 @@ class EventsFeedViewController: UIViewController {
         }
     }
     
+    func getUserEvents() {
+        UserApi.getUserEvents() { data, err in
+            switch(data, err) {
+            case(.some(let data), nil):
+                self.userEvents = data as? [String]
+            case(nil, .some(let err)):
+                print(err)
+            default:
+                print("Error getting user events")
+            }
+        }
+    }
+    
 }
 
 // TableView funtions
@@ -168,7 +186,6 @@ extension EventsFeedViewController: UITableViewDelegate, UITableViewDataSource, 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         // FIXME: change "Cindy" to "Main"
-        //let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let storyboard = UIStoryboard(name: "Cindy", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "eventDetailsViewController") as! EventDetailsViewController
         viewController.event = self.events.map { $0[indexPath.row] }

@@ -19,7 +19,7 @@ class ClubListViewController: UIViewController {
     var filteredClubs = [Club]() // Clubs filtered by search bar
     var clubLoadNext = "A" // Date to load next set of clubs form
     //FIXME: update for deployment
-    var loadLimit: Int = 2 // Number of clubs to load at time (MUST BE > 1)
+    var loadLimit: Int = 10 // Number of clubs to load at time (MUST BE > 1)
     var loadedClubs: Int = 0 // Number of clubs that have been loaded
     var userClubsDisplayed: Bool = false // True if "My Clubs" tapped
     
@@ -33,11 +33,16 @@ class ClubListViewController: UIViewController {
     }
     
     func viewInit() {
+        getClubs()
+        getUserClubs()
+        
         // Init selected clubs view buttons
         allClubsButton.alpha = 1.0
+        allClubsButton.layer.cornerRadius =
+            allClubsButton.frame.size.height/7
         myClubButton.alpha = 0.5
-        
-        getClubs()
+        myClubButton.layer.cornerRadius
+            = myClubButton.frame.size.height/7
         
         // Source: https://www.raywenderlich.com/472-uisearchcontroller-tutorial-getting-started
         // Setup the Search Controller
@@ -114,6 +119,19 @@ class ClubListViewController: UIViewController {
             default:
                 print("Error getting clubs")
                 
+            }
+        }
+    }
+    
+    func getUserClubs() {
+        UserApi.getUserClubs() { data, err in
+            switch(data, err) {
+            case(.some(let data), nil):
+                self.userClubs = data as? [String]
+            case(nil, .some(let err)):
+                print(err)
+            default:
+                print("Error getting user clubs")
             }
         }
     }

@@ -8,10 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		3767815A21AC76E50016533D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3767815921AC76E50016533D /* GoogleService-Info.plist */; };
+		D10C916A21B22A0300AD78B9 /* UserApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10C916921B22A0300AD78B9 /* UserApi.swift */; };
+		D10C916C21B4FC7300AD78B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D10C916B21B4FC7300AD78B9 /* Assets.xcassets */; };
 		D136411621AC64F0007A7B22 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D136411521AC64F0007A7B22 /* AppDelegate.swift */; };
 		D136411B21AC64F0007A7B22 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D136411921AC64F0007A7B22 /* Main.storyboard */; };
 		D136411E21AC64F0007A7B22 /* ClubHub.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D136411C21AC64F0007A7B22 /* ClubHub.xcdatamodeld */; };
-		D136412021AC64F1007A7B22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D136411F21AC64F1007A7B22 /* Assets.xcassets */; };
 		D136412321AC64F1007A7B22 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D136412121AC64F1007A7B22 /* LaunchScreen.storyboard */; };
 		D136412E21AC64F1007A7B22 /* ClubHubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D136412D21AC64F1007A7B22 /* ClubHubTests.swift */; };
 		D136413921AC64F1007A7B22 /* ClubHubUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D136413821AC64F1007A7B22 /* ClubHubUITests.swift */; };
@@ -63,11 +64,12 @@
 		6108494735D13AA2F78DF325 /* Pods_ClubHubUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClubHubUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84B61FE294D854F305958EF9 /* Pods-ClubHub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClubHub.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ClubHub/Pods-ClubHub.debug.xcconfig"; sourceTree = "<group>"; };
 		970100C9EFECC528E1638691 /* Pods-ClubHub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClubHub.release.xcconfig"; path = "Pods/Target Support Files/Pods-ClubHub/Pods-ClubHub.release.xcconfig"; sourceTree = "<group>"; };
+		D10C916921B22A0300AD78B9 /* UserApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserApi.swift; sourceTree = "<group>"; };
+		D10C916B21B4FC7300AD78B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D136411221AC64F0007A7B22 /* ClubHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClubHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D136411521AC64F0007A7B22 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D136411A21AC64F0007A7B22 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D136411D21AC64F0007A7B22 /* ClubHub.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ClubHub.xcdatamodel; sourceTree = "<group>"; };
-		D136411F21AC64F1007A7B22 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D136412221AC64F1007A7B22 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D136412421AC64F1007A7B22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D136412921AC64F1007A7B22 /* ClubHubTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClubHubTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -190,12 +192,13 @@
 				D1835CC121AC870500A1F3DD /* EventDetailsViewController.swift */,
 				D1835CC521AC870700A1F3DD /* EventsFeedViewController.swift */,
 				D1835CC021AC870500A1F3DD /* EventTestingViewController.swift */,
+				D10C916921B22A0300AD78B9 /* UserApi.swift */,
 				D184193D21AF5FC100373875 /* UIImage+JPEG.swift */,
 				D184193B21AF40AF00373875 /* ViewController+keyboard.swift */,
-				D136411F21AC64F1007A7B22 /* Assets.xcassets */,
 				D136412121AC64F1007A7B22 /* LaunchScreen.storyboard */,
 				3767815921AC76E50016533D /* GoogleService-Info.plist */,
 				D136412421AC64F1007A7B22 /* Info.plist */,
+				D10C916B21B4FC7300AD78B9 /* Assets.xcassets */,
 				D136411C21AC64F0007A7B22 /* ClubHub.xcdatamodeld */,
 			);
 			path = ClubHub;
@@ -331,8 +334,8 @@
 				D1835C8221AC7CA400A1F3DD /* Sravya.storyboard in Resources */,
 				D136412321AC64F1007A7B22 /* LaunchScreen.storyboard in Resources */,
 				D1835C7F21AC7C9900A1F3DD /* Cindy.storyboard in Resources */,
-				D136412021AC64F1007A7B22 /* Assets.xcassets in Resources */,
 				D1835C7C21AC7C8D00A1F3DD /* Lindsey.storyboard in Resources */,
+				D10C916C21B4FC7300AD78B9 /* Assets.xcassets in Resources */,
 				D136411B21AC64F0007A7B22 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -482,6 +485,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D184193E21AF5FC200373875 /* UIImage+JPEG.swift in Sources */,
+				D10C916A21B22A0300AD78B9 /* UserApi.swift in Sources */,
 				D1835CD321AD0D3000A1F3DD /* CalendarViewController.swift in Sources */,
 				D184194621B0FB3100373875 /* ClubListViewController.swift in Sources */,
 				D184194821B0FCD300373875 /* ClubCell.swift in Sources */,

@@ -17,6 +17,11 @@ class EditEventViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var scrollViewBottomContraint: NSLayoutConstraint!
     
+    @IBOutlet weak var eventImageView: UIView!
+    @IBOutlet weak var timeView: UIView!
+    @IBOutlet weak var locationView: UIView!
+    @IBOutlet weak var detailsView: UIView!
+    
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var uploadImageButton: UIButton!
@@ -58,9 +63,9 @@ class EditEventViewController: UIViewController {
         detailsTextView.isEditable = true
         
         // format appearence of dates
-        dateFormatter.dateFormat = "EE MMM dd, yyyy"
-        timeFormatter.dateFormat = "hh:mm a"
-        
+        dateFormatter.dateFormat = "EE MMM d, yyyy"
+        timeFormatter.dateFormat = "h:mm a"
+                
         // if editing an existing event
         if let event = event {
             if event.id  == nil { // must have an id to update
