@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mPl-lD-fFE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QEY-Bx-4Ml">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -60,7 +60,11 @@
         <!--Tab Bar Controller-->
         <scene sceneID="wYf-JC-L1C">
             <objects>
-                <tabBarController title="Tab Bar Controller" id="QEY-Bx-4Ml" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBarController" title="Tab Bar Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QEY-Bx-4Ml" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Gs5-gI-EJ2">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="zxv-db-ZrR" userLabel="Logout"/>
+                        <barButtonItem key="rightBarButtonItem" image="icons8-registration-filled-25-black" id="1qC-rA-TN4"/>
+                    </navigationItem>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="t6T-v7-hE0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -70,17 +74,16 @@
                         <segue destination="PZP-l4-xaC" kind="relationship" relationship="viewControllers" id="QuY-2G-cbc"/>
                         <segue destination="LWP-ek-mKZ" kind="relationship" relationship="viewControllers" id="5eO-xm-vRS"/>
                         <segue destination="JP6-Fm-sOW" kind="relationship" relationship="viewControllers" id="lxa-Lb-gOu"/>
-                        <segue destination="Fy7-Jw-OK4" kind="relationship" relationship="viewControllers" id="5Qc-8T-eYe"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FCI-VT-fNY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1806" y="473"/>
+            <point key="canvasLocation" x="-1694" y="161"/>
         </scene>
         <!--Events Navigation Controller-->
         <scene sceneID="AZW-fE-FXG">
             <objects>
-                <navigationController storyboardIdentifier="eventsNavigationController" title="Events Navigation Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PZP-l4-xaC" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="eventsNavigationController" title="Events Navigation Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PZP-l4-xaC" customClass="EventsNavigationController" customModule="ClubHub" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Events" image="icons8-schedule-25-black" id="cdJ-CI-b3b">
                         <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
@@ -88,18 +91,15 @@
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
-                    <connections>
-                        <segue destination="pOi-n2-o0N" kind="relationship" relationship="rootViewController" id="CZe-QE-A3M"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mP5-Rx-nJj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-759" y="-589"/>
+            <point key="canvasLocation" x="-759" y="-563"/>
         </scene>
         <!--Calendar Navigation Controller-->
         <scene sceneID="gK8-LJ-aTL">
             <objects>
-                <navigationController storyboardIdentifier="calendarNavigationController" title="Calendar Navigation Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JP6-Fm-sOW" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="calendarNavigationController" title="Calendar Navigation Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JP6-Fm-sOW" customClass="CalendarNavigaitonController" customModule="ClubHub" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Calendar" image="icons8-calendar-25-black" id="kE0-Z1-KDc"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0FI-EF-Ho5">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -111,280 +111,21 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dYS-9I-9EJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-759" y="881"/>
-        </scene>
-        <!--Settings NavigatIon Controller-->
-        <scene sceneID="Qh8-6J-tB7">
-            <objects>
-                <navigationController title="Settings NavigatIon Controller" id="Fy7-Jw-OK4" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" image="icons8-settings-filled-25-black" id="77u-TB-qrq"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="KEF-jB-2vU">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fqd-6m-5Ld" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-759" y="1594"/>
+            <point key="canvasLocation" x="-759" y="914"/>
         </scene>
         <!--Clubs Navigation Controller-->
         <scene sceneID="toR-SE-iH8">
             <objects>
-                <navigationController storyboardIdentifier="clubsNavigationController" title="Clubs Navigation Controller" id="LWP-ek-mKZ" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="clubsNavigationController" title="Clubs Navigation Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LWP-ek-mKZ" customClass="ClubsNavigationController" customModule="ClubHub" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Clubs" image="icons8-user-groups-25-black" id="d0F-nt-q50"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="T0w-Mb-WoR">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
-                    <connections>
-                        <segue destination="lJS-ot-eTa" kind="relationship" relationship="rootViewController" id="3a2-cg-Gne"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kn7-vz-ube" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-759" y="162"/>
-        </scene>
-        <!--Events-->
-        <scene sceneID="Stt-Zo-Jbr">
-            <objects>
-                <viewController storyboardIdentifier="eventsFeedViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pOi-n2-o0N" customClass="EventsFeedViewController" customModule="ClubHub" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="1JU-mq-ZYw">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="OAb-cE-QbJ">
-                                <rect key="frame" x="16" y="69" width="343" height="35"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="akw-0B-hvL">
-                                        <rect key="frame" x="0.0" y="0.0" width="170" height="35"/>
-                                        <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                        <state key="normal" title="All Events">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="allEventsButtonTapped:" destination="pOi-n2-o0N" eventType="touchUpInside" id="KX0-zn-ZUU"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="goe-qB-fgX">
-                                        <rect key="frame" x="173" y="0.0" width="170" height="35"/>
-                                        <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="35" id="uhN-08-TbA"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                        <state key="normal" title="My Events">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="myEventsButtonTapped:" destination="pOi-n2-o0N" eventType="touchUpInside" id="pVx-k1-bXT"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="goe-qB-fgX" firstAttribute="height" secondItem="akw-0B-hvL" secondAttribute="height" id="Gm5-Jw-Icq"/>
-                                    <constraint firstItem="goe-qB-fgX" firstAttribute="top" secondItem="hgd-Dz-evu" secondAttribute="top" id="HuL-rK-8lC"/>
-                                    <constraint firstItem="goe-qB-fgX" firstAttribute="width" secondItem="akw-0B-hvL" secondAttribute="width" id="JiJ-dM-yYu"/>
-                                    <constraint firstItem="goe-qB-fgX" firstAttribute="trailing" secondItem="hgd-Dz-evu" secondAttribute="trailing" id="hC2-wo-7XB"/>
-                                </constraints>
-                                <viewLayoutGuide key="safeArea" id="hgd-Dz-evu"/>
-                            </stackView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SY5-9o-gxV">
-                                <rect key="frame" x="16" y="109" width="343" height="509"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="separatorColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="eventCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="eventCell" rowHeight="375" id="Nvz-x8-MDp" userLabel="Event Cell" customClass="EventCell" customModule="ClubHub" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="343" height="375"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Nvz-x8-MDp" id="Vcc-hJ-qNr">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="374.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RDB-0m-qfM">
-                                                    <rect key="frame" x="0.0" y="51.5" width="343" height="200"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="200" id="Fnt-Hd-cNM"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sv4-3m-T7g">
-                                                    <rect key="frame" x="0.0" y="15" width="343" height="26.5"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Date" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DPX-b8-3Jq">
-                                                    <rect key="frame" x="0.0" y="339" width="343" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Club" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lLR-7b-ezS">
-                                                    <rect key="frame" x="15" y="261.5" width="313" height="72.5"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="tintColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <constraints>
-                                                <constraint firstItem="lLR-7b-ezS" firstAttribute="leading" secondItem="Vcc-hJ-qNr" secondAttribute="leadingMargin" id="5kr-JS-4tt"/>
-                                                <constraint firstItem="sv4-3m-T7g" firstAttribute="leading" secondItem="Vcc-hJ-qNr" secondAttribute="leading" id="DI3-1j-1nY"/>
-                                                <constraint firstAttribute="trailing" secondItem="DPX-b8-3Jq" secondAttribute="trailing" id="SPr-AC-gdl"/>
-                                                <constraint firstItem="DPX-b8-3Jq" firstAttribute="top" secondItem="lLR-7b-ezS" secondAttribute="bottom" constant="5" id="UHu-vA-8BH"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="lLR-7b-ezS" secondAttribute="trailing" id="XOl-c7-fsK"/>
-                                                <constraint firstItem="RDB-0m-qfM" firstAttribute="leading" secondItem="Vcc-hJ-qNr" secondAttribute="leading" id="XXd-CU-6SO"/>
-                                                <constraint firstItem="sv4-3m-T7g" firstAttribute="top" secondItem="Vcc-hJ-qNr" secondAttribute="top" constant="15" id="d9a-1Q-xJe"/>
-                                                <constraint firstAttribute="bottom" secondItem="DPX-b8-3Jq" secondAttribute="bottom" constant="15" id="j9M-52-57a"/>
-                                                <constraint firstAttribute="trailing" secondItem="sv4-3m-T7g" secondAttribute="trailing" id="kma-gr-I72"/>
-                                                <constraint firstItem="DPX-b8-3Jq" firstAttribute="leading" secondItem="Vcc-hJ-qNr" secondAttribute="leading" id="oEA-bF-2iT"/>
-                                                <constraint firstAttribute="trailing" secondItem="RDB-0m-qfM" secondAttribute="trailing" id="pIT-BX-yXg"/>
-                                                <constraint firstItem="RDB-0m-qfM" firstAttribute="top" secondItem="sv4-3m-T7g" secondAttribute="bottom" constant="10" id="u1p-H5-amx"/>
-                                                <constraint firstItem="lLR-7b-ezS" firstAttribute="top" secondItem="RDB-0m-qfM" secondAttribute="bottom" constant="10" id="v53-pD-rIN"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="clubLabel" destination="lLR-7b-ezS" id="QNr-fS-gSc"/>
-                                            <outlet property="eventImageView" destination="RDB-0m-qfM" id="oMX-Ez-8gZ"/>
-                                            <outlet property="eventStartTimeLabel" destination="DPX-b8-3Jq" id="DJu-CA-XBr"/>
-                                            <outlet property="nameLabel" destination="sv4-3m-T7g" id="lGi-bh-bbA"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="OAb-cE-QbJ" firstAttribute="leading" secondItem="1JU-mq-ZYw" secondAttribute="leading" constant="16" id="8iL-Fy-HJk"/>
-                            <constraint firstItem="qB5-Xy-ojb" firstAttribute="bottom" secondItem="SY5-9o-gxV" secondAttribute="bottom" id="Efo-Yg-PV1"/>
-                            <constraint firstItem="qB5-Xy-ojb" firstAttribute="trailing" secondItem="OAb-cE-QbJ" secondAttribute="trailing" constant="16" id="iO1-Y0-lut"/>
-                            <constraint firstItem="SY5-9o-gxV" firstAttribute="leading" secondItem="qB5-Xy-ojb" secondAttribute="leading" constant="16" id="ncG-gQ-GI8"/>
-                            <constraint firstItem="SY5-9o-gxV" firstAttribute="top" secondItem="OAb-cE-QbJ" secondAttribute="bottom" constant="5" id="sna-Of-pOW"/>
-                            <constraint firstItem="OAb-cE-QbJ" firstAttribute="top" secondItem="qB5-Xy-ojb" secondAttribute="top" constant="5" id="tu8-Gh-8In"/>
-                            <constraint firstItem="qB5-Xy-ojb" firstAttribute="trailing" secondItem="SY5-9o-gxV" secondAttribute="trailing" constant="16" id="wv7-5C-4yl"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="qB5-Xy-ojb"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Events" id="jFr-yJ-6YM"/>
-                    <navigationItem key="navigationItem" id="51K-RQ-G4V"/>
-                    <connections>
-                        <outlet property="allEventsButton" destination="akw-0B-hvL" id="g3g-H2-xnF"/>
-                        <outlet property="eventsTableView" destination="SY5-9o-gxV" id="mQZ-p4-7LZ"/>
-                        <outlet property="myEventButton" destination="goe-qB-fgX" id="hRP-Ng-xPT"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Xby-BA-MHO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="303" y="-589"/>
-        </scene>
-        <!--Clubs-->
-        <scene sceneID="4da-Nr-AUd">
-            <objects>
-                <viewController storyboardIdentifier="clubListViewConroller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lJS-ot-eTa" customClass="ClubListViewController" customModule="ClubHub" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Nlf-6B-efc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="ALg-kf-F5A">
-                                <rect key="frame" x="16" y="64" width="343" height="35"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ewz-4n-dci">
-                                        <rect key="frame" x="0.0" y="0.0" width="170" height="35"/>
-                                        <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                        <state key="normal" title="All Clubs">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="allClubsButtonTapped:" destination="lJS-ot-eTa" eventType="touchUpInside" id="qV8-h6-Sa4"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OWZ-vg-WnN">
-                                        <rect key="frame" x="173" y="0.0" width="170" height="35"/>
-                                        <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="35" id="DlQ-oL-OZi"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                        <state key="normal" title="My Clubs">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="myClubsButtonTapped:" destination="lJS-ot-eTa" eventType="touchUpInside" id="Txx-M2-BQk"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="OWZ-vg-WnN" firstAttribute="width" secondItem="ewz-4n-dci" secondAttribute="width" id="Kjj-ei-Fgt"/>
-                                    <constraint firstItem="OWZ-vg-WnN" firstAttribute="height" secondItem="ewz-4n-dci" secondAttribute="height" id="Mkb-Q0-92y"/>
-                                </constraints>
-                                <viewLayoutGuide key="safeArea" id="fum-HC-LJ5"/>
-                            </stackView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="j3X-Ru-tPT">
-                                <rect key="frame" x="16" y="104" width="343" height="514"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="separatorColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="eventCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="clubCell" rowHeight="280" id="5eq-rt-dZI" userLabel="Club Cell" customClass="ClubCell" customModule="ClubHub" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="343" height="280"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5eq-rt-dZI" id="HHU-lM-7ZF">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="279.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="flX-mE-akB">
-                                                    <rect key="frame" x="0.0" y="15" width="343" height="46.5"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="egG-Ah-QVe" userLabel="Club Image View">
-                                                    <rect key="frame" x="0.0" y="71.5" width="343" height="193"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="egG-Ah-QVe" secondAttribute="height" multiplier="16:9" id="D3k-Mj-UHj"/>
-                                                    </constraints>
-                                                </imageView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="egG-Ah-QVe" firstAttribute="top" secondItem="flX-mE-akB" secondAttribute="bottom" constant="10" id="4x9-aS-Bob"/>
-                                                <constraint firstItem="flX-mE-akB" firstAttribute="leading" secondItem="HHU-lM-7ZF" secondAttribute="leading" id="8LC-9s-Rti"/>
-                                                <constraint firstItem="egG-Ah-QVe" firstAttribute="leading" secondItem="HHU-lM-7ZF" secondAttribute="leading" id="EVM-nH-SOE"/>
-                                                <constraint firstAttribute="trailing" secondItem="flX-mE-akB" secondAttribute="trailing" id="UhO-Af-FM0"/>
-                                                <constraint firstItem="flX-mE-akB" firstAttribute="top" secondItem="HHU-lM-7ZF" secondAttribute="top" constant="15" id="WGx-Er-eed"/>
-                                                <constraint firstAttribute="trailing" secondItem="egG-Ah-QVe" secondAttribute="trailing" id="WNb-WT-K6E"/>
-                                                <constraint firstAttribute="bottom" secondItem="egG-Ah-QVe" secondAttribute="bottom" constant="15" id="vmX-il-DYT"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="clubImageView" destination="egG-Ah-QVe" id="znj-ef-5yt"/>
-                                            <outlet property="nameLabel" destination="flX-mE-akB" id="y51-e7-AC8"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="j3X-Ru-tPT" firstAttribute="top" secondItem="ALg-kf-F5A" secondAttribute="bottom" constant="5" id="1tX-u4-pjD"/>
-                            <constraint firstItem="j3X-Ru-tPT" firstAttribute="leading" secondItem="9Uu-7j-zeM" secondAttribute="leading" constant="16" id="XzP-9o-Qha"/>
-                            <constraint firstItem="9Uu-7j-zeM" firstAttribute="bottom" secondItem="j3X-Ru-tPT" secondAttribute="bottom" id="eL8-q3-F4q"/>
-                            <constraint firstItem="ALg-kf-F5A" firstAttribute="top" secondItem="9Uu-7j-zeM" secondAttribute="top" id="ewK-0Y-zrz"/>
-                            <constraint firstItem="j3X-Ru-tPT" firstAttribute="top" secondItem="ALg-kf-F5A" secondAttribute="bottom" constant="5" id="fPz-3d-Srh"/>
-                            <constraint firstItem="ALg-kf-F5A" firstAttribute="leading" secondItem="9Uu-7j-zeM" secondAttribute="leading" constant="16" id="gMF-bd-veu"/>
-                            <constraint firstItem="j3X-Ru-tPT" firstAttribute="trailing" secondItem="9Uu-7j-zeM" secondAttribute="trailing" constant="-16" id="kCX-Im-WgG"/>
-                            <constraint firstItem="9Uu-7j-zeM" firstAttribute="trailing" secondItem="ALg-kf-F5A" secondAttribute="trailing" constant="16" id="tT8-UP-YR7"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="9Uu-7j-zeM"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Clubs" id="QuN-J5-upx"/>
-                    <navigationItem key="navigationItem" id="lK8-zx-0Jd"/>
-                    <connections>
-                        <outlet property="allClubsButton" destination="ewz-4n-dci" id="hNg-w2-gLK"/>
-                        <outlet property="clubsTableView" destination="j3X-Ru-tPT" id="zlI-B3-ky1"/>
-                        <outlet property="myClubButton" destination="OWZ-vg-WnN" id="VpV-lh-sjo"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FNk-RX-Utc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="303" y="162"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="noh-0z-nX2">
@@ -461,8 +202,8 @@
     </scenes>
     <resources>
         <image name="icons8-calendar-25-black" width="18.75" height="18.75"/>
+        <image name="icons8-registration-filled-25-black" width="18.75" height="18.75"/>
         <image name="icons8-schedule-25-black" width="18.75" height="18.75"/>
-        <image name="icons8-settings-filled-25-black" width="18.75" height="18.75"/>
         <image name="icons8-user-groups-25-black" width="18.75" height="18.75"/>
     </resources>
 </document>
