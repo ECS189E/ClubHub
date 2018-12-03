@@ -8,8 +8,12 @@
 
 import UIKit
 
+/*
+    TODO: Clean up UI, add favorite/saving, edit feature
+ */
 class EventDetailsViewController: UIViewController {
 
+    @IBOutlet weak var eventImageView: UIImageView!
     @IBOutlet weak var eventNameLabel: UILabel!
     @IBOutlet weak var clubNameLabel: UILabel!
     @IBOutlet weak var dateTimeLabel: UILabel!
@@ -25,6 +29,7 @@ class EventDetailsViewController: UIViewController {
         dateFormatter.dateFormat = "EE MMM dd, yyyy hh:mm a"
 
         event?.printEvent()
+        eventImageView.image = event?.image ?? UIImage(named: "testImage")
         eventNameLabel.text = event?.name ?? "Event Name"
         clubNameLabel.text = event?.club ?? "Club Name"
         dateTimeLabel.text = event?.startTime.map{dateFormatter.string(from: $0)} ?? "Date and Time"
@@ -32,5 +37,11 @@ class EventDetailsViewController: UIViewController {
         descriptionLabel.text = event?.details ??  "Description"
     }
     
-
+    @IBAction func testButton(_ sender: Any) {
+        // Used only for testing
+        let storyboard = UIStoryboard(name: "Cindy", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "sendEmailViewController") as! SendEmailViewController
+    self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
 }
