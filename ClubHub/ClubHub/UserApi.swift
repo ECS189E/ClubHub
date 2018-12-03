@@ -57,7 +57,7 @@ struct UserApi {
                 if let err = err {
                     completion(nil, "Error saving event: \(err)")
                 } else {
-                    var isClub = document.data()?["isClub"] as! [Bool]
+                    let isClub = document.data()?["isClub"] as! [Bool]
                     completion(isClub, nil)
                 }
             }  else {

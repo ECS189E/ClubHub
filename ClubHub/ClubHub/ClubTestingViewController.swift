@@ -8,17 +8,15 @@
 
 import UIKit
 
-class ClubTestingViewController: UIViewController {
+class ClubTestingViewController: UIViewController, EditClubDelegate {
     
-    var updateId: String = "mNhp7PMaqzuvRq31nCsQ"
+    var updateId: String = "pwWKt7uIV366S2ZUFcgC"
     var userClubs: [String]?
     var saveUserClub = "mNhp7PMaqzuvRq31nCsQ"
     var delClub: Club? = Club(id: "KREGUOnzx4eO1hy2P86U", name: nil, details: nil, image: nil)
     var clubs: [Club]?
-    //var club: Club?
-    var club: Club? = Club(id: "xLeqourzzQXn9efnXHrY", name: "Women in Computer Science", details: nil, image: UIImage(named: "testImage"))
-    //var club: Club? = Club(id: "oWHGwRY5SQeRIWmEIsOT", name: "UC Davis Computer Science Club", details: "", image: UIImage(named: "testImage"))
-
+    var club: Club?
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         getClubs()
@@ -40,35 +38,6 @@ class ClubTestingViewController: UIViewController {
                 print(err)
             default:
                 print("Error deleting club \(self.delClub?.id ?? "")")
-            }
-        }
-    }
-    
-    @IBAction func addClubTapped(_ sender: Any) {
-        ClubsApi.addClub(club: club) { data, err in
-            switch(data, err) {
-            case(.some(let data), nil):
-                self.club = data as? Club
-                print("Club \(self.club?.id ?? "") added")
-                self.club?.printClub()
-            case(nil, .some(let err)):
-                print(err)
-            default:
-                print("Error adding club \(self.delClub?.id ?? "")")
-            }
-        }
-    }
-    
-    @IBAction func updateClubTapped(_ sender: Any) {
-        ClubsApi.updateClub(club: club) { data, err in
-            switch(data, err) {
-            case(.some(_), nil):
-                print("Club \(self.club?.id ?? "") updated")
-                self.club?.printClub()
-            case(nil, .some(let err)):
-                print(err)
-            default:
-                print("Error updating club \(self.club?.id ?? "")")
             }
         }
     }
@@ -105,9 +74,22 @@ class ClubTestingViewController: UIViewController {
         case("allClubs"):
             let dest = segue.destination as! ClubListViewController
             dest.userClubs = userClubs
+        case("addClub"):
+            let dest = segue.destination as! EditClubViewController
+            dest.club = nil
+            dest.delegate = self
+        case("updateClub"):
+            let dest = segue.destination as! EditClubViewController
+            dest.club = club
+            dest.delegate = self
         default:
             return
         }
+    }
+    
+    func editClubCompleted() {
+        self.navigationController?.popViewController(animated: true)
+        
     }
     
     // test Api.getClub()

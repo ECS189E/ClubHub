@@ -117,7 +117,6 @@ class EventTestingViewController: UIViewController, EditEventDelegate, GIDSignIn
     
     
     func editEventCompleted() {
-        //self.dismiss(animated: true)
         self.navigationController?.popViewController(animated: true)
     }
 

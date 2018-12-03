@@ -17,11 +17,6 @@ class EditEventViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var scrollViewBottomContraint: NSLayoutConstraint!
     
-    @IBOutlet weak var eventImageView: UIView!
-    @IBOutlet weak var timeView: UIView!
-    @IBOutlet weak var locationView: UIView!
-    @IBOutlet weak var detailsView: UIView!
-    
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var uploadImageButton: UIButton!
@@ -342,7 +337,7 @@ extension EditEventViewController {
             let keyboardHeight = keyboardFrame.cgRectValue.height
             
             // Change the scroll views bottom constraint
-            scrollViewBottomContraint.constant =  -keyboardHeight - 10
+            scrollViewBottomContraint.constant =  -keyboardHeight + 50 + 16
             
             // Change scroll view offset
             scrollView.setContentOffset(
@@ -354,6 +349,6 @@ extension EditEventViewController {
     
     // Restore Scroll View Bottom Contraint when keyboard hides
     @objc func keyboardWillHide(notification: Notification) {
-        scrollViewBottomContraint.constant = 0
+        scrollViewBottomContraint.constant = -16
     }
 }
