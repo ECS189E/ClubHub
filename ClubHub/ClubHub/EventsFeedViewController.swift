@@ -17,10 +17,6 @@ class EventsFeedViewController: UIViewController {
     var events: [Event]?  // Events curretly loaded into table
     var allEvents: [Event]? = [] // All unfilterd events
     var filteredEvents = [Event]() // Events filtered by search bar
-    var eventLoadDate = Date() // Date to load next set of events form
-    //FIXME: update for deployment
-    var loadLimit: Int = 10 // Number of events to load at time (MUST BE > 1)
-    var loadedEvents: Int = 0 // Number of events that have been loaded
     var userEventsDisplayed: Bool = false // True if "My Events" tapped
     
     let dateFormatter = DateFormatter()
@@ -35,10 +31,12 @@ class EventsFeedViewController: UIViewController {
         viewInit()
     }
     
-    func viewInit() {
+    override func viewWillAppear(_ animated: Bool) {
         getEvents()
         getUserEvents()
-        
+    }
+    
+    func viewInit() {
         // format appearence of dates
         dateFormatter.dateFormat = "EE MMM d, yyyy"
         timeFormatter.dateFormat = "h:mm a"
@@ -81,14 +79,16 @@ class EventsFeedViewController: UIViewController {
     
     // Get events loadLimit number of events from database starting from eventLoadDate
     func getEvents() {
-        EventsApi.getEventsIDs(startDate: eventLoadDate, limit: loadLimit) { data, error in
+        // reset events list
+        self.allEvents = []
+        
+        EventsApi.getEventsIDs(startDate: nil, limit: nil) { data, error in
             switch(data, error){
             case(nil, .some(let error)):
                 print(error)
             case(.some(let data), nil):
                 if let eventIds = data as? [String?] {
-                    self.loadedEvents += eventIds.count
-                    
+                    // add each event to the event list and reload table view
                     for id in eventIds {
                         EventsApi.getEvent(id: id ?? "") { data, error in
                             switch(data, error){
@@ -105,6 +105,7 @@ class EventsFeedViewController: UIViewController {
                                 self.allEvents = self.allEvents?.filter {
                                     $0.startTime ?? Date() >= Date() }
                                 
+                                // Set events to display
                                 self.events = self.allEvents
                                 
                                 // Filter if currenlty displayin user events
@@ -115,11 +116,6 @@ class EventsFeedViewController: UIViewController {
                                 
                                 self.eventsTableView.reloadData()
                                 
-                                // set the next date to load based on last loaded
-                                if id == eventIds[eventIds.count - 1],
-                                    let startTime = event.startTime{
-                                    self.eventLoadDate = startTime.addingTimeInterval(1)
-                                }
                             default:
                                 print("Error getting event \(id ?? "")")
                             }
@@ -190,18 +186,6 @@ extension EventsFeedViewController: UITableViewDelegate, UITableViewDataSource, 
         let viewController = storyboard.instantiateViewController(withIdentifier: "eventDetailsViewController") as! EventDetailsViewController
         viewController.event = self.events.map { $0[indexPath.row] }
         self.navigationController?.pushViewController(viewController, animated: true)
-    }
-    
-    // Load more events when the bottom of the table is scrolled to
-    // Source: https://stackoverflow.com/questions/20269474/uitableview-load-more-when-scrolling-to-bottom-like-facebook-application
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        // UITableView only moves in one direction, y axis
-        let currentOffset = scrollView.contentOffset.y
-        let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
-        // Change 10.0 to adjust the distance from bottom
-        if maximumOffset - currentOffset <= 10.0 {
-            self.getEvents()
-        }
     }
 }
 

@@ -17,12 +17,8 @@ class ClubListViewController: UIViewController {
     var clubs: [Club]?  // Clubs curretly loaded into table
     var allClubs: [Club]? = [] // All unfilterd clubs
     var filteredClubs = [Club]() // Clubs filtered by search bar
-    var clubLoadNext = "A" // Date to load next set of clubs form
-    //FIXME: update for deployment
-    var loadLimit: Int = 10 // Number of clubs to load at time (MUST BE > 1)
-    var loadedClubs: Int = 0 // Number of clubs that have been loaded
     var userClubsDisplayed: Bool = false // True if "My Clubs" tapped
-    
+
     let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
@@ -32,10 +28,12 @@ class ClubListViewController: UIViewController {
         viewInit()
     }
     
-    func viewInit() {
+    override func viewWillAppear(_ animated: Bool) {
         getClubs()
         getUserClubs()
-        
+    }
+    
+    func viewInit() {
         // Init selected clubs view buttons
         allClubsButton.alpha = 1.0
         allClubsButton.layer.cornerRadius =
@@ -75,14 +73,16 @@ class ClubListViewController: UIViewController {
     
     // Get clubs loadLimit number of clubs from database starting from clubLoadNext
     func getClubs() {
-        ClubsApi.getClubsIDs(start: clubLoadNext, limit: loadLimit) { data, error in
+        // reset club list
+        self.allClubs = []
+        
+        ClubsApi.getClubsIDs(start: nil, limit: nil) { data, error in
             switch(data, error){
             case(nil, .some(let error)):
                 print(error)
             case(.some(let data), nil):
                 if let clubIds = data as? [String?] {
-                    self.loadedClubs += clubIds.count
-                    
+                    // add each club to the club list and reload table view
                     for id in clubIds {
                         ClubsApi.getClub(id: id ?? "") { data, error in
                             switch(data, error){
@@ -95,6 +95,8 @@ class ClubListViewController: UIViewController {
                                 // sort clubs by name
                                 self.allClubs
                                     = self.allClubs?.sorted(by: { $0.name ?? "" < $1.name ?? ""})
+                                
+                                // Set clubs to display
                                 self.clubs = self.allClubs
                                 
                                 // Filter if currenlty displayin user clubs
@@ -105,11 +107,6 @@ class ClubListViewController: UIViewController {
                                 
                                 self.clubsTableView.reloadData()
                                 
-                                // set the next date to load based on last loaded
-                                if id == clubIds[clubIds.count - 1],
-                                    let name = club.name{
-                                    self.clubLoadNext = name
-                                }
                             default:
                                 print("Error getting club \(id ?? "")")
                             }
@@ -180,17 +177,6 @@ extension ClubListViewController: UITableViewDelegate, UITableViewDataSource, UI
         self.navigationController?.pushViewController(viewController, animated: true)
     }
  */
-    // Load more clubs when the bottom of the table is scrolled to
-    // Source: https://stackoverflow.com/questions/20269474/uitableview-load-more-when-scrolling-to-bottom-like-facebook-application
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        // UITableView only moves in one direction, y axis
-        let currentOffset = scrollView.contentOffset.y
-        let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
-        // Change 10.0 to adjust the distance from bottom
-        if maximumOffset - currentOffset <= 10.0 {
-            self.getClubs()
-        }
-    }
 }
 
 // Search bar
