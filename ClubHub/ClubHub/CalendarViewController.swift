@@ -20,7 +20,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let calendar = FSCalendar(frame: CGRect(x: 10, y: 30, width: 400, height: 300))
+        let calendar = FSCalendar(frame: CGRect(x: 10, y: 80, width: 400, height: 300))
         calendar.dataSource = self
         calendar.delegate = self
         view.addSubview(calendar)
