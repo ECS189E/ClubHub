@@ -38,6 +38,9 @@
 		D184194621B0FB3100373875 /* ClubListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D184194521B0FB3100373875 /* ClubListViewController.swift */; };
 		D184194821B0FCD300373875 /* ClubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D184194721B0FCD300373875 /* ClubCell.swift */; };
 		E750A9DFA6023FA1C9A57307 /* Pods_ClubHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2470BC19246848A351389907 /* Pods_ClubHub.framework */; };
+		FDF68F5921B53B4900AF95D7 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF68F5821B53B4900AF95D7 /* InitialViewController.swift */; };
+		FDF68F5B21B53BBC00AF95D7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF68F5A21B53BBC00AF95D7 /* LoginViewController.swift */; };
+		FDF68F5D21B5493D00AF95D7 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF68F5C21B5493D00AF95D7 /* SignUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +102,9 @@
 		D184194321B0F38000373875 /* ClubTestingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubTestingViewController.swift; sourceTree = "<group>"; };
 		D184194521B0FB3100373875 /* ClubListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubListViewController.swift; sourceTree = "<group>"; };
 		D184194721B0FCD300373875 /* ClubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubCell.swift; sourceTree = "<group>"; };
+		FDF68F5821B53B4900AF95D7 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
+		FDF68F5A21B53BBC00AF95D7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		FDF68F5C21B5493D00AF95D7 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +182,9 @@
 				D1835C7A21AC7C8C00A1F3DD /* Lindsey.storyboard */,
 				D1835C7D21AC7C9900A1F3DD /* Cindy.storyboard */,
 				D1835C8021AC7CA400A1F3DD /* Sravya.storyboard */,
+				FDF68F5821B53B4900AF95D7 /* InitialViewController.swift */,
+				FDF68F5A21B53BBC00AF95D7 /* LoginViewController.swift */,
+				FDF68F5C21B5493D00AF95D7 /* SignUpViewController.swift */,
 				D1835C8321AC7CAB00A1F3DD /* Varshini.storyboard */,
 				D1835CD221AD0D3000A1F3DD /* CalendarViewController.swift */,
 				D184193F21B0F0BE00373875 /* Club.swift */,
@@ -490,15 +499,18 @@
 				D184194621B0FB3100373875 /* ClubListViewController.swift in Sources */,
 				D184194821B0FCD300373875 /* ClubCell.swift in Sources */,
 				D184193A21AF39E900373875 /* EditEventViewController.swift in Sources */,
+				FDF68F5D21B5493D00AF95D7 /* SignUpViewController.swift in Sources */,
 				D1835CC921AC870700A1F3DD /* EventDetailsViewController.swift in Sources */,
 				D1835CCF21AC935100A1F3DD /* Event.swift in Sources */,
 				D1835CCC21AC870700A1F3DD /* DayEventsViewController.swift in Sources */,
 				D184194421B0F38000373875 /* ClubTestingViewController.swift in Sources */,
+				FDF68F5B21B53BBC00AF95D7 /* LoginViewController.swift in Sources */,
 				D1835CCB21AC870700A1F3DD /* EventsApi.swift in Sources */,
 				D184194021B0F0BE00373875 /* Club.swift in Sources */,
 				D1835CCD21AC870700A1F3DD /* EventsFeedViewController.swift in Sources */,
 				D1835CC721AC870700A1F3DD /* DateTimePopUpViewController.swift in Sources */,
 				D1835CC821AC870700A1F3DD /* EventTestingViewController.swift in Sources */,
+				FDF68F5921B53B4900AF95D7 /* InitialViewController.swift in Sources */,
 				D136411E21AC64F0007A7B22 /* ClubHub.xcdatamodeld in Sources */,
 				D184194221B0F24500373875 /* ClubsApi.swift in Sources */,
 				D184193C21AF40AF00373875 /* ViewController+keyboard.swift in Sources */,
