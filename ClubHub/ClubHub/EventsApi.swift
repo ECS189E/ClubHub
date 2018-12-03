@@ -1,5 +1,5 @@
 //
-//  Api.swift
+//  EventsApi.swift
 //  CompSciClubs
 //
 //  Created by Lindsey Gray on 11/12/18.
