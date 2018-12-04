@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import Firebase
 
-class EventsFeedViewController: UIViewController {
+class EventsFeedViewController: UIViewController, EditEventDelegate {
+    
     @IBOutlet weak var eventsTableView: UITableView!
     @IBOutlet weak var allEventsButton: UIButton!
     @IBOutlet weak var myEventButton: UIButton!
+    @IBOutlet weak var addEventButton: UIBarButtonItem!
     
     var userEvents: [String]? // Array of user saved event ids
     var events: [Event]?  // Events curretly loaded into table
@@ -26,6 +29,7 @@ class EventsFeedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getUser() //FIXME: move to login
         eventsTableView.delegate = self
         eventsTableView.dataSource = self
         viewInit()
@@ -34,7 +38,7 @@ class EventsFeedViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         getEvents()
         userEvents = User.currentUser?.events
-        getUser()
+        // hide add event button if user is not a club
     }
     
     func viewInit() {
@@ -78,12 +82,32 @@ class EventsFeedViewController: UIViewController {
         eventsTableView.reloadData()
     }
     
-    @IBAction func editAccount(_ sender: Any) {
+    @IBAction func addEvent(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Lindsey", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "editClubViewController") as! EditClubViewController
+        let viewController = storyboard.instantiateViewController(withIdentifier: "editEventViewController") as! EditEventViewController
+        viewController.delegate = self
+        viewController.event = nil
+        
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
+    // FIXME: pop navigation controller
+    @IBAction func logoutTapped(_ sender: Any) {
+        try! Auth.auth().signOut()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "loginViewController") as! LoginViewController
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    // EditEventDelegateFunction  (New event added)
+    func editEventCompleted() {
+        getEvents()
+    }
+    
+    func editEventStarted() {
+        self.navigationController?.popViewController(animated: true)
+
+    }
     
     // Get events loadLimit number of events from database starting from eventLoadDate
     func getEvents() {
@@ -143,6 +167,9 @@ class EventsFeedViewController: UIViewController {
             case(.some(let data), nil):
                 User.currentUser = data as? User
                 self.userEvents = User.currentUser?.events
+                if User.currentUser?.club == nil {
+                    self.navigationItem.rightBarButtonItems = []
+                }
             case(nil, .some(let err)):
                 print(err)
             default:
