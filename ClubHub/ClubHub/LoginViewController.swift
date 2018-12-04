@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 class LoginViewController: UIViewController {
 
@@ -16,6 +17,15 @@ class LoginViewController: UIViewController {
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("in Login")
+
+        if let user  = Auth.auth().currentUser{
+            print("is already logged in")
+            self.performSegue(withIdentifier: "toLoggedInController", sender: self)
+        }
     }
     
     

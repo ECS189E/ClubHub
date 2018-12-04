@@ -23,17 +23,14 @@ class SignUpViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
-    
-    // continue button not getting triggered
    
-    
-
     @IBAction func contButton(_ sender: Any) {
         print("Hello there");
+        handleSignUp()
     }
     
     func handleSignUp() {
-        guard let user = username.text else { return }
+        guard let us = username.text else { return }
         guard let em = email.text else { return }
         guard let pass = password.text else { return }
         
@@ -41,6 +38,15 @@ class SignUpViewController: UIViewController {
         Auth.auth().createUser(withEmail: em, password: pass){ user, error in
             if error == nil && user != nil{
                 print("user created");
+                //to change display name
+                let displayChangeReq = Auth.auth().currentUser?.createProfileChangeRequest()
+                displayChangeReq?.displayName = us
+                displayChangeReq?.commitChanges { error in
+                    if error == nil {
+                        print("user display name is changed")
+                    }
+                }
+                self.dismiss(animated: true, completion:nil)
             }
             else {
                 print("Error creating user: \(error!.localizedDescription)")
