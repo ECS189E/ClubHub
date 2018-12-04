@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 
 class User {
+    static var currentUser: User?
+    
     var id: String?
     var club: Club?
     var events: [String]?

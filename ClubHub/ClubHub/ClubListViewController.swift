@@ -30,7 +30,7 @@ class ClubListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         getClubs()
-        getUserClubs()
+        userClubs = User.currentUser?.clubs
     }
     
     func viewInit() {
@@ -119,20 +119,6 @@ class ClubListViewController: UIViewController {
             }
         }
     }
-    
-    func getUserClubs() {
-        UserApi.getUserClubs() { data, err in
-            switch(data, err) {
-            case(.some(let data), nil):
-                self.userClubs = data as? [String]
-            case(nil, .some(let err)):
-                print(err)
-            default:
-                print("Error getting user clubs")
-            }
-        }
-    }
-    
 }
 
 // TableView funtions

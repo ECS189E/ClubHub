@@ -33,7 +33,8 @@ class EventsFeedViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         getEvents()
-        getUserEvents()
+        userEvents = User.currentUser?.events
+        getUser()
     }
     
     func viewInit() {
@@ -76,6 +77,13 @@ class EventsFeedViewController: UIViewController {
         userEventsDisplayed = true
         eventsTableView.reloadData()
     }
+    
+    @IBAction func editAccount(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Lindsey", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "editClubViewController") as! EditClubViewController
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
     
     // Get events loadLimit number of events from database starting from eventLoadDate
     func getEvents() {
@@ -129,11 +137,12 @@ class EventsFeedViewController: UIViewController {
         }
     }
     
-    func getUserEvents() {
-        UserApi.getUserEvents() { data, err in
+    func getUser() {
+        UserApi.getUserData() { data, err in
             switch(data, err) {
             case(.some(let data), nil):
-                self.userEvents = data as? [String]
+                User.currentUser = data as? User
+                self.userEvents = User.currentUser?.events
             case(nil, .some(let err)):
                 print(err)
             default:

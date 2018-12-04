@@ -29,8 +29,6 @@ class EditClubViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewInit()
-        
         // Club keyboard show/hide notification
         NotificationCenter.default.addObserver(
             self, selector: #selector(keyboardWillShow(notification:)),
@@ -42,21 +40,21 @@ class EditClubViewController: UIViewController {
             object: nil)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        // if editing an existing club
+        if let club = User.currentUser?.club {
+            self.club = club
+        // Else creating a new club
+        } else {
+            club = Club()
+        }
+        viewInit()
+    }
+    
     func viewInit() {
         
         // format text views
         detailsTextView.isEditable = true
-        
-        // if editing an existing club
-        if let club = club {
-            if club.id  == nil { // must have an id to update
-                navigationController?.popViewController(animated: true)  //FIXME: move to view will appear?
-                print("Error updating club: no id")
-            }
-            // else create a new club and init dates
-        } else {
-            club = Club()
-        }
         
         // init date button labels
         nameTextField.text = club?.name
