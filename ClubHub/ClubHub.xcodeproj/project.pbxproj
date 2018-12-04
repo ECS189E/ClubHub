@@ -27,7 +27,6 @@
 		D1835CC921AC870700A1F3DD /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1835CC121AC870500A1F3DD /* EventDetailsViewController.swift */; };
 		D1835CCA21AC870700A1F3DD /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1835CC221AC870600A1F3DD /* EventCell.swift */; };
 		D1835CCB21AC870700A1F3DD /* EventsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1835CC321AC870600A1F3DD /* EventsApi.swift */; };
-		D1835CCC21AC870700A1F3DD /* DayEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1835CC421AC870700A1F3DD /* DayEventsViewController.swift */; };
 		D1835CCD21AC870700A1F3DD /* EventsFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1835CC521AC870700A1F3DD /* EventsFeedViewController.swift */; };
 		D1835CCF21AC935100A1F3DD /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1835CCE21AC935100A1F3DD /* Event.swift */; };
 		D1835CD321AD0D3000A1F3DD /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1835CD221AD0D3000A1F3DD /* CalendarViewController.swift */; };
@@ -99,7 +98,6 @@
 		D1835CC121AC870500A1F3DD /* EventDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
 		D1835CC221AC870600A1F3DD /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		D1835CC321AC870600A1F3DD /* EventsApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsApi.swift; sourceTree = "<group>"; };
-		D1835CC421AC870700A1F3DD /* DayEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEventsViewController.swift; sourceTree = "<group>"; };
 		D1835CC521AC870700A1F3DD /* EventsFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsFeedViewController.swift; sourceTree = "<group>"; };
 		D1835CCE21AC935100A1F3DD /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		D1835CD221AD0D3000A1F3DD /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
@@ -211,7 +209,6 @@
 				D184194521B0FB3100373875 /* ClubListViewController.swift */,
 				D184194321B0F38000373875 /* ClubTestingViewController.swift */,
 				D1835CBF21AC870500A1F3DD /* DateTimePopUpViewController.swift */,
-				D1835CC421AC870700A1F3DD /* DayEventsViewController.swift */,
 				D1B5FD5F21B5BB3800117E63 /* EditClubViewController.swift */,
 				D184193921AF39E900373875 /* EditEventViewController.swift */,
 				D1835CCE21AC935100A1F3DD /* Event.swift */,
@@ -221,6 +218,7 @@
 				D1835CC521AC870700A1F3DD /* EventsFeedViewController.swift */,
 				D1835CC021AC870500A1F3DD /* EventTestingViewController.swift */,
 				37BE90B221B5ABFD00183B42 /* SendEmailViewController.swift */,
+				D0015C9821B6085C007420FB /* User.swift */,
 				D10C916921B22A0300AD78B9 /* UserApi.swift */,
 				D184193D21AF5FC100373875 /* UIImage+JPEG.swift */,
 				D184193B21AF40AF00373875 /* ViewController+keyboard.swift */,
@@ -229,7 +227,6 @@
 				D136412421AC64F1007A7B22 /* Info.plist */,
 				D10C916B21B4FC7300AD78B9 /* Assets.xcassets */,
 				D136411C21AC64F0007A7B22 /* ClubHub.xcdatamodeld */,
-				D0015C9821B6085C007420FB /* User.swift */,
 			);
 			path = ClubHub;
 			sourceTree = "<group>";
@@ -527,7 +524,6 @@
 				D1835CC921AC870700A1F3DD /* EventDetailsViewController.swift in Sources */,
 				D1835CCF21AC935100A1F3DD /* Event.swift in Sources */,
 				37BE90B321B5ABFD00183B42 /* SendEmailViewController.swift in Sources */,
-				D1835CCC21AC870700A1F3DD /* DayEventsViewController.swift in Sources */,
 				D184194421B0F38000373875 /* ClubTestingViewController.swift in Sources */,
 				D1B5FD6421B5CE5900117E63 /* CalendarNavigaitonController.swift in Sources */,
 				FDF68F5B21B53BBC00AF95D7 /* LoginViewController.swift in Sources */,

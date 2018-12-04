@@ -20,7 +20,7 @@ class ClubTestingViewController: UIViewController, EditClubDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         getClubs()
-        getUserClubs()
+        userClubs = User.currentUser?.clubs
         getClub(id: updateId)
     }
     
@@ -132,19 +132,5 @@ class ClubTestingViewController: UIViewController, EditClubDelegate {
             }
         }
     }
-    
-    func getUserClubs() {
-        UserApi.getUserClubs() { data, err in
-            switch(data, err) {
-            case(.some(let data), nil):
-                self.userClubs = data as? [String]
-            case(nil, .some(let err)):
-                print(err)
-            default:
-                print("Error getting user clubs")
-            }
-        }
-    }
-    
 }
 
