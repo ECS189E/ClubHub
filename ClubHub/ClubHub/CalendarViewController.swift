@@ -30,6 +30,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         calendarListedEvents.dataSource = self
         dateFormatter.dateFormat = "h:mm a"
         getEvents()
+        self.calendar.reloadData()
     }
     
     var events: [Event]? = []
@@ -43,6 +44,11 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         }
         
         calendarListedEvents.reloadData()
+    }
+    
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        return allEvents?.filter { event in
+            Calendar.current.isDate(date, equalTo: event.startTime ?? Date(), toGranularity:.day)}.count ?? 0
     }
     
     func getEvents() {
@@ -59,6 +65,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
                                 print(error)
                             case(.some(let data), nil):
                                 self.allEvents?.append(data as! Event)
+                                self.calendar.reloadData()
                             default:
                                 print("Error getting event \(id ?? "")")
                             }
