@@ -11,9 +11,9 @@ import UIKit
 class SettingsNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        //let sravyaStoryboard = UIStoryboard(name: "Sravya", bundle: nil)
-        //let settingsVC = sravyaStoryboard.instantiateViewController(withIdentifier: "eventsFeedViewController")
-        //self.setViewControllers([settingsVC], animated: true)
+        let sravyaStoryboard = UIStoryboard(name: "Lindsey", bundle: nil)
+        let settingsVC = sravyaStoryboard.instantiateViewController(withIdentifier: "editClubViewController")
+        self.setViewControllers([settingsVC], animated: true)
     }
 
 }

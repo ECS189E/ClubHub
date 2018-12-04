@@ -30,7 +30,7 @@ class EventTestingViewController: UIViewController, EditEventDelegate, GIDSignIn
         GIDSignIn.sharedInstance().signIn()
         
         getEvent(id: updateId)
-        getUserEvents()
+        userEvents = User.currentUser?.events
         
         /*
         UserApi.initUserData() { data, err in
@@ -107,8 +107,6 @@ class EventTestingViewController: UIViewController, EditEventDelegate, GIDSignIn
         case("allEvents"):
             let dest = segue.destination as! EventsFeedViewController
             dest.userEvents = userEvents
-        case("eventsByDay"):
-            let dest = segue.destination as! DayEventsViewController
             dest.allEvents = events
         default:
             return
@@ -161,17 +159,5 @@ class EventTestingViewController: UIViewController, EditEventDelegate, GIDSignIn
         }
     }
     
-    func getUserEvents() {
-        UserApi.getUserEvents() { data, err in
-            switch(data, err) {
-            case(.some(let data), nil):
-                self.userEvents = data as? [String]
-            case(nil, .some(let err)):
-                print(err)
-            default:
-                print("Error getting user events")
-            }
-        }
-    }
 
 }

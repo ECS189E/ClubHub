@@ -13,7 +13,7 @@ struct UserApi {
     
     typealias ApiCompletion = ((_ data: Any?, _ error: String?) -> Void)
     
-    static func initUserData(isClub: Bool, completion: @escaping ApiCompletion) {
+    static func initUserData(type: String?, club: String?, completion: @escaping ApiCompletion) {
         let db = Firestore.firestore()
         let settings = db.settings
         settings.areTimestampsInSnapshotsEnabled = true
@@ -28,7 +28,8 @@ struct UserApi {
         db.collection("users").document(userID).setData([
             "events": [],
             "clubs": [],
-            "isCLub": isClub
+            "type": type ?? NSNull(),
+            "club": club ?? NSNull()
         ]){ err in
             if let err = err {
                 completion(nil, "Error adding event: \(err)")
@@ -38,35 +39,36 @@ struct UserApi {
         }
     }
     
-    static func userIsClub(completion: @escaping ApiCompletion) {
+    static func setAccountClub(club: String?, completion: @escaping ApiCompletion) {
         let db = Firestore.firestore()
         let settings = db.settings
         settings.areTimestampsInSnapshotsEnabled = true
         db.settings = settings
-
+        
+        // make sure event has an id
+        guard let club = club else {
+            completion(nil, "Error setting event: no club provided")
+            return
+        }
         
         guard let userID = Auth.auth().currentUser?.uid else {
-            completion(nil, "Error saving event: could not get user data")
+            completion(nil, "Error setting event: could not get user data")
             return
         }
         
         let ref = db.collection("users").document(userID)
-        
-        ref.getDocument { (document, err) in
-            if let document = document, document.exists {
-                if let err = err {
-                    completion(nil, "Error saving event: \(err)")
-                } else {
-                    let isClub = document.data()?["isClub"] as! [Bool]
-                    completion(isClub, nil)
-                }
-            }  else {
-                completion(nil, "Error checking user status: could not get user data")
+        ref.updateData(["club" : club])
+        { err in
+            if let err = err {
+                completion(nil, "Error saving event: \(err)")
+            } else {
+                completion(true, nil)
             }
         }
     }
     
-
+    
+    
     static func saveEvent(eventID: String?, completion: @escaping ApiCompletion) {
         let db = Firestore.firestore()
         let settings = db.settings
@@ -240,7 +242,7 @@ struct UserApi {
     }
 
     
-    static func getUserEvents(completion: @escaping ApiCompletion) {
+    static func getUserData(completion: @escaping ApiCompletion) {
         let db = Firestore.firestore()
         let settings = db.settings
         settings.areTimestampsInSnapshotsEnabled = true
@@ -258,39 +260,29 @@ struct UserApi {
                 if let err = err {
                     completion(nil, "Error getting event: \(err)")
                 } else {
-                    let events =  document.data()?["events"]
-                    completion(events, nil)
+                    let events = document.data()?["events"] as? [String]
+                    let clubs = document.data()?["clubs"] as? [String]
+                    // if user is a club, get club data
+                    if document.data()?["type"] as? String == "club", let clubID = document.data()?["club"] as? String {
+                        ClubsApi.getClub(id: clubID) { data, err in
+                            let user = User(id: userID,
+                                            club: data as? Club,
+                                            events: events,
+                                            clubs: clubs)
+                            completion(user, nil)
+                        }
+                    } else {
+                        let user = User(id: userID,
+                                        club: nil,
+                                        events: events,
+                                        clubs: clubs)
+                        completion(user, nil)
+                    }
                 }
             } else {
-                completion(nil, "Error getting user events: could not find user data")
+                completion(nil, "Error getting user data: could not authenticate user")
             }
         }
     }
     
-    static func getUserClubs(completion: @escaping ApiCompletion) {
-        let db = Firestore.firestore()
-        let settings = db.settings
-        settings.areTimestampsInSnapshotsEnabled = true
-        db.settings = settings
-        
-        guard let userID = Auth.auth().currentUser?.uid else {
-            completion(nil, "Error deleting saved club: could not get user data")
-            return
-        }
-        
-        let ref = db.collection("users").document(userID)
-        
-        ref.getDocument { (document, err) in
-            if let document = document, document.exists {
-                if let err = err {
-                    completion(nil, "Error getting club: \(err)")
-                } else {
-                    let clubs =  document.data()?["clubs"]
-                    completion(clubs, nil)
-                }
-            } else {
-                completion(nil, "Error getting user clubs: could not find user data")
-            }
-        }
-    }
-}
+ }
