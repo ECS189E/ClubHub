@@ -187,7 +187,14 @@ struct ClubsApi {
                                 // return club as data
                                 completion(club, nil)
                             default:
-                                completion(nil, "Error getting club: could not get image")
+                                //completion(nil, "Error getting club: could not get image")
+                                // Add club without image
+                                club = Club(id: document.documentID,
+                                            name: document.data()?["name"] as? String? ?? nil,
+                                            details: document.data()?["details"] as? String? ?? nil,
+                                            image: nil)
+                                // return club as data
+                                completion(club, "Error getting club: could not get image")
                             }
                         }
                         // else club does not have an image, create club without an image

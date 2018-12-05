@@ -101,8 +101,9 @@ class EventsFeedViewController: UIViewController, EditEventDelegate {
             print ("Error signing out: %@", signOutError)
         }
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "loginViewController") as! LoginViewController
-        self.navigationController?.pushViewController(viewController, animated: true)
+        let viewController = storyboard.instantiateViewController(
+            withIdentifier: "loginViewController") as! LoginViewController
+        self.present(viewController, animated: false, completion: nil)
     }
     
     // EditEventDelegateFunction  (New event added)

@@ -79,7 +79,7 @@
         <!--Calendar Navigation Controller-->
         <scene sceneID="gK8-LJ-aTL">
             <objects>
-                <navigationController storyboardIdentifier="calendarNavigationController" title="Calendar Navigation Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JP6-Fm-sOW" customClass="CalendarNavigaitonController" customModule="ClubHub" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="calendarNavigationController" title="Calendar Navigation Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JP6-Fm-sOW" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Calendar" image="icons8-calendar-25-black" id="kE0-Z1-KDc"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0FI-EF-Ho5">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -88,6 +88,9 @@
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Fgm-ea-Oju">
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
+                    <connections>
+                        <segue destination="teX-ed-FjU" kind="relationship" relationship="rootViewController" id="NzV-jV-7Ri"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dYS-9I-9EJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -711,6 +714,97 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mrt-2z-38U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="212" y="1272"/>
+        </scene>
+        <!--Calendar View Controller-->
+        <scene sceneID="Prc-Qi-W9H">
+            <objects>
+                <viewController storyboardIdentifier="calendarViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="teX-ed-FjU" customClass="CalendarViewController" customModule="ClubHub" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6j1-VJ-MF7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="daf-WT-3xk" customClass="FSCalendar">
+                                <rect key="frame" x="16" y="74" width="343" height="277"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DGe-A7-jms">
+                                <rect key="frame" x="16" y="351" width="343" height="267"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="separatorColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="calendarEventCell" rowHeight="60" id="2RE-D5-NUd" customClass="EventCell" customModule="ClubHub" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="343" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2RE-D5-NUd" id="drE-dU-OAK">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="59.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKM-re-fH5">
+                                                    <rect key="frame" x="228" y="0.0" width="100" height="20.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="1jv-dB-9bm"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JHY-bb-pfw">
+                                                    <rect key="frame" x="15" y="11" width="47" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="nEJ-lG-dTv"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="JHY-bb-pfw" firstAttribute="top" secondItem="drE-dU-OAK" secondAttribute="topMargin" id="2xL-gV-usn"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="JHY-bb-pfw" secondAttribute="bottom" id="4HW-sV-3eB"/>
+                                                <constraint firstAttribute="bottom" secondItem="ZKM-re-fH5" secondAttribute="bottom" id="FyP-mW-9EU"/>
+                                                <constraint firstItem="ZKM-re-fH5" firstAttribute="top" secondItem="drE-dU-OAK" secondAttribute="top" id="MvC-wc-VW2"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="ZKM-re-fH5" secondAttribute="trailing" id="N6F-J5-IFM"/>
+                                                <constraint firstItem="ZKM-re-fH5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JHY-bb-pfw" secondAttribute="trailing" id="Okw-K2-GHg"/>
+                                                <constraint firstItem="JHY-bb-pfw" firstAttribute="leading" secondItem="drE-dU-OAK" secondAttribute="leadingMargin" id="QL1-f6-KUf"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="eventStartTimeLabel" destination="ZKM-re-fH5" id="z5D-db-Nen"/>
+                                            <outlet property="nameLabel" destination="JHY-bb-pfw" id="MB1-iZ-UXY"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="daf-WT-3xk" firstAttribute="leading" secondItem="ucr-m8-sKz" secondAttribute="leading" constant="16" id="1kk-qL-yQo"/>
+                            <constraint firstItem="DGe-A7-jms" firstAttribute="bottom" secondItem="ucr-m8-sKz" secondAttribute="bottom" id="9zJ-Ae-uwh"/>
+                            <constraint firstItem="daf-WT-3xk" firstAttribute="trailing" secondItem="ucr-m8-sKz" secondAttribute="trailing" constant="-16" id="RIA-vf-MXW"/>
+                            <constraint firstItem="DGe-A7-jms" firstAttribute="leading" secondItem="ucr-m8-sKz" secondAttribute="leading" constant="16" id="Tug-lP-SE2"/>
+                            <constraint firstItem="daf-WT-3xk" firstAttribute="height" secondItem="ucr-m8-sKz" secondAttribute="height" multiplier="0.5" id="cyE-Kr-Ysp"/>
+                            <constraint firstItem="daf-WT-3xk" firstAttribute="top" secondItem="ucr-m8-sKz" secondAttribute="top" constant="10" id="hvV-uC-AqS"/>
+                            <constraint firstItem="DGe-A7-jms" firstAttribute="trailing" secondItem="ucr-m8-sKz" secondAttribute="trailing" constant="-16" id="l86-ht-6aV"/>
+                            <constraint firstItem="DGe-A7-jms" firstAttribute="top" secondItem="daf-WT-3xk" secondAttribute="bottom" id="pQC-yp-Ha2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ucr-m8-sKz"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="KZd-RN-BgA">
+                        <barButtonItem key="leftBarButtonItem" title="logout" id="sl6-zu-qki">
+                            <connections>
+                                <action selector="logoutTapped:" destination="teX-ed-FjU" id="AWK-i5-Zd4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="calendar" destination="daf-WT-3xk" id="b54-wN-M6W"/>
+                        <outlet property="calendarListedEvents" destination="DGe-A7-jms" id="ECR-D5-qIf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qxn-GW-qti" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="212" y="581"/>
         </scene>
     </scenes>
     <resources>
