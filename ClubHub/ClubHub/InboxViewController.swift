@@ -9,7 +9,16 @@
 import Firebase
 import UIKit
 
-class InboxViewController: UIViewController {
+class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "conversationPreviewCell", for: indexPath) as! ConversationPreviewCell
+        return cell
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
