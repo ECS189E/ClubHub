@@ -47,6 +47,7 @@
 		D184194621B0FB3100373875 /* ClubListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D184194521B0FB3100373875 /* ClubListViewController.swift */; };
 		D184194821B0FCD300373875 /* ClubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D184194721B0FCD300373875 /* ClubCell.swift */; };
 		D19EA59021B85BA5001DE83E /* ChooseAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19EA58F21B85BA5001DE83E /* ChooseAccountViewController.swift */; };
+		D19EA59221B88254001DE83E /* AddClubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19EA59121B88254001DE83E /* AddClubViewController.swift */; };
 		D1B5FD6021B5BB3800117E63 /* EditClubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B5FD5F21B5BB3800117E63 /* EditClubViewController.swift */; };
 		E750A9DFA6023FA1C9A57307 /* Pods_ClubHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2470BC19246848A351389907 /* Pods_ClubHub.framework */; };
 		FDF68F5921B53B4900AF95D7 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF68F5821B53B4900AF95D7 /* InitialViewController.swift */; };
@@ -125,6 +126,7 @@
 		D184194521B0FB3100373875 /* ClubListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubListViewController.swift; sourceTree = "<group>"; };
 		D184194721B0FCD300373875 /* ClubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubCell.swift; sourceTree = "<group>"; };
 		D19EA58F21B85BA5001DE83E /* ChooseAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseAccountViewController.swift; sourceTree = "<group>"; };
+		D19EA59121B88254001DE83E /* AddClubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddClubViewController.swift; sourceTree = "<group>"; };
 		D1B5FD5F21B5BB3800117E63 /* EditClubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditClubViewController.swift; sourceTree = "<group>"; };
 		FDF68F5821B53B4900AF95D7 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		FDF68F5A21B53BBC00AF95D7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -217,14 +219,15 @@
 				FDF68F5A21B53BBC00AF95D7 /* LoginViewController.swift */,
 				FDF68F5C21B5493D00AF95D7 /* SignUpViewController.swift */,
 				D1835CD221AD0D3000A1F3DD /* CalendarViewController.swift */,
+				D19EA59121B88254001DE83E /* AddClubViewController.swift */,
 				D184193F21B0F0BE00373875 /* Club.swift */,
 				D184194121B0F24500373875 /* ClubsApi.swift */,
 				D184194721B0FCD300373875 /* ClubCell.swift */,
 				D184194521B0FB3100373875 /* ClubListViewController.swift */,
 				D184194321B0F38000373875 /* ClubTestingViewController.swift */,
-				D1835CBF21AC870500A1F3DD /* DateTimePopUpViewController.swift */,
 				D1B5FD5F21B5BB3800117E63 /* EditClubViewController.swift */,
 				D184193921AF39E900373875 /* EditEventViewController.swift */,
+				D1835CBF21AC870500A1F3DD /* DateTimePopUpViewController.swift */,
 				D1835CCE21AC935100A1F3DD /* Event.swift */,
 				D1835CC321AC870600A1F3DD /* EventsApi.swift */,
 				D1835CC221AC870600A1F3DD /* EventCell.swift */,
@@ -533,6 +536,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D184193E21AF5FC200373875 /* UIImage+JPEG.swift in Sources */,
+				D19EA59221B88254001DE83E /* AddClubViewController.swift in Sources */,
 				373006D421B7C58300008F61 /* InboxViewController.swift in Sources */,
 				D04F403F21B7887D00A3D996 /* ClubViewController.swift in Sources */,
 				373006D221B7C37200008F61 /* ReceiverCell.swift in Sources */,

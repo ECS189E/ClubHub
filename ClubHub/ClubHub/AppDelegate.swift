@@ -152,13 +152,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                     User.currentUser = data as? User
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let viewController = storyboard.instantiateViewController(withIdentifier: "tabBarController")
-                    self.window?.rootViewController = viewController
+                    self.window?.rootViewController?.present(viewController,
+                                                             animated: false,
+                                                             completion: nil)
                 // No user data in database, new account
                 case(nil, .some(_)):
                     User.currentUser = nil
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let viewController = storyboard.instantiateViewController(withIdentifier: "chooseAccountViewController")
-                    self.window?.rootViewController = viewController
+                    let viewController = storyboard.instantiateViewController(withIdentifier: "signupNavigationController")
+                    self.window?.rootViewController?.present(viewController,
+                                                             animated: false,
+                                                             completion: nil)
+                    
                 default:
                     print("Error getting user events")
                 }

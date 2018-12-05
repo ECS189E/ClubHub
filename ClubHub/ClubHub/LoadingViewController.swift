@@ -8,9 +8,10 @@
 
 import UIKit
 
-class LoadingViewController: UIViewController {
+class LoadingViewController: UIViewController, EditClubDelegate {
     
     var currentUser: String? = nil
+    var nextViewController: UIViewController? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +38,17 @@ class LoadingViewController: UIViewController {
                 }
             }
         }
-
-        
+    }
+    
+    func editClubCompleted() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "tabBarController")
+        self.present(viewController, animated: false, completion: nil)
+    }
+    
+    func didEndLoad() {
+        if let viewController = nextViewController {
+            self.present(viewController, animated: false, completion: nil)
+        }
     }
 }

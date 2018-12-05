@@ -25,17 +25,24 @@ struct UserApi {
             return
         }
         
+        // init user saved clubs list
+        var userClubs: [String] = []
+        if let club = club {
+            userClubs = [club]
+        }
+        
         // Add a new document with a generated ID
         db.collection("users").document(userID).setData([
             "events": [],
-            "clubs": [],
+            "clubs": userClubs,
             "type": type ?? NSNull(),
             "club": club ?? NSNull()
         ]){ err in
             if let err = err {
                 completion(nil, "Error adding event: \(err)")
             } else {
-                completion(true, nil)
+                let user = User(id: userID, club: nil, events: [], clubs: userClubs)
+                completion(user, nil)
             }
         }
     }
