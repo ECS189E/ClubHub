@@ -8,23 +8,21 @@
 
 import UIKit
 import FSCalendar
+import Firebase
 
 class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
     
     @IBOutlet weak var calendar: FSCalendar!
-    @IBOutlet weak var eventBar: UITextView!
     @IBOutlet weak var calendarListedEvents: UITableView!
 
     var dateFormatter = DateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        let calendar = FSCalendar(frame: CGRect(x: 10, y: 80, width: 400, height: 300))
+        
         calendar.dataSource = self
         calendar.delegate = self
         view.addSubview(calendar)
-        self.calendar = calendar
         
         calendarListedEvents.delegate = self
         calendarListedEvents.dataSource = self
@@ -49,6 +47,14 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
         return allEvents?.filter { event in
             Calendar.current.isDate(date, equalTo: event.startTime ?? Date(), toGranularity:.day)}.count ?? 0
+    }
+    
+    @IBAction func logoutTapped(_ sender: Any) {
+        try! Auth.auth().signOut()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(
+            withIdentifier: "loginViewController") as! LoginViewController
+        self.present(viewController, animated: false, completion: nil)
     }
     
     func getEvents() {

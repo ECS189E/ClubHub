@@ -42,7 +42,6 @@
 		D184194621B0FB3100373875 /* ClubListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D184194521B0FB3100373875 /* ClubListViewController.swift */; };
 		D184194821B0FCD300373875 /* ClubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D184194721B0FCD300373875 /* ClubCell.swift */; };
 		D1B5FD6021B5BB3800117E63 /* EditClubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B5FD5F21B5BB3800117E63 /* EditClubViewController.swift */; };
-		D1B5FD6421B5CE5900117E63 /* CalendarNavigaitonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B5FD6321B5CE5900117E63 /* CalendarNavigaitonController.swift */; };
 		E750A9DFA6023FA1C9A57307 /* Pods_ClubHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2470BC19246848A351389907 /* Pods_ClubHub.framework */; };
 		FDF68F5921B53B4900AF95D7 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF68F5821B53B4900AF95D7 /* InitialViewController.swift */; };
 		FDF68F5B21B53BBC00AF95D7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF68F5A21B53BBC00AF95D7 /* LoginViewController.swift */; };
@@ -114,7 +113,6 @@
 		D184194521B0FB3100373875 /* ClubListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubListViewController.swift; sourceTree = "<group>"; };
 		D184194721B0FCD300373875 /* ClubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubCell.swift; sourceTree = "<group>"; };
 		D1B5FD5F21B5BB3800117E63 /* EditClubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditClubViewController.swift; sourceTree = "<group>"; };
-		D1B5FD6321B5CE5900117E63 /* CalendarNavigaitonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarNavigaitonController.swift; sourceTree = "<group>"; };
 		FDF68F5821B53B4900AF95D7 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		FDF68F5A21B53BBC00AF95D7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FDF68F5C21B5493D00AF95D7 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -197,7 +195,6 @@
 				D1835C7D21AC7C9900A1F3DD /* Cindy.storyboard */,
 				D1835C8021AC7CA400A1F3DD /* Sravya.storyboard */,
 				D1835C8321AC7CAB00A1F3DD /* Varshini.storyboard */,
-				D1B5FD6321B5CE5900117E63 /* CalendarNavigaitonController.swift */,
 				FDF68F5821B53B4900AF95D7 /* InitialViewController.swift */,
 				D102E75521B78ECF00DD9996 /* LoadingViewController.swift */,
 				FDF68F5E21B6199600AF95D7 /* LoggedInViewController.swift */,
@@ -526,7 +523,6 @@
 				D1835CC921AC870700A1F3DD /* EventDetailsViewController.swift in Sources */,
 				D1835CCF21AC935100A1F3DD /* Event.swift in Sources */,
 				D184194421B0F38000373875 /* ClubTestingViewController.swift in Sources */,
-				D1B5FD6421B5CE5900117E63 /* CalendarNavigaitonController.swift in Sources */,
 				FDF68F5B21B53BBC00AF95D7 /* LoginViewController.swift in Sources */,
 				FDF68F5F21B6199600AF95D7 /* LoggedInViewController.swift in Sources */,
 				D1835CCB21AC870700A1F3DD /* EventsApi.swift in Sources */,

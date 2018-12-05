@@ -93,8 +93,9 @@ class EventsFeedViewController: UIViewController, EditEventDelegate {
     @IBAction func logoutTapped(_ sender: Any) {
         try! Auth.auth().signOut()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "loginViewController") as! LoginViewController
-        self.navigationController?.pushViewController(viewController, animated: true)
+        let viewController = storyboard.instantiateViewController(
+            withIdentifier: "loginViewController") as! LoginViewController
+        self.present(viewController, animated: false, completion: nil)
     }
     
     // EditEventDelegateFunction  (New event added)
