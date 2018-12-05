@@ -106,7 +106,6 @@ class EventTestingViewController: UIViewController, EditEventDelegate, GIDSignIn
             dest.event = event
         case("allEvents"):
             let dest = segue.destination as! EventsFeedViewController
-            dest.userEvents = userEvents
             dest.allEvents = events
         default:
             return
@@ -114,7 +113,13 @@ class EventTestingViewController: UIViewController, EditEventDelegate, GIDSignIn
     }
     
     
-    func editEventCompleted() {
+    func editEventCompleted(event: Event?) {
+        self.event = event
+        self.navigationController?.popViewController(animated: true)
+
+    }
+    
+    func editEventStarted() {
         self.navigationController?.popViewController(animated: true)
     }
 

@@ -7,13 +7,15 @@
 //
 
 import UIKit
+import Firebase
 
-class EventsFeedViewController: UIViewController {
+class EventsFeedViewController: UIViewController, EditEventDelegate {
+    
     @IBOutlet weak var eventsTableView: UITableView!
     @IBOutlet weak var allEventsButton: UIButton!
     @IBOutlet weak var myEventButton: UIButton!
+    @IBOutlet weak var addEventButton: UIBarButtonItem!
     
-    var userEvents: [String]? // Array of user saved event ids
     var events: [Event]?  // Events curretly loaded into table
     var allEvents: [Event]? = [] // All unfilterd events
     var filteredEvents = [Event]() // Events filtered by search bar
@@ -26,6 +28,7 @@ class EventsFeedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getUser() //FIXME: move to login
         eventsTableView.delegate = self
         eventsTableView.dataSource = self
         viewInit()
@@ -33,8 +36,6 @@ class EventsFeedViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         getEvents()
-        userEvents = User.currentUser?.events
-        getUser()
     }
     
     func viewInit() {
@@ -69,21 +70,43 @@ class EventsFeedViewController: UIViewController {
     
     // load user events into table and set button appearence
     @IBAction func myEventsButtonTapped(_ sender: Any) {
-        searchController.isActive = false // cancel search
-        allEventsButton.alpha = 0.5
-        myEventButton.alpha = 1.0
-        events = allEvents?.filter{ event in
-            userEvents?.contains(event.id ?? "") ?? false }
-        userEventsDisplayed = true
-        eventsTableView.reloadData()
+        if let userEvents = User.currentUser?.events {
+            searchController.isActive = false // cancel search
+            allEventsButton.alpha = 0.5
+            myEventButton.alpha = 1.0
+            events = allEvents?.filter{ event in
+                userEvents.contains(event.id ?? "") }
+            userEventsDisplayed = true
+            eventsTableView.reloadData()
+        }
     }
     
-    @IBAction func editAccount(_ sender: Any) {
+    @IBAction func addEvent(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Lindsey", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "editClubViewController") as! EditClubViewController
+        let viewController = storyboard.instantiateViewController(withIdentifier: "editEventViewController") as! EditEventViewController
+        viewController.delegate = self
+        viewController.event = nil
+        
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
+    // FIXME: pop navigation controller
+    @IBAction func logoutTapped(_ sender: Any) {
+        try! Auth.auth().signOut()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "loginViewController") as! LoginViewController
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    // EditEventDelegateFunction  (New event added)
+    func editEventCompleted(event: Event?) {
+        getEvents()
+    }
+    
+    func editEventStarted() {
+        self.navigationController?.popViewController(animated: true)
+
+    }
     
     // Get events loadLimit number of events from database starting from eventLoadDate
     func getEvents() {
@@ -117,9 +140,10 @@ class EventsFeedViewController: UIViewController {
                                 self.events = self.allEvents
                                 
                                 // Filter if currenlty displayin user events
-                                if self.userEventsDisplayed {
+                                if self.userEventsDisplayed,
+                                    let userEvents = User.currentUser?.events {
                                     self.events = self.allEvents?.filter{ event in
-                                        self.userEvents?.contains(event.id ?? "") ?? false }
+                                        userEvents.contains(event.id ?? "") }
                                 }
                                 
                                 self.eventsTableView.reloadData()
@@ -142,7 +166,9 @@ class EventsFeedViewController: UIViewController {
             switch(data, err) {
             case(.some(let data), nil):
                 User.currentUser = data as? User
-                self.userEvents = User.currentUser?.events
+                if User.currentUser?.club == nil {
+                    self.navigationItem.rightBarButtonItems = []
+                }
             case(nil, .some(let err)):
                 print(err)
             default:
