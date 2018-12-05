@@ -157,7 +157,21 @@ class EditEventViewController: UIViewController {
                 case(.some(let data), nil):
                     print("Event Added")
                     self.event?.id = (data as! Event).id
-                    self.delegate?.editEventCompleted()
+                    
+                    // Save the clubs new event to its user account
+                    UserApi.saveClub(clubID: self.event?.id){ data, err in
+                        switch(data, err) {
+                        case(.some(let data), nil):
+                            User.currentUser?.events = data as? [String]
+                            self.delegate?.editEventCompleted()
+                        case(nil, .some(let err)):
+                            print(err)
+                            self.delegate?.editEventCompleted()
+                        default:
+                            print("Error: could not update event")
+                            self.delegate?.editEventCompleted()
+                        }
+                    }
                 case(nil, .some(let err)):
                     print(err)
                 default:

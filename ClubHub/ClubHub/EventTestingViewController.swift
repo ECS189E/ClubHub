@@ -106,7 +106,6 @@ class EventTestingViewController: UIViewController, EditEventDelegate, GIDSignIn
             dest.event = event
         case("allEvents"):
             let dest = segue.destination as! EventsFeedViewController
-            dest.userEvents = userEvents
             dest.allEvents = events
         default:
             return

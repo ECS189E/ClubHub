@@ -14,7 +14,6 @@ class ClubListViewController: UIViewController {
     @IBOutlet weak var allClubsButton: UIButton!
     @IBOutlet weak var myClubButton: UIButton!
     
-    var userClubs: [String]? // Array of user saved club ids
     var clubs: [Club]?  // Clubs curretly loaded into table
     var allClubs: [Club]? = [] // All unfilterd clubs
     var filteredClubs = [Club]() // Clubs filtered by search bar
@@ -31,7 +30,6 @@ class ClubListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         getClubs()
-        userClubs = User.currentUser?.clubs
     }
     
     func viewInit() {
@@ -63,13 +61,15 @@ class ClubListViewController: UIViewController {
     
     // load user clubs into table and set button appearence
     @IBAction func myClubsButtonTapped(_ sender: Any) {
-        searchController.isActive = false // cancel search
-        allClubsButton.alpha = 0.5
-        myClubButton.alpha = 1.0
-        clubs = allClubs?.filter{ club in
-            userClubs?.contains(club.id ?? "") ?? false }
-        userClubsDisplayed = true
-        clubsTableView.reloadData()
+        if let userClubs = User.currentUser?.clubs {
+            searchController.isActive = false // cancel search
+            allClubsButton.alpha = 0.5
+            myClubButton.alpha = 1.0
+            clubs = allClubs?.filter{ club in
+                userClubs.contains(club.id ?? "") }
+            userClubsDisplayed = true
+            clubsTableView.reloadData()
+        }
     }
     @IBAction func logoutTapped(_ sender: Any) {
         try! Auth.auth().signOut()
@@ -107,9 +107,10 @@ class ClubListViewController: UIViewController {
                                 self.clubs = self.allClubs
                                 
                                 // Filter if currenlty displayin user clubs
-                                if self.userClubsDisplayed {
+                                if self.userClubsDisplayed,
+                                    let userClubs = User.currentUser?.clubs {
                                     self.clubs = self.allClubs?.filter{ club in
-                                        self.userClubs?.contains(club.id ?? "") ?? false }
+                                        userClubs.contains(club.id ?? "") }
                                 }
                                 
                                 self.clubsTableView.reloadData()
