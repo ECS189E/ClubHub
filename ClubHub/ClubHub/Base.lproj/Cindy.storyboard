@@ -149,7 +149,22 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yvf-t5-ZUp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8970.3999999999996" y="264.91754122938534"/>
+            <point key="canvasLocation" x="8969" y="968"/>
+        </scene>
+        <!--Inbox View Controller-->
+        <scene sceneID="Fcc-x4-Tbt">
+            <objects>
+                <viewController storyboardIdentifier="inboxViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mCx-Qa-NDK" customClass="InboxViewController" customModule="ClubHub" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tP3-mx-9Rt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="P7Q-Qp-Div"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fzF-l9-eKG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8180" y="969"/>
         </scene>
     </scenes>
     <resources>
