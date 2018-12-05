@@ -13,6 +13,7 @@
 		373006D021B7C34500008F61 /* SenderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373006CF21B7C34500008F61 /* SenderCell.swift */; };
 		373006D221B7C37200008F61 /* ReceiverCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373006D121B7C37200008F61 /* ReceiverCell.swift */; };
 		373006D421B7C58300008F61 /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373006D321B7C58300008F61 /* InboxViewController.swift */; };
+		373006D621B7CDA400008F61 /* ConversationPreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373006D521B7CDA400008F61 /* ConversationPreviewCell.swift */; };
 		3767815A21AC76E50016533D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3767815921AC76E50016533D /* GoogleService-Info.plist */; };
 		D0015C9921B6085C007420FB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0015C9821B6085C007420FB /* User.swift */; };
 		D04F403F21B7887D00A3D996 /* ClubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04F403E21B7887D00A3D996 /* ClubViewController.swift */; };
@@ -79,6 +80,7 @@
 		373006CF21B7C34500008F61 /* SenderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderCell.swift; sourceTree = "<group>"; };
 		373006D121B7C37200008F61 /* ReceiverCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiverCell.swift; sourceTree = "<group>"; };
 		373006D321B7C58300008F61 /* InboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewController.swift; sourceTree = "<group>"; };
+		373006D521B7CDA400008F61 /* ConversationPreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationPreviewCell.swift; sourceTree = "<group>"; };
 		3767815921AC76E50016533D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6108494735D13AA2F78DF325 /* Pods_ClubHubUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClubHubUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84B61FE294D854F305958EF9 /* Pods-ClubHub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClubHub.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ClubHub/Pods-ClubHub.debug.xcconfig"; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				373006D321B7C58300008F61 /* InboxViewController.swift */,
 				373006CF21B7C34500008F61 /* SenderCell.swift */,
 				373006D121B7C37200008F61 /* ReceiverCell.swift */,
+				373006D521B7CDA400008F61 /* ConversationPreviewCell.swift */,
 				D184193D21AF5FC100373875 /* UIImage+JPEG.swift */,
 				D184193B21AF40AF00373875 /* ViewController+keyboard.swift */,
 				D136412121AC64F1007A7B22 /* LaunchScreen.storyboard */,
@@ -536,6 +539,7 @@
 				D184193A21AF39E900373875 /* EditEventViewController.swift in Sources */,
 				FDF68F5D21B5493D00AF95D7 /* SignUpViewController.swift in Sources */,
 				D1835CC921AC870700A1F3DD /* EventDetailsViewController.swift in Sources */,
+				373006D621B7CDA400008F61 /* ConversationPreviewCell.swift in Sources */,
 				D1835CCF21AC935100A1F3DD /* Event.swift in Sources */,
 				D184194421B0F38000373875 /* ClubTestingViewController.swift in Sources */,
 				FDF68F5B21B53BBC00AF95D7 /* LoginViewController.swift in Sources */,
