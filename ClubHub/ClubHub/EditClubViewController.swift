@@ -142,7 +142,7 @@ class EditClubViewController: UIViewController {
     }
     
     @IBAction func logoutTapped(_ sender: Any) {
-        try! Auth.auth().signOut()
+        UserApi.logout()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(
             withIdentifier: "loginViewController") as! LoginViewController

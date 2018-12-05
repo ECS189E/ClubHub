@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import GoogleSignIn
 
 struct UserApi {
     
@@ -283,5 +284,17 @@ struct UserApi {
                 completion(nil, "Error getting user data: could not authenticate user")
             }
         }
+    }
+    
+    static func logout() {
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+            GIDSignIn.sharedInstance().signOut()
+            
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+        User.currentUser = nil
     }
  }
