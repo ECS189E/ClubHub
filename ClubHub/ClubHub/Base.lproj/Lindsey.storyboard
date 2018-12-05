@@ -264,13 +264,21 @@
                         <viewLayoutGuide key="safeArea" id="cMH-7s-JKs"/>
                     </view>
                     <navigationItem key="navigationItem" id="7IB-Dj-Ts3">
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="S3w-Xb-aRx">
-                            <connections>
-                                <action selector="doneTapped:" destination="q0a-Fr-ZyN" id="MWm-Ia-0dq"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Done" id="S3w-Xb-aRx">
+                                <connections>
+                                    <action selector="doneTapped:" destination="q0a-Fr-ZyN" id="MWm-Ia-0dq"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="icons8-waste-filled-25-black" id="o9n-os-DPY">
+                                <connections>
+                                    <action selector="deleteTapped:" destination="q0a-Fr-ZyN" id="dmS-Lu-ClV"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="deleteButton" destination="o9n-os-DPY" id="10w-Ez-I1S"/>
                         <outlet property="deleteImageButton" destination="Dvc-gO-0ZT" id="dYW-NR-GgG"/>
                         <outlet property="detailsTextView" destination="uZX-4B-Idg" id="lrn-2S-LCz"/>
                         <outlet property="endDateButton" destination="lUj-5c-6Kx" id="Jrd-HV-HVm"/>
@@ -693,6 +701,9 @@
             <point key="canvasLocation" x="992.75362318840587" y="955.58035714285711"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icons8-waste-filled-25-black" width="18.75" height="18.75"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="xfz-Ta-Nvs"/>
         <segue reference="2f7-CI-r6j"/>

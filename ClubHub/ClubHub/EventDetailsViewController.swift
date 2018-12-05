@@ -11,7 +11,7 @@ import UIKit
 /*
     TODO: Clean up UI, add favorite/saving, edit feature
  */
-class EventDetailsViewController: UIViewController {
+class EventDetailsViewController: UIViewController, EditEventDelegate {
 
     @IBOutlet weak var eventImageView: UIImageView!
     @IBOutlet weak var eventNameLabel: UILabel!
@@ -41,7 +41,30 @@ class EventDetailsViewController: UIViewController {
         // Used only for testing
         let storyboard = UIStoryboard(name: "Cindy", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "sendEmailViewController") as! SendEmailViewController
-    self.navigationController?.pushViewController(viewController, animated: true)
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
+    @IBAction func editEventTapped(_ sender: Any) {
+        // Used only for testing
+        let storyboard = UIStoryboard(name: "Lindsey", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "editEventViewController") as! EditEventViewController
+        viewController.event = event
+        viewController.delegate = self
+        self.navigationController?.pushViewController(viewController, animated: true)
+        
+    }
+    
+    // EditEventDelegate func
+    // Once the backend finished updating event
+    // Returns updated event if event updated successfully
+    // Returns nil if deleted or an error encountered
+    func editEventCompleted(event: Event?) {
+        // Cindy finish me!
+    }
+    
+    // EditEventDelegate func
+    // Once done is tapped in edit event, but backend not updated yet
+    func editEventStarted() {
+        // Cindy finish me!
+    }
 }

@@ -99,7 +99,7 @@ class EventsFeedViewController: UIViewController, EditEventDelegate {
     }
     
     // EditEventDelegateFunction  (New event added)
-    func editEventCompleted() {
+    func editEventCompleted(event: Event?) {
         getEvents()
     }
     

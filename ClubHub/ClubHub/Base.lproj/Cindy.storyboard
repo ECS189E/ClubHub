@@ -90,11 +90,20 @@
                                     <action selector="testButton:" destination="6OY-YS-VZS" eventType="touchUpInside" id="Vn1-oR-gIz"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cW8-YC-yT0">
+                                <rect key="frame" x="16" y="610" width="27" height="27"/>
+                                <state key="normal" image="icons8-compose-36-black"/>
+                                <connections>
+                                    <action selector="editEventTapped:" destination="6OY-YS-VZS" eventType="touchUpInside" id="zHF-Wp-hf3"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="QZ7-sZ-CDu" firstAttribute="top" secondItem="1AH-Jq-WlE" secondAttribute="top" constant="79" id="5DL-rQ-4XN"/>
                             <constraint firstItem="p9V-eV-o9J" firstAttribute="leading" secondItem="1AH-Jq-WlE" secondAttribute="leading" constant="16" id="7Tg-2K-eBg"/>
+                            <constraint firstItem="1AH-Jq-WlE" firstAttribute="bottom" secondItem="cW8-YC-yT0" secondAttribute="bottom" constant="30" id="8Bk-Q8-2ub"/>
+                            <constraint firstItem="cW8-YC-yT0" firstAttribute="leading" secondItem="1AH-Jq-WlE" secondAttribute="leading" constant="16" id="8sZ-9p-mUL"/>
                             <constraint firstItem="QZ7-sZ-CDu" firstAttribute="leading" secondItem="1AH-Jq-WlE" secondAttribute="leading" constant="16" id="BhB-MS-MBJ"/>
                             <constraint firstItem="dY2-W9-75W" firstAttribute="top" secondItem="FMe-fI-LWg" secondAttribute="bottom" constant="8" id="JVK-yY-6Lp"/>
                             <constraint firstItem="9ll-Cf-WrA" firstAttribute="top" secondItem="oy0-EY-yCR" secondAttribute="bottom" constant="8" id="K0b-zN-39S"/>
@@ -165,4 +174,7 @@
             <point key="canvasLocation" x="9014" y="265"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icons8-compose-36-black" width="27" height="27"/>
+    </resources>
 </document>

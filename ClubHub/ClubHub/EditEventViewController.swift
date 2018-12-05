@@ -9,7 +9,7 @@
 import UIKit
 
 protocol EditEventDelegate {
-    func editEventCompleted()
+    func editEventCompleted(event: Event?)
     func editEventStarted()
 }
 
@@ -28,6 +28,7 @@ class EditEventViewController: UIViewController {
     @IBOutlet weak var endTimeButton: UIButton!
     @IBOutlet weak var locationTextView: UITextView!
     @IBOutlet weak var detailsTextView: UITextView!
+    @IBOutlet weak var deleteButton: UIBarButtonItem!
     
     var delegate: EditEventDelegate?
     
@@ -59,8 +60,6 @@ class EditEventViewController: UIViewController {
             return
         }
         
-        
-        
         // format text views
         locationTextView.isEditable = true
         detailsTextView.isEditable = true
@@ -77,6 +76,9 @@ class EditEventViewController: UIViewController {
             }
             // else create a new event and init dates
         } else {
+            // disable delete button for new event
+            deleteButton.isEnabled = false
+            
             event = Event()
             // initialize date start and end times
             event?.startTime =
@@ -114,8 +116,6 @@ class EditEventViewController: UIViewController {
         }
     }
     
-    
-    
 
     @IBAction func doneTapped(_ sender: Any) {
         // Update event info
@@ -142,7 +142,7 @@ class EditEventViewController: UIViewController {
                 switch(data, err) {
                 case(.some(_), nil):
                     print("Event updated")
-                    self.delegate?.editEventCompleted()
+                    self.delegate?.editEventCompleted(event: self.event)
                 case(nil, .some(let err)):
                     print(err)
                 default:
@@ -163,13 +163,13 @@ class EditEventViewController: UIViewController {
                         switch(data, err) {
                         case(.some(let data), nil):
                             User.currentUser?.events = data as? [String]
-                            self.delegate?.editEventCompleted()
+                            self.delegate?.editEventCompleted(event: self.event)
                         case(nil, .some(let err)):
                             print(err)
-                            self.delegate?.editEventCompleted()
+                            self.delegate?.editEventCompleted(event: nil)
                         default:
                             print("Error: could not update event")
-                            self.delegate?.editEventCompleted()
+                            self.delegate?.editEventCompleted(event: nil)
                         }
                     }
                 case(nil, .some(let err)):
@@ -177,6 +177,35 @@ class EditEventViewController: UIViewController {
                 default:
                     print("Error: could not add event")
                 }
+            }
+        }
+        self.delegate?.editEventStarted()
+    }
+    
+    @IBAction func deleteTapped(_ sender: Any) {
+        EventsApi.deleteEvent(event: event) {data, err in
+            switch(data, err) {
+            case(.some(_), nil):
+                print("Event Deleted")
+                
+                // Delete the clubs new event from its user account
+                UserApi.deleteSavedClub(clubID: self.event?.id){ data, err in
+                    switch(data, err) {
+                    case(.some(let data), nil):
+                        User.currentUser?.events = data as? [String]
+                        self.delegate?.editEventCompleted(event: nil)
+                    case(nil, .some(let err)):
+                        print(err)
+                        self.delegate?.editEventCompleted(event: nil)
+                    default:
+                        print("Error: could not update event")
+                        self.delegate?.editEventCompleted(event: nil)
+                    }
+                }
+            case(nil, .some(let err)):
+                print(err)
+            default:
+                print("Error: could not add event")
             }
         }
         self.delegate?.editEventStarted()
