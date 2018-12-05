@@ -48,6 +48,7 @@
 		FDF68F5B21B53BBC00AF95D7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF68F5A21B53BBC00AF95D7 /* LoginViewController.swift */; };
 		FDF68F5D21B5493D00AF95D7 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF68F5C21B5493D00AF95D7 /* SignUpViewController.swift */; };
 		FDF68F5F21B6199600AF95D7 /* LoggedInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF68F5E21B6199600AF95D7 /* LoggedInViewController.swift */; };
+		FDF68F6121B7B9B900AF95D7 /* PickClubController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF68F6021B7B9B900AF95D7 /* PickClubController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +120,7 @@
 		FDF68F5A21B53BBC00AF95D7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FDF68F5C21B5493D00AF95D7 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		FDF68F5E21B6199600AF95D7 /* LoggedInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInViewController.swift; sourceTree = "<group>"; };
+		FDF68F6021B7B9B900AF95D7 /* PickClubController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickClubController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +200,7 @@
 				D1835C8021AC7CA400A1F3DD /* Sravya.storyboard */,
 				D1835C8321AC7CAB00A1F3DD /* Varshini.storyboard */,
 				D1B5FD6321B5CE5900117E63 /* CalendarNavigaitonController.swift */,
+				FDF68F6021B7B9B900AF95D7 /* PickClubController.swift */,
 				FDF68F5821B53B4900AF95D7 /* InitialViewController.swift */,
 				D102E75521B78ECF00DD9996 /* LoadingViewController.swift */,
 				FDF68F5E21B6199600AF95D7 /* LoggedInViewController.swift */,
@@ -529,6 +532,7 @@
 				D1B5FD6421B5CE5900117E63 /* CalendarNavigaitonController.swift in Sources */,
 				FDF68F5B21B53BBC00AF95D7 /* LoginViewController.swift in Sources */,
 				FDF68F5F21B6199600AF95D7 /* LoggedInViewController.swift in Sources */,
+				FDF68F6121B7B9B900AF95D7 /* PickClubController.swift in Sources */,
 				D1835CCB21AC870700A1F3DD /* EventsApi.swift in Sources */,
 				D184194021B0F0BE00373875 /* Club.swift in Sources */,
 				D102E75621B78ECF00DD9996 /* LoadingViewController.swift in Sources */,

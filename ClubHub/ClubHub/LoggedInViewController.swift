@@ -14,7 +14,7 @@ class LoggedInViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("in Loggedin")
+        
     }
     
     @IBAction func logoutButton(_ target: UIButton){

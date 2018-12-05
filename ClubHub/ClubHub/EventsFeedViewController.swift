@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import GoogleSignIn
 
 class EventsFeedViewController: UIViewController, EditEventDelegate {
     
@@ -91,7 +92,14 @@ class EventsFeedViewController: UIViewController, EditEventDelegate {
     
     // FIXME: pop navigation controller
     @IBAction func logoutTapped(_ sender: Any) {
-        try! Auth.auth().signOut()
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+            GIDSignIn.sharedInstance().signOut()
+
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "loginViewController") as! LoginViewController
         self.navigationController?.pushViewController(viewController, animated: true)
