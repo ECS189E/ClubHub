@@ -103,7 +103,7 @@
         <!--Club View Controller-->
         <scene sceneID="W3a-cN-7GZ">
             <objects>
-                <viewController storyboardIdentifier="editClubViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="73O-GG-8gk" customClass="ClubViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ClubViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="73O-GG-8gk" customClass="ClubViewController" customModule="ClubHub" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8M9-c9-UAt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

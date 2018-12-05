@@ -13,9 +13,14 @@ class ClubViewController: UIViewController {
     @IBOutlet weak var clubImage: UIImageView!
     @IBOutlet weak var aboutClub: UILabel!
     
+    var club: Club?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        clubImage.image = club?.image ?? UIImage(named: "testImage")
+        clubName.text = club?.name
+        aboutClub.text = club?.details
         // Do any additional setup after loading the view.
     }
     
