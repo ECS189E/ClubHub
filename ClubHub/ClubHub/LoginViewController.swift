@@ -9,8 +9,18 @@
 import Foundation
 import UIKit
 import Firebase
+import GoogleSignIn
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, GIDSignInUIDelegate {
+    
+    @IBOutlet weak var signInButton: GIDSignInButton!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+            GIDSignIn.sharedInstance().uiDelegate = self
+            // FIXME: move to SignInButton action
+            GIDSignIn.sharedInstance().signIn()
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
