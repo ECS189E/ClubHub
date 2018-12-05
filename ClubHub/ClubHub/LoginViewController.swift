@@ -18,8 +18,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
             GIDSignIn.sharedInstance().uiDelegate = self
-            // FIXME: move to SignInButton action
-            GIDSignIn.sharedInstance().signIn()
     }
     
     override func viewWillAppear(_ animated: Bool) {
