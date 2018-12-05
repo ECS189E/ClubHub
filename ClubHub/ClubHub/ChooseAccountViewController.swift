@@ -1,5 +1,5 @@
 //
-//  NewAccountViewController.swift
+//  ChooseAccountViewController
 //  ClubHub
 //
 //  Created by Lindsey Gray on 12/5/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewAccountViewController: UINavigationController {
+class ChooseAccountViewController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

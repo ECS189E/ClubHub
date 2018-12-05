@@ -157,7 +157,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 case(nil, .some(_)):
                     User.currentUser = nil
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let viewController = storyboard.instantiateViewController(withIdentifier: "newAccountViewController")
+                    let viewController = storyboard.instantiateViewController(withIdentifier: "chooseAccountViewController")
                     self.window?.rootViewController = viewController
                 default:
                     print("Error getting user events")

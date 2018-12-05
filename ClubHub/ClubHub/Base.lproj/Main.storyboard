@@ -258,10 +258,10 @@
             </objects>
             <point key="canvasLocation" x="-6359" y="586"/>
         </scene>
-        <!--New Account View Controller-->
+        <!--Choose Account View Controller-->
         <scene sceneID="PsB-Cb-O9V">
             <objects>
-                <viewController storyboardIdentifier="newAccountViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Qm2-Qc-bGf" customClass="NewAccountViewController" customModule="ClubHub" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="chooseAccountViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Qm2-Qc-bGf" customClass="ChooseAccountViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GHa-rE-2Ix">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
