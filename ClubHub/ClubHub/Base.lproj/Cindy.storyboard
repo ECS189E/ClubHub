@@ -83,13 +83,6 @@
                                     <constraint firstAttribute="height" constant="230" id="q4d-ub-znM"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GEh-YH-arR">
-                                <rect key="frame" x="266" y="607" width="93" height="30"/>
-                                <state key="normal" title="A Test Button"/>
-                                <connections>
-                                    <action selector="testButton:" destination="6OY-YS-VZS" eventType="touchUpInside" id="Vn1-oR-gIz"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cW8-YC-yT0">
                                 <rect key="frame" x="16" y="610" width="27" height="27"/>
                                 <state key="normal" image="icons8-compose-36-black"/>
@@ -117,14 +110,12 @@
                             <constraint firstItem="oy0-EY-yCR" firstAttribute="top" secondItem="dY2-W9-75W" secondAttribute="bottom" constant="8" id="Zy1-Li-gJZ"/>
                             <constraint firstItem="9ll-Cf-WrA" firstAttribute="leading" secondItem="oot-YV-VdL" secondAttribute="trailing" constant="45" id="emL-Kk-kPy"/>
                             <constraint firstItem="QZ7-sZ-CDu" firstAttribute="top" secondItem="1AH-Jq-WlE" secondAttribute="top" constant="79" id="fNV-ey-mV4"/>
-                            <constraint firstItem="1AH-Jq-WlE" firstAttribute="trailing" secondItem="GEh-YH-arR" secondAttribute="trailing" constant="16" id="fae-CG-8b4"/>
                             <constraint firstItem="oy0-EY-yCR" firstAttribute="leading" secondItem="qau-En-JVa" secondAttribute="trailing" constant="51" id="gIj-Wm-A33"/>
                             <constraint firstItem="oot-YV-VdL" firstAttribute="top" secondItem="qau-En-JVa" secondAttribute="bottom" constant="8" id="iiq-QD-ZZn"/>
                             <constraint firstItem="p9V-eV-o9J" firstAttribute="top" secondItem="oot-YV-VdL" secondAttribute="bottom" constant="8" id="kMM-fo-JHk"/>
                             <constraint firstItem="oot-YV-VdL" firstAttribute="leading" secondItem="1AH-Jq-WlE" secondAttribute="leading" constant="16" id="lJT-26-6Oq"/>
                             <constraint firstItem="dY2-W9-75W" firstAttribute="leading" secondItem="lcQ-5h-Z3k" secondAttribute="trailing" constant="61" id="lef-pi-H2r"/>
                             <constraint firstItem="FMe-fI-LWg" firstAttribute="top" secondItem="QZ7-sZ-CDu" secondAttribute="bottom" constant="8" id="nfZ-EV-zNu"/>
-                            <constraint firstItem="1AH-Jq-WlE" firstAttribute="bottom" secondItem="GEh-YH-arR" secondAttribute="bottom" constant="30" id="nim-l7-Qum"/>
                             <constraint firstItem="QZ7-sZ-CDu" firstAttribute="centerX" secondItem="1AH-Jq-WlE" secondAttribute="centerX" id="uSQ-YH-Kgc"/>
                             <constraint firstItem="FMe-fI-LWg" firstAttribute="leading" secondItem="3Ix-8i-7cd" secondAttribute="trailing" constant="55" id="udz-oH-90f"/>
                             <constraint firstItem="qau-En-JVa" firstAttribute="top" secondItem="lcQ-5h-Z3k" secondAttribute="bottom" constant="8" id="vSy-hz-tjo"/>
@@ -144,34 +135,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hst-VK-Z2V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="8180" y="264.91754122938534"/>
-        </scene>
-        <!--Send Email View Controller-->
-        <scene sceneID="0b1-uj-3PK">
-            <objects>
-                <viewController storyboardIdentifier="sendEmailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="D2x-iY-fv4" customClass="SendEmailViewController" customModule="ClubHub" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="D70-uH-gTi">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Thf-rw-wp1">
-                                <rect key="frame" x="149" y="318" width="76" height="30"/>
-                                <state key="normal" title="Send Email"/>
-                                <connections>
-                                    <action selector="sendEmail:" destination="D2x-iY-fv4" eventType="touchUpInside" id="83c-If-cfR"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="Thf-rw-wp1" firstAttribute="centerX" secondItem="wa0-BW-ldE" secondAttribute="centerX" id="1z8-dj-S9o"/>
-                            <constraint firstItem="Thf-rw-wp1" firstAttribute="centerY" secondItem="wa0-BW-ldE" secondAttribute="centerY" id="60u-Jv-o4j"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="wa0-BW-ldE"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vbS-tL-Si0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="9014" y="265"/>
         </scene>
     </scenes>
     <resources>

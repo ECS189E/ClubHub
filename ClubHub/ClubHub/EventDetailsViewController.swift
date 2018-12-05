@@ -37,13 +37,6 @@ class EventDetailsViewController: UIViewController, EditEventDelegate {
         descriptionLabel.text = event?.details ??  "Description"
     }
     
-    @IBAction func testButton(_ sender: Any) {
-        // Used only for testing
-        let storyboard = UIStoryboard(name: "Cindy", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "sendEmailViewController") as! SendEmailViewController
-        self.navigationController?.pushViewController(viewController, animated: true)
-    }
-    
     @IBAction func editEventTapped(_ sender: Any) {
         // Used only for testing
         let storyboard = UIStoryboard(name: "Lindsey", bundle: nil)
