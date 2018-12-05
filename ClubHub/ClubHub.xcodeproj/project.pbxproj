@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		373006CA21B6E22F00008F61 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373006C921B6E22F00008F61 /* Message.swift */; };
 		373006CC21B7521900008F61 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373006CB21B7521900008F61 /* Conversation.swift */; };
+		373006CE21B7C0D800008F61 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373006CD21B7C0D800008F61 /* ConversationViewController.swift */; };
 		3767815A21AC76E50016533D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3767815921AC76E50016533D /* GoogleService-Info.plist */; };
 		D0015C9921B6085C007420FB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0015C9821B6085C007420FB /* User.swift */; };
 		D04F403F21B7887D00A3D996 /* ClubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04F403E21B7887D00A3D996 /* ClubViewController.swift */; };
@@ -71,6 +72,7 @@
 		307080BD5733675116179A47 /* Pods_ClubHubTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClubHubTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		373006C921B6E22F00008F61 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		373006CB21B7521900008F61 /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
+		373006CD21B7C0D800008F61 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		3767815921AC76E50016533D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6108494735D13AA2F78DF325 /* Pods_ClubHubUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClubHubUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84B61FE294D854F305958EF9 /* Pods-ClubHub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClubHub.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ClubHub/Pods-ClubHub.debug.xcconfig"; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 				D0015C9821B6085C007420FB /* User.swift */,
 				373006C921B6E22F00008F61 /* Message.swift */,
 				373006CB21B7521900008F61 /* Conversation.swift */,
+				373006CD21B7C0D800008F61 /* ConversationViewController.swift */,
 				D184193D21AF5FC100373875 /* UIImage+JPEG.swift */,
 				D184193B21AF40AF00373875 /* ViewController+keyboard.swift */,
 				D136412121AC64F1007A7B22 /* LaunchScreen.storyboard */,
@@ -513,6 +516,7 @@
 			files = (
 				D184193E21AF5FC200373875 /* UIImage+JPEG.swift in Sources */,
 				D04F403F21B7887D00A3D996 /* ClubViewController.swift in Sources */,
+				373006CE21B7C0D800008F61 /* ConversationViewController.swift in Sources */,
 				D10C916A21B22A0300AD78B9 /* UserApi.swift in Sources */,
 				D1835CD321AD0D3000A1F3DD /* CalendarViewController.swift in Sources */,
 				D184194621B0FB3100373875 /* ClubListViewController.swift in Sources */,

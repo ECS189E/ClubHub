@@ -136,6 +136,21 @@
             </objects>
             <point key="canvasLocation" x="8180" y="264.91754122938534"/>
         </scene>
+        <!--Conversation View Controller-->
+        <scene sceneID="ScR-bt-RVw">
+            <objects>
+                <viewController storyboardIdentifier="conversationViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="crE-Cd-gVU" customClass="ConversationViewController" customModule="ClubHub" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JC7-12-QYe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="5yG-1b-DgK"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yvf-t5-ZUp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8970.3999999999996" y="264.91754122938534"/>
+        </scene>
     </scenes>
     <resources>
         <image name="icons8-compose-36-black" width="27" height="27"/>
