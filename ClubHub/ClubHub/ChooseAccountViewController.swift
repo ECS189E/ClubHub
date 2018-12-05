@@ -31,17 +31,21 @@ class ChooseAccountViewController: UIViewController {
     @IBAction func clubAccountChosen(_ sender: Any) {
         self.performSegue(withIdentifier: "createClub", sender: self)
     }
+    
     @IBAction func userAccountChosen(_ sender: Any) {
+        // Initialize user data
         UserApi.initUserData(type: "user", club: nil) { data, err in
             switch(data, err) {
             // User data in database, existing account
             case(.some(let data), nil):
                 User.currentUser = data as? User
+                
+                // switch to main screen
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let viewController = storyboard.instantiateViewController(
                     withIdentifier: "tabBarController")
                     as! UITabBarController
-                self.navigationController?.pushViewController(viewController, animated: true)
+                self.present(viewController, animated: false, completion: nil)
             // No user data in database, new account
             case(nil, .some(_)):
                 print("Error initializing user data")
