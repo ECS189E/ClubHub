@@ -137,7 +137,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 print(error)
                 return
             }
-            print("User signed in!")
         }
     }
     

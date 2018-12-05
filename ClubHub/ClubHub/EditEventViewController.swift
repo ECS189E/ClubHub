@@ -10,6 +10,7 @@ import UIKit
 
 protocol EditEventDelegate {
     func editEventCompleted()
+    func editEventStarted()
 }
 
 class EditEventViewController: UIViewController {
@@ -30,7 +31,7 @@ class EditEventViewController: UIViewController {
     
     var delegate: EditEventDelegate?
     
-    var event:Event?
+    var event: Event?
     var popUpButton: UIButton? = nil // text field that initiated a pop up view
     let dateFormatter = DateFormatter()
     let timeFormatter = DateFormatter()
@@ -52,6 +53,13 @@ class EditEventViewController: UIViewController {
     }
     
     func viewInit() {
+        guard let userClub = User.currentUser?.club?.name else {
+            navigationController?.popViewController(animated: true)  //FIXME: move to view will appear?
+            print("Error updating event: user is not a club")
+            return
+        }
+        
+        
         
         // format text views
         locationTextView.isEditable = true
@@ -77,6 +85,7 @@ class EditEventViewController: UIViewController {
                                       of: Date())
             event?.endTime =
                 event?.startTime?.addingTimeInterval(60 * 60)
+            event?.club = userClub
         }
         
         // init date button labels
@@ -156,7 +165,7 @@ class EditEventViewController: UIViewController {
                 }
             }
         }
-        event?.printEvent()
+        self.delegate?.editEventStarted()
     }
     
     @IBAction func uploadImageTapped(_ sender: Any) {

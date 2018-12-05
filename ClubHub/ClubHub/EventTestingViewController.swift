@@ -116,6 +116,11 @@ class EventTestingViewController: UIViewController, EditEventDelegate, GIDSignIn
     
     func editEventCompleted() {
         self.navigationController?.popViewController(animated: true)
+
+    }
+    
+    func editEventStarted() {
+        self.navigationController?.popViewController(animated: true)
     }
 
     // test Api.getEvent()

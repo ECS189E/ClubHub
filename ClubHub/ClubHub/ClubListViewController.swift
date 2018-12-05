@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ClubListViewController: UIViewController {
     @IBOutlet weak var clubsTableView: UITableView!
@@ -69,6 +70,12 @@ class ClubListViewController: UIViewController {
             userClubs?.contains(club.id ?? "") ?? false }
         userClubsDisplayed = true
         clubsTableView.reloadData()
+    }
+    @IBAction func logoutTapped(_ sender: Any) {
+        try! Auth.auth().signOut()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "loginViewController") as! LoginViewController
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     // Get clubs loadLimit number of clubs from database starting from clubLoadNext
