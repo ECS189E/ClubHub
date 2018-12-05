@@ -250,7 +250,7 @@ struct UserApi {
         db.settings = settings
         
         guard let userID = Auth.auth().currentUser?.uid else {
-            completion(nil, "Error deleting saved event: could not get user data")
+            completion(nil, "Error getting user data: could not identify user")
             return
         }
         

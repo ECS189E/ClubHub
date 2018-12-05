@@ -27,7 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         if Auth.auth().currentUser != nil{
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let initVC = storyboard.instantiateViewController(withIdentifier: "loadingViewController")
+            let initVC = storyboard.instantiateViewController(withIdentifier: "loadingViewController") as! LoadingViewController
+            initVC.currentUser = Auth.auth().currentUser?.uid
             self.window?.rootViewController = initVC
         }
         
@@ -143,7 +144,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 print(error)
                 return
             }
+            // Get user data from firebas database
+            UserApi.getUserData() { data, err in
+                switch(data, err) {
+                // User data in database, existing account
+                case(.some(let data), nil):
+                    User.currentUser = data as? User
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let viewController = storyboard.instantiateViewController(withIdentifier: "tabBarController")
+                    self.window?.rootViewController = viewController
+                // No user data in database, new account
+                case(nil, .some(_)):
+                    User.currentUser = nil
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let viewController = storyboard.instantiateViewController(withIdentifier: "newAccountViewController")
+                    self.window?.rootViewController = viewController
+                default:
+                    print("Error getting user events")
+                }
+            }
+
         }
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let initVC = storyboard.instantiateViewController(withIdentifier: "loadingViewController")
+        self.window?.rootViewController = initVC
+        
     }
     
     // Google sign in protocol func

@@ -9,20 +9,35 @@
 import UIKit
 
 class LoadingViewController: UIViewController {
+    
+    var currentUser: String? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        UserApi.getUserData() { data, err in
-            switch(data, err) {
-            case(.some(let data), nil):
-                User.currentUser = data as? User
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let viewController = storyboard.instantiateViewController(withIdentifier: "tabBarController")
-                self.present(viewController, animated: false, completion: nil)
-            case(nil, .some(let err)):
-                print(err)
-            default:
-                print("Error getting user events")
+        
+        // If last signing successful, get data
+        if(currentUser != nil) {
+            // Get user data from firebas database
+            UserApi.getUserData() { data, err in
+                switch(data, err) {
+                // User data in database, existing account
+                case(.some(let data), nil):
+                    User.currentUser = data as? User
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let viewController = storyboard.instantiateViewController(withIdentifier: "tabBarController")
+                    self.present(viewController, animated: false, completion: nil)
+                // No user data in database, new account
+                case(nil, .some(_)):
+                    User.currentUser = nil
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let viewController = storyboard.instantiateViewController(withIdentifier: "loginViewController")
+                    self.present(viewController, animated: false, completion: nil)
+                default:
+                    print("Error getting user events")
+                }
             }
         }
+
+        
     }
 }

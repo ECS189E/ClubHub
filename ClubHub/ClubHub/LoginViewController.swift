@@ -26,6 +26,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
+    
+    /* supposed to be done in app delegate!
     override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("in Login")
@@ -35,6 +37,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
             self.performSegue(withIdentifier: "toLoggedInController", sender: self)
         }
     }
-    
+     */
     
 }
