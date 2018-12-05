@@ -25,6 +25,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         
+        if Auth.auth().currentUser != nil{
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let initVC = storyboard.instantiateViewController(withIdentifier: "loadingViewController")
+            self.window?.rootViewController = initVC
+        }
+        
         return true
     }
 
@@ -137,7 +143,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 print(error)
                 return
             }
-            print("User signed in!")
         }
     }
     

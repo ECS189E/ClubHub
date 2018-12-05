@@ -71,9 +71,6 @@ class ClubTestingViewController: UIViewController, EditClubDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch(segue.identifier) {
-        case("allClubs"):
-            let dest = segue.destination as! ClubListViewController
-            dest.userClubs = userClubs
         case("addClub"):
             let dest = segue.destination as! EditClubViewController
             dest.club = nil

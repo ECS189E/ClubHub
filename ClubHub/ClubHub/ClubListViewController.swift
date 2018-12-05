@@ -7,13 +7,13 @@
 //
 
 import UIKit
+import Firebase
 
 class ClubListViewController: UIViewController {
     @IBOutlet weak var clubsTableView: UITableView!
     @IBOutlet weak var allClubsButton: UIButton!
     @IBOutlet weak var myClubButton: UIButton!
     
-    var userClubs: [String]? // Array of user saved club ids
     var clubs: [Club]?  // Clubs curretly loaded into table
     var allClubs: [Club]? = [] // All unfilterd clubs
     var filteredClubs = [Club]() // Clubs filtered by search bar
@@ -30,7 +30,6 @@ class ClubListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         getClubs()
-        userClubs = User.currentUser?.clubs
     }
     
     func viewInit() {
@@ -62,13 +61,21 @@ class ClubListViewController: UIViewController {
     
     // load user clubs into table and set button appearence
     @IBAction func myClubsButtonTapped(_ sender: Any) {
-        searchController.isActive = false // cancel search
-        allClubsButton.alpha = 0.5
-        myClubButton.alpha = 1.0
-        clubs = allClubs?.filter{ club in
-            userClubs?.contains(club.id ?? "") ?? false }
-        userClubsDisplayed = true
-        clubsTableView.reloadData()
+        if let userClubs = User.currentUser?.clubs {
+            searchController.isActive = false // cancel search
+            allClubsButton.alpha = 0.5
+            myClubButton.alpha = 1.0
+            clubs = allClubs?.filter{ club in
+                userClubs.contains(club.id ?? "") }
+            userClubsDisplayed = true
+            clubsTableView.reloadData()
+        }
+    }
+    @IBAction func logoutTapped(_ sender: Any) {
+        try! Auth.auth().signOut()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "loginViewController") as! LoginViewController
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     // Get clubs loadLimit number of clubs from database starting from clubLoadNext
@@ -100,9 +107,10 @@ class ClubListViewController: UIViewController {
                                 self.clubs = self.allClubs
                                 
                                 // Filter if currenlty displayin user clubs
-                                if self.userClubsDisplayed {
+                                if self.userClubsDisplayed,
+                                    let userClubs = User.currentUser?.clubs {
                                     self.clubs = self.allClubs?.filter{ club in
-                                        self.userClubs?.contains(club.id ?? "") ?? false }
+                                        userClubs.contains(club.id ?? "") }
                                 }
                                 
                                 self.clubsTableView.reloadData()
@@ -152,17 +160,16 @@ extension ClubListViewController: UITableViewDelegate, UITableViewDataSource, UI
                           image: club.image ?? UIImage(named: "testImage")) // FIXME: for testing
         return cell
     }
-/*
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         // FIXME: change "Cindy" to "Main"
         //let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let storyboard = UIStoryboard(name: "Cindy", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "clubDetailsViewController") as! ClubDetailsViewController
+        let storyboard = UIStoryboard(name: "Varshini", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "ClubViewController") as! ClubViewController
         viewController.club = self.clubs.map { $0[indexPath.row] }
         self.navigationController?.pushViewController(viewController, animated: true)
     }
- */
 }
 
 // Search bar
