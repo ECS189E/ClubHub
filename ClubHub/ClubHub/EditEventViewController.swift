@@ -159,7 +159,7 @@ class EditEventViewController: UIViewController {
                     self.event?.id = (data as! Event).id
                     
                     // Save the clubs new event to its user account
-                    UserApi.saveClub(clubID: self.event?.id){ data, err in
+                    UserApi.saveEvent(eventID: self.event?.id){ data, err in
                         switch(data, err) {
                         case(.some(let data), nil):
                             User.currentUser?.events = data as? [String]

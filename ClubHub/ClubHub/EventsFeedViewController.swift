@@ -28,7 +28,6 @@ class EventsFeedViewController: UIViewController, EditEventDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getUser() //FIXME: move to login
         eventsTableView.delegate = self
         eventsTableView.dataSource = self
         viewInit()
@@ -160,23 +159,6 @@ class EventsFeedViewController: UIViewController, EditEventDelegate {
             }
         }
     }
-    
-    func getUser() {
-        UserApi.getUserData() { data, err in
-            switch(data, err) {
-            case(.some(let data), nil):
-                User.currentUser = data as? User
-                if User.currentUser?.club == nil {
-                    self.navigationItem.rightBarButtonItems = []
-                }
-            case(nil, .some(let err)):
-                print(err)
-            default:
-                print("Error getting user events")
-            }
-        }
-    }
-    
 }
 
 // TableView funtions

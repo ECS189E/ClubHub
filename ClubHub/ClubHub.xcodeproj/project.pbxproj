@@ -12,6 +12,7 @@
 		3767815A21AC76E50016533D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3767815921AC76E50016533D /* GoogleService-Info.plist */; };
 		D0015C9921B6085C007420FB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0015C9821B6085C007420FB /* User.swift */; };
 		D04F403F21B7887D00A3D996 /* ClubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04F403E21B7887D00A3D996 /* ClubViewController.swift */; };
+		D102E75621B78ECF00DD9996 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D102E75521B78ECF00DD9996 /* LoadingViewController.swift */; };
 		D10C916A21B22A0300AD78B9 /* UserApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10C916921B22A0300AD78B9 /* UserApi.swift */; };
 		D10C916C21B4FC7300AD78B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D10C916B21B4FC7300AD78B9 /* Assets.xcassets */; };
 		D136411621AC64F0007A7B22 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D136411521AC64F0007A7B22 /* AppDelegate.swift */; };
@@ -77,6 +78,7 @@
 		970100C9EFECC528E1638691 /* Pods-ClubHub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClubHub.release.xcconfig"; path = "Pods/Target Support Files/Pods-ClubHub/Pods-ClubHub.release.xcconfig"; sourceTree = "<group>"; };
 		D0015C9821B6085C007420FB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D04F403E21B7887D00A3D996 /* ClubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubViewController.swift; sourceTree = "<group>"; };
+		D102E75521B78ECF00DD9996 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		D10C916921B22A0300AD78B9 /* UserApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserApi.swift; sourceTree = "<group>"; };
 		D10C916B21B4FC7300AD78B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D136411221AC64F0007A7B22 /* ClubHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClubHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -197,6 +199,7 @@
 				D1835C8321AC7CAB00A1F3DD /* Varshini.storyboard */,
 				D1B5FD6321B5CE5900117E63 /* CalendarNavigaitonController.swift */,
 				FDF68F5821B53B4900AF95D7 /* InitialViewController.swift */,
+				D102E75521B78ECF00DD9996 /* LoadingViewController.swift */,
 				FDF68F5E21B6199600AF95D7 /* LoggedInViewController.swift */,
 				FDF68F5A21B53BBC00AF95D7 /* LoginViewController.swift */,
 				FDF68F5C21B5493D00AF95D7 /* SignUpViewController.swift */,
@@ -528,6 +531,7 @@
 				FDF68F5F21B6199600AF95D7 /* LoggedInViewController.swift in Sources */,
 				D1835CCB21AC870700A1F3DD /* EventsApi.swift in Sources */,
 				D184194021B0F0BE00373875 /* Club.swift in Sources */,
+				D102E75621B78ECF00DD9996 /* LoadingViewController.swift in Sources */,
 				D1835CCD21AC870700A1F3DD /* EventsFeedViewController.swift in Sources */,
 				373006CA21B6E22F00008F61 /* Message.swift in Sources */,
 				D1835CC721AC870700A1F3DD /* DateTimePopUpViewController.swift in Sources */,
