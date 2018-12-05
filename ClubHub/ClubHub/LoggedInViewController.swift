@@ -20,5 +20,6 @@ class LoggedInViewController: UIViewController{
     @IBAction func logoutButton(_ target: UIButton){
         try! Auth.auth().signOut()
         self.dismiss(animated: false, completion: nil)
+        
     }
 }
