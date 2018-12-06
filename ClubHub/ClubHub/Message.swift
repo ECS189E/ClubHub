@@ -10,18 +10,21 @@ import Foundation
 import UIKit
 
 class Message {
+    enum MessageType {
+        case text
+    }
     enum MessageOwner {
         case sender
         case receiver
     }
     
-    var type: String
+    var type: MessageType
     var content: Any
     var owner: MessageOwner
     var timestamp: Int
     var isRead: Bool
     
-    init(type: String, content: Any, owner: MessageOwner, timestamp: Int, isRead: Bool) {
+    init(type: MessageType, content: Any, owner: MessageOwner, timestamp: Int, isRead: Bool) {
         self.type = type
         self.content = content
         self.owner = owner
