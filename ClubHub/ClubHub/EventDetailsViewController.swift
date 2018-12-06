@@ -25,8 +25,10 @@ class EventDetailsViewController: UIViewController, EditEventDelegate {
     @IBOutlet weak var endTime: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UITextView!
-    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var editButton: UIButton!
+    
+    @IBOutlet weak var scrollViewBottomConstraint: NSLayoutConstraint!
     
     var event: Event?
     var savedEvent: Bool = false
@@ -39,36 +41,36 @@ class EventDetailsViewController: UIViewController, EditEventDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        editButton.isHidden = true
-        editButton.isEnabled = false
-        
-        saveButton.isHidden = false
-        saveButton.isEnabled = true
-        
         // format appearence of dates
         dateFormatter.dateFormat = "EE MMM d, yyyy"
         timeFormatter.dateFormat = "h:mm a"
 
         
+        // if user is a club, disable save button
+        if User.currentUser?.club != nil {
+            saveButton.isEnabled = false
+        // else hide button
+        } else {
+            editButton.alpha = 0
+            editButton.isHidden = true
+            editButton.isEnabled = false
+            scrollViewBottomConstraint.constant = 10
+        }
+        
         // init save button or edit button if event is saved
         if User.currentUser?.events?.contains(event?.id ?? "") ?? false {
             
-            // if user is a club and owns this event
+            // if user is a club and owns this event, enable edit
             if User.currentUser?.club != nil &&
                 ((User.currentUser?.club?.name?.compare(event?.name ?? "")) != nil) {
                 // show edit button
                 editButton.isHidden = false
                 editButton.isEnabled = true
-                // hide save button
-                saveButton.isHidden = true
-                saveButton.isEnabled = false
-
-            // else event is a user saved event
-            } else {
-                // show save button and change it to a filled star
-                saveButton.setImage(UIImage(named: "icons8-star-filled-36"), for: .normal)
-                savedEvent = true
             }
+
+            // show save button and change it to a filled star
+            saveButton.image = UIImage(named: "icons8-star-filled-36")
+            savedEvent = true
         }
         
         loadEvent(event: event)
@@ -83,7 +85,7 @@ class EventDetailsViewController: UIViewController, EditEventDelegate {
             case(.some(let data), nil):
                 let events = data as? [String]
                 User.currentUser?.events = events
-                self.saveButton.setImage(UIImage(named: "icons8-star-filled-36"), for: .normal)
+                self.saveButton.image = UIImage(named: "icons8-star-filled-36")
                 self.savedEvent = true
             default:
                 print("Error saving events")
@@ -97,7 +99,7 @@ class EventDetailsViewController: UIViewController, EditEventDelegate {
                 case(.some(let data), nil):
                     let events = data as? [String]
                     User.currentUser?.events = events
-                    self.saveButton.setImage(UIImage(named: "icons8-star-outline-36"), for: .normal)
+                    self.saveButton.image = UIImage(named: "icons8-star-outline-36")
                     self.savedEvent = false
                 default:
                     print("Error saving events")

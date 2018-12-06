@@ -694,6 +694,7 @@
                         <outlet property="allEventsButton" destination="z6G-ul-3BW" id="xQA-uY-BFv"/>
                         <outlet property="eventsTableView" destination="LME-hX-VAA" id="bc3-F5-MQe"/>
                         <outlet property="myEventButton" destination="ek7-mI-AMv" id="i2t-Kq-dgE"/>
+                        <segue destination="6bk-nu-nWB" kind="show" id="2NU-7z-Led"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RVB-BI-OOu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1351,11 +1352,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NlU-Dp-yT7"/>
                     </view>
-                    <navigationItem key="navigationItem" id="mYs-HE-dMM"/>
+                    <navigationItem key="navigationItem" id="ofc-PQ-pOp">
+                        <barButtonItem key="rightBarButtonItem" image="icons8-star-outline-36" id="n58-ZD-dW5">
+                            <connections>
+                                <action selector="saveButtonPressed:" destination="juQ-Sh-TdH" id="00O-K1-3pp"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="aboutClub" destination="zER-HS-Wvr" id="Ub5-ij-ZdP"/>
                         <outlet property="clubImage" destination="XKW-VB-cxY" id="hH1-wd-izb"/>
                         <outlet property="clubName" destination="wzK-FY-9xB" id="Zjb-aa-tDj"/>
+                        <outlet property="saveButton" destination="n58-ZD-dW5" id="sJs-GU-EAU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ogQ-KD-JbE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1371,21 +1379,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g7j-B1-31K">
-                                <rect key="frame" x="16" y="624" width="27" height="27"/>
+                                <rect key="frame" x="174" y="572" width="27" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="nZz-2E-uZS"/>
+                                </constraints>
                                 <state key="normal" image="icons8-compose-36-white"/>
                                 <connections>
                                     <action selector="editEventTapped:" destination="6bk-nu-nWB" eventType="touchUpInside" id="sME-7j-IyY"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A3K-Bh-4RZ">
-                                <rect key="frame" x="332" y="624" width="27" height="27"/>
-                                <state key="normal" image="icons8-star-outline-36"/>
-                                <connections>
-                                    <action selector="saveButtonPressed:" destination="6bk-nu-nWB" eventType="touchUpInside" id="gAq-Up-4PB"/>
-                                </connections>
-                            </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="3Oi-dJ-l82">
-                                <rect key="frame" x="16" y="36" width="343" height="573"/>
+                                <rect key="frame" x="16" y="80" width="343" height="478"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gwf-ih-alV" userLabel="UploadImageView">
                                         <rect key="frame" x="0.0" y="85" width="343" height="193"/>
@@ -1611,17 +1615,22 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="3zI-oH-pIO" firstAttribute="bottom" secondItem="A3K-Bh-4RZ" secondAttribute="bottom" constant="16" id="GI8-X5-zqE"/>
                             <constraint firstItem="3Oi-dJ-l82" firstAttribute="leading" secondItem="eAx-pg-M8z" secondAttribute="leading" constant="16" id="OSC-rD-X49"/>
                             <constraint firstAttribute="trailing" secondItem="3Oi-dJ-l82" secondAttribute="trailing" constant="16" id="RZ3-bn-zVB"/>
-                            <constraint firstItem="3zI-oH-pIO" firstAttribute="trailing" secondItem="A3K-Bh-4RZ" secondAttribute="trailing" constant="16" id="Ziw-c5-jjg"/>
                             <constraint firstItem="3Oi-dJ-l82" firstAttribute="top" secondItem="3zI-oH-pIO" secondAttribute="top" constant="16" id="aDS-hR-hE5"/>
-                            <constraint firstItem="g7j-B1-31K" firstAttribute="leading" secondItem="3zI-oH-pIO" secondAttribute="leading" constant="16" id="aqT-cb-OSg"/>
-                            <constraint firstItem="3zI-oH-pIO" firstAttribute="bottom" secondItem="g7j-B1-31K" secondAttribute="bottom" constant="16" id="tOC-WU-Hgc"/>
-                            <constraint firstItem="g7j-B1-31K" firstAttribute="top" secondItem="3Oi-dJ-l82" secondAttribute="bottom" constant="15" id="vEf-gS-Nm1"/>
+                            <constraint firstItem="g7j-B1-31K" firstAttribute="centerX" secondItem="eAx-pg-M8z" secondAttribute="centerX" id="mY0-Nr-DJ4"/>
+                            <constraint firstItem="3zI-oH-pIO" firstAttribute="bottom" secondItem="g7j-B1-31K" secondAttribute="bottom" constant="10" id="tOC-WU-Hgc"/>
+                            <constraint firstItem="3zI-oH-pIO" firstAttribute="bottom" secondItem="3Oi-dJ-l82" secondAttribute="bottom" constant="60" id="vEf-gS-Nm1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3zI-oH-pIO"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Event Details" id="jzm-Fq-5rW">
+                        <barButtonItem key="rightBarButtonItem" image="icons8-star-outline-36" id="GKe-uC-81H">
+                            <connections>
+                                <action selector="saveButtonPressed:" destination="6bk-nu-nWB" id="YU2-Uv-SPB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="clubNameLabel" destination="Tbl-Ob-NBb" id="XAf-4G-W1k"/>
                         <outlet property="descriptionLabel" destination="Ku0-CP-ut6" id="V8W-tq-aZB"/>
@@ -1631,7 +1640,8 @@
                         <outlet property="eventImageView" destination="ODv-L8-JNo" id="RiA-kE-mR0"/>
                         <outlet property="eventNameLabel" destination="IIJ-RA-A3p" id="hyJ-XB-NgU"/>
                         <outlet property="locationLabel" destination="Jzs-RJ-QS7" id="Yek-UU-QPk"/>
-                        <outlet property="saveButton" destination="A3K-Bh-4RZ" id="68t-Zi-0a6"/>
+                        <outlet property="saveButton" destination="GKe-uC-81H" id="aOV-ka-PYF"/>
+                        <outlet property="scrollViewBottomConstraint" destination="vEf-gS-Nm1" id="TAH-Ow-kER"/>
                         <outlet property="startDate" destination="4NC-go-x1T" id="iRX-O9-54T"/>
                         <outlet property="startTime" destination="1AQ-Eh-m4m" id="bMJ-Qm-Tnx"/>
                     </connections>
