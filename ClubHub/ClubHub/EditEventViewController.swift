@@ -10,13 +10,14 @@ import UIKit
 
 protocol EditEventDelegate {
     func editEventCompleted(event: Event?)
-    func editEventStarted()
 }
 
 class EditEventViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var scrollViewBottomContraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var imageView: UIImageView!
@@ -36,7 +37,9 @@ class EditEventViewController: UIViewController {
     var popUpButton: UIButton? = nil // text field that initiated a pop up view
     let dateFormatter = DateFormatter()
     let timeFormatter = DateFormatter()
-    
+    var hadImage = false
+    var imageWasDeleted = false
+    var imageWasUpdated = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +62,9 @@ class EditEventViewController: UIViewController {
             print("Error updating event: user is not a club")
             return
         }
+        
+        // Hide activitiy indicator
+        activityIndicator.alpha = 0
         
         // format text views
         locationTextView.isEditable = true
@@ -109,10 +115,12 @@ class EditEventViewController: UIViewController {
             uploadImageButton.setTitle("", for: .normal)
             imageView.isHidden = false
             deleteImageButton.isHidden = false
+            hadImage = true
         } else {
             uploadImageButton.setTitle("Upload Image", for: .normal)
             imageView.isHidden = true
             deleteImageButton.isHidden = true
+            hadImage = false
         }
     }
     
@@ -138,10 +146,14 @@ class EditEventViewController: UIViewController {
         
         // if updating an existing event
         if let _ = event?.id {
-            EventsApi.updateEvent(event: event) { data, err in
+            EventsApi.updateEvent(event: event, imageWasDeleted: imageWasDeleted, imageWasUpdated: imageWasUpdated) { data, err in
                 switch(data, err) {
                 case(.some(_), nil):
                     self.delegate?.editEventCompleted(event: self.event)
+                    
+                    // stop activity indicator
+                    self.activityIndicator.alpha = 0
+                    self.activityIndicator.stopAnimating()
                 case(nil, .some(let err)):
                     print(err)
                 default:
@@ -162,6 +174,10 @@ class EditEventViewController: UIViewController {
                         case(.some(let data), nil):
                             User.currentUser?.events = data as? [String]
                             self.delegate?.editEventCompleted(event: self.event)
+                            
+                            // stop activity indicator
+                            self.activityIndicator.alpha = 0
+                            self.activityIndicator.stopAnimating()
                         case(nil, .some(let err)):
                             print(err)
                             self.delegate?.editEventCompleted(event: nil)
@@ -177,7 +193,9 @@ class EditEventViewController: UIViewController {
                 }
             }
         }
-        self.delegate?.editEventStarted()
+        // start activity indicator
+        activityIndicator.alpha = 1
+        activityIndicator.startAnimating()
     }
     
     @IBAction func deleteTapped(_ sender: Any) {
@@ -191,6 +209,10 @@ class EditEventViewController: UIViewController {
                     case(.some(let data), nil):
                         User.currentUser?.events = data as? [String]
                         self.delegate?.editEventCompleted(event: nil)
+                        
+                        // stop activity indicator
+                        self.activityIndicator.alpha = 0
+                        self.activityIndicator.stopAnimating()
                     case(nil, .some(let err)):
                         print(err)
                         self.delegate?.editEventCompleted(event: nil)
@@ -205,7 +227,9 @@ class EditEventViewController: UIViewController {
                 print("Error: could not add event")
             }
         }
-        self.delegate?.editEventStarted()
+        // start activity indicator
+        activityIndicator.alpha = 1
+        activityIndicator.startAnimating()
     }
     
     @IBAction func uploadImageTapped(_ sender: Any) {
@@ -221,6 +245,13 @@ class EditEventViewController: UIViewController {
         uploadImageButton.setTitle("Upload Image", for: .normal)
         imageView.isHidden = true
         deleteImageButton.isHidden = true
+        
+        imageWasUpdated = false
+        
+        // If an event had an image, mark image for delete
+        if hadImage {
+            imageWasDeleted = true
+        }
         
     }
     @IBAction func startDateTapped(_ sender: Any) {
@@ -359,7 +390,8 @@ extension EditEventViewController : UIImagePickerControllerDelegate, UINavigatio
         uploadImageButton.setTitle("", for: .normal)
         event?.image = imageView.image
         deleteImageButton.isHidden = false
-        
+        imageWasDeleted = false
+        imageWasUpdated = true
         self.dismiss(animated: true)
     }
     

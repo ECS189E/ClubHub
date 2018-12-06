@@ -63,7 +63,8 @@ struct EventsApi {
         }
     }
 
-    static func updateEvent(event: Event?, completion: @escaping ApiCompletion) {
+    static func updateEvent(event: Event?, imageWasDeleted: Bool,
+                            imageWasUpdated: Bool, completion: @escaping ApiCompletion) {
         let db = Firestore.firestore()
         let settings = db.settings
         settings.areTimestampsInSnapshotsEnabled = true
@@ -77,40 +78,42 @@ struct EventsApi {
         let ref = db.collection("events").document(id)
         let batch = db.batch()
         
-        // Add changes to the batch
-        if let name = event?.name {
+        
         batch.updateData([
-            "name": name
+            "name": event?.name ?? NSNull()
             ], forDocument: ref)
-        }
-        if let startTime = event?.startTime {
+        
         batch.updateData([
-            "startTime": startTime
+            "startTime": event?.startTime ?? NSNull()
             ], forDocument: ref)
-        }
-        if let endTime = event?.endTime {
+
+        
         batch.updateData([
-            "endTime": endTime
+            "endTime": event?.endTime ?? NSNull()
             ], forDocument: ref)
-        }
-        if let location = event?.location {
+
+
         batch.updateData([
-            "location": location
+            "location": event?.location ?? NSNull()
             ], forDocument: ref)
-        }
-        if let club = event?.club {
+
+
         batch.updateData([
-            "club": club
+            "club": event?.club ?? NSNull()
             ], forDocument: ref)
-        }
-        if let details = event?.details {
+
+
         batch.updateData([
-            "details": details
+            "details": event?.details ?? NSNull()
             ], forDocument: ref)
-        }
+
         if (event?.image) != nil {
             batch.updateData([
                 "image": true
+                ], forDocument: ref)
+        } else {
+            batch.updateData([
+                "image": false
                 ], forDocument: ref)
         }
         
@@ -119,7 +122,7 @@ struct EventsApi {
             if let err = err {
                 completion(nil, "Error updating event: \(err)")
             } else {
-                // Store image
+                // Update image
                 if let image = event?.image{
                     let ref = Storage.storage().reference().child("eventImages").child(id)
                     if let data = image.jpeg(.lowest) {
@@ -132,7 +135,18 @@ struct EventsApi {
                             }
                         }
                     }
-                } else {
+                // If event had an image, but it was deleted
+                } else if imageWasDeleted {
+                    let imageRef = Storage.storage().reference().child("eventImages").child(id)
+                    imageRef.delete() { err in
+                        if let err = err {
+                            completion(nil, "Error deleting event image: \(err)")
+                        } else {
+                            completion(event, nil)
+                        }
+                    }
+                // No image to delete or update
+                }else {
                     completion(event, nil)
                 }
             }

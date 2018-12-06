@@ -40,6 +40,7 @@ class AddClubViewController: UIViewController {
     }
     
     func viewInit() {
+        // Hide activitiy indicator
         activityIndicator.alpha = 0
 
         // format text views

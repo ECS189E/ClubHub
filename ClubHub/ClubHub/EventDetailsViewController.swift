@@ -8,9 +8,11 @@
 
 import UIKit
 
-/*
- TODO: Clean up UI, add favorite/saving?
- */
+protocol EventDetailsDelegate {
+    func eventEditedFromDetails()
+}
+
+
 class EventDetailsViewController: UIViewController, EditEventDelegate {
     
     @IBOutlet weak var eventImageView: UIImageView!
@@ -29,6 +31,11 @@ class EventDetailsViewController: UIViewController, EditEventDelegate {
     var event: Event?
     var savedEvent: Bool = false
     
+    let dateFormatter = DateFormatter()
+    let timeFormatter = DateFormatter()
+    
+    var delegate: EventDetailsDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,6 +44,11 @@ class EventDetailsViewController: UIViewController, EditEventDelegate {
         
         saveButton.isHidden = false
         saveButton.isEnabled = true
+        
+        // format appearence of dates
+        dateFormatter.dateFormat = "EE MMM d, yyyy"
+        timeFormatter.dateFormat = "h:mm a"
+
         
         // init save button or edit button if event is saved
         if User.currentUser?.events?.contains(event?.id ?? "") ?? false {
@@ -104,13 +116,17 @@ class EventDetailsViewController: UIViewController, EditEventDelegate {
     }
     
     func loadEvent(event: Event?) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EE MMM dd, yyyy hh:mm a"
-        
         eventImageView.image = event?.image ?? UIImage(named: "testImage")
         eventNameLabel.text = event?.name ?? "Event Name"
         clubNameLabel.text = event?.club ?? "Club Name"
-        //dateTimeLabel.text = event?.startTime.map{dateFormatter.string(from: $0)} ?? "Date and Time"
+        startDate.text =
+            dateFormatter.string(from: event?.startTime ?? Date())
+        endDate.text =
+            dateFormatter.string(from: event?.endTime ?? Date())
+        startTime.text =
+            timeFormatter.string(from: event?.startTime ?? Date())
+        endTime.text =
+            timeFormatter.string(from: event?.endTime ?? Date())
         locationLabel.text = event?.location ?? "Location"
         descriptionLabel.text = event?.details ??  "Description"
     }
@@ -120,16 +136,17 @@ class EventDetailsViewController: UIViewController, EditEventDelegate {
     // Returns updated event if event updated successfully
     // Returns nil if deleted or an error encountered
     func editEventCompleted(event: Event?) {
+        // close child
+        self.navigationController?.popViewController(animated: true)
+        
         if let event = event {
             loadEvent(event: event)
         } else {
+            // event deleted, so resign
             self.navigationController?.popViewController(animated: true)
         }
-    }
-    
-    // EditEventDelegate func
-    // Once done is tapped in edit event, but backend not updated yet
-    func editEventStarted() {
-        self.navigationController?.popViewController(animated: true)
+        
+        // notify delegate that an event was updated
+        delegate?.eventEditedFromDetails()
     }
 }

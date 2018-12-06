@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 
 class Club {
+    static var allClubs: [Club]?
+    
     var id: String? // id to locate event database
     var name: String?
     var details: String?

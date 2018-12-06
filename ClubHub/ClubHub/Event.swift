@@ -8,6 +8,8 @@ import UIKit
 import Foundation
 
 class Event {
+    static var allEvents: [Event]?
+    
     var id: String? // id to locate event database
     var name: String?
     var startTime: Date?

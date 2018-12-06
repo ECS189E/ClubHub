@@ -15,7 +15,6 @@ class ClubListViewController: UIViewController {
     @IBOutlet weak var myClubButton: UIButton!
     
     var clubs: [Club]?  // Clubs curretly loaded into table
-    var allClubs: [Club]? = [] // All unfilterd clubs
     var filteredClubs = [Club]() // Clubs filtered by search bar
     var userClubsDisplayed: Bool = false // True if "My Clubs" tapped
 
@@ -27,6 +26,10 @@ class ClubListViewController: UIViewController {
         clubsTableView.dataSource = self
         getClubs()
         viewInit()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        clubs = Club.allClubs
     }
     
     func viewInit() {
@@ -53,7 +56,7 @@ class ClubListViewController: UIViewController {
         searchController.isActive = false // cancel serach
         allClubsButton.alpha = 1.0
         myClubButton.alpha = 0.5
-        clubs = allClubs
+        clubs = Club.allClubs
         userClubsDisplayed = false
         clubsTableView.reloadData()
     }
@@ -64,7 +67,7 @@ class ClubListViewController: UIViewController {
             searchController.isActive = false // cancel search
             allClubsButton.alpha = 0.5
             myClubButton.alpha = 1.0
-            clubs = allClubs?.filter{ club in
+            clubs = Club.allClubs?.filter{ club in
                 userClubs.contains(club.id ?? "") }
             userClubsDisplayed = true
             clubsTableView.reloadData()
@@ -74,7 +77,7 @@ class ClubListViewController: UIViewController {
     // Get clubs loadLimit number of clubs from database starting from clubLoadNext
     func getClubs() {
         // reset club list
-        self.allClubs = []
+        Club.allClubs = []
         
         ClubsApi.getClubsIDs(start: nil, limit: nil) { data, error in
             switch(data, error){
@@ -90,19 +93,19 @@ class ClubListViewController: UIViewController {
                                 print(error)
                             case(.some(let data), nil):
                                 let club = data as! Club
-                                self.allClubs?.append(club)
+                                Club.allClubs?.append(club)
                                 
                                 // sort clubs by name
-                                self.allClubs
-                                    = self.allClubs?.sorted(by: { $0.name ?? "" < $1.name ?? ""})
+                                Club.allClubs
+                                    = Club.allClubs?.sorted(by: { $0.name ?? "" < $1.name ?? ""})
                                 
                                 // Set clubs to display
-                                self.clubs = self.allClubs
+                                self.clubs = Club.allClubs
                                 
                                 // Filter if currenlty displayin user clubs
                                 if self.userClubsDisplayed,
                                     let userClubs = User.currentUser?.clubs {
-                                    self.clubs = self.allClubs?.filter{ club in
+                                    self.clubs = Club.allClubs?.filter{ club in
                                         userClubs.contains(club.id ?? "") }
                                 }
                                 

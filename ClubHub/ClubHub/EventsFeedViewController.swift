@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class EventsFeedViewController: UIViewController, EditEventDelegate {
+class EventsFeedViewController: UIViewController, EditEventDelegate, EventDetailsDelegate {
     
     @IBOutlet weak var eventsTableView: UITableView!
     @IBOutlet weak var allEventsButton: UIButton!
@@ -17,7 +17,6 @@ class EventsFeedViewController: UIViewController, EditEventDelegate {
     @IBOutlet weak var addEventButton: UIBarButtonItem!
     
     var events: [Event]?  // Events curretly loaded into table
-    var allEvents: [Event]? = [] // All unfilterd events
     var filteredEvents = [Event]() // Events filtered by search bar
     var userEventsDisplayed: Bool = false // True if "My Events" tapped
     
@@ -32,6 +31,11 @@ class EventsFeedViewController: UIViewController, EditEventDelegate {
         eventsTableView.dataSource = self
         viewInit()
         getEvents()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // reset the events
+        events = Event.allEvents
     }
     
     func viewInit() {
@@ -65,7 +69,7 @@ class EventsFeedViewController: UIViewController, EditEventDelegate {
         searchController.isActive = false // cancel serach
         allEventsButton.alpha = 1.0
         myEventButton.alpha = 0.5
-        events = allEvents
+        events = Event.allEvents
         userEventsDisplayed = false
         eventsTableView.reloadData()
     }
@@ -76,7 +80,7 @@ class EventsFeedViewController: UIViewController, EditEventDelegate {
             searchController.isActive = false // cancel search
             allEventsButton.alpha = 0.5
             myEventButton.alpha = 1.0
-            events = allEvents?.filter{ event in
+            events = Event.allEvents?.filter{ event in
                 userEvents.contains(event.id ?? "") }
             userEventsDisplayed = true
             eventsTableView.reloadData()
@@ -92,20 +96,25 @@ class EventsFeedViewController: UIViewController, EditEventDelegate {
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 
-    // EditEventDelegateFunction  (New event added)
+    // EditEventDelegateFunction
+    // Event added, reload data
     func editEventCompleted(event: Event?) {
+        // close child
+        self.navigationController?.popViewController(animated: true)
+        // Update events
         getEvents()
     }
     
-    func editEventStarted() {
-        self.navigationController?.popViewController(animated: true)
-
+    // EventDetailsDelegate function
+    // Event was edited from the details view
+    func eventEditedFromDetails() {
+        getEvents()
     }
     
     // Get events loadLimit number of events from database starting from eventLoadDate
     func getEvents() {
         // reset events list
-        self.allEvents = []
+        Event.allEvents = []
         
         EventsApi.getEventsIDs(startDate: nil, limit: nil) { data, error in
             switch(data, error){
@@ -121,22 +130,22 @@ class EventsFeedViewController: UIViewController, EditEventDelegate {
                                 print(error)
                             case(.some(let data), nil):
                                 let event = data as! Event
-                                self.allEvents?.append(event)
+                                Event.allEvents?.append(event)
                                 
                                 // sort events by start time
-                                self.allEvents
-                                    = self.allEvents?.sorted(by: { $0.startTime?.compare($1.startTime ?? Date()) == .orderedAscending })
+                                Event.allEvents
+                                    = Event.allEvents?.sorted(by: { $0.startTime?.compare($1.startTime ?? Date()) == .orderedAscending })
                                 // remove events that have already passed
-                                self.allEvents = self.allEvents?.filter {
+                                Event.allEvents = Event.allEvents?.filter {
                                     $0.startTime ?? Date() >= Date() }
                                 
                                 // Set events to display
-                                self.events = self.allEvents
+                                self.events = Event.allEvents
                                 
                                 // Filter if currenlty displayin user events
                                 if self.userEventsDisplayed,
                                     let userEvents = User.currentUser?.events {
-                                    self.events = self.allEvents?.filter{ event in
+                                    self.events = Event.allEvents?.filter{ event in
                                         userEvents.contains(event.id ?? "") }
                                 }
                                 
@@ -196,6 +205,7 @@ extension EventsFeedViewController: UITableViewDelegate, UITableViewDataSource, 
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "eventDetailsViewController") as! EventDetailsViewController
         viewController.event = self.events.map { $0[indexPath.row] }
+        viewController.delegate = self
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
