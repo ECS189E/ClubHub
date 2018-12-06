@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Edit Event View Controller-->
+        <!--Edit Event-->
         <scene sceneID="ejf-vS-tiQ">
             <objects>
                 <viewController storyboardIdentifier="editEventViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="q0a-Fr-ZyN" customClass="EditEventViewController" customModule="ClubHub" customModuleProvider="target" sceneMemberID="viewController">
@@ -263,7 +263,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cMH-7s-JKs"/>
                     </view>
-                    <navigationItem key="navigationItem" id="7IB-Dj-Ts3">
+                    <navigationItem key="navigationItem" title="Edit Event" id="7IB-Dj-Ts3">
                         <rightBarButtonItems>
                             <barButtonItem title="Done" id="S3w-Xb-aRx">
                                 <connections>
@@ -388,6 +388,7 @@
                                     </datePicker>
                                     <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oCt-d2-WuY">
                                         <rect key="frame" x="0.0" y="216" width="250" height="44"/>
+                                        <color key="tintColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <items>
                                             <navigationItem id="vm3-Up-XAj">
                                                 <barButtonItem key="leftBarButtonItem" title="Cancel" id="aPp-sx-4sj" userLabel="Cancel">

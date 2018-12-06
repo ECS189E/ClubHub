@@ -31,9 +31,6 @@ class EventsFeedViewController: UIViewController, EditEventDelegate {
         eventsTableView.delegate = self
         eventsTableView.dataSource = self
         viewInit()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
         getEvents()
     }
     

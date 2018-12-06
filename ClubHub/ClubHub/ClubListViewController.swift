@@ -25,11 +25,8 @@ class ClubListViewController: UIViewController {
         super.viewDidLoad()
         clubsTableView.delegate = self
         clubsTableView.dataSource = self
-        viewInit()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
         getClubs()
+        viewInit()
     }
     
     func viewInit() {
