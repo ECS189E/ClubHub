@@ -25,7 +25,6 @@ class SignUpViewController: UIViewController {
     }
    
     @IBAction func contButton(_ sender: Any) {
-        print("Hello there");
         handleSignUp()
     }
     
@@ -37,15 +36,10 @@ class SignUpViewController: UIViewController {
         
         Auth.auth().createUser(withEmail: em, password: pass){ user, error in
             if error == nil && user != nil{
-                print("user created");
                 //to change display name
                 let displayChangeReq = Auth.auth().currentUser?.createProfileChangeRequest()
                 displayChangeReq?.displayName = us
-                displayChangeReq?.commitChanges { error in
-                    if error == nil {
-                        print("user display name is changed")
-                    }
-                }
+                displayChangeReq?.commitChanges { error in }
                 self.dismiss(animated: true, completion:nil)
             }
             else {

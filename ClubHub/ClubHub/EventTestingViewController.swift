@@ -31,22 +31,6 @@ class EventTestingViewController: UIViewController, EditEventDelegate, GIDSignIn
         
         getEvent(id: updateId)
         userEvents = User.currentUser?.events
-        
-        /*
-        UserApi.initUserData() { data, err in
-            switch(data, err) {
-            case(.some(_), nil):
-                print("User init successful")
-            case(nil, .some(let err)):
-                print(err)
-            default:
-                print("Error init user data")
-            }
-        }
-        */
-        
-        let user = Auth.auth().currentUser?.uid
-        print("------------------- User:  \(user ?? "") -------------------")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,8 +41,6 @@ class EventTestingViewController: UIViewController, EditEventDelegate, GIDSignIn
     @IBAction func deleteEventTapped(_ sender: Any) {
         EventsApi.deleteEvent(event: delEvent) { data, err in
             switch(data, err) {
-            case(.some(_), nil):
-                print("Event \(self.delEvent?.id ?? "") deleted")
             case(nil, .some(let err)):
                 print(err)
             default:
@@ -70,8 +52,6 @@ class EventTestingViewController: UIViewController, EditEventDelegate, GIDSignIn
     @IBAction func saveEventTapped(_ sender: Any) {
         UserApi.saveEvent(eventID: saveUserEvent) { data, err in
             switch(data, err) {
-            case(.some(_), nil):
-                print("Event Saved")
             case(nil, .some(let err)):
                 print(err)
             default:

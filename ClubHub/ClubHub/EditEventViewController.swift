@@ -141,7 +141,6 @@ class EditEventViewController: UIViewController {
             EventsApi.updateEvent(event: event) { data, err in
                 switch(data, err) {
                 case(.some(_), nil):
-                    print("Event updated")
                     self.delegate?.editEventCompleted(event: self.event)
                 case(nil, .some(let err)):
                     print(err)
@@ -155,7 +154,6 @@ class EditEventViewController: UIViewController {
             EventsApi.addEvent(event: event) {data, err in
                 switch(data, err) {
                 case(.some(let data), nil):
-                    print("Event Added")
                     self.event?.id = (data as! Event).id
                     
                     // Save the clubs new event to its user account
@@ -186,7 +184,6 @@ class EditEventViewController: UIViewController {
         EventsApi.deleteEvent(event: event) {data, err in
             switch(data, err) {
             case(.some(_), nil):
-                print("Event Deleted")
                 
                 // Delete the clubs new event from its user account
                 UserApi.deleteSavedClub(clubID: self.event?.id){ data, err in

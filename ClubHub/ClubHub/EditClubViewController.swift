@@ -98,7 +98,6 @@ class EditClubViewController: UIViewController {
             ClubsApi.updateClub(club: club) { data, err in
                 switch(data, err) {
                 case(.some(_), nil):
-                    print("Club updated")
                     self.delegate?.editClubCompleted()
                 case(nil, .some(let err)):
                     print(err)
