@@ -9,10 +9,10 @@
 import UIKit
 
 /*
-    TODO: Clean up UI, add favorite/saving, edit feature
+ TODO: Clean up UI, add favorite/saving?
  */
 class EventDetailsViewController: UIViewController, EditEventDelegate {
-
+    
     @IBOutlet weak var eventImageView: UIImageView!
     @IBOutlet weak var eventNameLabel: UILabel!
     @IBOutlet weak var clubNameLabel: UILabel!
@@ -24,17 +24,8 @@ class EventDetailsViewController: UIViewController, EditEventDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EE MMM dd, yyyy hh:mm a"
-
-        event?.printEvent()
-        eventImageView.image = event?.image ?? UIImage(named: "testImage")
-        eventNameLabel.text = event?.name ?? "Event Name"
-        clubNameLabel.text = event?.club ?? "Club Name"
-        dateTimeLabel.text = event?.startTime.map{dateFormatter.string(from: $0)} ?? "Date and Time"
-        locationLabel.text = event?.location ?? "Location"
-        descriptionLabel.text = event?.details ??  "Description"
+        
+        loadEvent(event: event)
     }
     
     @IBAction func editEventTapped(_ sender: Any) {
@@ -47,17 +38,33 @@ class EventDetailsViewController: UIViewController, EditEventDelegate {
         
     }
     
+    func loadEvent(event: Event?) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EE MMM dd, yyyy hh:mm a"
+        
+        eventImageView.image = event?.image ?? UIImage(named: "testImage")
+        eventNameLabel.text = event?.name ?? "Event Name"
+        clubNameLabel.text = event?.club ?? "Club Name"
+        dateTimeLabel.text = event?.startTime.map{dateFormatter.string(from: $0)} ?? "Date and Time"
+        locationLabel.text = event?.location ?? "Location"
+        descriptionLabel.text = event?.details ??  "Description"
+    }
+    
     // EditEventDelegate func
     // Once the backend finished updating event
     // Returns updated event if event updated successfully
     // Returns nil if deleted or an error encountered
     func editEventCompleted(event: Event?) {
-        // Cindy finish me!
+        if let event = event {
+            loadEvent(event: event)
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     // EditEventDelegate func
     // Once done is tapped in edit event, but backend not updated yet
     func editEventStarted() {
-        // Cindy finish me!
+        self.navigationController?.popViewController(animated: true)
     }
 }
