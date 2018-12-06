@@ -15,6 +15,8 @@
 		373006D421B7C58300008F61 /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373006D321B7C58300008F61 /* InboxViewController.swift */; };
 		373006D621B7CDA400008F61 /* ConversationPreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373006D521B7CDA400008F61 /* ConversationPreviewCell.swift */; };
 		3767815A21AC76E50016533D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3767815921AC76E50016533D /* GoogleService-Info.plist */; };
+		37BDA80B21B8C1AE0099C76F /* MessageApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BDA80A21B8C1AE0099C76F /* MessageApi.swift */; };
+		37BDA80D21B8C2700099C76F /* ConversationApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BDA80C21B8C2700099C76F /* ConversationApi.swift */; };
 		D0015C9921B6085C007420FB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0015C9821B6085C007420FB /* User.swift */; };
 		D04F403F21B7887D00A3D996 /* ClubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04F403E21B7887D00A3D996 /* ClubViewController.swift */; };
 		D102E75621B78ECF00DD9996 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D102E75521B78ECF00DD9996 /* LoadingViewController.swift */; };
@@ -84,6 +86,8 @@
 		373006D321B7C58300008F61 /* InboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewController.swift; sourceTree = "<group>"; };
 		373006D521B7CDA400008F61 /* ConversationPreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationPreviewCell.swift; sourceTree = "<group>"; };
 		3767815921AC76E50016533D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		37BDA80A21B8C1AE0099C76F /* MessageApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageApi.swift; sourceTree = "<group>"; };
+		37BDA80C21B8C2700099C76F /* ConversationApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationApi.swift; sourceTree = "<group>"; };
 		6108494735D13AA2F78DF325 /* Pods_ClubHubUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClubHubUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84B61FE294D854F305958EF9 /* Pods-ClubHub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClubHub.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ClubHub/Pods-ClubHub.debug.xcconfig"; sourceTree = "<group>"; };
 		970100C9EFECC528E1638691 /* Pods-ClubHub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClubHub.release.xcconfig"; path = "Pods/Target Support Files/Pods-ClubHub/Pods-ClubHub.release.xcconfig"; sourceTree = "<group>"; };
@@ -234,7 +238,9 @@
 				D10C916921B22A0300AD78B9 /* UserApi.swift */,
 				D0015C9821B6085C007420FB /* User.swift */,
 				373006C921B6E22F00008F61 /* Message.swift */,
+				37BDA80A21B8C1AE0099C76F /* MessageApi.swift */,
 				373006CB21B7521900008F61 /* Conversation.swift */,
+				37BDA80C21B8C2700099C76F /* ConversationApi.swift */,
 				373006CD21B7C0D800008F61 /* ConversationViewController.swift */,
 				373006D321B7C58300008F61 /* InboxViewController.swift */,
 				373006CF21B7C34500008F61 /* SenderCell.swift */,
@@ -558,8 +564,10 @@
 				D1835CCD21AC870700A1F3DD /* EventsFeedViewController.swift in Sources */,
 				373006CA21B6E22F00008F61 /* Message.swift in Sources */,
 				D1835CC721AC870700A1F3DD /* DateTimePopUpViewController.swift in Sources */,
+				37BDA80B21B8C1AE0099C76F /* MessageApi.swift in Sources */,
 				D1835CC821AC870700A1F3DD /* EventTestingViewController.swift in Sources */,
 				FDF68F5921B53B4900AF95D7 /* InitialViewController.swift in Sources */,
+				37BDA80D21B8C2700099C76F /* ConversationApi.swift in Sources */,
 				D136411E21AC64F0007A7B22 /* ClubHub.xcdatamodeld in Sources */,
 				D184194221B0F24500373875 /* ClubsApi.swift in Sources */,
 				D0015C9921B6085C007420FB /* User.swift in Sources */,

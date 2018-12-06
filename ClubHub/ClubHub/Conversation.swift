@@ -6,7 +6,6 @@
 //  Copyright © 2018 Lindsey Gray. All rights reserved.
 //
 
-import Firebase
 import Foundation
 import UIKit
 
