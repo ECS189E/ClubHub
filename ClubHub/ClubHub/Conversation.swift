@@ -10,11 +10,11 @@ import Foundation
 import UIKit
 
 class Conversation {
-    var user: User
+    var profile: Profile
     var message: Message
     
-    init(user: User, message: Message) {
-        self.user = user
+    init(profile: Profile, message: Message) {
+        self.profile = profile
         self.message = message
     }
 }

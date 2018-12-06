@@ -14,14 +14,17 @@ class Profile {
     
     let name: String?
     let email: String?
+    let id: String?
     
     init() {
         self.name = nil
         self.email = nil
+        self.id = nil
     }
     
-    init(name: String?, email: String?) {
+    init(name: String?, email: String?, id: String?) {
         self.name = name
         self.email = email
+        self.id = id
     }
 }
