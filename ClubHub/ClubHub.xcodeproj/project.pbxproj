@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		370F233321B90B5E0089FD7E /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370F233221B90B5E0089FD7E /* Profile.swift */; };
+		370F233521B90C390089FD7E /* ProfileApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370F233421B90C390089FD7E /* ProfileApi.swift */; };
 		373006CA21B6E22F00008F61 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373006C921B6E22F00008F61 /* Message.swift */; };
 		373006CC21B7521900008F61 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373006CB21B7521900008F61 /* Conversation.swift */; };
 		373006CE21B7C0D800008F61 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373006CD21B7C0D800008F61 /* ConversationViewController.swift */; };
@@ -77,6 +79,8 @@
 /* Begin PBXFileReference section */
 		2470BC19246848A351389907 /* Pods_ClubHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClubHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		307080BD5733675116179A47 /* Pods_ClubHubTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClubHubTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		370F233221B90B5E0089FD7E /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		370F233421B90C390089FD7E /* ProfileApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileApi.swift; sourceTree = "<group>"; };
 		373006C921B6E22F00008F61 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		373006CB21B7521900008F61 /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		373006CD21B7C0D800008F61 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
@@ -234,6 +238,8 @@
 				D1835CC521AC870700A1F3DD /* EventsFeedViewController.swift */,
 				D10C916921B22A0300AD78B9 /* UserApi.swift */,
 				D0015C9821B6085C007420FB /* User.swift */,
+				370F233221B90B5E0089FD7E /* Profile.swift */,
+				370F233421B90C390089FD7E /* ProfileApi.swift */,
 				373006C921B6E22F00008F61 /* Message.swift */,
 				37BDA80A21B8C1AE0099C76F /* MessageApi.swift */,
 				373006CB21B7521900008F61 /* Conversation.swift */,
@@ -562,6 +568,7 @@
 				D1835CCD21AC870700A1F3DD /* EventsFeedViewController.swift in Sources */,
 				373006CA21B6E22F00008F61 /* Message.swift in Sources */,
 				D1835CC721AC870700A1F3DD /* DateTimePopUpViewController.swift in Sources */,
+				370F233521B90C390089FD7E /* ProfileApi.swift in Sources */,
 				37BDA80B21B8C1AE0099C76F /* MessageApi.swift in Sources */,
 				37BDA80D21B8C2700099C76F /* ConversationApi.swift in Sources */,
 				D136411E21AC64F0007A7B22 /* ClubHub.xcdatamodeld in Sources */,
@@ -570,6 +577,7 @@
 				D184193C21AF40AF00373875 /* ViewController+keyboard.swift in Sources */,
 				D136411621AC64F0007A7B22 /* AppDelegate.swift in Sources */,
 				373006D021B7C34500008F61 /* SenderCell.swift in Sources */,
+				370F233321B90B5E0089FD7E /* Profile.swift in Sources */,
 				D1B5FD6021B5BB3800117E63 /* EditClubViewController.swift in Sources */,
 				D1835CCA21AC870700A1F3DD /* EventCell.swift in Sources */,
 			);

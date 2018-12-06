@@ -144,12 +144,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 print(error)
                 return
             }
-            // Get user data from firebas database
+            // Get user data from firebase database
             UserApi.getUserData() { data, err in
                 switch(data, err) {
                 // User data in database, existing account
                 case(.some(let data), nil):
-                    User.currentUser = data as? User
+                    let user = data as? User
+                    User.currentUser = user
+                    Profile.currentUser = user
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let viewController = storyboard.instantiateViewController(withIdentifier: "tabBarController")
                     self.window?.rootViewController?.present(viewController,
@@ -158,6 +160,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 // No user data in database, new account
                 case(nil, .some(_)):
                     User.currentUser = nil
+                    Profile.currentUser = nil
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let viewController = storyboard.instantiateViewController(withIdentifier: "signupNavigationController")
                     self.window?.rootViewController?.present(viewController,

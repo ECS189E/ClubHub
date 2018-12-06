@@ -59,6 +59,17 @@ class ChooseAccountViewController: UIViewController {
                 print("Error initializing user data")
             }
         }
+        
+        ProfileApi.initProfileData() { data, err in
+            switch(data, err) {
+            case(.some(let data), nil):
+                Profile.currentUser = data as? User
+            case(nil, .some(_)):
+                print("Error initializing profile data")
+            default:
+                print("Error initializing profile data")
+            }
+        }
     }
     
 }
