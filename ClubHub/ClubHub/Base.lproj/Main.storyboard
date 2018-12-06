@@ -205,7 +205,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="h6n-JW-zoV" kind="show" id="Hd5-8z-pFC"/>
+                                    <action selector="editClubPageTapped:" destination="qr7-Vc-WKG" eventType="touchUpInside" id="RMD-ja-vBj"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -277,7 +277,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="computer-workers-group-128" translatesAutoresizingMaskIntoConstraints="NO" id="s7c-av-rHr">
-                                <rect key="frame" x="162" y="554.5" width="51" height="51"/>
+                                <rect key="frame" x="155.5" y="541.5" width="64" height="64"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in with Google:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6c-nu-R2L">
                                 <rect key="frame" x="113" y="253" width="149.5" height="20.5"/>
@@ -684,11 +684,11 @@
             <objects>
                 <viewController storyboardIdentifier="editClubViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="h6n-JW-zoV" customClass="EditClubViewController" customModule="ClubHub" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="P61-Ox-l3l">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="BJZ-kM-K9P">
-                                <rect key="frame" x="16" y="16" width="343" height="522"/>
+                                <rect key="frame" x="16" y="36" width="343" height="615"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Bs-TQ-dKL" userLabel="UploadImageView">
                                         <rect key="frame" x="0.0" y="85" width="343" height="228"/>

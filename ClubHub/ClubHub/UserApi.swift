@@ -31,6 +31,14 @@ struct UserApi {
             userClubs = [club]
         }
         
+        // Add user profile credentials
+        let values = ["name": Auth.auth().currentUser?.displayName, "email": Auth.auth().currentUser?.email]
+        Database.database().reference().child("users").child(userID).child("credentials").updateChildValues(values as [AnyHashable : Any], withCompletionBlock: { (err, _) in
+            if err == nil {
+                return
+            }
+        })
+        
         // Add a new document with a generated ID
         db.collection("users").document(userID).setData([
             "events": [],
