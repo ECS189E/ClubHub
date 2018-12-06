@@ -59,7 +59,8 @@ struct ClubsApi {
         }
     }
     
-    static func updateClub(club: Club?, completion: @escaping ApiCompletion) {
+    static func updateClub(club: Club?, imageWasDeleted: Bool,
+                           imageWasUpdated: Bool, completion: @escaping ApiCompletion) {
         let db = Firestore.firestore()
         let settings = db.settings
         settings.areTimestampsInSnapshotsEnabled = true
@@ -74,19 +75,21 @@ struct ClubsApi {
         let batch = db.batch()
         
         // Add changes to the batch
-        if let name = club?.name {
-            batch.updateData([
-                "name": name
-                ], forDocument: ref)
-        }
-        if let details = club?.details {
-            batch.updateData([
-                "details": details
-                ], forDocument: ref)
-        }
+        batch.updateData([
+            "name": club?.name ?? NSNull()
+            ], forDocument: ref)
+        
+        batch.updateData([
+            "details": club?.details ?? NSNull()
+            ], forDocument: ref)
+
         if (club?.image) != nil {
             batch.updateData([
                 "image": true
+                ], forDocument: ref)
+        } else {
+            batch.updateData([
+                "image": false
                 ], forDocument: ref)
         }
         
@@ -95,8 +98,8 @@ struct ClubsApi {
             if let err = err {
                 completion(nil, "Error updating club: \(err)")
             } else {
-                // Store image
-                if let image = club?.image{
+                // Update image
+                if let image = club?.image, imageWasUpdated {
                     let ref = Storage.storage().reference().child("clubImages").child(id)
                     if let data = image.jpeg(.lowest) {
                         ref.putData(data, metadata: nil) {metadata, err in
@@ -107,7 +110,18 @@ struct ClubsApi {
                                 completion(club, nil)
                             }
                         }
+                    // If club had an image, but it was deleted
+                    } else if imageWasDeleted {
+                        let imageRef = Storage.storage().reference().child("clubImages").child(id)
+                        imageRef.delete() { err in
+                            if let err = err {
+                                completion(nil, "Error deleting event image: \(err)")
+                            } else {
+                                completion(club, nil)
+                            }
+                        }
                     }
+                // No image to delete or update
                 } else {
                     completion(club, nil)
                 }

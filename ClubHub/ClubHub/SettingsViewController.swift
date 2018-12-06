@@ -10,8 +10,6 @@ import UIKit
 import Firebase
 
 class SettingsViewController: UIViewController, EditClubDelegate {
-    
-    func editClubCompleted() {}
 
     @IBOutlet weak var editClubButton: UIButton!
     override func viewDidLoad() {
@@ -51,6 +49,10 @@ class SettingsViewController: UIViewController, EditClubDelegate {
                 // Account deleted.
             }
         }
+    }
+    
+    func editClubCompleted() {
+        self.navigationController?.popViewController(animated: true)
     }
     
 }

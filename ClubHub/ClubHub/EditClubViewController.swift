@@ -18,6 +18,8 @@ class EditClubViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var scrollViewBottomConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     @IBOutlet weak var nameTextField: UITextView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var uploadImageButton: UIButton!
@@ -27,6 +29,10 @@ class EditClubViewController: UIViewController {
     var delegate: EditClubDelegate?
 
     var club:Club?
+    
+    var hadImage = false
+    var imageWasDeleted = false
+    var imageWasUpdated = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +59,8 @@ class EditClubViewController: UIViewController {
     }
     
     func viewInit() {
+        // Hide activitiy indicator
+        activityIndicator.alpha = 0
         
         // format text views
         detailsTextView.isEditable = true
@@ -67,10 +75,12 @@ class EditClubViewController: UIViewController {
             uploadImageButton.setTitle("", for: .normal)
             imageView.isHidden = false
             deleteImageButton.isHidden = false
+            hadImage = true
         } else {
             uploadImageButton.setTitle("Upload Image", for: .normal)
             imageView.isHidden = true
             deleteImageButton.isHidden = true
+            hadImage = false
         }
     }
     
@@ -95,10 +105,16 @@ class EditClubViewController: UIViewController {
         
         // club must have id
         if let _ = club?.id {
-            ClubsApi.updateClub(club: club) { data, err in
+            ClubsApi.updateClub(club: club, imageWasDeleted: imageWasDeleted,
+            imageWasUpdated: imageWasUpdated) { data, err in
                 switch(data, err) {
                 case(.some(_), nil):
                     self.delegate?.editClubCompleted()
+                    User.userProfileUpdated = true
+                    
+                    // stop activity indicator
+                    self.activityIndicator.alpha = 0
+                    self.activityIndicator.stopAnimating()
                 case(nil, .some(let err)):
                     print(err)
                 default:
@@ -107,6 +123,9 @@ class EditClubViewController: UIViewController {
                 
             }
         }
+        // start activity indicator
+        activityIndicator.alpha = 1
+        activityIndicator.startAnimating()
     }
     
     @IBAction func uploadImageTapped(_ sender: Any) {
@@ -123,14 +142,13 @@ class EditClubViewController: UIViewController {
         imageView.isHidden = true
         deleteImageButton.isHidden = true
         
-    }
-    
-    @IBAction func logoutTapped(_ sender: Any) {
-        UserApi.logout()
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController = storyboard.instantiateViewController(
-            withIdentifier: "loginViewController") as! LoginViewController
-        self.present(viewController, animated: false, completion: nil)
+        imageWasUpdated = false
+        
+        // If an event had an image, mark image for delete
+        if hadImage {
+            imageWasDeleted = true
+        }
+        
     }
     
 }
@@ -145,7 +163,8 @@ extension EditClubViewController : UIImagePickerControllerDelegate, UINavigation
         uploadImageButton.setTitle("", for: .normal)
         club?.image = imageView.image
         deleteImageButton.isHidden = false
-        
+        imageWasDeleted = false
+        imageWasUpdated = true
         self.dismiss(animated: true)
     }
     

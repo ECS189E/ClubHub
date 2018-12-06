@@ -11,6 +11,7 @@ import UIKit
 
 class User {
     static var currentUser: User?
+    static var userProfileUpdated: Bool = false
     
     var id: String?
     var club: Club?

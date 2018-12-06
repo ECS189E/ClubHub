@@ -820,7 +820,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="BJZ-kM-K9P">
-                                <rect key="frame" x="16" y="36" width="343" height="615"/>
+                                <rect key="frame" x="16" y="60" width="343" height="591"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Bs-TQ-dKL" userLabel="UploadImageView">
                                         <rect key="frame" x="0.0" y="85" width="343" height="228"/>
@@ -924,13 +924,18 @@
                                     <constraint firstItem="1Bs-TQ-dKL" firstAttribute="top" secondItem="U9N-iP-F0I" secondAttribute="bottom" constant="10" id="wXY-11-xeK"/>
                                 </constraints>
                             </scrollView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="1jr-qZ-OUB">
+                                <rect key="frame" x="177.5" y="30" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="1jr-qZ-OUB" firstAttribute="centerX" secondItem="P61-Ox-l3l" secondAttribute="centerX" id="1KT-Zh-iF2"/>
                             <constraint firstItem="BJZ-kM-K9P" firstAttribute="leading" secondItem="AfE-Os-4ou" secondAttribute="leading" constant="16" id="8v8-4p-Hfa"/>
                             <constraint firstItem="BJZ-kM-K9P" firstAttribute="bottom" secondItem="AfE-Os-4ou" secondAttribute="bottom" constant="-16" id="N6l-am-xYl"/>
-                            <constraint firstItem="BJZ-kM-K9P" firstAttribute="top" secondItem="AfE-Os-4ou" secondAttribute="top" constant="16" id="R8z-q8-s32"/>
+                            <constraint firstItem="BJZ-kM-K9P" firstAttribute="top" secondItem="1jr-qZ-OUB" secondAttribute="bottom" constant="10" id="YCx-n1-fQJ"/>
                             <constraint firstItem="AfE-Os-4ou" firstAttribute="trailing" secondItem="BJZ-kM-K9P" secondAttribute="trailing" constant="16" id="h0q-7u-W8k"/>
+                            <constraint firstItem="1jr-qZ-OUB" firstAttribute="top" secondItem="AfE-Os-4ou" secondAttribute="top" constant="10" id="xOC-Sg-e88"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="AfE-Os-4ou"/>
                     </view>
@@ -942,6 +947,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="1jr-qZ-OUB" id="5rL-Ru-ldl"/>
                         <outlet property="deleteImageButton" destination="GHc-i8-97N" id="0QA-6Z-6Af"/>
                         <outlet property="detailsTextView" destination="t37-Lt-hRY" id="DEC-xs-OWm"/>
                         <outlet property="imageView" destination="8L5-Y4-gHj" id="OIE-Kx-c2V"/>
@@ -1054,7 +1060,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="haY-Dl-8Nc">
-                                <rect key="frame" x="16" y="35" width="343" height="552"/>
+                                <rect key="frame" x="16" y="40" width="343" height="547"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Enter name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Zl-jf-LqF" userLabel="Name">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="65"/>
@@ -1160,7 +1166,7 @@
                                 </constraints>
                             </scrollView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="LM4-6z-by2">
-                                <rect key="frame" x="177.5" y="5" width="20" height="20"/>
+                                <rect key="frame" x="177.5" y="10" width="20" height="20"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1173,7 +1179,7 @@
                             <constraint firstItem="KmK-w9-gdN" firstAttribute="trailing" secondItem="haY-Dl-8Nc" secondAttribute="trailing" constant="16" id="SNN-en-dmh"/>
                             <constraint firstItem="LM4-6z-by2" firstAttribute="centerX" secondItem="Obx-c3-jgc" secondAttribute="centerX" id="ZGZ-pv-mWh"/>
                             <constraint firstItem="haY-Dl-8Nc" firstAttribute="bottom" secondItem="KmK-w9-gdN" secondAttribute="bottom" constant="-16" id="jTx-Xq-4Kh"/>
-                            <constraint firstItem="LM4-6z-by2" firstAttribute="top" secondItem="KmK-w9-gdN" secondAttribute="top" constant="5" id="sN4-S6-2cd"/>
+                            <constraint firstItem="LM4-6z-by2" firstAttribute="top" secondItem="KmK-w9-gdN" secondAttribute="top" constant="10" id="sN4-S6-2cd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KmK-w9-gdN"/>
                     </view>
@@ -1642,7 +1648,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="PDG-BJ-6xG">
-                                <rect key="frame" x="16" y="55" width="343" height="596"/>
+                                <rect key="frame" x="16" y="60" width="343" height="591"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter event name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yUf-7t-iSZ" userLabel="Name">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="75"/>
@@ -1878,7 +1884,7 @@
                                 </constraints>
                             </scrollView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="0LI-aN-rPc">
-                                <rect key="frame" x="177.5" y="25" width="20" height="20"/>
+                                <rect key="frame" x="177.5" y="30" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1886,7 +1892,7 @@
                             <constraint firstItem="PDG-BJ-6xG" firstAttribute="leading" secondItem="3xr-LW-qWg" secondAttribute="leading" constant="16" id="9oF-8v-QA6"/>
                             <constraint firstItem="0LI-aN-rPc" firstAttribute="centerX" secondItem="GOI-H5-ZJJ" secondAttribute="centerX" id="Ep6-yc-mdo"/>
                             <constraint firstItem="PDG-BJ-6xG" firstAttribute="bottom" secondItem="3xr-LW-qWg" secondAttribute="bottom" constant="-16" id="Lr3-4G-1pd"/>
-                            <constraint firstItem="0LI-aN-rPc" firstAttribute="top" secondItem="3xr-LW-qWg" secondAttribute="top" constant="5" id="Re2-FB-VkC"/>
+                            <constraint firstItem="0LI-aN-rPc" firstAttribute="top" secondItem="3xr-LW-qWg" secondAttribute="top" constant="10" id="Re2-FB-VkC"/>
                             <constraint firstItem="3xr-LW-qWg" firstAttribute="trailing" secondItem="PDG-BJ-6xG" secondAttribute="trailing" constant="16" id="V3R-bu-dRn"/>
                             <constraint firstItem="PDG-BJ-6xG" firstAttribute="top" secondItem="0LI-aN-rPc" secondAttribute="bottom" constant="10" id="ib2-hH-RKC"/>
                         </constraints>

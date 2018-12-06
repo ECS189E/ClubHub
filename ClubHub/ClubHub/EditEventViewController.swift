@@ -37,6 +37,7 @@ class EditEventViewController: UIViewController {
     var popUpButton: UIButton? = nil // text field that initiated a pop up view
     let dateFormatter = DateFormatter()
     let timeFormatter = DateFormatter()
+    
     var hadImage = false
     var imageWasDeleted = false
     var imageWasUpdated = false
@@ -80,8 +81,11 @@ class EditEventViewController: UIViewController {
                 navigationController?.popViewController(animated: true) 
                 print("Error updating event: no id")
             }
-            // else create a new event and init dates
+        // else create a new event and init dates
         } else {
+            // Change navigation bar title to Add Event
+            self.title = "Add Event"
+            
             // disable delete button for new event
             deleteButton.isEnabled = false
             
@@ -93,7 +97,10 @@ class EditEventViewController: UIViewController {
                                       of: Date())
             event?.endTime =
                 event?.startTime?.addingTimeInterval(60 * 60)
+            
+            // init club and image to club image
             event?.club = userClub
+            event?.image = User.currentUser?.club?.image
         }
         
         // init date button labels

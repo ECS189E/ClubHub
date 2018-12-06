@@ -123,7 +123,7 @@ struct EventsApi {
                 completion(nil, "Error updating event: \(err)")
             } else {
                 // Update image
-                if let image = event?.image{
+                if let image = event?.image, imageWasUpdated {
                     let ref = Storage.storage().reference().child("eventImages").child(id)
                     if let data = image.jpeg(.lowest) {
                         ref.putData(data, metadata: nil) {metadata, err in

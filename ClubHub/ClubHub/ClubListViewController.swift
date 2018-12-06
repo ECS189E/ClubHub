@@ -30,6 +30,11 @@ class ClubListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         clubs = Club.allClubs
+        
+        // if the user is a club and they updated their profile, update clubs
+        if User.currentUser?.club != nil && User.userProfileUpdated {
+            getClubs()
+        }
     }
     
     func viewInit() {
