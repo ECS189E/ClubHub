@@ -144,7 +144,7 @@
         <!--Account Settings-->
         <scene sceneID="uYZ-3X-j4V">
             <objects>
-                <viewController storyboardIdentifier="settingsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qr7-Vc-WKG" customClass="SettingsViewController" customModule="ClubHub" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="settingsViewController" title="Account Settings" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qr7-Vc-WKG" customClass="SettingsViewController" customModule="ClubHub" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IXG-5z-9Er">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -161,7 +161,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="70" id="cAC-bw-8XC"/>
                                                 </constraints>
-                                                <state key="normal" title="   Logout" image="icons8-exit-filled-50-white">
+                                                <state key="normal" title="   Logout" image="icons8-exit-filled-36-white">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -172,7 +172,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bhH-Tg-dRn">
                                                 <rect key="frame" x="0.0" y="71" width="343" height="70"/>
                                                 <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="   Delete Accuont" image="icons8-waste-filled-50-white">
+                                                <state key="normal" title="   Delete Accuont" image="icons8-delete-bin-36-white">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
@@ -201,7 +201,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="UZF-jZ-rl6"/>
                                 </constraints>
-                                <state key="normal" title="   Edit Club Page" image="icons8-registration-filled-50-white">
+                                <state key="normal" title="   Edit Club Page" image="icons8-registration-filled-36-white">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -811,10 +811,10 @@
             </objects>
             <point key="canvasLocation" x="-537" y="-900"/>
         </scene>
-        <!--Edit Account-->
+        <!--Edit Club-->
         <scene sceneID="tbU-b0-Y15">
             <objects>
-                <viewController storyboardIdentifier="editClubViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="h6n-JW-zoV" customClass="EditClubViewController" customModule="ClubHub" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="editClubViewController" title="Edit Club" useStoryboardIdentifierAsRestorationIdentifier="YES" id="h6n-JW-zoV" customClass="EditClubViewController" customModule="ClubHub" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="P61-Ox-l3l">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -939,7 +939,8 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="AfE-Os-4ou"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Edit Account" id="3FI-8p-eYC">
+                    <navigationItem key="navigationItem" title="Edit Club" id="3FI-8p-eYC">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="kxD-ZT-bmG"/>
                         <barButtonItem key="rightBarButtonItem" title="Done" id="1f4-cS-Fpj">
                             <connections>
                                 <action selector="doneTapped:" destination="h6n-JW-zoV" id="dRa-bY-h17"/>
@@ -1361,10 +1362,10 @@
             </objects>
             <point key="canvasLocation" x="396" y="-901"/>
         </scene>
-        <!--Event Details View Controller-->
+        <!--Event Details-->
         <scene sceneID="Uqn-ma-Vmx">
             <objects>
-                <viewController storyboardIdentifier="eventDetailsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6bk-nu-nWB" customClass="EventDetailsViewController" customModule="ClubHub" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="eventDetailsViewController" title="Event Details" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6bk-nu-nWB" customClass="EventDetailsViewController" customModule="ClubHub" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eAx-pg-M8z">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2002,15 +2003,15 @@
         <image name="computer-workers-group-128" width="51.200000762939453" height="51.200000762939453"/>
         <image name="icons8-calendar-25-black" width="18.75" height="18.75"/>
         <image name="icons8-compose-36-white" width="27" height="27"/>
-        <image name="icons8-exit-filled-50-white" width="37.5" height="37.5"/>
+        <image name="icons8-delete-bin-36-white" width="22.5" height="22.5"/>
+        <image name="icons8-exit-filled-36-white" width="22.5" height="22.5"/>
         <image name="icons8-plus-25-black" width="18.75" height="18.75"/>
         <image name="icons8-registration-filled-25-black" width="18.75" height="18.75"/>
-        <image name="icons8-registration-filled-50-white" width="37.5" height="37.5"/>
+        <image name="icons8-registration-filled-36-white" width="27" height="27"/>
         <image name="icons8-schedule-25-black" width="18.75" height="18.75"/>
         <image name="icons8-settings-filled-25-black" width="18.75" height="18.75"/>
         <image name="icons8-star-outline-36" width="27" height="27"/>
         <image name="icons8-user-groups-25-black" width="18.75" height="18.75"/>
         <image name="icons8-waste-filled-25-black" width="18.75" height="18.75"/>
-        <image name="icons8-waste-filled-50-white" width="37.5" height="37.5"/>
     </resources>
 </document>
