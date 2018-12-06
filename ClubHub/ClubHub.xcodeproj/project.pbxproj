@@ -30,10 +30,8 @@
 		D136413921AC64F1007A7B22 /* ClubHubUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D136413821AC64F1007A7B22 /* ClubHubUITests.swift */; };
 		D1835C7C21AC7C8D00A1F3DD /* Lindsey.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1835C7A21AC7C8C00A1F3DD /* Lindsey.storyboard */; };
 		D1835C7F21AC7C9900A1F3DD /* Cindy.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1835C7D21AC7C9900A1F3DD /* Cindy.storyboard */; };
-		D1835C8221AC7CA400A1F3DD /* Sravya.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1835C8021AC7CA400A1F3DD /* Sravya.storyboard */; };
 		D1835C8521AC7CAB00A1F3DD /* Varshini.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1835C8321AC7CAB00A1F3DD /* Varshini.storyboard */; };
 		D1835CC721AC870700A1F3DD /* DateTimePopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1835CBF21AC870500A1F3DD /* DateTimePopUpViewController.swift */; };
-		D1835CC821AC870700A1F3DD /* EventTestingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1835CC021AC870500A1F3DD /* EventTestingViewController.swift */; };
 		D1835CC921AC870700A1F3DD /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1835CC121AC870500A1F3DD /* EventDetailsViewController.swift */; };
 		D1835CCA21AC870700A1F3DD /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1835CC221AC870600A1F3DD /* EventCell.swift */; };
 		D1835CCB21AC870700A1F3DD /* EventsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1835CC321AC870600A1F3DD /* EventsApi.swift */; };
@@ -50,6 +48,7 @@
 		D19EA59021B85BA5001DE83E /* ChooseAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19EA58F21B85BA5001DE83E /* ChooseAccountViewController.swift */; };
 		D19EA59221B88254001DE83E /* AddClubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19EA59121B88254001DE83E /* AddClubViewController.swift */; };
 		D19EA59421B8CAA3001DE83E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19EA59321B8CAA3001DE83E /* SettingsViewController.swift */; };
+		D19EA59621B90564001DE83E /* Sravya.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D19EA59521B90564001DE83E /* Sravya.storyboard */; };
 		D1B5FD6021B5BB3800117E63 /* EditClubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B5FD5F21B5BB3800117E63 /* EditClubViewController.swift */; };
 		E750A9DFA6023FA1C9A57307 /* Pods_ClubHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2470BC19246848A351389907 /* Pods_ClubHub.framework */; };
 		FDF68F5B21B53BBC00AF95D7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF68F5A21B53BBC00AF95D7 /* LoginViewController.swift */; };
@@ -110,10 +109,8 @@
 		D136413A21AC64F1007A7B22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D1835C7B21AC7C8C00A1F3DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Lindsey.storyboard; sourceTree = "<group>"; };
 		D1835C7E21AC7C9900A1F3DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Cindy.storyboard; sourceTree = "<group>"; };
-		D1835C8121AC7CA400A1F3DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Sravya.storyboard; sourceTree = "<group>"; };
 		D1835C8421AC7CAB00A1F3DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Varshini.storyboard; sourceTree = "<group>"; };
 		D1835CBF21AC870500A1F3DD /* DateTimePopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimePopUpViewController.swift; sourceTree = "<group>"; };
-		D1835CC021AC870500A1F3DD /* EventTestingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTestingViewController.swift; sourceTree = "<group>"; };
 		D1835CC121AC870500A1F3DD /* EventDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
 		D1835CC221AC870600A1F3DD /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		D1835CC321AC870600A1F3DD /* EventsApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsApi.swift; sourceTree = "<group>"; };
@@ -130,6 +127,7 @@
 		D19EA58F21B85BA5001DE83E /* ChooseAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseAccountViewController.swift; sourceTree = "<group>"; };
 		D19EA59121B88254001DE83E /* AddClubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddClubViewController.swift; sourceTree = "<group>"; };
 		D19EA59321B8CAA3001DE83E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		D19EA59521B90564001DE83E /* Sravya.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Sravya.storyboard; sourceTree = "<group>"; };
 		D1B5FD5F21B5BB3800117E63 /* EditClubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditClubViewController.swift; sourceTree = "<group>"; };
 		FDF68F5A21B53BBC00AF95D7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FDF68F5C21B5493D00AF95D7 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -211,7 +209,7 @@
 				D136411921AC64F0007A7B22 /* Main.storyboard */,
 				D1835C7A21AC7C8C00A1F3DD /* Lindsey.storyboard */,
 				D1835C7D21AC7C9900A1F3DD /* Cindy.storyboard */,
-				D1835C8021AC7CA400A1F3DD /* Sravya.storyboard */,
+				D19EA59521B90564001DE83E /* Sravya.storyboard */,
 				D1835C8321AC7CAB00A1F3DD /* Varshini.storyboard */,
 				FDF68F6021B7B9B900AF95D7 /* PickClubController.swift */,
 				D19EA59321B8CAA3001DE83E /* SettingsViewController.swift */,
@@ -234,7 +232,6 @@
 				D1835CC221AC870600A1F3DD /* EventCell.swift */,
 				D1835CC121AC870500A1F3DD /* EventDetailsViewController.swift */,
 				D1835CC521AC870700A1F3DD /* EventsFeedViewController.swift */,
-				D1835CC021AC870500A1F3DD /* EventTestingViewController.swift */,
 				D10C916921B22A0300AD78B9 /* UserApi.swift */,
 				D0015C9821B6085C007420FB /* User.swift */,
 				373006C921B6E22F00008F61 /* Message.swift */,
@@ -385,9 +382,9 @@
 			files = (
 				3767815A21AC76E50016533D /* GoogleService-Info.plist in Resources */,
 				D1835C8521AC7CAB00A1F3DD /* Varshini.storyboard in Resources */,
-				D1835C8221AC7CA400A1F3DD /* Sravya.storyboard in Resources */,
 				D136412321AC64F1007A7B22 /* LaunchScreen.storyboard in Resources */,
 				D1835C7F21AC7C9900A1F3DD /* Cindy.storyboard in Resources */,
+				D19EA59621B90564001DE83E /* Sravya.storyboard in Resources */,
 				D1835C7C21AC7C8D00A1F3DD /* Lindsey.storyboard in Resources */,
 				D10C916C21B4FC7300AD78B9 /* Assets.xcassets in Resources */,
 				D136411B21AC64F0007A7B22 /* Main.storyboard in Resources */,
@@ -566,7 +563,6 @@
 				373006CA21B6E22F00008F61 /* Message.swift in Sources */,
 				D1835CC721AC870700A1F3DD /* DateTimePopUpViewController.swift in Sources */,
 				37BDA80B21B8C1AE0099C76F /* MessageApi.swift in Sources */,
-				D1835CC821AC870700A1F3DD /* EventTestingViewController.swift in Sources */,
 				37BDA80D21B8C2700099C76F /* ConversationApi.swift in Sources */,
 				D136411E21AC64F0007A7B22 /* ClubHub.xcdatamodeld in Sources */,
 				D184194221B0F24500373875 /* ClubsApi.swift in Sources */,
@@ -641,14 +637,6 @@
 				D1835C7E21AC7C9900A1F3DD /* Base */,
 			);
 			name = Cindy.storyboard;
-			sourceTree = "<group>";
-		};
-		D1835C8021AC7CA400A1F3DD /* Sravya.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D1835C8121AC7CA400A1F3DD /* Base */,
-			);
-			name = Sravya.storyboard;
 			sourceTree = "<group>";
 		};
 		D1835C8321AC7CAB00A1F3DD /* Varshini.storyboard */ = {

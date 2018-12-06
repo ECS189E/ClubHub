@@ -84,7 +84,7 @@ class EventsFeedViewController: UIViewController, EditEventDelegate {
     }
     
     @IBAction func addEvent(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Lindsey", bundle: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "editEventViewController") as! EditEventViewController
         viewController.delegate = self
         viewController.event = nil
@@ -193,8 +193,7 @@ extension EventsFeedViewController: UITableViewDelegate, UITableViewDataSource, 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        // FIXME: change "Cindy" to "Main"
-        let storyboard = UIStoryboard(name: "Cindy", bundle: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "eventDetailsViewController") as! EventDetailsViewController
         viewController.event = self.events.map { $0[indexPath.row] }
         self.navigationController?.pushViewController(viewController, animated: true)

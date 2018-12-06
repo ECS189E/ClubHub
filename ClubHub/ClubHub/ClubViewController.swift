@@ -11,7 +11,7 @@ class ClubViewController: UIViewController {
     
     @IBOutlet weak var clubName: UILabel!
     @IBOutlet weak var clubImage: UIImageView!
-    @IBOutlet weak var aboutClub: UILabel!
+    @IBOutlet weak var aboutClub: UITextView!
     
     var club: Club?
     

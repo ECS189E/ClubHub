@@ -95,8 +95,7 @@ class EventDetailsViewController: UIViewController, EditEventDelegate {
     }
     
     @IBAction func editEventTapped(_ sender: Any) {
-        // Used only for testing
-        let storyboard = UIStoryboard(name: "Lindsey", bundle: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "editEventViewController") as! EditEventViewController
         viewController.event = event
         viewController.delegate = self
