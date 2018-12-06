@@ -9,7 +9,9 @@
 import UIKit
 import Firebase
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: UIViewController, EditClubDelegate {
+    
+    func editClubCompleted() {}
 
     @IBOutlet weak var editClubButton: UIButton!
     override func viewDidLoad() {
@@ -23,6 +25,12 @@ class SettingsViewController: UIViewController {
 
     }
     
+    @IBAction func editClubPageTapped(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "editClubViewController") as! EditClubViewController
+        viewController.delegate = self
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
     
     
     @IBAction func logoutTapped(_ sender: Any) {
