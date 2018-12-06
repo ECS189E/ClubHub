@@ -16,29 +16,80 @@ class EventDetailsViewController: UIViewController, EditEventDelegate {
     @IBOutlet weak var eventImageView: UIImageView!
     @IBOutlet weak var eventNameLabel: UILabel!
     @IBOutlet weak var clubNameLabel: UILabel!
-    @IBOutlet weak var dateTimeLabel: UILabel!
+    @IBOutlet weak var startDate: UILabel!
+    @IBOutlet weak var endDate: UILabel!
+    @IBOutlet weak var startTime
+    : UILabel!
+    @IBOutlet weak var endTime: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UITextView!
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var editButton: UIButton!
     
     var event: Event?
+    var savedEvent: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        editButton.isHidden = true
+        editButton.isEnabled = false
+        
+        saveButton.isHidden = false
+        saveButton.isEnabled = true
+        
+        // init save button or edit button if event is saved
+        if User.currentUser?.events?.contains(event?.id ?? "") ?? false {
+            
+            // if user is a club and owns this event
+            if User.currentUser?.club != nil &&
+                ((User.currentUser?.club?.name?.compare(event?.name ?? "")) != nil) {
+                // show edit button
+                editButton.isHidden = false
+                editButton.isEnabled = true
+                // hide save button
+                saveButton.isHidden = true
+                saveButton.isEnabled = false
+
+            // else event is a user saved event
+            } else {
+                // show save button and change it to a filled star
+                saveButton.setImage(UIImage(named: "icons8-star-filled-36"), for: .normal)
+                savedEvent = true
+            }
+        }
         
         loadEvent(event: event)
     }
     
     @IBAction func saveButtonPressed(_ sender: Any) {
-        UserApi.saveEvent(eventID: event?.id) { data, error in
-        switch(data, error){
-        case(nil, .some(let error)):
-            print(error)
-        case(.some(let data), nil):
-            let events = data as? [String]
-            User.currentUser?.events = events
-        default:
-            print("Error saving events")
+        if !savedEvent {
+            UserApi.saveEvent(eventID: event?.id) { data, error in
+            switch(data, error){
+            case(nil, .some(let error)):
+                print(error)
+            case(.some(let data), nil):
+                let events = data as? [String]
+                User.currentUser?.events = events
+                self.saveButton.setImage(UIImage(named: "icons8-star-filled-36"), for: .normal)
+                self.savedEvent = true
+            default:
+                print("Error saving events")
+                }
+            }
+        } else {
+            UserApi.deleteSavedEvent(eventID: event?.id) { data, error in
+                switch(data, error){
+                case(nil, .some(let error)):
+                    print(error)
+                case(.some(let data), nil):
+                    let events = data as? [String]
+                    User.currentUser?.events = events
+                    self.saveButton.setImage(UIImage(named: "icons8-star-outline-36"), for: .normal)
+                    self.savedEvent = false
+                default:
+                    print("Error saving events")
+                }
             }
         }
     }
@@ -60,7 +111,7 @@ class EventDetailsViewController: UIViewController, EditEventDelegate {
         eventImageView.image = event?.image ?? UIImage(named: "testImage")
         eventNameLabel.text = event?.name ?? "Event Name"
         clubNameLabel.text = event?.club ?? "Club Name"
-        dateTimeLabel.text = event?.startTime.map{dateFormatter.string(from: $0)} ?? "Date and Time"
+        //dateTimeLabel.text = event?.startTime.map{dateFormatter.string(from: $0)} ?? "Date and Time"
         locationLabel.text = event?.location ?? "Location"
         descriptionLabel.text = event?.details ??  "Description"
     }
