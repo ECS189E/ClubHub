@@ -18,6 +18,12 @@ class ChooseAccountViewController: UIViewController {
         
     }
     
+    @IBAction func cancelClicked(_ sender: Any) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let loginViewController = storyBoard.instantiateViewController(withIdentifier: "loginViewController") as! LoginViewController
+        self.present(loginViewController, animated: true, completion: nil)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         // Hide nav bar
         self.navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
