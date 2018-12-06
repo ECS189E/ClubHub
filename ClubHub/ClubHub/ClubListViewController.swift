@@ -156,9 +156,7 @@ extension ClubListViewController: UITableViewDelegate, UITableViewDataSource, UI
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        // FIXME: change "Cindy" to "Main"
-        //let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let storyboard = UIStoryboard(name: "Varshini", bundle: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "ClubViewController") as! ClubViewController
         viewController.club = self.clubs.map { $0[indexPath.row] }
         self.navigationController?.pushViewController(viewController, animated: true)

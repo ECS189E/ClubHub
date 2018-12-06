@@ -20,23 +20,4 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
             GIDSignIn.sharedInstance().uiDelegate = self
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    
-    /* supposed to be done in app delegate!
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        print("in Login")
-
-        if let user  = Auth.auth().currentUser{
-            print("is already logged in")
-            self.performSegue(withIdentifier: "toLoggedInController", sender: self)
-        }
-    }
-     */
-    
 }

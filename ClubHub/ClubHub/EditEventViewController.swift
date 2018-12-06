@@ -235,9 +235,7 @@ class EditEventViewController: UIViewController {
         detailsTextView.resignFirstResponder()
         
         // Init pop up view controller
-        //FIXME: change "Lindsey" to "Main"
-        //let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "dateTimePopUpViewController") as! DateTimePopUpViewController
-        let vc = UIStoryboard(name: "Lindsey", bundle: nil).instantiateViewController(withIdentifier: "dateTimePopUpViewController") as! DateTimePopUpViewController
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "dateTimePopUpViewController") as! DateTimePopUpViewController
         vc.delegate = self
         vc.date = event?.startTime
         vc.pickerMode = UIDatePicker.Mode.date
@@ -257,9 +255,7 @@ class EditEventViewController: UIViewController {
         detailsTextView.resignFirstResponder()
         
         // Init pop up view controller
-        //FIXME: change "Lindsey" to "Main"
-        //let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "dateTimePopUpViewController") as! DateTimePopUpViewController
-        let vc = UIStoryboard(name: "Lindsey", bundle: nil).instantiateViewController(withIdentifier: "dateTimePopUpViewController") as! DateTimePopUpViewController
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "dateTimePopUpViewController") as! DateTimePopUpViewController
         vc.delegate = self
         vc.date = event?.endTime
         vc.pickerMode = UIDatePicker.Mode.date
@@ -279,9 +275,7 @@ class EditEventViewController: UIViewController {
         detailsTextView.resignFirstResponder()
         
         // Init pop up view controller
-        //FIXME: change "Lindsey" to "Main"
-        //let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "dateTimePopUpViewController") as! DateTimePopUpViewController
-        let vc = UIStoryboard(name: "Lindsey", bundle: nil).instantiateViewController(withIdentifier: "dateTimePopUpViewController") as! DateTimePopUpViewController
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "dateTimePopUpViewController") as! DateTimePopUpViewController
         vc.delegate = self
         vc.date = event?.startTime
         vc.pickerMode = UIDatePicker.Mode.time
@@ -302,9 +296,8 @@ class EditEventViewController: UIViewController {
         detailsTextView.resignFirstResponder()
         
         // Init pop up view controller
-        //FIXME: change "Lindsey" to "Main"
-        //let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "dateTimePopUpViewController") as! DateTimePopUpViewController
-        let vc = UIStoryboard(name: "Lindsey", bundle: nil).instantiateViewController(withIdentifier: "dateTimePopUpViewController") as! DateTimePopUpViewController
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "dateTimePopUpViewController") as! DateTimePopUpViewController
+        
         vc.delegate = self
         vc.date = event?.endTime
         vc.pickerMode = UIDatePicker.Mode.time
