@@ -19,6 +19,7 @@ class EventDetailsViewController: UIViewController, EditEventDelegate {
     @IBOutlet weak var dateTimeLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var saveButton: UIButton!
     
     var event: Event?
     
@@ -26,6 +27,20 @@ class EventDetailsViewController: UIViewController, EditEventDelegate {
         super.viewDidLoad()
         
         loadEvent(event: event)
+    }
+    
+    @IBAction func saveButtonPressed(_ sender: Any) {
+        UserApi.saveEvent(eventID: event?.id) { data, error in
+        switch(data, error){
+        case(nil, .some(let error)):
+            print(error)
+        case(.some(let data), nil):
+            let events = data as? [String]
+            User.currentUser?.events = events
+        default:
+            print("Error saving events")
+            }
+        }
     }
     
     @IBAction func editEventTapped(_ sender: Any) {
