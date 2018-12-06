@@ -18,7 +18,7 @@ class EditClubViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var scrollViewBottomConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var nameTextField: UITextView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var uploadImageButton: UIButton!
     @IBOutlet weak var deleteImageButton: UIButton!
