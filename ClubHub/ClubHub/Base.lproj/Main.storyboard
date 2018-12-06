@@ -116,11 +116,11 @@
             </objects>
             <point key="canvasLocation" x="-759" y="581"/>
         </scene>
-        <!--Profile-->
+        <!--Setting-->
         <scene sceneID="fqi-rf-fSK">
             <objects>
                 <navigationController storyboardIdentifier="settingsNavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Dxk-6G-EMF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="icons8-registration-filled-25-black" id="fKr-g1-ENu"/>
+                    <tabBarItem key="tabBarItem" title="Setting" image="icons8-settings-filled-25-black" id="fKr-g1-ENu"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="4RQ-ci-OgM">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -134,12 +134,100 @@
                         </textAttributes>
                     </navigationBar>
                     <connections>
-                        <segue destination="h6n-JW-zoV" kind="relationship" relationship="rootViewController" id="pJX-mV-5vr"/>
+                        <segue destination="qr7-Vc-WKG" kind="relationship" relationship="rootViewController" id="MIj-HW-Iac"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a6R-LR-T0R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-759" y="1273"/>
+        </scene>
+        <!--Account Settings-->
+        <scene sceneID="uYZ-3X-j4V">
+            <objects>
+                <viewController storyboardIdentifier="settingsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qr7-Vc-WKG" customClass="SettingsViewController" customModule="ClubHub" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IXG-5z-9Er">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rL6-JH-o4H">
+                                <rect key="frame" x="16" y="5" width="343" height="142"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="sVU-1z-MwG">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="141"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5fZ-IQ-20b">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="70"/>
+                                                <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="70" id="cAC-bw-8XC"/>
+                                                </constraints>
+                                                <state key="normal" title="   Logout" image="icons8-exit-filled-50-white">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="logoutTapped:" destination="qr7-Vc-WKG" eventType="touchUpInside" id="Tbj-E4-Yy5"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bhH-Tg-dRn">
+                                                <rect key="frame" x="0.0" y="71" width="343" height="70"/>
+                                                <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="   Delete Accuont" image="icons8-waste-filled-50-white">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="deleteTapped:" destination="qr7-Vc-WKG" eventType="touchUpInside" id="CsP-eO-2dr"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="bhH-Tg-dRn" firstAttribute="height" secondItem="5fZ-IQ-20b" secondAttribute="height" id="jU5-fL-GQr"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="sVU-1z-MwG" firstAttribute="top" secondItem="rL6-JH-o4H" secondAttribute="top" id="CeL-Qj-FRi"/>
+                                    <constraint firstAttribute="trailing" secondItem="sVU-1z-MwG" secondAttribute="trailing" id="VFl-W4-PmH"/>
+                                    <constraint firstItem="sVU-1z-MwG" firstAttribute="leading" secondItem="rL6-JH-o4H" secondAttribute="leading" id="da7-Jf-TvL"/>
+                                    <constraint firstAttribute="bottom" secondItem="sVU-1z-MwG" secondAttribute="bottom" constant="1" id="k2p-aE-rj6"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Nl-YV-BB9">
+                                <rect key="frame" x="16" y="147" width="343" height="70"/>
+                                <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="UZF-jZ-rl6"/>
+                                </constraints>
+                                <state key="normal" title="   Edit Club Page" image="icons8-registration-filled-50-white">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="h6n-JW-zoV" kind="show" id="Hd5-8z-pFC"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="1Nl-YV-BB9" firstAttribute="top" secondItem="rL6-JH-o4H" secondAttribute="bottom" id="92H-LS-pfy"/>
+                            <constraint firstItem="1Nl-YV-BB9" firstAttribute="leading" secondItem="IQz-G9-sgo" secondAttribute="leading" constant="16" id="QIO-kf-d8f"/>
+                            <constraint firstItem="IQz-G9-sgo" firstAttribute="trailing" secondItem="1Nl-YV-BB9" secondAttribute="trailing" constant="16" id="duf-j4-YBt"/>
+                            <constraint firstItem="rL6-JH-o4H" firstAttribute="top" secondItem="IQz-G9-sgo" secondAttribute="top" constant="5" id="hsu-U9-kpH"/>
+                            <constraint firstItem="IQz-G9-sgo" firstAttribute="trailing" secondItem="rL6-JH-o4H" secondAttribute="trailing" constant="16" id="s1f-CI-hWD"/>
+                            <constraint firstItem="rL6-JH-o4H" firstAttribute="leading" secondItem="IQz-G9-sgo" secondAttribute="leading" constant="16" id="xO7-cE-wck"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="IQz-G9-sgo"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Account Settings" id="FMk-lw-3Sr"/>
+                    <connections>
+                        <outlet property="editClubButton" destination="1Nl-YV-BB9" id="fbo-9V-Aph"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FRs-pE-Qxp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="191.19999999999999" y="1273.313343328336"/>
         </scene>
         <!--Clubs Navigation Controller-->
         <scene sceneID="toR-SE-iH8">
@@ -392,13 +480,26 @@
                                     <constraint firstItem="uAW-C9-44V" firstAttribute="width" secondItem="seD-1B-hrJ" secondAttribute="width" id="aJZ-qK-So4"/>
                                 </constraints>
                             </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="computer-workers-group-128" translatesAutoresizingMaskIntoConstraints="NO" id="3b3-SZ-Ywj">
+                                <rect key="frame" x="162" y="490.5" width="51" height="51"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ClubHub" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1KX-5U-AXl">
+                                <rect key="frame" x="146" y="546.5" width="83" height="26.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="Udy-SV-1If" firstAttribute="bottom" secondItem="1KX-5U-AXl" secondAttribute="bottom" constant="30" id="4gp-yw-deX"/>
+                            <constraint firstItem="1KX-5U-AXl" firstAttribute="centerX" secondItem="GHa-rE-2Ix" secondAttribute="centerX" id="DYM-81-W4v"/>
                             <constraint firstItem="leP-Co-SKT" firstAttribute="centerX" secondItem="GHa-rE-2Ix" secondAttribute="centerX" id="HIn-O0-LZP"/>
                             <constraint firstItem="leP-Co-SKT" firstAttribute="centerY" secondItem="GHa-rE-2Ix" secondAttribute="centerY" id="JTz-xf-X49"/>
+                            <constraint firstItem="3b3-SZ-Ywj" firstAttribute="centerX" secondItem="GHa-rE-2Ix" secondAttribute="centerX" id="LSx-SH-s6Q"/>
                             <constraint firstItem="ZeZ-m7-iWq" firstAttribute="leading" secondItem="Udy-SV-1If" secondAttribute="leading" constant="16" id="Uaa-HM-dny"/>
                             <constraint firstItem="Udy-SV-1If" firstAttribute="trailing" secondItem="ZeZ-m7-iWq" secondAttribute="trailing" constant="16" id="eOO-Tj-Dky"/>
+                            <constraint firstItem="1KX-5U-AXl" firstAttribute="top" secondItem="3b3-SZ-Ywj" secondAttribute="bottom" constant="5" id="vgH-B6-7hK"/>
                             <constraint firstItem="ZeZ-m7-iWq" firstAttribute="top" secondItem="Udy-SV-1If" secondAttribute="top" id="zNB-UI-Jg9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Udy-SV-1If"/>
@@ -582,11 +683,6 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Events" id="8L7-Pz-ueh"/>
                     <navigationItem key="navigationItem" title="Events" id="rpx-Nu-gFU">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="y0b-Yl-XKO">
-                            <connections>
-                                <action selector="logoutTapped:" destination="hho-mo-95b" id="N3o-OX-MiS"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="icons8-plus-25-black" id="hF3-BG-gmR">
                             <connections>
                                 <action selector="addEvent:" destination="hho-mo-95b" id="LPw-cA-R6b"/>
@@ -704,13 +800,7 @@
                         <viewLayoutGuide key="safeArea" id="4JK-ds-pF0"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Clubs" id="FWt-g3-aN0"/>
-                    <navigationItem key="navigationItem" title="Clubs" id="6FI-sv-wMs">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="AmZ-AO-VOW">
-                            <connections>
-                                <action selector="logoutTapped:" destination="Xti-jP-5R2" id="Clb-LH-Hob"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Clubs" id="6FI-sv-wMs"/>
                     <connections>
                         <outlet property="allClubsButton" destination="xuH-2F-4sq" id="vT9-g3-rdY"/>
                         <outlet property="clubsTableView" destination="xhn-cU-nwk" id="LCP-Iv-hLV"/>
@@ -721,7 +811,7 @@
             </objects>
             <point key="canvasLocation" x="212" y="-123"/>
         </scene>
-        <!--Edit Account Details-->
+        <!--Edit Account-->
         <scene sceneID="tbU-b0-Y15">
             <objects>
                 <viewController storyboardIdentifier="editClubViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="h6n-JW-zoV" customClass="EditClubViewController" customModule="ClubHub" customModuleProvider="target" sceneMemberID="viewController">
@@ -844,12 +934,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="AfE-Os-4ou"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Edit Account Details" id="3FI-8p-eYC">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="c8h-Gt-w4U">
-                            <connections>
-                                <action selector="logoutTapped:" destination="h6n-JW-zoV" id="Vvd-SZ-IXY"/>
-                            </connections>
-                        </barButtonItem>
+                    <navigationItem key="navigationItem" title="Edit Account" id="3FI-8p-eYC">
                         <barButtonItem key="rightBarButtonItem" title="Done" id="1f4-cS-Fpj">
                             <connections>
                                 <action selector="doneTapped:" destination="h6n-JW-zoV" id="dRa-bY-h17"/>
@@ -868,7 +953,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mrt-2z-38U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="212" y="1270.6146926536733"/>
+            <point key="canvasLocation" x="1145" y="1272"/>
         </scene>
         <!--Calendar-->
         <scene sceneID="Prc-Qi-W9H">
@@ -944,13 +1029,14 @@
                         <viewLayoutGuide key="safeArea" id="ucr-m8-sKz"/>
                     </view>
                     <navigationItem key="navigationItem" title="Calendar" id="KZd-RN-BgA">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="sl6-zu-qki">
+                        <barButtonItem key="rightBarButtonItem" image="icons8-plus-25-black" id="aty-1l-5Ht">
                             <connections>
-                                <action selector="logoutTapped:" destination="teX-ed-FjU" id="AWK-i5-Zd4"/>
+                                <action selector="addEvent:" destination="teX-ed-FjU" id="FKz-NW-9pb"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addEventButton" destination="aty-1l-5Ht" id="yjF-Gc-5VI"/>
                         <outlet property="calendar" destination="daf-WT-3xk" id="b54-wN-M6W"/>
                         <outlet property="calendarListedEvents" destination="DGe-A7-jms" id="ECR-D5-qIf"/>
                     </connections>
@@ -1117,9 +1203,13 @@
     <resources>
         <image name="computer-workers-group-128" width="51.200000762939453" height="51.200000762939453"/>
         <image name="icons8-calendar-25-black" width="18.75" height="18.75"/>
+        <image name="icons8-exit-filled-50-white" width="37.5" height="37.5"/>
         <image name="icons8-plus-25-black" width="18.75" height="18.75"/>
         <image name="icons8-registration-filled-25-black" width="18.75" height="18.75"/>
+        <image name="icons8-registration-filled-50-white" width="37.5" height="37.5"/>
         <image name="icons8-schedule-25-black" width="18.75" height="18.75"/>
+        <image name="icons8-settings-filled-25-black" width="18.75" height="18.75"/>
         <image name="icons8-user-groups-25-black" width="18.75" height="18.75"/>
+        <image name="icons8-waste-filled-50-white" width="37.5" height="37.5"/>
     </resources>
 </document>

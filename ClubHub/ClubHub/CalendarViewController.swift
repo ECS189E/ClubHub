@@ -10,15 +10,23 @@ import UIKit
 import FSCalendar
 import Firebase
 
-class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
+class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource, EditEventDelegate {
     
     @IBOutlet weak var calendar: FSCalendar!
     @IBOutlet weak var calendarListedEvents: UITableView!
 
+    @IBOutlet weak var addEventButton: UIBarButtonItem!
+    
     var dateFormatter = DateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // hide add event for users
+        if User.currentUser?.club == nil {
+            addEventButton.isEnabled = false
+            addEventButton.tintColor = UIColor.white
+        }
         
         calendar.dataSource = self
         calendar.delegate = self
@@ -49,13 +57,23 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
             Calendar.current.isDate(date, equalTo: event.startTime ?? Date(), toGranularity:.day)}.count ?? 0
     }
     
-    @IBAction func logoutTapped(_ sender: Any) {
-        UserApi.logout()
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController = storyboard.instantiateViewController(
-            withIdentifier: "loginViewController") as! LoginViewController
-        self.present(viewController, animated: false, completion: nil)
+    @IBAction func addEvent(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Lindsey", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "editEventViewController") as! EditEventViewController
+        viewController.delegate = self
+        viewController.event = nil
+        
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
+    
+    func editEventCompleted(event: Event?) {
+        getEvents()
+    }
+    
+    func editEventStarted() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     
     func getEvents() {
         EventsApi.getEventsIDs(startDate: nil, limit: nil) { data, error in

@@ -55,7 +55,7 @@ class EditEventViewController: UIViewController {
     
     func viewInit() {
         guard let userClub = User.currentUser?.club?.name else {
-            navigationController?.popViewController(animated: true)  //FIXME: move to view will appear?
+            navigationController?.popViewController(animated: true)
             print("Error updating event: user is not a club")
             return
         }
@@ -71,7 +71,7 @@ class EditEventViewController: UIViewController {
         // if editing an existing event
         if let event = event {
             if event.id  == nil { // must have an id to update
-                navigationController?.popViewController(animated: true)  //FIXME: move to view will appear?
+                navigationController?.popViewController(animated: true) 
                 print("Error updating event: no id")
             }
             // else create a new event and init dates

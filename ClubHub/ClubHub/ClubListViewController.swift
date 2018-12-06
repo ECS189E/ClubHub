@@ -30,6 +30,8 @@ class ClubListViewController: UIViewController {
     }
     
     func viewInit() {
+        //self.navigationController?.navigationBar.items?.append(UIImage(named: "computer-workers-group-24") as! UINavigationItem)
+        
         // Init selected clubs view buttons
         allClubsButton.alpha = 1.0
         allClubsButton.layer.cornerRadius =
@@ -67,13 +69,6 @@ class ClubListViewController: UIViewController {
             userClubsDisplayed = true
             clubsTableView.reloadData()
         }
-    }
-    @IBAction func logoutTapped(_ sender: Any) {
-        UserApi.logout()
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController = storyboard.instantiateViewController(
-            withIdentifier: "loginViewController") as! LoginViewController
-        self.present(viewController, animated: false, completion: nil)
     }
     
     // Get clubs loadLimit number of clubs from database starting from clubLoadNext

@@ -35,6 +35,12 @@ class EventsFeedViewController: UIViewController, EditEventDelegate {
     }
     
     func viewInit() {
+        // hide add event for users
+        if User.currentUser?.club == nil {
+            addEventButton.isEnabled = false
+            addEventButton.tintColor = UIColor.white
+        }
+        
         // format appearence of dates
         dateFormatter.dateFormat = "EE MMM d, yyyy"
         timeFormatter.dateFormat = "h:mm a"
@@ -85,16 +91,7 @@ class EventsFeedViewController: UIViewController, EditEventDelegate {
         
         self.navigationController?.pushViewController(viewController, animated: true)
     }
-    
-   
-    @IBAction func logoutTapped(_ sender: Any) {
-        UserApi.logout()
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController = storyboard.instantiateViewController(
-            withIdentifier: "loginViewController") as! LoginViewController
-        present(viewController, animated: false, completion: nil)
-    }
-    
+
     // EditEventDelegateFunction  (New event added)
     func editEventCompleted(event: Event?) {
         getEvents()

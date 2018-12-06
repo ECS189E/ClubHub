@@ -49,9 +49,9 @@
 		D184194821B0FCD300373875 /* ClubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D184194721B0FCD300373875 /* ClubCell.swift */; };
 		D19EA59021B85BA5001DE83E /* ChooseAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19EA58F21B85BA5001DE83E /* ChooseAccountViewController.swift */; };
 		D19EA59221B88254001DE83E /* AddClubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19EA59121B88254001DE83E /* AddClubViewController.swift */; };
+		D19EA59421B8CAA3001DE83E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19EA59321B8CAA3001DE83E /* SettingsViewController.swift */; };
 		D1B5FD6021B5BB3800117E63 /* EditClubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B5FD5F21B5BB3800117E63 /* EditClubViewController.swift */; };
 		E750A9DFA6023FA1C9A57307 /* Pods_ClubHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2470BC19246848A351389907 /* Pods_ClubHub.framework */; };
-		FDF68F5921B53B4900AF95D7 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF68F5821B53B4900AF95D7 /* InitialViewController.swift */; };
 		FDF68F5B21B53BBC00AF95D7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF68F5A21B53BBC00AF95D7 /* LoginViewController.swift */; };
 		FDF68F5D21B5493D00AF95D7 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF68F5C21B5493D00AF95D7 /* SignUpViewController.swift */; };
 		FDF68F5F21B6199600AF95D7 /* LoggedInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF68F5E21B6199600AF95D7 /* LoggedInViewController.swift */; };
@@ -129,8 +129,8 @@
 		D184194721B0FCD300373875 /* ClubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubCell.swift; sourceTree = "<group>"; };
 		D19EA58F21B85BA5001DE83E /* ChooseAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseAccountViewController.swift; sourceTree = "<group>"; };
 		D19EA59121B88254001DE83E /* AddClubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddClubViewController.swift; sourceTree = "<group>"; };
+		D19EA59321B8CAA3001DE83E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D1B5FD5F21B5BB3800117E63 /* EditClubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditClubViewController.swift; sourceTree = "<group>"; };
-		FDF68F5821B53B4900AF95D7 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		FDF68F5A21B53BBC00AF95D7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FDF68F5C21B5493D00AF95D7 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		FDF68F5E21B6199600AF95D7 /* LoggedInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInViewController.swift; sourceTree = "<group>"; };
@@ -214,7 +214,7 @@
 				D1835C8021AC7CA400A1F3DD /* Sravya.storyboard */,
 				D1835C8321AC7CAB00A1F3DD /* Varshini.storyboard */,
 				FDF68F6021B7B9B900AF95D7 /* PickClubController.swift */,
-				FDF68F5821B53B4900AF95D7 /* InitialViewController.swift */,
+				D19EA59321B8CAA3001DE83E /* SettingsViewController.swift */,
 				D102E75521B78ECF00DD9996 /* LoadingViewController.swift */,
 				D19EA58F21B85BA5001DE83E /* ChooseAccountViewController.swift */,
 				FDF68F5E21B6199600AF95D7 /* LoggedInViewController.swift */,
@@ -561,12 +561,12 @@
 				D1835CCB21AC870700A1F3DD /* EventsApi.swift in Sources */,
 				D184194021B0F0BE00373875 /* Club.swift in Sources */,
 				D102E75621B78ECF00DD9996 /* LoadingViewController.swift in Sources */,
+				D19EA59421B8CAA3001DE83E /* SettingsViewController.swift in Sources */,
 				D1835CCD21AC870700A1F3DD /* EventsFeedViewController.swift in Sources */,
 				373006CA21B6E22F00008F61 /* Message.swift in Sources */,
 				D1835CC721AC870700A1F3DD /* DateTimePopUpViewController.swift in Sources */,
 				37BDA80B21B8C1AE0099C76F /* MessageApi.swift in Sources */,
 				D1835CC821AC870700A1F3DD /* EventTestingViewController.swift in Sources */,
-				FDF68F5921B53B4900AF95D7 /* InitialViewController.swift in Sources */,
 				37BDA80D21B8C2700099C76F /* ConversationApi.swift in Sources */,
 				D136411E21AC64F0007A7B22 /* ClubHub.xcdatamodeld in Sources */,
 				D184194221B0F24500373875 /* ClubsApi.swift in Sources */,
