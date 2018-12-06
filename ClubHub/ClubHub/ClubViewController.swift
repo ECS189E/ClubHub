@@ -21,17 +21,8 @@ class ClubViewController: UIViewController {
         clubImage.image = club?.image ?? UIImage(named: "testImage")
         clubName.text = club?.name
         aboutClub.text = club?.details
-        // Do any additional setup after loading the view.
+        
+        print(aboutClub.fs_height)
     }
-    
-    
-    /*
-     // MARK: - Navigation
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }

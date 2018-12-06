@@ -51,22 +51,35 @@
                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jN9-4O-pnf">
-                                                <rect key="frame" x="10" y="35" width="323" height="0.0"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Ua-sk-uEH" userLabel="Label Padding VIew">
+                                                <rect key="frame" x="0.0" y="40" width="343" height="10"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jN9-4O-pnf">
+                                                        <rect key="frame" x="10" y="0.0" width="323" height="0.0"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="jN9-4O-pnf" secondAttribute="bottom" constant="10" id="6Cz-Bs-1n2"/>
+                                                    <constraint firstAttribute="trailing" secondItem="jN9-4O-pnf" secondAttribute="trailing" constant="10" id="Wp9-3C-Y0f"/>
+                                                    <constraint firstItem="jN9-4O-pnf" firstAttribute="top" secondItem="1Ua-sk-uEH" secondAttribute="top" id="rUT-jB-rlm"/>
+                                                    <constraint firstItem="jN9-4O-pnf" firstAttribute="leading" secondItem="1Ua-sk-uEH" secondAttribute="leading" constant="10" id="ufF-7n-AOy"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="1Ua-sk-uEH" firstAttribute="top" secondItem="cmR-74-0K9" secondAttribute="bottom" constant="10" id="2lz-QP-XV9"/>
                                             <constraint firstAttribute="height" constant="175" id="3ae-Kb-CZv"/>
                                             <constraint firstItem="cmR-74-0K9" firstAttribute="leading" secondItem="Wyg-lz-cXi" secondAttribute="leading" constant="10" id="LmM-7e-tln"/>
                                             <constraint firstAttribute="trailing" secondItem="cmR-74-0K9" secondAttribute="trailing" constant="10" id="MA5-29-pSx"/>
-                                            <constraint firstItem="jN9-4O-pnf" firstAttribute="leading" secondItem="Wyg-lz-cXi" secondAttribute="leading" constant="10" id="RK5-2S-MfG"/>
                                             <constraint firstItem="cmR-74-0K9" firstAttribute="top" secondItem="Wyg-lz-cXi" secondAttribute="top" constant="10" id="a19-rr-o4t"/>
-                                            <constraint firstItem="jN9-4O-pnf" firstAttribute="top" secondItem="cmR-74-0K9" secondAttribute="bottom" constant="5" id="oxE-ta-sxY"/>
-                                            <constraint firstAttribute="trailing" secondItem="jN9-4O-pnf" secondAttribute="trailing" constant="10" id="s3a-Zn-dI0"/>
+                                            <constraint firstItem="1Ua-sk-uEH" firstAttribute="leading" secondItem="Wyg-lz-cXi" secondAttribute="leading" id="gE6-Yn-InH"/>
+                                            <constraint firstAttribute="trailing" secondItem="1Ua-sk-uEH" secondAttribute="trailing" id="yCr-QI-ezX"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oOn-ay-ibH" userLabel="Name View">

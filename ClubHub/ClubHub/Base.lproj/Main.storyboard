@@ -719,7 +719,7 @@
                                 <rect key="frame" x="16" y="16" width="343" height="522"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Bs-TQ-dKL" userLabel="UploadImageView">
-                                        <rect key="frame" x="0.0" y="75" width="343" height="228"/>
+                                        <rect key="frame" x="0.0" y="85" width="343" height="228"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8L5-Y4-gHj">
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="193"/>
@@ -769,7 +769,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JN7-Pj-AcP" userLabel="DetailsView">
-                                        <rect key="frame" x="0.0" y="313" width="343" height="250"/>
+                                        <rect key="frame" x="0.0" y="323" width="343" height="250"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="t37-Lt-hRY" userLabel="DetailsTextView">
                                                 <rect key="frame" x="0.0" y="30" width="343" height="220"/>
@@ -797,10 +797,10 @@
                                         </constraints>
                                     </view>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Enter Name" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="U9N-iP-F0I">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="65"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="75"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="65" id="rHC-ME-fcn"/>
+                                            <constraint firstAttribute="height" constant="75" id="rHC-ME-fcn"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
