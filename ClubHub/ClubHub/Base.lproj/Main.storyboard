@@ -644,8 +644,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="374.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="azn-FE-EaS">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="azn-FE-EaS">
                                                     <rect key="frame" x="0.0" y="51.5" width="343" height="200"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="200" id="dpz-t1-NTl"/>
                                                     </constraints>
@@ -786,8 +787,9 @@
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="O73-Rc-UtE" userLabel="Club Image View">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="O73-Rc-UtE" userLabel="Club Image View">
                                                     <rect key="frame" x="0.0" y="71.5" width="343" height="193"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="O73-Rc-UtE" secondAttribute="height" multiplier="16:9" id="ocT-rG-fYk"/>
                                                     </constraints>
@@ -851,9 +853,9 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Bs-TQ-dKL" userLabel="UploadImageView">
                                         <rect key="frame" x="0.0" y="85" width="343" height="228"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8L5-Y4-gHj">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8L5-Y4-gHj">
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="193"/>
-                                                <color key="backgroundColor" white="0.84509667519999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="8L5-Y4-gHj" secondAttribute="height" multiplier="16:9" id="uLi-K9-kIk"/>
                                                 </constraints>
@@ -1114,9 +1116,9 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z76-Mm-xyq" userLabel="UploadImageView">
                                         <rect key="frame" x="0.0" y="75" width="343" height="228"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="A0b-Kd-agz">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="A0b-Kd-agz">
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="193"/>
-                                                <color key="backgroundColor" white="0.84509667519999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="A0b-Kd-agz" secondAttribute="height" multiplier="16:9" id="Jxa-NT-ZL0"/>
                                                 </constraints>
@@ -1300,9 +1302,9 @@
                                     <constraint firstAttribute="bottom" secondItem="zER-HS-Wvr" secondAttribute="bottom" constant="10" id="y2W-pm-8MT"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XKW-VB-cxY">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XKW-VB-cxY">
                                 <rect key="frame" x="16" y="80" width="343" height="193"/>
-                                <color key="backgroundColor" white="0.84509667519999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="XKW-VB-cxY" secondAttribute="height" multiplier="16:9" id="AXY-Xh-3T6"/>
                                 </constraints>
@@ -1427,9 +1429,9 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gwf-ih-alV" userLabel="UploadImageView">
                                         <rect key="frame" x="0.0" y="85" width="343" height="193"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ODv-L8-JNo">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ODv-L8-JNo">
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="193"/>
-                                                <color key="backgroundColor" white="0.84509667519999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="ODv-L8-JNo" secondAttribute="height" multiplier="16:9" id="T1M-V8-cvm"/>
                                                 </constraints>
@@ -1725,9 +1727,9 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FlC-sI-7cg" userLabel="UploadImageView">
                                         <rect key="frame" x="0.0" y="85" width="343" height="228"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FWm-xR-iGT">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FWm-xR-iGT">
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="193"/>
-                                                <color key="backgroundColor" white="0.84509667519999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="FWm-xR-iGT" secondAttribute="height" multiplier="16:9" id="eJO-Hp-tsL"/>
                                                 </constraints>
