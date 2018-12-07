@@ -59,12 +59,12 @@ class EventsFeedViewController: UIViewController, EditEventDelegate, EventDetail
         savedButton.layer.cornerRadius =
             savedButton.frame.size.height/7
         
-        // Source: https://www.raywenderlich.com/472-uisearchcontroller-tutorial-getting-started
         // Setup the Search Controller
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         navigationItem.searchController = searchController
         definesPresentationContext = true
+        searchController.isActive = true
     }
     
     // load all events into table and set button appearence
@@ -223,7 +223,7 @@ extension EventsFeedViewController: UITableViewDelegate, UITableViewDataSource, 
         cell.initEventCell(name: event.name,
                            startTime: event.startTime,
                            club: event.club,
-                           image: event.image ?? UIImage(named: "testImage"), //FIXME: for testing
+                           image: event.image ?? UIImage(named: "testImage"),
                            dateFormat: "EE MMM dd hh:mm a") 
         return cell
     }
