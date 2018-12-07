@@ -63,7 +63,7 @@ class InboxNavigationController: UINavigationController, UICollectionViewDelegat
         self.profileView.layer.cornerRadius = 5
         self.profileView.clipsToBounds = true
         self.profileView.isHidden = true
-        self.profilePicView.layer.borderColor = GlobalVariables.purple.cgColor
+        self.profilePicView.layer.borderColor = GlobalVariables.blue.cgColor
         self.profilePicView.layer.borderWidth = 3
         self.view.layoutIfNeeded()
         //PreviewView Customization
@@ -223,7 +223,7 @@ class InboxNavigationController: UINavigationController, UICollectionViewDelegat
             cell.profilePic.image = self.items[indexPath.row].profilePic
             cell.nameLabel.text = self.items[indexPath.row].name
             cell.profilePic.layer.borderWidth = 2
-            cell.profilePic.layer.borderColor = GlobalVariables.purple.cgColor
+            cell.profilePic.layer.borderColor = GlobalVariables.blue.cgColor
             return cell
         }
     }
