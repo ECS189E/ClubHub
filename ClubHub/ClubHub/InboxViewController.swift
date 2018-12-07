@@ -133,8 +133,6 @@ class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDat
             case .text:
                 let message = self.items[indexPath.row].lastMessage.content as! String
                 cell.messageLabel.text = message
-            case .location:
-                cell.messageLabel.text = "Location"
             default:
                 cell.messageLabel.text = "Media"
             }

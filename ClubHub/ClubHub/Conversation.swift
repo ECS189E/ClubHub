@@ -12,12 +12,15 @@ import Firebase
 
 class Conversation {
     
-    //MARK: Properties
     let user: Profile
     var lastMessage: Message
     
-    //MARK: Methods
-    class func showConversations(completion: @escaping ([Conversation]) -> Swift.Void) {
+    init(user: Profile, lastMessage: Message) {
+        self.user = user
+        self.lastMessage = lastMessage
+    }
+    
+    class func showConversations(completion: @escaping ([Conversation]) -> Void) {
         if let currentUserID = Auth.auth().currentUser?.uid {
             var conversations = [Conversation]()
             Database.database().reference().child("users").child(currentUserID).child("conversations").observe(.childAdded, with: { (snapshot) in
@@ -36,11 +39,5 @@ class Conversation {
                 }
             })
         }
-    }
-    
-    //MARK: Inits
-    init(user: Profile, lastMessage: Message) {
-        self.user = user
-        self.lastMessage = lastMessage
     }
 }

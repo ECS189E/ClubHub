@@ -9,11 +9,9 @@
 import UIKit
 import Photos
 import Firebase
-import CoreLocation
 
-class ConversationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate, CLLocationManagerDelegate {
+class ConversationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
-    //MARK: Properties
     @IBOutlet var inputBar: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var inputTextField: UITextField!
@@ -28,15 +26,11 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
     override var canBecomeFirstResponder: Bool{
         return true
     }
-    let locationManager = CLLocationManager()
     var items = [Message]()
     let imagePicker = UIImagePickerController()
     let barHeight: CGFloat = 50
     var currentUser: Profile?
-    var canSendLocation = true
     
-    
-    //MARK: Methods
     func customization() {
         self.imagePicker.delegate = self
         self.tableView.estimatedRowHeight = self.barHeight
@@ -48,10 +42,8 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
         let icon = UIImage.init(named: "back")?.withRenderingMode(.alwaysOriginal)
         let backButton = UIBarButtonItem.init(image: icon!, style: .plain, target: self, action: #selector(self.dismissSelf))
         self.navigationItem.leftBarButtonItem = backButton
-        self.locationManager.delegate = self
     }
     
-    //Downloads messages
     func fetchData() {
         Message.downloadAllMessages(forUserID: self.currentUser!.id, completion: {[weak weakSelf = self] (message) in
             weakSelf?.items.append(message)
@@ -66,7 +58,6 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
         Message.markMessagesRead(forUserID: self.currentUser!.id)
     }
     
-    //Hides current viewcontroller
     @objc func dismissSelf() {
         if let navController = self.navigationController {
             navController.popViewController(animated: true)
@@ -78,18 +69,6 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
         let message = Message.init(type: type, content: content, owner: .sender, timestamp: Int(Date().timeIntervalSince1970), isRead: false)
         Message.send(message: message, toID: self.currentUser!.id, completion: {(_) in
         })
-    }
-    
-    func checkLocationPermission() -> Bool {
-        var state = false
-        switch CLLocationManager.authorizationStatus() {
-        case .authorizedWhenInUse:
-            state = true
-        case .authorizedAlways:
-            state = true
-        default: break
-        }
-        return state
     }
     
     func animateExtraButtons(toHide: Bool)  {
@@ -121,26 +100,6 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
         
     }
     
-    @IBAction func selectCamera(_ sender: Any) {
-        self.animateExtraButtons(toHide: true)
-        let status = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
-        if (status == .authorized || status == .notDetermined) {
-            self.imagePicker.sourceType = .camera
-            self.imagePicker.allowsEditing = false
-            self.present(self.imagePicker, animated: true, completion: nil)
-        }
-    }
-    
-    @IBAction func selectLocation(_ sender: Any) {
-        self.canSendLocation = true
-        self.animateExtraButtons(toHide: true)
-        if self.checkLocationPermission() {
-            self.locationManager.startUpdatingLocation()
-        } else {
-            self.locationManager.requestWhenInUseAuthorization()
-        }
-    }
-    
     @IBAction func showOptions(_ sender: Any) {
         self.animateExtraButtons(toHide: false)
     }
@@ -154,7 +113,6 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
-    //MARK: NotificationCenter handlers
     @objc func showKeyboard(notification: Notification) {
         if let frame = notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let height = frame.cgRectValue.height
@@ -166,7 +124,6 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
-    //MARK: Delegates
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.items.count
     }
@@ -202,9 +159,6 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
                         }
                     })
                 }
-            case .location:
-                cell.messageBackground.image = UIImage.init(named: "location")
-                cell.message.isHidden = true
             }
             return cell
         case .sender:
@@ -228,9 +182,6 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
                         }
                     })
                 }
-            case .location:
-                cell.messageBackground.image = UIImage.init(named: "location")
-                cell.message.isHidden = true
             }
             return cell
         }
@@ -245,12 +196,6 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "showExtraView"), object: nil, userInfo: info)
                 self.inputAccessoryView?.isHidden = true
             }
-        case .location:
-            let coordinates = (self.items[indexPath.row].content as! String).components(separatedBy: ":")
-            let location = CLLocationCoordinate2D.init(latitude: CLLocationDegrees(coordinates[0])!, longitude: CLLocationDegrees(coordinates[1])!)
-            let info = ["viewType" : ShowExtraView.map, "location": location] as [String : Any]
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "showExtraView"), object: nil, userInfo: info)
-            self.inputAccessoryView?.isHidden = true
         default: break
         }
     }
@@ -268,19 +213,6 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
             self.composeMessage(type: .photo, content: pickedImage)
         }
         picker.dismiss(animated: true, completion: nil)
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        self.locationManager.stopUpdatingLocation()
-        if let lastLocation = locations.last {
-            if self.canSendLocation {
-                let coordinate = String(lastLocation.coordinate.latitude) + ":" + String(lastLocation.coordinate.longitude)
-                let message = Message.init(type: .location, content: coordinate, owner: .sender, timestamp: Int(Date().timeIntervalSince1970), isRead: false)
-                Message.send(message: message, toID: self.currentUser!.id, completion: {(_) in
-                })
-                self.canSendLocation = false
-            }
-        }
     }
     
     //MARK: ViewController lifecycle

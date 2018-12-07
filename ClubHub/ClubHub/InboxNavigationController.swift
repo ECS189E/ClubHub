@@ -1,6 +1,5 @@
 import UIKit
 import Firebase
-import MapKit
 
 class InboxNavigationController: UINavigationController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
     
@@ -8,8 +7,6 @@ class InboxNavigationController: UINavigationController, UICollectionViewDelegat
     @IBOutlet var contactsView: UIView!
     @IBOutlet var profileView: UIView!
     @IBOutlet var previewView: UIView!
-    @IBOutlet var mapPreviewView: UIView!
-    @IBOutlet weak var mapVIew: MKMapView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var previewImageView: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -76,14 +73,6 @@ class InboxNavigationController: UINavigationController, UICollectionViewDelegat
         self.previewView.bottomAnchor.constraint(equalTo: extraViewsContainer.bottomAnchor).isActive = true
         self.scrollView.minimumZoomScale = 1.0
         self.scrollView.maximumZoomScale = 3.0
-        //MapPreView Customization
-        extraViewsContainer.addSubview(self.mapPreviewView)
-        self.mapPreviewView.isHidden = true
-        self.mapPreviewView.translatesAutoresizingMaskIntoConstraints = false
-        self.mapPreviewView.leadingAnchor.constraint(equalTo: extraViewsContainer.leadingAnchor).isActive = true
-        self.mapPreviewView.topAnchor.constraint(equalTo: extraViewsContainer.topAnchor).isActive = true
-        self.mapPreviewView.trailingAnchor.constraint(equalTo: extraViewsContainer.trailingAnchor).isActive = true
-        self.mapPreviewView.bottomAnchor.constraint(equalTo: extraViewsContainer.bottomAnchor).isActive = true
         //NotificationCenter for showing extra views
         NotificationCenter.default.addObserver(self, selector: #selector(self.showExtraViews(notification:)), name: NSNotification.Name(rawValue: "showExtraView"), object: nil)
         self.fetchUsers()
@@ -104,8 +93,6 @@ class InboxNavigationController: UINavigationController, UICollectionViewDelegat
             self.profileView.isHidden = true
             self.contactsView.isHidden = true
             self.previewView.isHidden = true
-            self.mapPreviewView.isHidden = true
-            self.mapVIew.removeAnnotations(self.mapVIew.annotations)
             let vc = self.viewControllers.last
             vc?.inputAccessoryView?.isHidden = false
         })
@@ -136,13 +123,6 @@ class InboxNavigationController: UINavigationController, UICollectionViewDelegat
                 self.previewView.isHidden = false
                 self.previewImageView.image = notification.userInfo?["pic"] as? UIImage
                 self.scrollView.contentSize = self.previewImageView.frame.size
-            case .map:
-                self.mapPreviewView.isHidden = false
-                let coordinate = notification.userInfo?["location"] as? CLLocationCoordinate2D
-                let annotation = MKPointAnnotation.init()
-                annotation.coordinate = coordinate!
-                self.mapVIew.addAnnotation(annotation)
-                self.mapVIew.showAnnotations(self.mapVIew.annotations, animated: false)
             }
         }
     }
@@ -195,14 +175,6 @@ class InboxNavigationController: UINavigationController, UICollectionViewDelegat
     
     @IBAction func closeView(_ sender: Any) {
         self.dismissExtraViews()
-    }
-    
-    @IBAction func logOutUser(_ sender: Any) {
-        Profile.logOutUser { (status) in
-            if status == true {
-                self.dismiss(animated: true, completion: nil)
-            }
-        }
     }
     
     //MARK: Delegates

@@ -1844,8 +1844,6 @@
                         <outlet property="collectionView" destination="JMM-4A-p1i" id="p2y-Oc-GJE"/>
                         <outlet property="contactsView" destination="LaG-Vr-CAc" id="mLz-eL-rQc"/>
                         <outlet property="emailLabel" destination="odW-J3-r7R" id="gfe-IZ-5W3"/>
-                        <outlet property="mapPreviewView" destination="KgO-1l-W9W" id="WoX-aZ-21R"/>
-                        <outlet property="mapVIew" destination="OBZ-Ui-3ed" id="rXC-aA-IeM"/>
                         <outlet property="nameLabel" destination="fxl-8w-Lvg" id="JLl-bo-Z0i"/>
                         <outlet property="previewImageView" destination="eLu-cx-6n7" id="Dmv-c7-lBB"/>
                         <outlet property="previewView" destination="vRY-Z2-A5m" id="hyT-ON-uki"/>
@@ -2082,36 +2080,6 @@
                         <constraint firstAttribute="bottom" secondItem="Da6-eY-B0d" secondAttribute="bottom" id="wqk-bw-8Yf"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="BXn-y5-sWQ"/>
-                </view>
-                <view contentMode="scaleToFill" id="KgO-1l-W9W">
-                    <rect key="frame" x="0.0" y="0.0" width="423" height="269"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsCompass="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OBZ-Ui-3ed">
-                            <rect key="frame" x="0.0" y="0.0" width="423" height="269"/>
-                        </mapView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yc4-HQ-e6s">
-                            <rect key="frame" x="373" y="25" width="25" height="25"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="25" id="3Gd-oa-W6A"/>
-                                <constraint firstAttribute="width" constant="25" id="ALf-jq-Prs"/>
-                            </constraints>
-                            <state key="normal" backgroundImage="close"/>
-                            <connections>
-                                <action selector="closeView:" destination="khL-Nv-Aj7" eventType="touchUpInside" id="Clr-6c-Dqx"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstItem="OBZ-Ui-3ed" firstAttribute="leading" secondItem="KgO-1l-W9W" secondAttribute="leading" id="KZM-cc-FW2"/>
-                        <constraint firstAttribute="bottom" secondItem="OBZ-Ui-3ed" secondAttribute="bottom" id="U3s-gx-Dx4"/>
-                        <constraint firstAttribute="trailing" secondItem="OBZ-Ui-3ed" secondAttribute="trailing" id="ojq-nR-xtG"/>
-                        <constraint firstItem="yc4-HQ-e6s" firstAttribute="top" secondItem="KgO-1l-W9W" secondAttribute="top" constant="25" id="sHY-mg-j9z"/>
-                        <constraint firstAttribute="trailing" secondItem="yc4-HQ-e6s" secondAttribute="trailing" constant="25" id="vJy-0x-usM"/>
-                        <constraint firstItem="OBZ-Ui-3ed" firstAttribute="top" secondItem="KgO-1l-W9W" secondAttribute="top" id="xKs-9E-4L7"/>
-                    </constraints>
-                    <viewLayoutGuide key="safeArea" id="Io8-nG-n0f"/>
                 </view>
                 <tapGestureRecognizer numberOfTapsRequired="2" id="Qbw-1j-Dgv">
                     <connections>
@@ -2394,7 +2362,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YR0-EY-Ikv">
-                                    <rect key="frame" x="89.666666666666657" y="12.666666666666671" width="32" height="25"/>
+                                    <rect key="frame" x="268.66666666666663" y="12.666666666666671" width="32" height="25"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="32" id="7W2-99-srd"/>
                                         <constraint firstAttribute="height" constant="25" id="ePz-7C-vTh"/>
@@ -2402,28 +2370,6 @@
                                     <state key="normal" backgroundImage="selectPhoto"/>
                                     <connections>
                                         <action selector="selectGallery:" destination="80R-0K-aaj" eventType="touchUpInside" id="NmP-Sc-wBE"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R8J-zb-4KN">
-                                    <rect key="frame" x="179" y="12.666666666666671" width="32" height="25"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="32" id="NcF-vb-DvG"/>
-                                        <constraint firstAttribute="height" constant="25" id="hU9-Q4-wTf"/>
-                                    </constraints>
-                                    <state key="normal" backgroundImage="selectCamera"/>
-                                    <connections>
-                                        <action selector="selectCamera:" destination="80R-0K-aaj" eventType="touchUpInside" id="My3-A8-Pca"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TYy-36-fRH">
-                                    <rect key="frame" x="268.66666666666663" y="12.666666666666671" width="32" height="25"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="32" id="dKW-OZ-W8n"/>
-                                        <constraint firstAttribute="height" constant="25" id="kv6-Mu-3fd"/>
-                                    </constraints>
-                                    <state key="normal" backgroundImage="selectLocation"/>
-                                    <connections>
-                                        <action selector="selectLocation:" destination="80R-0K-aaj" eventType="touchUpInside" id="DEb-cp-nWV"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -2633,8 +2579,6 @@
         <image name="icons8-waste-ocean-36" width="185.14285278320312" height="185.14285278320312"/>
         <image name="more" width="64" height="50"/>
         <image name="profile pic" width="200" height="200"/>
-        <image name="selectCamera" width="64" height="50"/>
-        <image name="selectLocation" width="64" height="50"/>
         <image name="selectMessage" width="64" height="50"/>
         <image name="selectPhoto" width="64" height="50"/>
         <image name="send" width="64" height="50"/>
