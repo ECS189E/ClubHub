@@ -151,7 +151,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 case(.some(let data), nil):
                     let user = data as? User
                     User.currentUser = user
-                    Profile.currentUser = user
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let viewController = storyboard.instantiateViewController(withIdentifier: "tabBarController")
                     self.window?.rootViewController?.present(viewController,
@@ -160,7 +159,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 // No user data in database, new account
                 case(nil, .some(_)):
                     User.currentUser = nil
-                    Profile.currentUser = nil
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let viewController = storyboard.instantiateViewController(withIdentifier: "signupNavigationController")
                     self.window?.rootViewController?.present(viewController,

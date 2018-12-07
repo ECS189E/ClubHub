@@ -31,6 +31,18 @@ struct UserApi {
             userClubs = [club]
         }
         
+        let name = Auth.auth().currentUser?.displayName
+        let email = Auth.auth().currentUser?.email
+        let values = ["name": name, "email": email]
+        Database.database().reference().child("users").child(userID).child("credentials").updateChildValues(values as [AnyHashable : Any], withCompletionBlock: { (err, _) in
+            if err == nil {
+                let profile = Profile(name: name!, email: email!, id: userID, profilePic: UIImage(named: "default profile")!)
+                completion(profile, nil)
+            } else {
+                completion(nil, "Error adding profile credentials")
+            }
+        })
+        
         // Add a new document with a generated ID
         db.collection("users").document(userID).setData([
             "events": [],

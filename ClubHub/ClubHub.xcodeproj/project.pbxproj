@@ -7,18 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		370F233321B90B5E0089FD7E /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370F233221B90B5E0089FD7E /* Profile.swift */; };
-		370F233521B90C390089FD7E /* ProfileApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370F233421B90C390089FD7E /* ProfileApi.swift */; };
-		373006CA21B6E22F00008F61 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373006C921B6E22F00008F61 /* Message.swift */; };
-		373006CC21B7521900008F61 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373006CB21B7521900008F61 /* Conversation.swift */; };
-		373006CE21B7C0D800008F61 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373006CD21B7C0D800008F61 /* ConversationViewController.swift */; };
-		373006D021B7C34500008F61 /* SenderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373006CF21B7C34500008F61 /* SenderCell.swift */; };
-		373006D221B7C37200008F61 /* ReceiverCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373006D121B7C37200008F61 /* ReceiverCell.swift */; };
-		373006D421B7C58300008F61 /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373006D321B7C58300008F61 /* InboxViewController.swift */; };
-		373006D621B7CDA400008F61 /* ConversationPreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373006D521B7CDA400008F61 /* ConversationPreviewCell.swift */; };
+		375843EE21BA4AA3002D42F8 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375843ED21BA4AA3002D42F8 /* Profile.swift */; };
+		375843F021BA4ABD002D42F8 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375843EF21BA4ABD002D42F8 /* Message.swift */; };
+		375843F221BA4AE1002D42F8 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375843F121BA4AE1002D42F8 /* Conversation.swift */; };
+		375843F421BA4B1B002D42F8 /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375843F321BA4B1B002D42F8 /* ConversationCell.swift */; };
+		375843F621BA4B70002D42F8 /* ConversationGlobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375843F521BA4B70002D42F8 /* ConversationGlobal.swift */; };
+		375843F821BA4B8B002D42F8 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375843F721BA4B8B002D42F8 /* ConversationViewController.swift */; };
+		375843FA21BA4BCD002D42F8 /* InboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375843F921BA4BCD002D42F8 /* InboxViewController.swift */; };
+		375843FC21BA4BF0002D42F8 /* InboxNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375843FB21BA4BF0002D42F8 /* InboxNavigationController.swift */; };
 		3767815A21AC76E50016533D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3767815921AC76E50016533D /* GoogleService-Info.plist */; };
-		37BDA80B21B8C1AE0099C76F /* MessageApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BDA80A21B8C1AE0099C76F /* MessageApi.swift */; };
-		37BDA80D21B8C2700099C76F /* ConversationApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BDA80C21B8C2700099C76F /* ConversationApi.swift */; };
 		D0015C9921B6085C007420FB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0015C9821B6085C007420FB /* User.swift */; };
 		D04F403F21B7887D00A3D996 /* ClubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04F403E21B7887D00A3D996 /* ClubViewController.swift */; };
 		D102E75621B78ECF00DD9996 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D102E75521B78ECF00DD9996 /* LoadingViewController.swift */; };
@@ -72,18 +69,15 @@
 /* Begin PBXFileReference section */
 		2470BC19246848A351389907 /* Pods_ClubHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClubHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		307080BD5733675116179A47 /* Pods_ClubHubTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClubHubTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		370F233221B90B5E0089FD7E /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
-		370F233421B90C390089FD7E /* ProfileApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileApi.swift; sourceTree = "<group>"; };
-		373006C921B6E22F00008F61 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		373006CB21B7521900008F61 /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
-		373006CD21B7C0D800008F61 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
-		373006CF21B7C34500008F61 /* SenderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderCell.swift; sourceTree = "<group>"; };
-		373006D121B7C37200008F61 /* ReceiverCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiverCell.swift; sourceTree = "<group>"; };
-		373006D321B7C58300008F61 /* InboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewController.swift; sourceTree = "<group>"; };
-		373006D521B7CDA400008F61 /* ConversationPreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationPreviewCell.swift; sourceTree = "<group>"; };
+		375843ED21BA4AA3002D42F8 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		375843EF21BA4ABD002D42F8 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		375843F121BA4AE1002D42F8 /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
+		375843F321BA4B1B002D42F8 /* ConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
+		375843F521BA4B70002D42F8 /* ConversationGlobal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationGlobal.swift; sourceTree = "<group>"; };
+		375843F721BA4B8B002D42F8 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
+		375843F921BA4BCD002D42F8 /* InboxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewController.swift; sourceTree = "<group>"; };
+		375843FB21BA4BF0002D42F8 /* InboxNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxNavigationController.swift; sourceTree = "<group>"; };
 		3767815921AC76E50016533D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		37BDA80A21B8C1AE0099C76F /* MessageApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageApi.swift; sourceTree = "<group>"; };
-		37BDA80C21B8C2700099C76F /* ConversationApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationApi.swift; sourceTree = "<group>"; };
 		6108494735D13AA2F78DF325 /* Pods_ClubHubUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ClubHubUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84B61FE294D854F305958EF9 /* Pods-ClubHub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClubHub.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ClubHub/Pods-ClubHub.debug.xcconfig"; sourceTree = "<group>"; };
 		970100C9EFECC528E1638691 /* Pods-ClubHub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ClubHub.release.xcconfig"; path = "Pods/Target Support Files/Pods-ClubHub/Pods-ClubHub.release.xcconfig"; sourceTree = "<group>"; };
@@ -219,17 +213,14 @@
 				D1835CBF21AC870500A1F3DD /* DateTimePopUpViewController.swift */,
 				D10C916921B22A0300AD78B9 /* UserApi.swift */,
 				D0015C9821B6085C007420FB /* User.swift */,
-				370F233221B90B5E0089FD7E /* Profile.swift */,
-				370F233421B90C390089FD7E /* ProfileApi.swift */,
-				373006C921B6E22F00008F61 /* Message.swift */,
-				37BDA80A21B8C1AE0099C76F /* MessageApi.swift */,
-				373006CB21B7521900008F61 /* Conversation.swift */,
-				37BDA80C21B8C2700099C76F /* ConversationApi.swift */,
-				373006CD21B7C0D800008F61 /* ConversationViewController.swift */,
-				373006D321B7C58300008F61 /* InboxViewController.swift */,
-				373006CF21B7C34500008F61 /* SenderCell.swift */,
-				373006D121B7C37200008F61 /* ReceiverCell.swift */,
-				373006D521B7CDA400008F61 /* ConversationPreviewCell.swift */,
+				375843ED21BA4AA3002D42F8 /* Profile.swift */,
+				375843EF21BA4ABD002D42F8 /* Message.swift */,
+				375843F121BA4AE1002D42F8 /* Conversation.swift */,
+				375843F321BA4B1B002D42F8 /* ConversationCell.swift */,
+				375843F521BA4B70002D42F8 /* ConversationGlobal.swift */,
+				375843F721BA4B8B002D42F8 /* ConversationViewController.swift */,
+				375843F921BA4BCD002D42F8 /* InboxViewController.swift */,
+				375843FB21BA4BF0002D42F8 /* InboxNavigationController.swift */,
 				D184193D21AF5FC100373875 /* UIImage+JPEG.swift */,
 				D184193B21AF40AF00373875 /* ViewController+keyboard.swift */,
 				3767815921AC76E50016533D /* GoogleService-Info.plist */,
@@ -518,38 +509,35 @@
 			files = (
 				D184193E21AF5FC200373875 /* UIImage+JPEG.swift in Sources */,
 				D19EA59221B88254001DE83E /* AddClubViewController.swift in Sources */,
-				373006D421B7C58300008F61 /* InboxViewController.swift in Sources */,
 				D04F403F21B7887D00A3D996 /* ClubViewController.swift in Sources */,
-				373006D221B7C37200008F61 /* ReceiverCell.swift in Sources */,
-				373006CE21B7C0D800008F61 /* ConversationViewController.swift in Sources */,
+				375843EE21BA4AA3002D42F8 /* Profile.swift in Sources */,
+				375843F421BA4B1B002D42F8 /* ConversationCell.swift in Sources */,
+				375843F221BA4AE1002D42F8 /* Conversation.swift in Sources */,
 				D10C916A21B22A0300AD78B9 /* UserApi.swift in Sources */,
 				D19EA59021B85BA5001DE83E /* ChooseAccountViewController.swift in Sources */,
 				D1835CD321AD0D3000A1F3DD /* CalendarViewController.swift in Sources */,
 				D184194621B0FB3100373875 /* ClubListViewController.swift in Sources */,
 				D184194821B0FCD300373875 /* ClubCell.swift in Sources */,
-				373006CC21B7521900008F61 /* Conversation.swift in Sources */,
 				D184193A21AF39E900373875 /* EditEventViewController.swift in Sources */,
 				D1835CC921AC870700A1F3DD /* EventDetailsViewController.swift in Sources */,
-				373006D621B7CDA400008F61 /* ConversationPreviewCell.swift in Sources */,
 				D1835CCF21AC935100A1F3DD /* Event.swift in Sources */,
 				FDF68F5B21B53BBC00AF95D7 /* LoginViewController.swift in Sources */,
+				375843F621BA4B70002D42F8 /* ConversationGlobal.swift in Sources */,
 				D1835CCB21AC870700A1F3DD /* EventsApi.swift in Sources */,
 				D184194021B0F0BE00373875 /* Club.swift in Sources */,
+				375843F821BA4B8B002D42F8 /* ConversationViewController.swift in Sources */,
+				375843FA21BA4BCD002D42F8 /* InboxViewController.swift in Sources */,
 				D102E75621B78ECF00DD9996 /* LoadingViewController.swift in Sources */,
 				D19EA59421B8CAA3001DE83E /* SettingsViewController.swift in Sources */,
 				D1835CCD21AC870700A1F3DD /* EventsFeedViewController.swift in Sources */,
-				373006CA21B6E22F00008F61 /* Message.swift in Sources */,
 				D1835CC721AC870700A1F3DD /* DateTimePopUpViewController.swift in Sources */,
-				370F233521B90C390089FD7E /* ProfileApi.swift in Sources */,
-				37BDA80B21B8C1AE0099C76F /* MessageApi.swift in Sources */,
-				37BDA80D21B8C2700099C76F /* ConversationApi.swift in Sources */,
 				D136411E21AC64F0007A7B22 /* ClubHub.xcdatamodeld in Sources */,
 				D184194221B0F24500373875 /* ClubsApi.swift in Sources */,
+				375843F021BA4ABD002D42F8 /* Message.swift in Sources */,
 				D0015C9921B6085C007420FB /* User.swift in Sources */,
 				D184193C21AF40AF00373875 /* ViewController+keyboard.swift in Sources */,
+				375843FC21BA4BF0002D42F8 /* InboxNavigationController.swift in Sources */,
 				D136411621AC64F0007A7B22 /* AppDelegate.swift in Sources */,
-				373006D021B7C34500008F61 /* SenderCell.swift in Sources */,
-				370F233321B90B5E0089FD7E /* Profile.swift in Sources */,
 				D1B5FD6021B5BB3800117E63 /* EditClubViewController.swift in Sources */,
 				D1835CCA21AC870700A1F3DD /* EventCell.swift in Sources */,
 			);
