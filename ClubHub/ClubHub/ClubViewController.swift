@@ -26,7 +26,7 @@ class ClubViewController: UIViewController, EventDetailsDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        clubImage.image = club?.image ?? UIImage(named: "testImage")
+        clubImage.image = club?.image ?? UIImage(named: "defaultImage")
         clubName.text = club?.name
         aboutClub.text = club?.details
         

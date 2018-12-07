@@ -164,7 +164,7 @@ extension ClubListViewController: UITableViewDelegate, UITableViewDataSource, UI
             tableView.dequeueReusableCell(withIdentifier: "clubCell", for: indexPath) as! ClubCell
         
         cell.initClubCell(name: club.name,
-                          image: club.image ?? UIImage(named: "testImage")) // FIXME: for testing
+                          image: club.image ?? UIImage(named: "defaultImage")) // FIXME: for testing
         return cell
     }
 

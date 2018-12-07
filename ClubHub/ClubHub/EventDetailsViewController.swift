@@ -118,7 +118,7 @@ class EventDetailsViewController: UIViewController, EditEventDelegate {
     }
     
     func loadEvent(event: Event?) {
-        eventImageView.image = event?.image ?? UIImage(named: "testImage")
+        eventImageView.image = event?.image ?? UIImage(named: "defaultImage")
         eventNameLabel.text = event?.name ?? "Event Name"
         clubNameLabel.text = event?.club ?? "Club Name"
         startDate.text =

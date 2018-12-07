@@ -223,7 +223,7 @@ extension EventsFeedViewController: UITableViewDelegate, UITableViewDataSource, 
         cell.initEventCell(name: event.name,
                            startTime: event.startTime,
                            club: event.club,
-                           image: event.image ?? UIImage(named: "testImage"),
+                           image: event.image ?? UIImage(named: "defaultImage"),
                            dateFormat: "EE MMM dd hh:mm a") 
         return cell
     }
