@@ -293,6 +293,50 @@ struct UserApi {
         }
     }
     
+    static func deleteUser(completion: @escaping ApiCompletion) {
+        let db = Firestore.firestore()
+        let settings = db.settings
+        settings.areTimestampsInSnapshotsEnabled = true
+        db.settings = settings
+        
+        let ref = db.collection("users").document(User.currentUser?.id ?? "")
+        
+        // check if club exists, then delete it
+        ref.getDocument { (document, err) in
+            if let document = document, document.exists {
+                if let err = err {
+                    completion(nil, "Error deleting user: \(err)")
+                } else {
+                    ref.delete() { err in
+                        if let err = err {
+                            completion(nil, "Error deleting user: \(err)")
+                        } else {
+                            
+                            // if user is a club account, delete club
+                            if let club = User.currentUser?.club{
+                                ClubsApi.deleteClub(club: club) { data, err in
+                                    switch(data, err) {
+                                    case(.some(_), nil):
+                                        completion(true, nil)
+                                    case(nil, .some(let err)):
+                                        completion(nil, "Error deleting user's club: \(err)")
+                                    default:
+                                        completion(nil, "Error deleting user's club")
+                                    }
+                                }
+                            } else {
+                                completion(true, nil)
+                            }
+                        }
+                    }
+                }
+                
+            } else {
+                completion(nil, "Error deleting user: does not exits")
+            }
+        }
+    }
+    
     static func logout() {
         let firebaseAuth = Auth.auth()
         do {

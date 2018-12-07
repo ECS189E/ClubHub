@@ -160,6 +160,14 @@ struct EventsApi {
         settings.areTimestampsInSnapshotsEnabled = true
         db.settings = settings
         
+        // delete event from user events list
+        UserApi.deleteSavedEvent(eventID: event?.id) { data, err in
+            if let err = err {
+                print("Error deleting user event: \(err)")
+            }
+        }
+        
+        // delete event from database
         let ref = db.collection("events").document(event?.id ?? "")
         
         // check if event exists, then delete it
