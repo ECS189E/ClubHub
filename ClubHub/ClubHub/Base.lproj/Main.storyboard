@@ -1833,7 +1833,7 @@
         <scene sceneID="hR2-GP-eam">
             <objects>
                 <navigationController storyboardIdentifier="inboxNavigationController" title="Inbox Navigation" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="khL-Nv-Aj7" customClass="InboxNavigationController" customModule="ClubHub" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Inbox" id="uhy-7L-dfc"/>
+                    <tabBarItem key="tabBarItem" title="Inbox" image="icons8-open-envelope-filled-25" id="uhy-7L-dfc"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ex4-0v-ayg">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -2621,6 +2621,7 @@
         <image name="icons8-compose-36-white" width="27" height="27"/>
         <image name="icons8-delete-bin-36-white" width="22.5" height="22.5"/>
         <image name="icons8-exit-ocean-36" width="185.14285278320312" height="185.14285278320312"/>
+        <image name="icons8-open-envelope-filled-25" width="18.75" height="18.75"/>
         <image name="icons8-plus-25-black" width="18.75" height="18.75"/>
         <image name="icons8-registration-filled-25-black" width="18.75" height="18.75"/>
         <image name="icons8-registration-ocean-40" width="180" height="180"/>
