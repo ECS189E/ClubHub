@@ -15,8 +15,10 @@ class ClubViewController: UIViewController {
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     var savedClub: Bool = false
-    
     var club: Club?
+    
+    var dateFormatter = DateFormatter()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +26,9 @@ class ClubViewController: UIViewController {
         clubImage.image = club?.image ?? UIImage(named: "testImage")
         clubName.text = club?.name
         aboutClub.text = club?.details
+        
+        // Init date formatter for table view
+        dateFormatter.dateFormat = "EE MMM d"
         
         // if user is a club, disable save button
         if User.currentUser?.club != nil {

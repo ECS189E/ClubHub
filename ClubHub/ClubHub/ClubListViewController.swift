@@ -38,8 +38,6 @@ class ClubListViewController: UIViewController {
     }
     
     func viewInit() {
-        //self.navigationController?.navigationBar.items?.append(UIImage(named: "computer-workers-group-24") as! UINavigationItem)
-        
         // Init selected clubs view buttons
         allClubsButton.alpha = 1.0
         allClubsButton.layer.cornerRadius =
@@ -91,6 +89,14 @@ class ClubListViewController: UIViewController {
             case(.some(let data), nil):
                 if let clubIds = data as? [String?] {
                     // add each club to the club list and reload table view
+                    
+                    // if no clubs, clear table view
+                    if clubIds.count  <= 0 {
+                        self.clubs = []
+                        self.filteredClubs = []
+                        self.clubsTableView.reloadData()
+                    }
+                    
                     for id in clubIds {
                         ClubsApi.getClub(id: id ?? "") { data, error in
                             switch(data, error){
