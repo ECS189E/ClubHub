@@ -20,8 +20,6 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     
     var events: [Event]? = []
     
-    var dateFormatter = DateFormatter()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,7 +35,6 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         
         calendarListedEvents.delegate = self
         calendarListedEvents.dataSource = self
-        dateFormatter.dateFormat = "h:mm a"
     }
     
     override func viewWillAppear(_ animated: Bool) {

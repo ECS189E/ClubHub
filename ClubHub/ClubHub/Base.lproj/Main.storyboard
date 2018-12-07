@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zzj-w8-SOH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zzj-w8-SOH">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -1270,60 +1270,55 @@
                                     <constraint firstAttribute="width" secondItem="XKW-VB-cxY" secondAttribute="height" multiplier="16:9" id="AXY-Xh-3T6"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Events:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7YU-5k-fHv">
-                                <rect key="frame" x="16" y="408" width="343" height="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Events" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7YU-5k-fHv">
+                                <rect key="frame" x="16" y="410" width="343" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Edf-FV-CeC">
-                                <rect key="frame" x="16" y="428" width="343" height="229"/>
+                                <rect key="frame" x="16" y="430" width="343" height="227"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="calendarEventCell" rowHeight="60" id="LkJ-gi-IhP" customClass="EventCell" customModule="ClubHub" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="clubEventCell" rowHeight="60" id="xf7-KT-acW" customClass="EventCell" customModule="ClubHub" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="343" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LkJ-gi-IhP" id="DiN-fj-kCz" customClass="EventCell" customModule="ClubHub" customModuleProvider="target">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xf7-KT-acW" id="opw-Cq-wUC">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rvy-6d-16P">
-                                                    <rect key="frame" x="228" y="0.0" width="100" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="osn-rp-tfE">
+                                                    <rect key="frame" x="228" y="0.0" width="100" height="20.5"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="INF-nQ-8At"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="RWN-wI-t7w"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cUZ-0N-YoO">
-                                                    <rect key="frame" x="15" y="11" width="39.5" height="50"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4TP-Gx-bxg">
+                                                    <rect key="frame" x="15" y="11" width="47" height="50"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="Cxq-Vg-P6o"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="h7r-hM-Lep"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="Rvy-6d-16P" secondAttribute="bottom" id="5NS-hO-Lk5"/>
-                                                <constraint firstItem="Rvy-6d-16P" firstAttribute="top" secondItem="DiN-fj-kCz" secondAttribute="top" id="L6A-hC-mo4"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Rvy-6d-16P" secondAttribute="trailing" id="QhK-Nk-Q5E"/>
-                                                <constraint firstItem="cUZ-0N-YoO" firstAttribute="top" secondItem="DiN-fj-kCz" secondAttribute="topMargin" id="X2i-2T-4M3"/>
-                                                <constraint firstItem="cUZ-0N-YoO" firstAttribute="leading" secondItem="DiN-fj-kCz" secondAttribute="leadingMargin" id="XU3-3P-ao9"/>
-                                                <constraint firstItem="Rvy-6d-16P" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="cUZ-0N-YoO" secondAttribute="trailing" constant="8" symbolic="YES" id="szb-2d-9bG"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="cUZ-0N-YoO" secondAttribute="bottom" id="uGS-Bn-lqx"/>
-                                                <constraint firstItem="Rvy-6d-16P" firstAttribute="top" secondItem="DiN-fj-kCz" secondAttribute="top" id="xWr-6C-IsS"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="osn-rp-tfE" secondAttribute="trailing" id="I1h-5o-Z4Q"/>
+                                                <constraint firstItem="osn-rp-tfE" firstAttribute="top" secondItem="opw-Cq-wUC" secondAttribute="top" id="ORw-H2-1lV"/>
+                                                <constraint firstAttribute="bottom" secondItem="osn-rp-tfE" secondAttribute="bottom" id="RRf-f2-WiL"/>
+                                                <constraint firstItem="4TP-Gx-bxg" firstAttribute="leading" secondItem="opw-Cq-wUC" secondAttribute="leadingMargin" id="Yid-cG-n5O"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="4TP-Gx-bxg" secondAttribute="bottom" id="aoc-JD-55E"/>
+                                                <constraint firstItem="osn-rp-tfE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4TP-Gx-bxg" secondAttribute="trailing" id="dIt-HN-n7A"/>
+                                                <constraint firstItem="4TP-Gx-bxg" firstAttribute="top" secondItem="opw-Cq-wUC" secondAttribute="topMargin" id="k74-Mr-0wU"/>
                                             </constraints>
-                                            <connections>
-                                                <outlet property="eventStartTimeLabel" destination="Rvy-6d-16P" id="bEh-Xg-LVC"/>
-                                                <outlet property="nameLabel" destination="cUZ-0N-YoO" id="mFp-M0-YGR"/>
-                                            </connections>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="eventStartTimeLabel" destination="Rvy-6d-16P" id="BPK-hx-gLS"/>
-                                            <outlet property="nameLabel" destination="cUZ-0N-YoO" id="21G-Vs-8I7"/>
+                                            <outlet property="eventStartTimeLabel" destination="osn-rp-tfE" id="Iqj-4m-sd2"/>
+                                            <outlet property="nameLabel" destination="4TP-Gx-bxg" id="e5l-QD-zc8"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1345,7 +1340,7 @@
                             <constraint firstItem="BnD-Vm-nct" firstAttribute="top" secondItem="NlU-Dp-yT7" secondAttribute="top" constant="10" id="VQH-Sa-nx8"/>
                             <constraint firstItem="XKW-VB-cxY" firstAttribute="width" secondItem="XKW-VB-cxY" secondAttribute="height" multiplier="16:9" id="a7q-5q-1Fs"/>
                             <constraint firstItem="NlU-Dp-yT7" firstAttribute="trailing" secondItem="7YU-5k-fHv" secondAttribute="trailing" constant="16" id="ca3-pX-2U2"/>
-                            <constraint firstItem="7YU-5k-fHv" firstAttribute="top" secondItem="Ppx-fo-qNA" secondAttribute="bottom" constant="5" id="eln-zU-ycv"/>
+                            <constraint firstItem="7YU-5k-fHv" firstAttribute="top" secondItem="Ppx-fo-qNA" secondAttribute="bottom" constant="7" id="eln-zU-ycv"/>
                             <constraint firstItem="7YU-5k-fHv" firstAttribute="leading" secondItem="NlU-Dp-yT7" secondAttribute="leading" constant="16" id="fV0-gT-mIf"/>
                             <constraint firstItem="XKW-VB-cxY" firstAttribute="top" secondItem="BnD-Vm-nct" secondAttribute="bottom" constant="5" id="kW2-Dp-Df9"/>
                             <constraint firstItem="Ppx-fo-qNA" firstAttribute="top" secondItem="XKW-VB-cxY" secondAttribute="bottom" constant="5" id="mn7-zp-a0C"/>
@@ -1364,6 +1359,7 @@
                         <outlet property="clubImage" destination="XKW-VB-cxY" id="hH1-wd-izb"/>
                         <outlet property="clubName" destination="wzK-FY-9xB" id="Zjb-aa-tDj"/>
                         <outlet property="saveButton" destination="n58-ZD-dW5" id="sJs-GU-EAU"/>
+                        <outlet property="tableview" destination="Edf-FV-CeC" id="lFd-1K-1Gr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ogQ-KD-JbE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2010,18 +2006,18 @@
         </scene>
     </scenes>
     <resources>
-        <image name="computer-workers-group-128" width="51.200000762939453" height="51.200000762939453"/>
-        <image name="icons8-calendar-25-black" width="18.75" height="18.75"/>
-        <image name="icons8-compose-36-white" width="27" height="27"/>
-        <image name="icons8-delete-bin-36-white" width="22.5" height="22.5"/>
-        <image name="icons8-exit-filled-36-white" width="22.5" height="22.5"/>
-        <image name="icons8-plus-25-black" width="18.75" height="18.75"/>
-        <image name="icons8-registration-filled-25-black" width="18.75" height="18.75"/>
-        <image name="icons8-registration-filled-36-white" width="27" height="27"/>
-        <image name="icons8-schedule-25-black" width="18.75" height="18.75"/>
-        <image name="icons8-settings-filled-25-black" width="18.75" height="18.75"/>
-        <image name="icons8-star-outline-36" width="27" height="27"/>
-        <image name="icons8-user-groups-25-black" width="18.75" height="18.75"/>
-        <image name="icons8-waste-filled-25-black" width="18.75" height="18.75"/>
+        <image name="computer-workers-group-128" width="64" height="64"/>
+        <image name="icons8-calendar-25-black" width="25" height="25"/>
+        <image name="icons8-compose-36-white" width="36" height="36"/>
+        <image name="icons8-delete-bin-36-white" width="30" height="30"/>
+        <image name="icons8-exit-filled-36-white" width="30" height="30"/>
+        <image name="icons8-plus-25-black" width="25" height="25"/>
+        <image name="icons8-registration-filled-25-black" width="25" height="25"/>
+        <image name="icons8-registration-filled-36-white" width="36" height="36"/>
+        <image name="icons8-schedule-25-black" width="25" height="25"/>
+        <image name="icons8-settings-filled-25-black" width="25" height="25"/>
+        <image name="icons8-star-outline-36" width="36" height="36"/>
+        <image name="icons8-user-groups-25-black" width="25" height="25"/>
+        <image name="icons8-waste-filled-25-black" width="25" height="25"/>
     </resources>
 </document>
