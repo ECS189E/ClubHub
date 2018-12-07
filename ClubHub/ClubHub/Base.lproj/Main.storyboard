@@ -170,10 +170,10 @@
                                                     <action selector="logoutTapped:" destination="qr7-Vc-WKG" eventType="touchUpInside" id="Tbj-E4-Yy5"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bhH-Tg-dRn">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bhH-Tg-dRn" userLabel="Delete Accuont">
                                                 <rect key="frame" x="0.0" y="71" width="382" height="70"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" title="   Delete Accuont" image="icons8-waste-ocean-36">
+                                                <state key="normal" title="   Delete Account" image="icons8-waste-ocean-36">
                                                     <color key="titleColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>

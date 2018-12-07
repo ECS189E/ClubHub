@@ -311,8 +311,8 @@ struct UserApi {
         settings.areTimestampsInSnapshotsEnabled = true
         db.settings = settings
         
+        Database.database().reference().child("users").child(User.currentUser?.id ?? "").removeValue()
         let ref = db.collection("users").document(User.currentUser?.id ?? "")
-        
         // check if club exists, then delete it
         ref.getDocument { (document, err) in
             if let document = document, document.exists {
