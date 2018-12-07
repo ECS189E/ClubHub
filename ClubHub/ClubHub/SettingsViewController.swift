@@ -32,11 +32,7 @@ class SettingsViewController: UIViewController, EditClubDelegate {
     
     
     @IBAction func logoutTapped(_ sender: Any) {
-        UserApi.logout()
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController = storyboard.instantiateViewController(
-            withIdentifier: "loginViewController") as! LoginViewController
-        present(viewController, animated: false, completion: nil)
+        logout()
     }
     
     
@@ -44,9 +40,18 @@ class SettingsViewController: UIViewController, EditClubDelegate {
         Auth.auth().currentUser?.delete() {
             error in
             if let error = error {
-                // An error happened.
+                print(error)
             } else {
-                // Account deleted.
+                UserApi.deleteUser() { data, err in
+                    switch(data, err) {
+                        case(.some(_), nil):
+                            self.logout()
+                        case(nil, .some(let err)):
+                            print("Error deleting user's club: \(err)")
+                        default:
+                            print("Error deleting user's club")
+                    }
+                }
             }
         }
     }
@@ -55,4 +60,12 @@ class SettingsViewController: UIViewController, EditClubDelegate {
         self.navigationController?.popViewController(animated: true)
     }
     
+    
+    func logout() {
+        UserApi.logout()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(
+            withIdentifier: "loginViewController") as! LoginViewController
+        present(viewController, animated: false, completion: nil)
+    }
 }

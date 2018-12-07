@@ -13,7 +13,8 @@ class EventsFeedViewController: UIViewController, EditEventDelegate, EventDetail
     
     @IBOutlet weak var eventsTableView: UITableView!
     @IBOutlet weak var allEventsButton: UIButton!
-    @IBOutlet weak var myEventButton: UIButton!
+    @IBOutlet weak var savedButton: UIButton!
+    @IBOutlet weak var myClubsButton: UIButton!
     @IBOutlet weak var addEventButton: UIBarButtonItem!
     
     var events: [Event]?  // Events curretly loaded into table
@@ -34,7 +35,6 @@ class EventsFeedViewController: UIViewController, EditEventDelegate, EventDetail
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        // reset the events
         events = Event.allEvents
     }
     
@@ -52,9 +52,12 @@ class EventsFeedViewController: UIViewController, EditEventDelegate, EventDetail
         allEventsButton.alpha = 1.0
         allEventsButton.layer.cornerRadius =
             allEventsButton.frame.size.height/7
-        myEventButton.alpha = 0.5
-        myEventButton.layer.cornerRadius =
-            myEventButton.frame.size.height/7
+        myClubsButton.alpha = 0.5
+        myClubsButton.layer.cornerRadius =
+            myClubsButton.frame.size.height/7
+        savedButton.alpha = 0.5
+        savedButton.layer.cornerRadius =
+            savedButton.frame.size.height/7
         
         // Source: https://www.raywenderlich.com/472-uisearchcontroller-tutorial-getting-started
         // Setup the Search Controller
@@ -68,20 +71,35 @@ class EventsFeedViewController: UIViewController, EditEventDelegate, EventDetail
     @IBAction func allEventsButtonTapped(_ sender: Any) {
         searchController.isActive = false // cancel serach
         allEventsButton.alpha = 1.0
-        myEventButton.alpha = 0.5
+        myClubsButton.alpha = 0.5
+        savedButton.alpha = 0.5
         events = Event.allEvents
         userEventsDisplayed = false
         eventsTableView.reloadData()
     }
     
     // load user events into table and set button appearence
-    @IBAction func myEventsButtonTapped(_ sender: Any) {
+    @IBAction func savedEventsTapped(_ sender: Any) {
         if let userEvents = User.currentUser?.events {
             searchController.isActive = false // cancel search
             allEventsButton.alpha = 0.5
-            myEventButton.alpha = 1.0
+            myClubsButton.alpha = 0.5
+            savedButton.alpha = 1.0
             events = Event.allEvents?.filter{ event in
                 userEvents.contains(event.id ?? "") }
+            userEventsDisplayed = true
+            eventsTableView.reloadData()
+        }
+    }
+    
+    @IBAction func myClubsButtonTapped(_ sender: Any) {
+        if let userClubs = User.currentUser?.clubs {
+            searchController.isActive = false // cancel search
+            allEventsButton.alpha = 0.5
+            myClubsButton.alpha = 1
+            savedButton.alpha = 0.5
+            events = Event.allEvents?.filter{ event in
+                userClubs.contains(event.clubId ?? "") }
             userEventsDisplayed = true
             eventsTableView.reloadData()
         }
@@ -108,6 +126,7 @@ class EventsFeedViewController: UIViewController, EditEventDelegate, EventDetail
     // EventDetailsDelegate function
     // Event was edited from the details view
     func eventEditedFromDetails() {
+        // Update events
         getEvents()
     }
     
@@ -123,6 +142,14 @@ class EventsFeedViewController: UIViewController, EditEventDelegate, EventDetail
             case(.some(let data), nil):
                 if let eventIds = data as? [String?] {
                     // add each event to the event list and reload table view
+                    
+                    // if no events, clear table view
+                    if eventIds.count  <= 0 {
+                        self.events = []
+                        self.filteredEvents = []
+                        self.eventsTableView.reloadData()
+                    }
+                    
                     for id in eventIds {
                         EventsApi.getEvent(id: id ?? "") { data, error in
                             switch(data, error){
@@ -135,6 +162,7 @@ class EventsFeedViewController: UIViewController, EditEventDelegate, EventDetail
                                 // sort events by start time
                                 Event.allEvents
                                     = Event.allEvents?.sorted(by: { $0.startTime?.compare($1.startTime ?? Date()) == .orderedAscending })
+                                
                                 // remove events that have already passed
                                 Event.allEvents = Event.allEvents?.filter {
                                     $0.startTime ?? Date() >= Date() }

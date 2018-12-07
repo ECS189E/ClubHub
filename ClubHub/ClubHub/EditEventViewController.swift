@@ -139,6 +139,7 @@ class EditEventViewController: UIViewController {
         event?.details = detailsTextView.text?.trimmingCharacters(in: .whitespaces)
         event?.location =
             locationTextView.text?.trimmingCharacters(in: .whitespaces)
+        event?.clubId = User.currentUser?.club?.id
         
         // Require name and start time
         guard let _ = event?.name, let _ = event?.startTime else{

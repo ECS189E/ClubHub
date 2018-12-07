@@ -34,6 +34,7 @@ struct EventsApi {
             "endTime": event?.endTime ?? NSNull(),
             "location": event?.location ?? NSNull(),
             "club": event?.club ?? NSNull(),
+            "clubId": event?.clubId ?? User.currentUser?.club?.id ?? NSNull(),
             "details": event?.details ?? NSNull(),
             "image": hasImage
         ]) { err in
@@ -159,6 +160,14 @@ struct EventsApi {
         settings.areTimestampsInSnapshotsEnabled = true
         db.settings = settings
         
+        // delete event from user events list
+        UserApi.deleteSavedEvent(eventID: event?.id) { data, err in
+            if let err = err {
+                print("Error deleting user event: \(err)")
+            }
+        }
+        
+        // delete event from database
         let ref = db.collection("events").document(event?.id ?? "")
         
         // check if event exists, then delete it
@@ -231,6 +240,7 @@ struct EventsApi {
                                               endTime: endTime,
                                               location: document.data()?["location"] as? String? ?? nil,
                                               club: document.data()?["club"] as? String? ?? nil,
+                                              clubId: document.data()?["clubId"] as? String? ?? nil,
                                               details: document.data()?["details"] as? String? ?? nil,
                                               image: image)
                                 // return event as data
@@ -248,6 +258,7 @@ struct EventsApi {
                                       endTime: endTime,
                                       location: document.data()?["location"] as? String? ?? nil,
                                       club: document.data()?["club"] as? String? ?? nil,
+                                      clubId: document.data()?["clubId"] as? String? ?? nil,
                                       details: document.data()?["details"] as? String? ?? nil,
                                       image: nil)
                         // return event as data
@@ -285,12 +296,3 @@ struct EventsApi {
     }
     
 }
-
-
-/* Firebase warnings
- // old:
- let date: Date = documentSnapshot.get("created_at") as! Date
- // new:
- let timestamp: Timestamp = documentSnapshot.get("created_at") as! Timestamp
- let date: Date = timestamp.dateValue()
- */

@@ -575,10 +575,10 @@
                                 <rect key="frame" x="16" y="69" width="343" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z6G-ul-3BW">
-                                        <rect key="frame" x="0.0" y="0.0" width="170" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="112.5" height="30"/>
                                         <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                        <state key="normal" title="All Events">
+                                        <state key="normal" title="All">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -586,25 +586,36 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ek7-mI-AMv">
-                                        <rect key="frame" x="173" y="0.0" width="170" height="30"/>
+                                        <rect key="frame" x="115.5" y="0.0" width="112" height="30"/>
                                         <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="vvt-iB-gt4"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                        <state key="normal" title="My Events">
+                                        <state key="normal" title="My Clubs">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="myEventsButtonTapped:" destination="hho-mo-95b" eventType="touchUpInside" id="IgX-pw-HVC"/>
+                                            <action selector="myClubsButtonTapped:" destination="hho-mo-95b" eventType="touchUpInside" id="g8e-w8-IO7"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZQp-Ko-Ksl">
+                                        <rect key="frame" x="230.5" y="0.0" width="112.5" height="30"/>
+                                        <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                        <state key="normal" title="Saved">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="savedEventsTapped:" destination="hho-mo-95b" eventType="touchUpInside" id="Xul-EF-MNh"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="ek7-mI-AMv" firstAttribute="trailing" secondItem="lcr-SE-YY3" secondAttribute="trailing" id="CaN-6t-Qxy"/>
-                                    <constraint firstItem="ek7-mI-AMv" firstAttribute="width" secondItem="z6G-ul-3BW" secondAttribute="width" id="Izu-8g-GxP"/>
+                                    <constraint firstItem="ZQp-Ko-Ksl" firstAttribute="height" secondItem="ek7-mI-AMv" secondAttribute="height" id="1tF-NH-U8O"/>
+                                    <constraint firstItem="ZQp-Ko-Ksl" firstAttribute="width" secondItem="z6G-ul-3BW" secondAttribute="width" id="Us7-dQ-8xF"/>
+                                    <constraint firstItem="ek7-mI-AMv" firstAttribute="width" secondItem="z6G-ul-3BW" secondAttribute="width" id="WPP-ig-EFF"/>
                                     <constraint firstItem="ek7-mI-AMv" firstAttribute="height" secondItem="z6G-ul-3BW" secondAttribute="height" id="fRA-EZ-EUI"/>
-                                    <constraint firstItem="ek7-mI-AMv" firstAttribute="top" secondItem="lcr-SE-YY3" secondAttribute="top" id="zPc-Xd-FhO"/>
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="lcr-SE-YY3"/>
                             </stackView>
@@ -693,7 +704,8 @@
                         <outlet property="addEventButton" destination="hF3-BG-gmR" id="5iX-sR-1ZR"/>
                         <outlet property="allEventsButton" destination="z6G-ul-3BW" id="xQA-uY-BFv"/>
                         <outlet property="eventsTableView" destination="LME-hX-VAA" id="bc3-F5-MQe"/>
-                        <outlet property="myEventButton" destination="ek7-mI-AMv" id="i2t-Kq-dgE"/>
+                        <outlet property="myClubsButton" destination="ek7-mI-AMv" id="ijt-Pu-7In"/>
+                        <outlet property="savedButton" destination="ZQp-Ko-Ksl" id="fi8-3f-lkr"/>
                         <segue destination="6bk-nu-nWB" kind="show" id="2NU-7z-Led"/>
                     </connections>
                 </viewController>
@@ -716,7 +728,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="170" height="30"/>
                                         <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                        <state key="normal" title="All Clubs">
+                                        <state key="normal" title="All">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -730,7 +742,7 @@
                                             <constraint firstAttribute="height" constant="30" id="iYz-1I-Jke"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                        <state key="normal" title="My Clubs">
+                                        <state key="normal" title="Saved">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>

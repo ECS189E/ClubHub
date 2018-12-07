@@ -15,10 +15,10 @@ class Event {
     var startTime: Date?
     var endTime: Date?
     var location: String?
-    var club: String?  // FIXME: var club: Club? when club class made
+    var club: String?
+    var clubId: String?
     var details: String?
     var image: UIImage?
-    //var images: [UIImage]?
     
     // Default
     init() {
@@ -28,21 +28,21 @@ class Event {
         self.endTime = nil
         self.location = nil
         self.club = nil
+        self.clubId = nil
         self.details = nil
         self.image = nil
-        //self.images = nil
     }
     
-    init(id: String?, name: String?, startTime: Date?, endTime: Date?, location: String?, club: String?, details: String?, image: UIImage?) {
+    init(id: String?, name: String?, startTime: Date?, endTime: Date?, location: String?, club: String?, clubId: String?, details: String?, image: UIImage?) {
         self.id = id
         self.name = name
         self.startTime = startTime
         self.endTime = endTime
         self.location = location
         self.club = club
+        self.clubId = clubId
         self.details = details
         self.image = image
-        //self.images = nil
     }
     
     func printEvent() {
