@@ -10,6 +10,7 @@ import UIKit
 
 protocol EventDetailsDelegate {
     func eventEditedFromDetails()
+    func eventDeletedFromDetails()
 }
 
 
@@ -25,10 +26,13 @@ class EventDetailsViewController: UIViewController, EditEventDelegate {
     @IBOutlet weak var endTime: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UITextView!
+    
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var deleteButton: UIButton!
     
     @IBOutlet weak var scrollViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var event: Event?
     var savedEvent: Bool = false
@@ -40,20 +44,31 @@ class EventDetailsViewController: UIViewController, EditEventDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewInit()
+    }
+    
+    func viewInit() {
+        // Hide activitiy indicator
+        activityIndicator.alpha = 0
         
         // format appearence of dates
         dateFormatter.dateFormat = "EE MMM d, yyyy"
         timeFormatter.dateFormat = "h:mm a"
-
+        
         
         // if user is a club, disable save button
         if User.currentUser?.club != nil {
             saveButton.isEnabled = false
-        // else hide button
+        // else hide edit and delete button
         } else {
             editButton.alpha = 0
             editButton.isHidden = true
             editButton.isEnabled = false
+            
+            deleteButton.alpha = 0
+            deleteButton.isHidden = true
+            deleteButton.isEnabled = false
+            
             scrollViewBottomConstraint.constant = 10
         }
         
@@ -67,13 +82,14 @@ class EventDetailsViewController: UIViewController, EditEventDelegate {
                 editButton.isHidden = false
                 editButton.isEnabled = true
             }
-
+            
             // show save button and change it to a filled star
             saveButton.image = UIImage(named: "icons8-star-filled-36")
             savedEvent = true
         }
         
         loadEvent(event: event)
+        
     }
     
     @IBAction func saveButtonPressed(_ sender: Any) {
@@ -117,6 +133,40 @@ class EventDetailsViewController: UIViewController, EditEventDelegate {
         
     }
     
+    @IBAction func deleteTapped(_ sender: Any) {
+        EventsApi.deleteEvent(event: event) {data, err in
+            switch(data, err) {
+            case(.some(_), nil):
+                
+                // Delete the clubs new event from its user account
+                UserApi.deleteSavedClub(clubID: self.event?.id){ data, err in
+                    switch(data, err) {
+                    case(.some(let data), nil):
+                        User.currentUser?.events = data as? [String]
+                        self.delegate?.eventDeletedFromDetails()
+                        
+                        // stop activity indicator
+                        self.activityIndicator.alpha = 0
+                        self.activityIndicator.stopAnimating()
+                    case(nil, .some(let err)):
+                        print(err)
+                        self.delegate?.eventDeletedFromDetails()
+                    default:
+                        print("Error: could not update event")
+                        self.delegate?.eventDeletedFromDetails()
+                    }
+                }
+            case(nil, .some(let err)):
+                print(err)
+            default:
+                print("Error: could not add event")
+            }
+        }
+        // start activity indicator
+        activityIndicator.alpha = 1
+        activityIndicator.startAnimating()
+    }
+    
     func loadEvent(event: Event?) {
         eventImageView.image = event?.image ?? UIImage(named: "defaultImage")
         eventNameLabel.text = event?.name ?? "Event Name"
@@ -143,12 +193,9 @@ class EventDetailsViewController: UIViewController, EditEventDelegate {
         
         if let event = event {
             loadEvent(event: event)
+            delegate?.eventEditedFromDetails()
         } else {
-            // event deleted, so resign
-            self.navigationController?.popViewController(animated: true)
+            self.delegate?.eventDeletedFromDetails()
         }
-        
-        // notify delegate that an event was updated
-        delegate?.eventEditedFromDetails()
     }
 }

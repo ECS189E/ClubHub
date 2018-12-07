@@ -118,9 +118,16 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     // EventDetailsDelegate function
     // Event was edited from the details view
     func eventEditedFromDetails() {
+        // update events
         getEvents()
     }
 
+    func eventDeletedFromDetails() {
+        // close child
+        self.navigationController?.popViewController(animated: true)
+        // Update events
+        getEvents()
+    }
     
     // get all events and update calendar as each event is received
     func getEvents() {

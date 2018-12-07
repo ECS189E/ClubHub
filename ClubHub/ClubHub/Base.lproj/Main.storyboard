@@ -1412,7 +1412,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g7j-B1-31K">
-                                <rect key="frame" x="174" y="572" width="27" height="36"/>
+                                <rect key="frame" x="16" y="572" width="27" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="nZz-2E-uZS"/>
                                 </constraints>
@@ -1645,13 +1645,30 @@
                                     <constraint firstAttribute="trailing" secondItem="fn5-pA-bJF" secondAttribute="trailing" id="xPl-6B-oRD"/>
                                 </constraints>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OHS-fW-GXg">
+                                <rect key="frame" x="337" y="572" width="22" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="c4D-tP-jyh"/>
+                                </constraints>
+                                <state key="normal" image="icons8-delete-bin-36-white"/>
+                                <connections>
+                                    <action selector="deleteTapped:" destination="6bk-nu-nWB" eventType="touchUpInside" id="uR9-54-NKG"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="gwr-5j-CkG">
+                                <rect key="frame" x="177.5" y="582" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="gwr-5j-CkG" firstAttribute="centerX" secondItem="eAx-pg-M8z" secondAttribute="centerX" id="Kpm-iU-UpI"/>
                             <constraint firstItem="3Oi-dJ-l82" firstAttribute="leading" secondItem="eAx-pg-M8z" secondAttribute="leading" constant="16" id="OSC-rD-X49"/>
                             <constraint firstAttribute="trailing" secondItem="3Oi-dJ-l82" secondAttribute="trailing" constant="16" id="RZ3-bn-zVB"/>
                             <constraint firstItem="3Oi-dJ-l82" firstAttribute="top" secondItem="3zI-oH-pIO" secondAttribute="top" constant="16" id="aDS-hR-hE5"/>
-                            <constraint firstItem="g7j-B1-31K" firstAttribute="centerX" secondItem="eAx-pg-M8z" secondAttribute="centerX" id="mY0-Nr-DJ4"/>
+                            <constraint firstItem="3zI-oH-pIO" firstAttribute="bottom" secondItem="gwr-5j-CkG" secondAttribute="bottom" constant="16" id="cjX-Ap-pcn"/>
+                            <constraint firstItem="3zI-oH-pIO" firstAttribute="trailing" secondItem="OHS-fW-GXg" secondAttribute="trailing" constant="16" id="cyC-uv-zn0"/>
+                            <constraint firstItem="g7j-B1-31K" firstAttribute="leading" secondItem="3zI-oH-pIO" secondAttribute="leading" constant="16" id="kez-Qx-jAU"/>
+                            <constraint firstItem="3zI-oH-pIO" firstAttribute="bottom" secondItem="OHS-fW-GXg" secondAttribute="bottom" constant="10" id="ngy-2I-29E"/>
                             <constraint firstItem="3zI-oH-pIO" firstAttribute="bottom" secondItem="g7j-B1-31K" secondAttribute="bottom" constant="10" id="tOC-WU-Hgc"/>
                             <constraint firstItem="3zI-oH-pIO" firstAttribute="bottom" secondItem="3Oi-dJ-l82" secondAttribute="bottom" constant="60" id="vEf-gS-Nm1"/>
                         </constraints>
@@ -1665,7 +1682,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="gwr-5j-CkG" id="Oxj-W8-oFO"/>
                         <outlet property="clubNameLabel" destination="Tbl-Ob-NBb" id="XAf-4G-W1k"/>
+                        <outlet property="deleteButton" destination="OHS-fW-GXg" id="Q7U-FC-njh"/>
                         <outlet property="descriptionLabel" destination="Ku0-CP-ut6" id="V8W-tq-aZB"/>
                         <outlet property="editButton" destination="g7j-B1-31K" id="FOk-dU-YAE"/>
                         <outlet property="endDate" destination="3ND-Tp-274" id="lNG-oh-tAH"/>
@@ -1681,7 +1700,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NSG-aW-aKC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="377" y="115"/>
+            <point key="canvasLocation" x="376.80000000000001" y="114.69265367316342"/>
         </scene>
         <!--Edit Event-->
         <scene sceneID="5tj-MJ-k4a">
@@ -2047,6 +2066,7 @@
         <image name="computer-workers-group-ocean-64" width="51.200000762939453" height="51.200000762939453"/>
         <image name="icons8-calendar-25-black" width="18.75" height="18.75"/>
         <image name="icons8-compose-36-white" width="27" height="27"/>
+        <image name="icons8-delete-bin-36-white" width="22.5" height="22.5"/>
         <image name="icons8-exit-ocean-36" width="185.14285278320312" height="185.14285278320312"/>
         <image name="icons8-plus-25-black" width="18.75" height="18.75"/>
         <image name="icons8-registration-filled-25-black" width="18.75" height="18.75"/>
