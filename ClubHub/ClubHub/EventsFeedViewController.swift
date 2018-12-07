@@ -130,6 +130,14 @@ class EventsFeedViewController: UIViewController, EditEventDelegate, EventDetail
         getEvents()
     }
     
+    // EventDetailsDelegate function
+    // Event was deleted from the details view
+    func eventDeletedFromDetails() {
+        // close child
+        self.navigationController?.popViewController(animated: true)
+        getEvents()
+    }
+    
     // Get events loadLimit number of events from database starting from eventLoadDate
     func getEvents() {
         // reset events list

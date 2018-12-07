@@ -9,8 +9,6 @@ import UIKit
 
 class ClubViewController: UIViewController, EventDetailsDelegate {
     
-    
-    
     @IBOutlet weak var clubName: UILabel!
     @IBOutlet weak var clubImage: UIImageView!
     @IBOutlet weak var aboutClub: UITextView!
@@ -82,11 +80,22 @@ class ClubViewController: UIViewController, EventDetailsDelegate {
             }
         }
     }
+    
     func eventEditedFromDetails() {
+        // Update events
+        getEvents()
+        getEventsForClub()
+    }
+    
+    func eventDeletedFromDetails() {
+        // close child
         self.navigationController?.popViewController(animated: true)
         // Update events
         getEvents()
+        getEventsForClub()
     }
+    
+    
     func getEvents() {
         Event.allEvents = []
         
