@@ -155,14 +155,14 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="sVU-1z-MwG">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="141"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5fZ-IQ-20b">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5fZ-IQ-20b">
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="70"/>
-                                                <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="70" id="cAC-bw-8XC"/>
                                                 </constraints>
-                                                <state key="normal" title="   Logout" image="icons8-exit-filled-36-white">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="   Logout" image="icons8-exit-ocean-36">
+                                                    <color key="titleColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
@@ -171,9 +171,9 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bhH-Tg-dRn">
                                                 <rect key="frame" x="0.0" y="71" width="343" height="70"/>
-                                                <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="   Delete Accuont" image="icons8-delete-bin-36-white">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="   Delete Accuont" image="icons8-waste-ocean-36">
+                                                    <color key="titleColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="deleteTapped:" destination="qr7-Vc-WKG" eventType="touchUpInside" id="CsP-eO-2dr"/>
@@ -187,7 +187,7 @@
                                         </constraints>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="sVU-1z-MwG" firstAttribute="top" secondItem="rL6-JH-o4H" secondAttribute="top" id="CeL-Qj-FRi"/>
                                     <constraint firstAttribute="trailing" secondItem="sVU-1z-MwG" secondAttribute="trailing" id="VFl-W4-PmH"/>
@@ -197,22 +197,35 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Nl-YV-BB9">
                                 <rect key="frame" x="16" y="147" width="343" height="70"/>
-                                <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="UZF-jZ-rl6"/>
                                 </constraints>
-                                <state key="normal" title="   Edit Club Page" image="icons8-registration-filled-36-white">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="   Edit Club Page" image="icons8-registration-ocean-40">
+                                    <color key="titleColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="editClubPageTapped:" destination="qr7-Vc-WKG" eventType="touchUpInside" id="RMD-ja-vBj"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ClubHub" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LYI-3H-A6V">
+                                <rect key="frame" x="146" y="497.5" width="83" height="26.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
+                                <color key="textColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="computer-workers-group-ocean-64" translatesAutoresizingMaskIntoConstraints="NO" id="a5a-oG-Idd">
+                                <rect key="frame" x="162" y="441.5" width="51" height="51"/>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="1Nl-YV-BB9" firstAttribute="top" secondItem="rL6-JH-o4H" secondAttribute="bottom" id="92H-LS-pfy"/>
+                            <constraint firstItem="a5a-oG-Idd" firstAttribute="centerX" secondItem="IXG-5z-9Er" secondAttribute="centerX" id="F0S-Z0-qFW"/>
+                            <constraint firstItem="LYI-3H-A6V" firstAttribute="centerX" secondItem="IXG-5z-9Er" secondAttribute="centerX" id="JIt-Fj-aUE"/>
                             <constraint firstItem="1Nl-YV-BB9" firstAttribute="leading" secondItem="IQz-G9-sgo" secondAttribute="leading" constant="16" id="QIO-kf-d8f"/>
+                            <constraint firstItem="IQz-G9-sgo" firstAttribute="bottom" secondItem="LYI-3H-A6V" secondAttribute="bottom" constant="30" id="TNd-bI-jlT"/>
+                            <constraint firstItem="LYI-3H-A6V" firstAttribute="top" secondItem="a5a-oG-Idd" secondAttribute="bottom" constant="5" id="Uy2-Kl-yfG"/>
                             <constraint firstItem="IQz-G9-sgo" firstAttribute="trailing" secondItem="1Nl-YV-BB9" secondAttribute="trailing" constant="16" id="duf-j4-YBt"/>
                             <constraint firstItem="rL6-JH-o4H" firstAttribute="top" secondItem="IQz-G9-sgo" secondAttribute="top" constant="5" id="hsu-U9-kpH"/>
                             <constraint firstItem="IQz-G9-sgo" firstAttribute="trailing" secondItem="rL6-JH-o4H" secondAttribute="trailing" constant="16" id="s1f-CI-hWD"/>
@@ -538,7 +551,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.32941176470588235" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Udy-SV-1If" firstAttribute="bottom" secondItem="1KX-5U-AXl" secondAttribute="bottom" constant="30" id="4gp-yw-deX"/>
                             <constraint firstItem="1KX-5U-AXl" firstAttribute="centerX" secondItem="GHa-rE-2Ix" secondAttribute="centerX" id="DYM-81-W4v"/>
@@ -561,7 +574,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k82-tL-mMm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5446" y="161"/>
+            <point key="canvasLocation" x="-5447.1999999999998" y="160.56971514242881"/>
         </scene>
         <!--Events-->
         <scene sceneID="FV5-ac-zdJ">
@@ -985,7 +998,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="daf-WT-3xk" customClass="FSCalendar">
                                 <rect key="frame" x="16" y="64" width="343" height="277"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DGe-A7-jms">
@@ -1011,7 +1024,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Name" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JHY-bb-pfw">
                                                     <rect key="frame" x="20" y="11" width="42" height="71"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="nEJ-lG-dTv"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="nEJ-lG-dTv"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                     <nil key="highlightedColor"/>
@@ -2031,17 +2044,18 @@
     </scenes>
     <resources>
         <image name="computer-workers-group-128" width="51.200000762939453" height="51.200000762939453"/>
+        <image name="computer-workers-group-ocean-64" width="51.200000762939453" height="51.200000762939453"/>
         <image name="icons8-calendar-25-black" width="18.75" height="18.75"/>
         <image name="icons8-compose-36-white" width="27" height="27"/>
-        <image name="icons8-delete-bin-36-white" width="22.5" height="22.5"/>
-        <image name="icons8-exit-filled-36-white" width="22.5" height="22.5"/>
+        <image name="icons8-exit-ocean-36" width="185.14285278320312" height="185.14285278320312"/>
         <image name="icons8-plus-25-black" width="18.75" height="18.75"/>
         <image name="icons8-registration-filled-25-black" width="18.75" height="18.75"/>
-        <image name="icons8-registration-filled-36-white" width="27" height="27"/>
+        <image name="icons8-registration-ocean-40" width="180" height="180"/>
         <image name="icons8-schedule-25-black" width="18.75" height="18.75"/>
         <image name="icons8-settings-filled-25-black" width="18.75" height="18.75"/>
         <image name="icons8-star-outline-36" width="27" height="27"/>
         <image name="icons8-user-groups-25-black" width="18.75" height="18.75"/>
         <image name="icons8-waste-filled-25-black" width="18.75" height="18.75"/>
+        <image name="icons8-waste-ocean-36" width="185.14285278320312" height="185.14285278320312"/>
     </resources>
 </document>
