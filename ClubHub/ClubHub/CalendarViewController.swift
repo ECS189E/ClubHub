@@ -47,10 +47,12 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     
     // Display the events for that particular date on the event board below the calendar
     func calendar(_ calendar: FSCalendar, didSelect date: Date) {
-        
+        // get events for the selected date
         events = Event.allEvents?.filter { event in
-            Calendar.current.isDate(date, equalTo: event.startTime ?? Date(), toGranularity:.day)
-        }
+            Calendar.current.isDate(date, equalTo: event.startTime ?? Date(), toGranularity:.day) }
+        // sort events by start time
+        events
+            = events?.sorted(by: { $0.startTime?.compare($1.startTime ?? Date()) == .orderedAscending })
         
         calendarListedEvents.reloadData()
     }

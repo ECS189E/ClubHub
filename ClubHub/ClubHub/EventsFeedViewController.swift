@@ -162,6 +162,7 @@ class EventsFeedViewController: UIViewController, EditEventDelegate, EventDetail
                                 // sort events by start time
                                 Event.allEvents
                                     = Event.allEvents?.sorted(by: { $0.startTime?.compare($1.startTime ?? Date()) == .orderedAscending })
+                                
                                 // remove events that have already passed
                                 Event.allEvents = Event.allEvents?.filter {
                                     $0.startTime ?? Date() >= Date() }
