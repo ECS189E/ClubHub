@@ -1859,7 +1859,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JMM-4A-p1i">
-                            <rect key="frame" x="0.0" y="0.0" width="387" height="242"/>
+                            <rect key="frame" x="0.0" y="0.0" width="387" height="257"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="oMf-E2-n0p">
                                 <size key="itemSize" width="287" height="271"/>
@@ -1876,8 +1876,8 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="URv-NX-ueA">
-                                                <rect key="frame" x="12" y="168" width="96" height="21"/>
-                                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
+                                                <rect key="frame" x="12" y="168" width="96" height="17.666666666666657"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -1912,9 +1912,9 @@
                                         <rect key="frame" x="0.0" y="0.0" width="164" height="158"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seems like you're alone in this world" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c32-2c-hBH">
-                                                <rect key="frame" x="-42.333333333333329" y="68.666666666666671" width="248.66666666666663" height="21"/>
-                                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There's no one else here but you" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c32-2c-hBH">
+                                                <rect key="frame" x="-27.666666666666671" y="70.333333333333329" width="219.33333333333337" height="17.666666666666671"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                 <color key="textColor" white="0.87315848210000002" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -1935,13 +1935,13 @@
                             </connections>
                         </collectionView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ub7-ZN-fdX" customClass="RoundedButton" customModule="ClubHub" customModuleProvider="target">
-                            <rect key="frame" x="133.66666666666666" y="262" width="120" height="40"/>
+                            <rect key="frame" x="181" y="277" width="25" height="25"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="40" id="11N-3r-gfK"/>
-                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="Vrr-AD-x8s"/>
+                                <constraint firstAttribute="height" constant="25" id="11N-3r-gfK"/>
+                                <constraint firstAttribute="width" constant="25" id="Vrr-AD-x8s"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                            <state key="normal" title="Close" backgroundImage="button">
+                            <state key="normal" backgroundImage="close">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
@@ -1977,7 +1977,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="SOL-YE-w4j"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="21"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
                             <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -1986,7 +1986,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="Nkn-pa-3WI"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                             <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -2546,7 +2546,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="button" width="120" height="40"/>
         <image name="close" width="50" height="50"/>
         <image name="computer-workers-group-128" width="51.200000762939453" height="51.200000762939453"/>
         <image name="computer-workers-group-ocean-64" width="51.200000762939453" height="51.200000762939453"/>
