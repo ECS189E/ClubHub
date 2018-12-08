@@ -35,7 +35,7 @@ class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let rightButton = UIBarButtonItem.init(image: icon!, style: .plain, target: self, action: #selector(InboxViewController.showContacts))
         self.navigationItem.rightBarButtonItem = rightButton
         //left bar button image fetching
-//        self.navigationItem.leftBarButtonItem = self.leftButton
+        self.navigationItem.leftBarButtonItem = self.leftButton
         self.tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         if let id = Auth.auth().currentUser?.uid {
             Profile.info(forUserID: id, completion: { [weak weakSelf = self] (user) in

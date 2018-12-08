@@ -1965,13 +1965,15 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OOh-uE-BEc" customClass="RoundedImageView" customModule="ClubHub" customModuleProvider="target">
-                            <rect key="frame" x="92.666666666666686" y="41" width="190" height="190"/>
+                            <rect key="frame" x="125" y="121" width="125" height="125"/>
                             <constraints>
+                                <constraint firstAttribute="width" constant="125" id="MbF-uk-3Zl"/>
                                 <constraint firstAttribute="width" secondItem="OOh-uE-BEc" secondAttribute="height" multiplier="1:1" id="T5j-Wm-8Fi"/>
+                                <constraint firstAttribute="height" constant="125" id="hyk-OI-u8z"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxl-8w-Lvg">
-                            <rect key="frame" x="56.333333333333343" y="247" width="262.33333333333326" height="30"/>
+                            <rect key="frame" x="56.333333333333343" y="262" width="262.33333333333326" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="SOL-YE-w4j"/>
                             </constraints>
@@ -1980,7 +1982,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="E-Mail" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="odW-J3-r7R">
-                            <rect key="frame" x="56.333333333333343" y="287" width="262.33333333333326" height="20"/>
+                            <rect key="frame" x="56.333333333333343" y="302" width="262.33333333333326" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="Nkn-pa-3WI"/>
                             </constraints>
@@ -1988,38 +1990,24 @@
                             <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XWC-DH-hrA" customClass="RoundedButton" customModule="ClubHub" customModuleProvider="target">
-                            <rect key="frame" x="127.66666666666669" y="337" width="120" height="40"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XWC-DH-hrA" userLabel="Button" customClass="RoundedButton" customModule="ClubHub" customModuleProvider="target">
+                            <rect key="frame" x="175" y="352" width="25" height="25"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="40" id="S1g-nE-rin"/>
-                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="pda-Mu-j82"/>
+                                <constraint firstAttribute="height" constant="25" id="S1g-nE-rin"/>
+                                <constraint firstAttribute="width" constant="25" id="pda-Mu-j82"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                            <state key="normal" title="Log Out" backgroundImage="button">
+                            <state key="normal" backgroundImage="close">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
-                                <action selector="logOutUser:" destination="khL-Nv-Aj7" eventType="touchUpInside" id="qBq-Hx-RHI"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p0Q-Pa-PqK">
-                            <rect key="frame" x="334" y="16" width="25" height="25"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="25" id="ZUH-wt-GHO"/>
-                                <constraint firstAttribute="height" constant="25" id="ekY-ux-rHv"/>
-                            </constraints>
-                            <state key="normal" backgroundImage="close"/>
-                            <connections>
-                                <action selector="closeView:" destination="khL-Nv-Aj7" eventType="touchUpInside" id="vCq-oO-ocp"/>
+                                <action selector="closeView:" destination="khL-Nv-Aj7" eventType="touchUpInside" id="oAj-xo-PD9"/>
                             </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="fxl-8w-Lvg" firstAttribute="width" secondItem="CYj-8w-0yX" secondAttribute="width" multiplier="0.7" id="0Ma-va-nrD"/>
-                        <constraint firstAttribute="trailing" secondItem="p0Q-Pa-PqK" secondAttribute="trailing" constant="16" id="3CY-Qn-yii"/>
-                        <constraint firstItem="p0Q-Pa-PqK" firstAttribute="top" secondItem="CYj-8w-0yX" secondAttribute="top" constant="16" id="Dcc-LB-gh9"/>
-                        <constraint firstItem="OOh-uE-BEc" firstAttribute="top" secondItem="p0Q-Pa-PqK" secondAttribute="bottom" id="IeB-3U-DK9"/>
                         <constraint firstItem="OOh-uE-BEc" firstAttribute="centerX" secondItem="CYj-8w-0yX" secondAttribute="centerX" id="JS1-TH-LAg"/>
                         <constraint firstItem="fxl-8w-Lvg" firstAttribute="centerX" secondItem="CYj-8w-0yX" secondAttribute="centerX" id="Jd6-Nr-d7y"/>
                         <constraint firstItem="odW-J3-r7R" firstAttribute="centerX" secondItem="CYj-8w-0yX" secondAttribute="centerX" id="KLB-3S-tUi"/>
