@@ -26,7 +26,7 @@ class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func customization()  {
         self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
         //NavigationBar customization
-        let navigationTitleFont = UIFont(name: "HelveticaNeue", size: 18)!
+        let navigationTitleFont = UIFont(name: "HelveticaNeue-Medium", size: 18)!
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: navigationTitleFont, NSAttributedString.Key.foregroundColor: UIColor.rbg(r: 20, g: 84, b: 147)]
         // notification setup
         NotificationCenter.default.addObserver(self, selector: #selector(self.pushToUserMesssages(notification:)), name: NSNotification.Name(rawValue: "showUserMessages"), object: nil)

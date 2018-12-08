@@ -588,7 +588,7 @@
                         <outlet property="eventsTableView" destination="LME-hX-VAA" id="bc3-F5-MQe"/>
                         <outlet property="myClubsButton" destination="ek7-mI-AMv" id="ijt-Pu-7In"/>
                         <outlet property="savedButton" destination="ZQp-Ko-Ksl" id="fi8-3f-lkr"/>
-                        <segue destination="6bk-nu-nWB" kind="show" id="2NU-7z-Led"/>
+                        <segue destination="6bk-nu-nWB" kind="show" identifier="eventDetails" id="2NU-7z-Led"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RVB-BI-OOu" userLabel="First Responder" sceneMemberID="firstResponder"/>
