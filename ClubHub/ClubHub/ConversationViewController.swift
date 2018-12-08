@@ -10,6 +10,7 @@ import UIKit
 import Photos
 import Firebase
 
+/// A view controller for an individual conversation between two users
 class ConversationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     @IBOutlet var inputBar: UIView!
@@ -215,7 +216,6 @@ class ConversationViewController: UIViewController, UITableViewDelegate, UITable
         picker.dismiss(animated: true, completion: nil)
     }
     
-    //MARK: ViewController lifecycle
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.inputBar.backgroundColor = UIColor.clear

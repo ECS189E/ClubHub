@@ -9,11 +9,10 @@
 import UIKit
 import Firebase
 
+/// A view controller for the inbox
 class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    //MARK: Properties
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var alertBottomConstraint: NSLayoutConstraint!
     lazy var leftButton: UIBarButtonItem = {
         let image = UIImage.init(named: "default profile")?.withRenderingMode(.alwaysOriginal)
         let button  = UIBarButtonItem.init(image: image, style: .plain, target: self, action: #selector(InboxViewController.showProfile))
@@ -22,7 +21,6 @@ class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var items = [Conversation]()
     var selectedUser: Profile?
     
-    //MARK: Methods
     func customization()  {
         self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
         //NavigationBar customization
@@ -58,7 +56,7 @@ class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-    //Downloads conversations
+    // Downloads conversations
     func fetchData() {
         Conversation.showConversations { (conversations) in
             self.items = conversations
@@ -69,20 +67,20 @@ class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-    //Shows profile extra view
+    // Shows profile extra view
     @objc func showProfile() {
         let info = ["viewType" : ShowExtraView.profile]
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "showExtraView"), object: nil, userInfo: info)
         self.inputView?.isHidden = true
     }
     
-    //Shows contacts extra view
+    // Shows contacts extra view
     @objc func showContacts() {
         let info = ["viewType" : ShowExtraView.contacts]
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "showExtraView"), object: nil, userInfo: info)
     }
     
-    //Shows Chat viewcontroller with given user
+    // Shows conversation with given user
     @objc func pushToUserMesssages(notification: NSNotification) {
         if let user = notification.userInfo?["user"] as? Profile {
             self.selectedUser = user
@@ -98,7 +96,6 @@ class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-    //MARK: Delegates
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -159,7 +156,6 @@ class InboxViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-    //MARK: ViewController lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = false

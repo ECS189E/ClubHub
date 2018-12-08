@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-
+/// A custom cell for when the user is the sender
 class SenderCell: UITableViewCell {
     
     @IBOutlet weak var profilePic: RoundedImageView!
@@ -31,6 +31,7 @@ class SenderCell: UITableViewCell {
     }
 }
 
+/// A custom cell for when the user is the receiver
 class ReceiverCell: UITableViewCell {
     
     @IBOutlet weak var message: UITextView!
@@ -51,6 +52,7 @@ class ReceiverCell: UITableViewCell {
     }
 }
 
+/// A custom cell for previewing an individual conversation
 class ConversationsTBCell: UITableViewCell {
     
     @IBOutlet weak var profilePic: RoundedImageView!
@@ -74,6 +76,7 @@ class ConversationsTBCell: UITableViewCell {
     
 }
 
+/// A custom cell for displaying an available user to start a conversation
 class ContactsCVCell: UICollectionViewCell {
     
     @IBOutlet weak var profilePic: RoundedImageView!

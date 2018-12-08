@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Firebase
 
+/// A model object for a conversation with a user
 class Conversation {
     
     let user: Profile

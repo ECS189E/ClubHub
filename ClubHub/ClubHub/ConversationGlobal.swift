@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-// Global variables for conversations
+/// Global variables for conversations
 struct GlobalVariables {
     static let blue = UIColor.rbg(r: 20, g: 84, b: 147)
 }

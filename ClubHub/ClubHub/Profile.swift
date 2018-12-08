@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 import Firebase
 
+
+/// A model object to be used in place of 'User' for conversations, uses the credentials stored in realtime db
 class Profile: NSObject {
     
     let name: String

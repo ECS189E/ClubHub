@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Firebase
 
+/// A model object for messages in a conversation
 class Message {
     
     var owner: MessageOwner

@@ -1,9 +1,9 @@
 import UIKit
 import Firebase
 
+/// A navigation controller to help with displaying extra views for conversations
 class InboxNavigationController: UINavigationController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
-    
-    //MARK: Properties
+
     @IBOutlet var contactsView: UIView!
     @IBOutlet var profileView: UIView!
     @IBOutlet var previewView: UIView!
@@ -17,9 +17,8 @@ class InboxNavigationController: UINavigationController, UICollectionViewDelegat
     let darkView = UIView.init()
     var items = [Profile]()
     
-    //MARK: Methods
     func customization() {
-        //DarkView customization
+        // DarkView customization
         self.view.addSubview(self.darkView)
         self.darkView.backgroundColor = UIColor.black
         self.darkView.alpha = 0
@@ -29,7 +28,7 @@ class InboxNavigationController: UINavigationController, UICollectionViewDelegat
         self.darkView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
         self.darkView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         self.darkView.isHidden = true
-        //ContainerView customization
+        // ContainerView customization
         let extraViewsContainer = UIView.init()
         extraViewsContainer.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(extraViewsContainer)
@@ -39,7 +38,7 @@ class InboxNavigationController: UINavigationController, UICollectionViewDelegat
         extraViewsContainer.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
         extraViewsContainer.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1).isActive = true
         extraViewsContainer.backgroundColor = UIColor.clear
-        //ContactsView customization
+        // ContactsView customization
         extraViewsContainer.addSubview(self.contactsView)
         self.contactsView.translatesAutoresizingMaskIntoConstraints = false
         self.contactsView.topAnchor.constraint(equalTo: extraViewsContainer.topAnchor).isActive = true
@@ -49,7 +48,7 @@ class InboxNavigationController: UINavigationController, UICollectionViewDelegat
         self.contactsView.isHidden = true
         self.collectionView?.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
         self.contactsView.backgroundColor = UIColor.clear
-        //ProfileView Customization
+        // ProfileView Customization
         extraViewsContainer.addSubview(self.profileView)
         self.profileView.translatesAutoresizingMaskIntoConstraints = false
         self.profileView.heightAnchor.constraint(equalToConstant: (UIScreen.main.bounds.width * 0.9)).isActive = true
@@ -63,7 +62,7 @@ class InboxNavigationController: UINavigationController, UICollectionViewDelegat
         self.profilePicView.layer.borderColor = GlobalVariables.blue.cgColor
         self.profilePicView.layer.borderWidth = 3
         self.view.layoutIfNeeded()
-        //PreviewView Customization
+        // PreviewView Customization
         extraViewsContainer.addSubview(self.previewView)
         self.previewView.isHidden = true
         self.previewView.translatesAutoresizingMaskIntoConstraints = false
@@ -73,14 +72,14 @@ class InboxNavigationController: UINavigationController, UICollectionViewDelegat
         self.previewView.bottomAnchor.constraint(equalTo: extraViewsContainer.bottomAnchor).isActive = true
         self.scrollView.minimumZoomScale = 1.0
         self.scrollView.maximumZoomScale = 3.0
-        //NotificationCenter for showing extra views
+        // NotificationCenter for showing extra views
         NotificationCenter.default.addObserver(self, selector: #selector(self.showExtraViews(notification:)), name: NSNotification.Name(rawValue: "showExtraView"), object: nil)
         self.fetchUsers()
         self.fetchUserInfo()
         
     }
     
-    //Hide Extra views
+    // Hide Extra views
     func dismissExtraViews() {
         self.tabBarController?.tabBar.isHidden = false
         self.topAnchorContraint.constant = 1000
@@ -98,7 +97,7 @@ class InboxNavigationController: UINavigationController, UICollectionViewDelegat
         })
     }
     
-    //Show extra view
+    // Show extra view
     @objc func showExtraViews(notification: NSNotification)  {
         self.tabBarController?.tabBar.isHidden = true
         let transform = CGAffineTransform.init(scaleX: 0.94, y: 0.94)
@@ -127,7 +126,7 @@ class InboxNavigationController: UINavigationController, UICollectionViewDelegat
         }
     }
     
-    //Preview view scrollview's zoom calculation
+    // Preview view scrollview's zoom calculation
     func zoomRectForScale(scale: CGFloat, center: CGPoint) -> CGRect {
         var zoomRect = CGRect.zero
         zoomRect.size.height = self.previewImageView.frame.size.height / scale
@@ -138,7 +137,7 @@ class InboxNavigationController: UINavigationController, UICollectionViewDelegat
         return zoomRect
     }
     
-    //Downloads users list for Contacts View
+    // Downloads users list for Contacts View
     func fetchUsers()  {
         if let id = Auth.auth().currentUser?.uid {
             Profile.downloadAllUsers(exceptID: id, completion: {(user) in
@@ -150,7 +149,7 @@ class InboxNavigationController: UINavigationController, UICollectionViewDelegat
         }
     }
     
-    //Downloads current user credentials
+    // Downloads current user credentials
     func fetchUserInfo() {
         if let id = Auth.auth().currentUser?.uid {
             Profile.info(forUserID: id, completion: {[weak weakSelf = self] (user) in
@@ -164,7 +163,7 @@ class InboxNavigationController: UINavigationController, UICollectionViewDelegat
         }
     }
     
-    //Extra gesture to allow user double tap for zooming of preview view scrollview
+    // Extra gesture to allow user double tap for zooming of preview view scrollview
     @IBAction func doubleTapGesture(_ sender: UITapGestureRecognizer) {
         if self.scrollView.zoomScale == 1 {
             self.scrollView.zoom(to: zoomRectForScale(scale: self.scrollView.maximumZoomScale, center: sender.location(in: sender.view)), animated: true)
@@ -177,7 +176,6 @@ class InboxNavigationController: UINavigationController, UICollectionViewDelegat
         self.dismissExtraViews()
     }
     
-    //MARK: Delegates
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if self.items.count == 0 {
             return 1
@@ -232,12 +230,11 @@ class InboxNavigationController: UINavigationController, UICollectionViewDelegat
         }
     }
     
-    //Preview view scrollview zooming
+    // Preview view scrollview zooming
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return self.previewImageView
     }
     
-    //MARK: ViewController lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.customization()
