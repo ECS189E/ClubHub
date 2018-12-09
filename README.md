@@ -1,62 +1,53 @@
 # ClubHub
+Our iOS application, ClubHub, is an all-in-one interface for UC Davis students to receive updates on the various Computer Science clubs on campus. ClubHub provides users an opportunity to learn club objectives, follow clubs, and to discover and save club events. With the growing number of clubs on campus, students need a single platform to be able to find clubs and events. Clubs on campus need a way to promote their objectives and events as well as communicate with members. 
 
-## Authors
-*Lindsey Gray*  
-*Srivarshini Ananta*  
-*Sravya Divakarla*  
-*Cindy Hoang*
+## Features
 
-## Milestone 1
-During this phase of development, we mapped out our apps navigation flow, prioritized the features we want to implement, and researched and tested server support solutions. Our application will be a platform for clubs to set up a profile, post events, and track membership. Users will be able to learn about existing and emerging clubs, follow clubs that interest them, and get details about upcoming events. 
+### User Account Features:
+- Follow clubs to get up to date details on upcoming events and meetings
+- Discover new or existing clubs on campus with low visibility
+- Save events of interest and display them all in one place
+- Find relevant events easily and quickly using the search and filter features
+- Use the calendar to easily see all upcoming events in one place
 
-### Design
-<pre>
-<p align="center">
-<img src="./Images/Login.jpg" width = "600"> 
-<p align="center">
-<img src="./Images/UserView.jpg" width = "600"> 
-<p align="center">
-<img src="./Images/ClubView.jpg" width = "600"> 
-</pre>
+### Club Account Features:
+- Set up a profile to promote your club and to increase visibility and membership
+- Create events to display to users
+- Update club profile or event details and images
+- Get information about what other clubs are doing on campus
 
-
-### Libraries
-* JTAppleCalendar - customizable calendar library 
-   <https://github.com/patchthecode/JTAppleCalendar/>
-
-* Firebase: Google SaaS 
-  * Firebase/Core - base
-  * Firebase/Firestore: storage
-  * Firebase/Database: real time database/updates
-  * FirebaseUI : auth UI
-  * FirebaseUI/Auth : auth
-  * FirebaseUI/Google : Google auth
+### All accounts:
+- Login using Google Sign In to create a user or club account
+- Automatic login for previously authenticated users
+- Start a 1:1 conversation with another user or club
+- Logout or delete an account
+- Available for iPhone in portrait mode
 
 
-### Server Support - Firebase
-We plan on using Google Firebase for data storage and authentication. Firebase is free with great documentation and can be used with other platforms, such as Android, if the app is expanded. We will be storing data for user profiles, club profiles, and event details. Authentication will be done through Google using Firebases’ framework and UI tools.
+## Magical Moment
+Currently, there is not a single platform for students to discover and get event information about the existing clubs on campus. UC Davis provides a list of organizations on their website, however, the information is limited and leaves students confused about how to get involved. CS students use the Computer Science Club's facebook page to learn about events and meetings, however, events get easily lost in the feeds and smaller clubs get little representation. To stay up to date on clubs of interest, students must follow and frequently check multiple pages and websites and must manage events they want to attend themselves. This can be time-consuming and may discourage students from getting involved. Our app solves this problem.
 
-### Models
-* Club profile class
-* User profile class 
-* Event profile class 
-* Calendar view class  
+## Clean Navigation Flow
+The goal of this app was to make getting involved easier, so making the signup process and navigation flow of the app straightforward was a primary goal. Providing a simple signup and login flow allows students to quickly get to the information they want. The consistent and organized tab controller flow make finding and saving relevant information easy and encourages students to take advantage of the resources available to them.
 
-### View Controllers
-* Login View Controller - Login with Google using Firebase 
-* Pick Club(s) View Controller - Allow new users to pick clubs they want to follow
-* Make/Edit Profile View Controller - Allow new users to create their profile
-* Home View Controller - Display events and news based on subscribed clubs
-* Clubs View Controller - Display listview of clubs you are part of and discover new ones
-* Club Profile View Controller - Display profile for club user selected
-* Calendar View Controller - Display calendar and list events for selected day 
-* Event Details Page - Display details for an event
-* Add/Edit Event View Controller  - Allow club admins to add new events or edit existing ones
+## Contributors
 
-Protocols and delegates will be used to pass event data, club data, and selection data between view controllers. We plan on navigating between view controllers using the parent/child method taught in class. 
-    
-### Trello
-<https://trello.com/b/Kk6IVYPB/ecs-189e-the-xcoders>
+### Lindsey Gray 
+- Developed view controllers to display filterable feeds of upcoming events and available clubs as well as to add and edit events or clubs. 
+- Created club and event classes to store data locally as well as club and event APIs to manage data in firebase. 
+- Designed an organized tab controller and wrote code to assure data synchronization between tabs and view controllers.
 
-### Testing Plan
-In this phase of development, we plan on testing our concept by getting feedback from club leaders and members. We want to learn more about what users would like from the event as well as what the features that clubs would find beneficial. 
+### Srivarshini Ananta 
+- Created a calendar view controller to display events in one place.
+- Allowed users to save/unsave events
+-Created club page and user class.
+- Helped with small, problematic tasks and bugs around the app.
+
+### Cindy Hoang 
+- Integrated an inbox and one-on-one conversation feature where users can chat and send images.
+- Developed classes and an API to store messaging and profile data.
+
+### Sravya Divakarla 
+- Designed the app navigation flow and worked on allowing users to login through Google.
+- Displayed events in the club details page. 
+- Helped with small, problematic tasks and bugs around the app.
