@@ -1423,7 +1423,7 @@
                                 <rect key="frame" x="197" y="785" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.32941176470588235" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="g7j-B1-31K" firstAttribute="leading" secondItem="uG8-QG-teF" secondAttribute="leading" constant="20" id="7eb-RO-rL9"/>
                             <constraint firstItem="gwr-5j-CkG" firstAttribute="centerX" secondItem="eAx-pg-M8z" secondAttribute="centerX" id="Kpm-iU-UpI"/>

@@ -21,7 +21,7 @@ class ClubListViewController: UIViewController {
 
     let searchController = UISearchController(searchResultsController: nil)
     
-    lazy var rightButton: UIBarButtonItem = {
+    lazy var profileButton: UIBarButtonItem = {
         let image = UIImage.init(named: "default profile")?.withRenderingMode(.alwaysOriginal)
         let button  = UIBarButtonItem.init(image: image, style: .plain, target: self, action: #selector(profileTapped))
         return button
@@ -30,6 +30,12 @@ class ClubListViewController: UIViewController {
     lazy var logo: UIBarButtonItem = {
         let image = UIImage.init(named: "computer-workers-group-ocean-25")?.withRenderingMode(.alwaysOriginal)
         let button  = UIBarButtonItem.init(image: image, style: .plain, target: self, action: nil)
+        return button
+    }()
+    
+    lazy var reloadButton: UIBarButtonItem = {
+        let image = UIImage.init(named: "icons8-synchronize-filled-25")?.withRenderingMode(.alwaysOriginal)
+        let button  = UIBarButtonItem.init(image: image, style: .plain, target: self, action: #selector(getClubs))
         return button
     }()
     
@@ -42,12 +48,7 @@ class ClubListViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        clubs = Club.allClubs
-        
-        // if the user is a club and they updated their profile, update clubs
-        if User.currentUser?.club != nil && User.userProfileUpdated {
-            getClubs()
-        }
+        filterClubs()
         clubsTableView.reloadData()
     }
     
@@ -68,10 +69,11 @@ class ClubListViewController: UIViewController {
         if User.currentUser?.club != nil {
             myClubButton.isHidden = true
             allClubsButton.isHidden = true
-            navigationItem.rightBarButtonItem = rightButton
-
+            navigationItem.rightBarButtonItem = profileButton
+        // otherwise change add button to reload button
+        } else {
+            navigationItem.rightBarButtonItem = reloadButton
         }
-
         
         // Source: https://www.raywenderlich.com/472-uisearchcontroller-tutorial-getting-started
         // Setup the Search Controller
@@ -114,60 +116,74 @@ class ClubListViewController: UIViewController {
     }
     
     // Get clubs loadLimit number of clubs from database starting from clubLoadNext
-    func getClubs() {
-        // reset club list
-        Club.allClubs = []
-        
-        ClubsApi.getClubsIDs(start: nil, limit: nil) { data, error in
-            switch(data, error){
-            case(nil, .some(let error)):
-                print(error)
-            case(.some(let data), nil):
-                if let clubIds = data as? [String?] {
-                    // add each club to the club list and reload table view
-                    
-                    // if no clubs, clear table view
-                    if clubIds.count  <= 0 {
-                        self.clubs = []
-                        self.filteredClubs = []
-                        self.clubsTableView.reloadData()
-                    }
-                    
-                    for id in clubIds {
-                        ClubsApi.getClub(id: id ?? "") { data, error in
-                            switch(data, error){
-                            case(nil, .some(let error)):
-                                print(error)
-                            case(.some(let data), nil):
-                                let club = data as! Club
-                                Club.allClubs?.append(club)
-                                
-                                // sort clubs by name
-                                Club.allClubs
-                                    = Club.allClubs?.sorted(by: { $0.name ?? "" < $1.name ?? ""})
-                                
-                                // Set clubs to display
-                                self.clubs = Club.allClubs
-                                
-                                // Filter if currenlty displayin user clubs
-                                if self.userClubsDisplayed,
-                                    let userClubs = User.currentUser?.clubs {
-                                    self.clubs = Club.allClubs?.filter{ club in
-                                        userClubs.contains(club.id ?? "") }
+    @objc func getClubs() {
+        DispatchQueue.global(qos: .default).async {
+            Club.loadLock.wait()
+            
+            // reset club list
+            Club.allClubs = []
+            var addedClubs = 0
+            
+            ClubsApi.getClubsIDs(start: nil, limit: nil) { data, error in
+                switch(data, error){
+                case(nil, .some(let error)):
+                    print(error)
+                case(.some(let data), nil):
+                    if let clubIds = data as? [String?] {
+                        // add each club to the club list and reload table view
+                        
+                        // if no clubs, clear table view
+                        if clubIds.count  <= 0 {
+                            self.clubs = []
+                            self.filteredClubs = []
+                            self.clubsTableView.reloadData()
+                        }
+                        
+                        for id in clubIds {
+                            ClubsApi.getClub(id: id ?? "") { data, error in
+                                switch(data, error){
+                                case(nil, .some(let error)):
+                                    print(error)
+                                case(.some(let data), nil):
+                                    let club = data as! Club
+                                    addedClubs = addedClubs + 1
+                                    Club.allClubs?.append(club)
+                                    
+                                     DispatchQueue.main.async {
+                                        self.filterClubs()
+                                        self.clubsTableView.reloadData()
+                                     }
+                                    if addedClubs == clubIds.count {
+                                        Event.loadLock.signal()
+                                    }
+                                    
+                                default:
+                                    print("Error getting club \(id ?? "")")
                                 }
-                                
-                                self.clubsTableView.reloadData()
-                                
-                            default:
-                                print("Error getting club \(id ?? "")")
                             }
                         }
                     }
+                default:
+                    print("Error getting clubs")
+                    
                 }
-            default:
-                print("Error getting clubs")
-                
             }
+        }
+    }
+    
+    func filterClubs() {
+        // sort clubs by name
+        Club.allClubs
+            = Club.allClubs?.sorted(by: { $0.name ?? "" < $1.name ?? ""})
+        
+        // Set clubs to display
+        self.clubs = Club.allClubs
+        
+        // Filter if currenlty displayin user clubs
+        if self.userClubsDisplayed,
+            let userClubs = User.currentUser?.clubs {
+            self.clubs = Club.allClubs?.filter{ club in
+                userClubs.contains(club.id ?? "") }
         }
     }
 }

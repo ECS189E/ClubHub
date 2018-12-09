@@ -25,12 +25,18 @@ class EventsFeedViewController: UIViewController, EditEventDelegate, EventDetail
     
     let dateFormatter = DateFormatter()
     let timeFormatter = DateFormatter()
-    
+
     let searchController = UISearchController(searchResultsController: nil)
     
     lazy var logo: UIBarButtonItem = {
         let image = UIImage.init(named: "computer-workers-group-ocean-25")?.withRenderingMode(.alwaysOriginal)
         let button  = UIBarButtonItem.init(image: image, style: .plain, target: self, action: nil)
+        return button
+    }()
+    
+    lazy var reloadButton: UIBarButtonItem = {
+        let image = UIImage.init(named: "icons8-synchronize-filled-25")?.withRenderingMode(.alwaysOriginal)
+        let button  = UIBarButtonItem.init(image: image, style: .plain, target: self, action: #selector(getEvents))
         return button
     }()
     
@@ -43,7 +49,6 @@ class EventsFeedViewController: UIViewController, EditEventDelegate, EventDetail
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        events = Event.allEvents
         filterEvents()
         eventsTableView.reloadData()
     }
@@ -53,10 +58,15 @@ class EventsFeedViewController: UIViewController, EditEventDelegate, EventDetail
         logo.isEnabled = false
         navigationItem.leftBarButtonItem = logo
         
-        // hide add event for users
+        // change add event button to reload for users
         if User.currentUser?.club == nil {
-            addEventButton.isEnabled = false
-            addEventButton.tintColor = UIColor.white
+            navigationItem.rightBarButtonItem = reloadButton
+        // change filter buttons for clubs
+        } else {
+            // hide "My Clubs" button
+            myClubsButton.isHidden = true
+            // Change "Saved" to "Hosting"
+            savedButton.setTitle("Hosting", for: .normal)
         }
         
         // format appearence of dates
@@ -73,15 +83,7 @@ class EventsFeedViewController: UIViewController, EditEventDelegate, EventDetail
         savedButton.alpha = 0.5
         savedButton.layer.cornerRadius =
             savedButton.frame.size.height/7
-        
-        // If user is a club, change filter buttons
-        if User.currentUser?.club != nil {
-            // hide "My Clubs" button
-            myClubsButton.isHidden = true
-            // Change "Saved" to "Hosting"
-            savedButton.setTitle("Hosting", for: .normal)
-        }
-        
+
         // Setup the Search Controller
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -165,45 +167,54 @@ class EventsFeedViewController: UIViewController, EditEventDelegate, EventDetail
     }
     
     // Get events loadLimit number of events from database starting from eventLoadDate
-    func getEvents() {
-        // reset events list
-        Event.allEvents = []
+    @objc func getEvents() {
+        DispatchQueue.global().async {
+            Event.loadLock.wait()
+            
+            // reset events list
+            Event.allEvents = []
+            var addedEvents = 0
         
-        EventsApi.getEventsIDs(startDate: nil, limit: nil) { data, error in
-            switch(data, error){
-            case(nil, .some(let error)):
-                print(error)
-            case(.some(let data), nil):
-                if let eventIds = data as? [String?] {
-                    // add each event to the event list and reload table view
-                    
-                    // if no events, clear table view
-                    if eventIds.count  <= 0 {
-                        self.events = []
-                        self.filteredEvents = []
-                        self.eventsTableView.reloadData()
-                    }
-                    
-                    for id in eventIds {
-                        EventsApi.getEvent(id: id ?? "") { data, error in
-                            switch(data, error){
-                            case(nil, .some(let error)):
-                                print(error)
-                            case(.some(let data), nil):
-                                let event = data as! Event
-                                Event.allEvents?.append(event)
-                                self.filterEvents()
-                                self.eventsTableView.reloadData()
-                                
-                            default:
-                                print("Error getting event \(id ?? "")")
+            EventsApi.getEventsIDs(startDate: nil, limit: nil) { data, error in
+                switch(data, error){
+                case(nil, .some(let error)):
+                    print(error)
+                case(.some(let data), nil):
+                    if let eventIds = data as? [String?] {
+                        // if no events, clear table view
+                        if eventIds.count  <= 0 {
+                            self.events = []
+                            self.filteredEvents = []
+                            self.eventsTableView.reloadData()
+                        }
+                        // get data for each event
+                        for id in eventIds {
+                            EventsApi.getEvent(id: id ?? "") { data, error in
+                                switch(data, error){
+                                case(nil, .some(let error)):
+                                    print(error)
+                                case(.some(let data), nil):
+                                    let event = data as! Event
+                                    addedEvents = addedEvents + 1
+                                    Event.allEvents?.append(event)
+                                    
+                                    DispatchQueue.main.async {
+                                        self.filterEvents()
+                                        self.eventsTableView.reloadData()
+                                    }
+                                    if addedEvents == eventIds.count {
+                                        Event.loadLock.signal()
+                                    }
+                                default:
+                                    print("Error getting event \(id ?? "")")
+                                }
                             }
                         }
                     }
+                default:
+                    print("Error getting events")
+                    
                 }
-            default:
-                print("Error getting events")
-                
             }
         }
     }
@@ -220,7 +231,7 @@ class EventsFeedViewController: UIViewController, EditEventDelegate, EventDetail
             $0.startTime ?? Date() >= Date() }
         
         // Set events to display
-        self.events = Event.allEvents
+        events = Event.allEvents
 
         // Filter if currenlty displaying user events
         if userEventsDisplayed,
@@ -256,8 +267,14 @@ extension EventsFeedViewController: UITableViewDelegate, UITableViewDataSource, 
         
         let event: Event
         if isFiltering() {
+            guard filteredEvents.count > indexPath.row else {
+                return UITableViewCell()
+            }
             event = filteredEvents[indexPath.row]
         } else {
+            guard events.count > indexPath.row else {
+                return UITableViewCell()
+            }
             event = events[indexPath.row]
         }
         
