@@ -20,6 +20,18 @@ class ClubListViewController: UIViewController {
 
     let searchController = UISearchController(searchResultsController: nil)
     
+    lazy var rightButton: UIBarButtonItem = {
+        let image = UIImage.init(named: "default profile")?.withRenderingMode(.alwaysOriginal)
+        let button  = UIBarButtonItem.init(image: image, style: .plain, target: self, action: #selector(profileTapped))
+        return button
+    }()
+    
+    lazy var logo: UIBarButtonItem = {
+        let image = UIImage.init(named: "computer-workers-group-ocean-25")?.withRenderingMode(.alwaysOriginal)
+        let button  = UIBarButtonItem.init(image: image, style: .plain, target: self, action: nil)
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         clubsTableView.delegate = self
@@ -39,6 +51,10 @@ class ClubListViewController: UIViewController {
     }
     
     func viewInit() {
+        // add logo to bar
+        logo.isEnabled = false
+        navigationItem.leftBarButtonItem = logo
+        
         // Init selected clubs view buttons
         allClubsButton.alpha = 1.0
         allClubsButton.layer.cornerRadius =
@@ -46,6 +62,15 @@ class ClubListViewController: UIViewController {
         myClubButton.alpha = 0.5
         myClubButton.layer.cornerRadius
             = myClubButton.frame.size.height/7
+        
+        // If user is a club, hide "Saved" and "All" button
+        if User.currentUser?.club != nil {
+            myClubButton.isHidden = true
+            allClubsButton.isHidden = true
+            navigationItem.rightBarButtonItem = rightButton
+
+        }
+
         
         // Source: https://www.raywenderlich.com/472-uisearchcontroller-tutorial-getting-started
         // Setup the Search Controller
@@ -75,6 +100,15 @@ class ClubListViewController: UIViewController {
                 userClubs.contains(club.id ?? "") }
             userClubsDisplayed = true
             clubsTableView.reloadData()
+        }
+    }
+    
+    @objc func profileTapped() {
+        if let club = User.currentUser?.club {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let viewController = storyboard.instantiateViewController(withIdentifier: "ClubViewController") as! ClubViewController
+            viewController.club = club
+            self.navigationController?.pushViewController(viewController, animated: true)
         }
     }
     

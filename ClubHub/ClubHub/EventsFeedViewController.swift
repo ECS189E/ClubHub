@@ -27,6 +27,12 @@ class EventsFeedViewController: UIViewController, EditEventDelegate, EventDetail
     
     let searchController = UISearchController(searchResultsController: nil)
     
+    lazy var logo: UIBarButtonItem = {
+        let image = UIImage.init(named: "computer-workers-group-ocean-25")?.withRenderingMode(.alwaysOriginal)
+        let button  = UIBarButtonItem.init(image: image, style: .plain, target: self, action: nil)
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         eventsTableView.delegate = self
@@ -42,6 +48,10 @@ class EventsFeedViewController: UIViewController, EditEventDelegate, EventDetail
     }
     
     func viewInit() {
+        // add logo to bar
+        logo.isEnabled = false
+        navigationItem.leftBarButtonItem = logo
+        
         // hide add event for users
         if User.currentUser?.club == nil {
             addEventButton.isEnabled = false
@@ -51,6 +61,7 @@ class EventsFeedViewController: UIViewController, EditEventDelegate, EventDetail
         // format appearence of dates
         dateFormatter.dateFormat = "EE MMM d, yyyy"
         timeFormatter.dateFormat = "h:mm a"
+        
         // Init selected events view buttons
         allEventsButton.alpha = 1.0
         allEventsButton.layer.cornerRadius =
@@ -61,6 +72,14 @@ class EventsFeedViewController: UIViewController, EditEventDelegate, EventDetail
         savedButton.alpha = 0.5
         savedButton.layer.cornerRadius =
             savedButton.frame.size.height/7
+        
+        // If user is a club, change filter buttons
+        if User.currentUser?.club != nil {
+            // hide "My Clubs" button
+            myClubsButton.isHidden = true
+            // Change "Saved" to "Hosting"
+            savedButton.setTitle("Hosting", for: .normal)
+        }
         
         // Setup the Search Controller
         searchController.searchResultsUpdater = self

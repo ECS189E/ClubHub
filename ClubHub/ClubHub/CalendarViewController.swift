@@ -22,6 +22,12 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     var events: [Event]? = []
     var filteredEvents: [Event] = []
     
+    lazy var logo: UIBarButtonItem = {
+        let image = UIImage.init(named: "computer-workers-group-ocean-25")?.withRenderingMode(.alwaysOriginal)
+        let button  = UIBarButtonItem.init(image: image, style: .plain, target: self, action: nil)
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         viewInit()
@@ -35,6 +41,10 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
 
     
     func viewInit() {
+        // add logo to bar
+        logo.isEnabled = false
+        navigationItem.leftBarButtonItem = logo
+        
         // hide add event for users
         if User.currentUser?.club == nil {
             addEventButton.isEnabled = false
