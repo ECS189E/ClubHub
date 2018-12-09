@@ -31,6 +31,18 @@ struct UserApi {
             userClubs = [club]
         }
         
+        let name = Auth.auth().currentUser?.displayName
+        let email = Auth.auth().currentUser?.email
+        let values = ["name": name, "email": email]
+        Database.database().reference().child("users").child(userID).child("credentials").updateChildValues(values as [AnyHashable : Any], withCompletionBlock: { (err, _) in
+            if err == nil {
+                let profile = Profile(name: name!, email: email!, id: userID, profilePic: UIImage(named: "default profile")!)
+                completion(profile, nil)
+            } else {
+                completion(nil, "Error adding profile credentials")
+            }
+        })
+        
         // Add a new document with a generated ID
         db.collection("users").document(userID).setData([
             "events": [],
@@ -299,8 +311,8 @@ struct UserApi {
         settings.areTimestampsInSnapshotsEnabled = true
         db.settings = settings
         
+        Database.database().reference().child("users").child(User.currentUser?.id ?? "").removeValue()
         let ref = db.collection("users").document(User.currentUser?.id ?? "")
-        
         // check if club exists, then delete it
         ref.getDocument { (document, err) in
             if let document = document, document.exists {

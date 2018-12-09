@@ -23,7 +23,15 @@ class ClubViewController: UIViewController, EventDetailsDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        viewInit()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        getEventsForClub()
+        tableview.reloadData()
+    }
+    
+    func viewInit() {
         clubImage.image = club?.image ?? UIImage(named: "defaultImage")
         clubName.text = club?.name
         aboutClub.text = club?.details
@@ -45,11 +53,6 @@ class ClubViewController: UIViewController, EventDetailsDelegate {
             saveButton.image = UIImage(named: "icons8-star-filled-36")
             savedClub = true
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        getEventsForClub()
-        tableview.reloadData()
     }
     
     
@@ -88,7 +91,6 @@ class ClubViewController: UIViewController, EventDetailsDelegate {
     func eventEditedFromDetails() {
         // Update events
         getEvents()
-        getEventsForClub()
     }
     
     func eventDeletedFromDetails() {
@@ -96,7 +98,6 @@ class ClubViewController: UIViewController, EventDetailsDelegate {
         self.navigationController?.popViewController(animated: true)
         // Update events
         getEvents()
-        getEventsForClub()
     }
     
 
@@ -138,16 +139,15 @@ class ClubViewController: UIViewController, EventDetailsDelegate {
                 .sorted(by: { $0.startTime?.compare($1.startTime ?? Date())
                     == .orderedAscending })
         
-        // Get events for club
-        events = Event.allEvents?.filter {
-            $0.clubId == User.currentUser?.club?.id}
-        
         // remove events that have already passed
-        events = Event.allEvents?.filter {
+        Event.allEvents = Event.allEvents?.filter {
             $0.startTime ?? Date() >= Date() }
         
+        // Get events for club
+        events = Event.allEvents?.filter {
+            $0.clubId == self.club?.id}
+        
         // Set events to display
-        events = Event.allEvents
         tableview.reloadData()
     }
 }
