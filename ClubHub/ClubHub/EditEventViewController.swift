@@ -15,7 +15,8 @@ protocol EditEventDelegate {
 class EditEventViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var scrollViewBottomContraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var scrollViewBottomConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
@@ -57,6 +58,24 @@ class EditEventViewController: UIViewController {
             object: nil)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        // if editing an event, get most up to date version
+        if event?.id != nil {
+            let updatedEvent = Event.allEvents?.filter { event in
+                event.id?.contains(self.event?.id ?? "") ?? false}
+            
+            // If event not in array, may have been deleted or being loaded
+            guard (updatedEvent?.count ?? 0) > 0 else {
+                self.navigationController?.popViewController(animated: true)
+                return
+            }
+            
+            // get updated event and load event data
+            event = updatedEvent?[0]
+            loadEvent()
+        }
+    }
+    
     func viewInit() {
         guard let userClub = User.currentUser?.club?.name else {
             navigationController?.popViewController(animated: true)
@@ -90,45 +109,20 @@ class EditEventViewController: UIViewController {
             deleteButton.isEnabled = false
             
             event = Event()
-            // initialize date start and end times
-            event?.startTime =
-                Calendar.current.date(bySettingHour: 12,
-                                      minute: 0, second: 0,
-                                      of: Date())
-            event?.endTime =
-                event?.startTime?.addingTimeInterval(60 * 60)
+            
+            // init start date to upcoming even hour
+            var startTime = Calendar.current.date(bySetting: .minute, value: 0, of: Date())
+            startTime = Calendar.current.date(bySetting: .second, value: 0, of: startTime ?? Date())
+            event?.startTime = startTime
+            
+            // init end date to on hour past start
+            event?.endTime = event?.startTime?.addingTimeInterval(60 * 60)
             
             // init club and image to club image
             event?.club = userClub
             event?.image = User.currentUser?.club?.image
         }
-        
-        // init date button labels
-        nameTextField.text = event?.name
-        startDateButon.setTitle(
-            dateFormatter.string(from: event?.startTime ?? Date()), for: .normal)
-        endDateButton.setTitle(
-            dateFormatter.string(from: event?.endTime ?? Date()), for: .normal)
-        startTimeButton.setTitle(
-            timeFormatter.string(from: event?.startTime ?? Date()), for: .normal)
-        endTimeButton.setTitle(
-            timeFormatter.string(from: event?.endTime ?? Date()), for: .normal)
-        locationTextView.text = event?.location
-        detailsTextView.text = event?.details
-        
-        // init event image
-        if let image =  event?.image {
-            imageView.image = image
-            uploadImageButton.setTitle("", for: .normal)
-            imageView.isHidden = false
-            deleteImageButton.isHidden = false
-            hadImage = true
-        } else {
-            uploadImageButton.setTitle("Upload Image", for: .normal)
-            imageView.isHidden = true
-            deleteImageButton.isHidden = true
-            hadImage = false
-        }
+       loadEvent()
     }
     
 
@@ -154,7 +148,8 @@ class EditEventViewController: UIViewController {
         
         // if updating an existing event
         if let _ = event?.id {
-            EventsApi.updateEvent(event: event, imageWasDeleted: imageWasDeleted, imageWasUpdated: imageWasUpdated) { data, err in
+            EventsApi.updateEvent(event: event, imageWasDeleted: imageWasDeleted,
+                                  imageWasUpdated: imageWasUpdated) { data, err in
                 switch(data, err) {
                 case(.some(_), nil):
                     self.delegate?.editEventCompleted(event: self.event)
@@ -271,7 +266,9 @@ class EditEventViewController: UIViewController {
         detailsTextView.resignFirstResponder()
         
         // Init pop up view controller
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "dateTimePopUpViewController") as! DateTimePopUpViewController
+        let vc = UIStoryboard(name: "Main", bundle: nil)
+            .instantiateViewController(withIdentifier: "dateTimePopUpViewController")
+            as! DateTimePopUpViewController
         vc.delegate = self
         vc.date = event?.startTime
         vc.pickerMode = UIDatePicker.Mode.date
@@ -291,7 +288,9 @@ class EditEventViewController: UIViewController {
         detailsTextView.resignFirstResponder()
         
         // Init pop up view controller
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "dateTimePopUpViewController") as! DateTimePopUpViewController
+        let vc = UIStoryboard(name: "Main", bundle: nil)
+            .instantiateViewController(withIdentifier: "dateTimePopUpViewController")
+            as! DateTimePopUpViewController
         vc.delegate = self
         vc.date = event?.endTime
         vc.pickerMode = UIDatePicker.Mode.date
@@ -311,7 +310,9 @@ class EditEventViewController: UIViewController {
         detailsTextView.resignFirstResponder()
         
         // Init pop up view controller
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "dateTimePopUpViewController") as! DateTimePopUpViewController
+        let vc = UIStoryboard(name: "Main", bundle: nil)
+            .instantiateViewController(withIdentifier: "dateTimePopUpViewController")
+            as! DateTimePopUpViewController
         vc.delegate = self
         vc.date = event?.startTime
         vc.pickerMode = UIDatePicker.Mode.time
@@ -332,7 +333,9 @@ class EditEventViewController: UIViewController {
         detailsTextView.resignFirstResponder()
         
         // Init pop up view controller
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "dateTimePopUpViewController") as! DateTimePopUpViewController
+        let vc = UIStoryboard(name: "Main", bundle: nil)
+            .instantiateViewController(withIdentifier: "dateTimePopUpViewController")
+            as! DateTimePopUpViewController
         
         vc.delegate = self
         vc.date = event?.endTime
@@ -344,6 +347,35 @@ class EditEventViewController: UIViewController {
         vc.didMove(toParent: self)
     }
     
+    
+    func loadEvent() {
+        // init date button labels
+        nameTextField.text = event?.name
+        startDateButon.setTitle(
+            dateFormatter.string(from: event?.startTime ?? Date()), for: .normal)
+        endDateButton.setTitle(
+            dateFormatter.string(from: event?.endTime ?? Date()), for: .normal)
+        startTimeButton.setTitle(
+            timeFormatter.string(from: event?.startTime ?? Date()), for: .normal)
+        endTimeButton.setTitle(
+            timeFormatter.string(from: event?.endTime ?? Date()), for: .normal)
+        locationTextView.text = event?.location
+        detailsTextView.text = event?.details
+        
+        // init event image
+        if let image =  event?.image {
+            imageView.image = image
+            uploadImageButton.setTitle("", for: .normal)
+            imageView.isHidden = false
+            deleteImageButton.isHidden = false
+            hadImage = true
+        } else {
+            uploadImageButton.setTitle("Upload Image", for: .normal)
+            imageView.isHidden = true
+            deleteImageButton.isHidden = true
+            hadImage = false
+        }
+    }
 }
 
 // DateTimePopUpDelegate functions
@@ -419,7 +451,7 @@ extension EditEventViewController {
             let keyboardHeight = keyboardFrame.cgRectValue.height
             
             // Change the scroll views bottom constraint
-            scrollViewBottomContraint.constant =  -keyboardHeight + 50 + 16
+            scrollViewBottomConstraint.constant =  -keyboardHeight + 50 + 16
             
             // Change scroll view offset
             scrollView.setContentOffset(
@@ -431,6 +463,6 @@ extension EditEventViewController {
     
     // Restore Scroll View Bottom Contraint when keyboard hides
     @objc func keyboardWillHide(notification: Notification) {
-        scrollViewBottomContraint.constant = -16
+        scrollViewBottomConstraint.constant = -16
     }
 }

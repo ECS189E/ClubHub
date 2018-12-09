@@ -45,7 +45,11 @@ class ClubViewController: UIViewController, EventDetailsDelegate {
             saveButton.image = UIImage(named: "icons8-star-filled-36")
             savedClub = true
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         getEventsForClub()
+        tableview.reloadData()
     }
     
     
@@ -95,7 +99,7 @@ class ClubViewController: UIViewController, EventDetailsDelegate {
         getEventsForClub()
     }
     
-    
+
     func getEvents() {
         Event.allEvents = []
         
@@ -112,6 +116,7 @@ class ClubViewController: UIViewController, EventDetailsDelegate {
                                 print(error)
                             case(.some(let data), nil):
                                 Event.allEvents?.append(data as! Event)
+                                self.getEventsForClub()
                                 self.tableview.reloadData()
                             default:
                                 print("Error getting event \(id ?? "")")
@@ -126,20 +131,27 @@ class ClubViewController: UIViewController, EventDetailsDelegate {
         }
     }
     
-}
-extension ClubViewController: UITableViewDelegate, UITableViewDataSource {
-    
     func getEventsForClub() {
-        events = Event.allEvents?.sorted(by: { $0.startTime?.compare($1.startTime ?? Date()) == .orderedAscending })
- 
+        // sort events by start time
+        Event.allEvents
+            = Event.allEvents?
+                .sorted(by: { $0.startTime?.compare($1.startTime ?? Date())
+                    == .orderedAscending })
+        
+        // Get events for club
+        events = Event.allEvents?.filter {
+            $0.clubId == User.currentUser?.club?.id}
+        
         // remove events that have already passed
-        Event.allEvents = Event.allEvents?.filter {
+        events = Event.allEvents?.filter {
             $0.startTime ?? Date() >= Date() }
         
         // Set events to display
-        self.events = Event.allEvents
+        events = Event.allEvents
         tableview.reloadData()
     }
+}
+extension ClubViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.events?.count ?? 0

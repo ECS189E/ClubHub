@@ -35,6 +35,7 @@ class ClubListViewController: UIViewController {
         if User.currentUser?.club != nil && User.userProfileUpdated {
             getClubs()
         }
+        clubsTableView.reloadData()
     }
     
     func viewInit() {

@@ -19,7 +19,8 @@ class EventsFeedViewController: UIViewController, EditEventDelegate, EventDetail
     
     var events: [Event]?  // Events curretly loaded into table
     var filteredEvents = [Event]() // Events filtered by search bar
-    var userEventsDisplayed: Bool = false // True if "My Events" tapped
+    var userEventsDisplayed: Bool = false // True if "Saved" tapped
+    var myClubEventsDisplayed: Bool = false // True if "My Clubs" tapped
     
     let dateFormatter = DateFormatter()
     let timeFormatter = DateFormatter()
@@ -36,6 +37,8 @@ class EventsFeedViewController: UIViewController, EditEventDelegate, EventDetail
     
     override func viewWillAppear(_ animated: Bool) {
         events = Event.allEvents
+        filterEvents()
+        eventsTableView.reloadData()
     }
     
     func viewInit() {
@@ -75,6 +78,7 @@ class EventsFeedViewController: UIViewController, EditEventDelegate, EventDetail
         savedButton.alpha = 0.5
         events = Event.allEvents
         userEventsDisplayed = false
+        myClubEventsDisplayed = false
         eventsTableView.reloadData()
     }
     
@@ -88,6 +92,7 @@ class EventsFeedViewController: UIViewController, EditEventDelegate, EventDetail
             events = Event.allEvents?.filter{ event in
                 userEvents.contains(event.id ?? "") }
             userEventsDisplayed = true
+            myClubEventsDisplayed = false
             eventsTableView.reloadData()
         }
     }
@@ -100,7 +105,8 @@ class EventsFeedViewController: UIViewController, EditEventDelegate, EventDetail
             savedButton.alpha = 0.5
             events = Event.allEvents?.filter{ event in
                 userClubs.contains(event.clubId ?? "") }
-            userEventsDisplayed = true
+            userEventsDisplayed = false
+            myClubEventsDisplayed = true
             eventsTableView.reloadData()
         }
     }
@@ -166,25 +172,7 @@ class EventsFeedViewController: UIViewController, EditEventDelegate, EventDetail
                             case(.some(let data), nil):
                                 let event = data as! Event
                                 Event.allEvents?.append(event)
-                                
-                                // sort events by start time
-                                Event.allEvents
-                                    = Event.allEvents?.sorted(by: { $0.startTime?.compare($1.startTime ?? Date()) == .orderedAscending })
-                                
-                                // remove events that have already passed
-                                Event.allEvents = Event.allEvents?.filter {
-                                    $0.startTime ?? Date() >= Date() }
-                                
-                                // Set events to display
-                                self.events = Event.allEvents
-                                
-                                // Filter if currenlty displayin user events
-                                if self.userEventsDisplayed,
-                                    let userEvents = User.currentUser?.events {
-                                    self.events = Event.allEvents?.filter{ event in
-                                        userEvents.contains(event.id ?? "") }
-                                }
-                                
+                                self.filterEvents()
                                 self.eventsTableView.reloadData()
                                 
                             default:
@@ -197,6 +185,35 @@ class EventsFeedViewController: UIViewController, EditEventDelegate, EventDetail
                 print("Error getting events")
                 
             }
+        }
+    }
+    
+    func filterEvents() {
+        // sort events by start time
+        Event.allEvents
+            = Event.allEvents?
+                .sorted(by: { $0.startTime?.compare($1.startTime ?? Date())
+                    == .orderedAscending })
+        
+        // remove events that have already passed
+        Event.allEvents = Event.allEvents?.filter {
+            $0.startTime ?? Date() >= Date() }
+        
+        // Set events to display
+        self.events = Event.allEvents
+
+        // Filter if currenlty displaying user events
+        if userEventsDisplayed,
+            let userEvents = User.currentUser?.events {
+            events = Event.allEvents?.filter{ event in
+                userEvents.contains(event.id ?? "") }
+        }
+        
+        // Filter if currently displaying my club events
+        if myClubEventsDisplayed,
+            let userEvents = User.currentUser?.events {
+            events = Event.allEvents?.filter{ event in
+                userEvents.contains(event.clubId ?? "") }
         }
     }
 }

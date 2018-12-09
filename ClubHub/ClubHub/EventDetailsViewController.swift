@@ -47,6 +47,23 @@ class EventDetailsViewController: UIViewController, EditEventDelegate {
         viewInit()
     }
     
+    // Load event form staticly stored array of events
+    // May have been changed in a different tab
+    override func viewWillAppear(_ animated: Bool) {
+        let updatedEvent = Event.allEvents?.filter { event in
+            event.id?.contains(self.event?.id ?? "") ?? false}
+        
+        // If event not in array, may have been deleted or being loaded
+        guard (updatedEvent?.count ?? 0) > 0 else {
+                self.navigationController?.popViewController(animated: true)
+                return
+        }
+        
+        // get updated event and load event data
+        event = updatedEvent?[0]
+        loadEvent(event: event)
+    }
+    
     func viewInit() {
         // Hide activitiy indicator
         activityIndicator.alpha = 0
@@ -59,8 +76,9 @@ class EventDetailsViewController: UIViewController, EditEventDelegate {
         // if user is a club, disable save button
         if User.currentUser?.club != nil {
             saveButton.isEnabled = false
-        // else hide edit and delete button
-        } else {
+        }
+        // if event is not owned by user, hide edit and delete buttons
+        if User.currentUser?.club?.id != event?.clubId {
             editButton.alpha = 0
             editButton.isHidden = true
             editButton.isEnabled = false
@@ -87,9 +105,6 @@ class EventDetailsViewController: UIViewController, EditEventDelegate {
             saveButton.image = UIImage(named: "icons8-star-filled-36")
             savedEvent = true
         }
-        
-        loadEvent(event: event)
-        
     }
     
     @IBAction func saveButtonPressed(_ sender: Any) {
@@ -185,12 +200,12 @@ class EventDetailsViewController: UIViewController, EditEventDelegate {
     
     // EditEventDelegate func
     // Once the backend finished updating event
-    // Returns updated event if event updated successfully
-    // Returns nil if deleted or an error encountered
+    // reload data or resing if event deleted
     func editEventCompleted(event: Event?) {
-        // close child
+        //close child
         self.navigationController?.popViewController(animated: true)
         
+        // reload data and notify delegate
         if let event = event {
             loadEvent(event: event)
             delegate?.eventEditedFromDetails()

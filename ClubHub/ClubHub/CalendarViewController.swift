@@ -28,7 +28,9 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.calendar.reloadData()
+        getTodaysEvents()
+        calendarListedEvents.reloadData()
+        calendar.reloadData()
     }
 
     
@@ -107,7 +109,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
-    // if an event was edited, get all events again
+    // if an event was added
     func editEventCompleted(event: Event?) {
         // close child
         self.navigationController?.popViewController(animated: true)
@@ -146,6 +148,8 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
                                 print(error)
                             case(.some(let data), nil):
                                 Event.allEvents?.append(data as! Event)
+                                self.getTodaysEvents()
+                                self.calendarListedEvents.reloadData()
                                 self.calendar.reloadData()
                             default:
                                 print("Error getting event \(id ?? "")")
@@ -253,5 +257,14 @@ extension CalendarViewController: UISearchResultsUpdating {
     
     func isFiltering() -> Bool {
         return searchController.isActive && !searchBarIsEmpty()
+    }
+    
+    func getTodaysEvents() {
+        // get todays events
+        events = Event.allEvents?.filter { event in
+        Calendar.current.isDate(Date(), equalTo: event.startTime ?? Date(), toGranularity:.day) }
+        // sort events by start time
+        events
+        = events?.sorted(by: { $0.startTime?.compare($1.startTime ?? Date()) == .orderedAscending })
     }
 }
