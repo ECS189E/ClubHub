@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 
+/// A view controller for displaying account settings
 class SettingsViewController: UIViewController, EditClubDelegate {
 
     @IBOutlet weak var editClubButton: UIButton!

@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 
+/// A view controller for displaying all clubs in a feed
 class ClubListViewController: UIViewController {
     @IBOutlet weak var clubsTableView: UITableView!
     @IBOutlet weak var allClubsButton: UIButton!

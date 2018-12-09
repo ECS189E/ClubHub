@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+/// A custom cell for displaying a club
 class ClubCell: UITableViewCell {
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var clubImageView: UIImageView!

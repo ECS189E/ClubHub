@@ -13,6 +13,7 @@ protocol EditClubDelegate {
     func editClubCompleted()
 }
 
+/// A view controller for editing club information
 class EditClubViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
