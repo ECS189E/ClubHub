@@ -7,6 +7,7 @@
 //
 import UIKit
 
+/// A view controller for a club
 class ClubViewController: UIViewController, EventDetailsDelegate {
     
     @IBOutlet weak var clubName: UILabel!

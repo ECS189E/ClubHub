@@ -11,6 +11,7 @@ import UIKit
 import Firebase
 import GoogleSignIn
 
+/// A view controller for displaying the sign in method for Google accounts
 class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
     @IBOutlet weak var signInButton: GIDSignInButton!

@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 
+/// A view controller for adding a new club for a club account
 class AddClubViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!

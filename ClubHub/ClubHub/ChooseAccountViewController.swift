@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// A view controller for handling the selection of a user account or a club account
 class ChooseAccountViewController: UIViewController {
 
     @IBOutlet weak var yesButton: UIButton!

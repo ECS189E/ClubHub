@@ -9,6 +9,7 @@
 import Foundation
 import Firebase
 
+/// API methods for clubs
 struct ClubsApi {
     
     typealias ApiCompletion = ((_ data: Any?, _ error: String?) -> Void)

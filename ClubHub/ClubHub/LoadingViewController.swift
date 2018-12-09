@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// A view controller for loading into the app
 class LoadingViewController: UIViewController, EditClubDelegate {
     
     var currentUser: String? = nil
@@ -18,7 +19,7 @@ class LoadingViewController: UIViewController, EditClubDelegate {
         
         // If last signing successful, get data
         if(currentUser != nil) {
-            // Get user data from firebas database
+            // Get user data from firebase database
             UserApi.getUserData() { data, err in
                 switch(data, err) {
                 // User data in database, existing account
