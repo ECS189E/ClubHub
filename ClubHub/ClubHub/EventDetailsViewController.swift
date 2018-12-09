@@ -13,7 +13,7 @@ protocol EventDetailsDelegate {
     func eventDeletedFromDetails()
 }
 
-
+// A view controller for displaying event details 
 class EventDetailsViewController: UIViewController, EditEventDelegate {
     
     @IBOutlet weak var eventImageView: UIImageView!

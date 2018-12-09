@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+// A class detailing all the attributes of a user
 class User {
     static var currentUser: User?
     static var userProfileUpdated: Bool = false

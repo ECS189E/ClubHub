@@ -9,6 +9,7 @@
 import Foundation
 import Firebase
 
+// Struct containing functions to add, update and get events as well as event ids
 struct EventsApi {
     
     typealias ApiCompletion = ((_ data: Any?, _ error: String?) -> Void)

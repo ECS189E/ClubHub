@@ -7,6 +7,7 @@
 import UIKit
 import Foundation
 
+// Class detailing an event object and its attributes
 class Event {
     static var allEvents: [Event]?
     

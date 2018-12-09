@@ -5,7 +5,6 @@
 //  Created by Lindsey Gray on 11/11/18.
 //  Copyright © 2018 Lindsey Gray. All rights reserved.
 //
-// Pop up view controller for picking a date or time
 
 protocol DateTimePopUpDelegate{
     //func datePopUpCanceled()
@@ -14,6 +13,7 @@ protocol DateTimePopUpDelegate{
 
 import UIKit
 
+// A class for pop up view controller for picking a date or time
 class DateTimePopUpViewController: UIViewController {
     
     var delegate: DateTimePopUpDelegate?

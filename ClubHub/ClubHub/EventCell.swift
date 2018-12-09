@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+// Class used to define a cell on a table view to show details of an event
 class EventCell: UITableViewCell {
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var eventImageView: UIImageView!

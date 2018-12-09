@@ -12,6 +12,7 @@ protocol EditEventDelegate {
     func editEventCompleted(event: Event?)
 }
 
+// A view controller to edit event details 
 class EditEventViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!

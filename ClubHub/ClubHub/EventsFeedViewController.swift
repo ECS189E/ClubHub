@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 
+// A view controller for displaying all the events on a feed
 class EventsFeedViewController: UIViewController, EditEventDelegate, EventDetailsDelegate {
     
     @IBOutlet weak var eventsTableView: UITableView!

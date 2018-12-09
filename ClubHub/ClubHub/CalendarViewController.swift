@@ -10,6 +10,7 @@ import UIKit
 import FSCalendar
 import Firebase
 
+// A view controller for the scrollable calendar displaying events
 class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource, EditEventDelegate, EventDetailsDelegate {
     
     @IBOutlet weak var calendar: FSCalendar!

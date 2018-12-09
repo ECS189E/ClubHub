@@ -10,6 +10,7 @@ import Foundation
 import Firebase
 import GoogleSignIn
 
+// A struct containing all the functions relating to a particular user's account
 struct UserApi {
     
     typealias ApiCompletion = ((_ data: Any?, _ error: String?) -> Void)
