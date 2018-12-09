@@ -79,7 +79,9 @@ class AddClubViewController: UIViewController {
                 self.club.id = (data as! Club).id
                 
                 // Update the users club in the database
-                UserApi.initUserData(type: "club", club: self.club.id) { data, err in
+                UserApi.initUserData(type: "club",
+                                     clubName: self.club.name,
+                                     clubId: self.club.id) { data, err in
                     switch(data, err) {
                     case(.some(_), nil):
                         

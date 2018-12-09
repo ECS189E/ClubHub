@@ -40,7 +40,7 @@ class ChooseAccountViewController: UIViewController {
     
     @IBAction func userAccountChosen(_ sender: Any) {
         // Initialize user data
-        UserApi.initUserData(type: "user", club: nil) { data, err in
+        UserApi.initUserData(type: "user", clubName: nil, clubId: nil) { data, err in
             switch(data, err) {
             // User data in database, existing account
             case(.some(let data), nil):

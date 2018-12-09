@@ -70,6 +70,27 @@ struct ClubsApi {
             return completion(nil, "Error updating club")
         }
         
+        // init user data for messaging
+        if let name = club?.name {
+        let email = Auth.auth().currentUser?.email
+        let values = ["name": name, "email": email]
+        Database.database().reference()
+            .child("users").child(id).child("credentials")
+            .updateChildValues(values as [AnyHashable : Any],
+                               withCompletionBlock: { (err, _) in
+                                if err == nil {
+                                    let profile = Profile(name: name,
+                                                          email: email!,
+                                                          id: id,
+                                                          profilePic:
+                                        UIImage(named: "default profile")!)
+                                    completion(profile, nil)
+                                } else {
+                                    completion(nil, "Error adding profile credentials")
+                                }
+            })
+        }
+        
         // Upload club data
         let ref = db.collection("clubs").document(id)
         let batch = db.batch()

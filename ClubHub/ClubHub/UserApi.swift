@@ -14,7 +14,8 @@ struct UserApi {
     
     typealias ApiCompletion = ((_ data: Any?, _ error: String?) -> Void)
     
-    static func initUserData(type: String?, club: String?, completion: @escaping ApiCompletion) {
+    static func initUserData(type: String?, clubName: String?, clubId: String?,
+                             completion: @escaping ApiCompletion) {
         let db = Firestore.firestore()
         let settings = db.settings
         settings.areTimestampsInSnapshotsEnabled = true
@@ -27,16 +28,27 @@ struct UserApi {
         
         // init user saved clubs list
         var userClubs: [String] = []
-        if let club = club {
-            userClubs = [club]
+        if let clubId = clubId {
+            userClubs = [clubId]
         }
         
-        let name = Auth.auth().currentUser?.displayName
+        // init user data for messaging
+        var name = Auth.auth().currentUser?.displayName
+        if let clubName = clubName {
+            name = clubName
+        }
         let email = Auth.auth().currentUser?.email
         let values = ["name": name, "email": email]
-        Database.database().reference().child("users").child(userID).child("credentials").updateChildValues(values as [AnyHashable : Any], withCompletionBlock: { (err, _) in
+        Database.database().reference()
+            .child("users").child(userID).child("credentials")
+            .updateChildValues(values as [AnyHashable : Any],
+                               withCompletionBlock: { (err, _) in
             if err == nil {
-                let profile = Profile(name: name!, email: email!, id: userID, profilePic: UIImage(named: "default profile")!)
+                let profile = Profile(name: name!,
+                                      email: email!,
+                                      id: userID,
+                                      profilePic:
+                    UIImage(named: "default profile")!)
                 completion(profile, nil)
             } else {
                 completion(nil, "Error adding profile credentials")
@@ -48,7 +60,7 @@ struct UserApi {
             "events": [],
             "clubs": userClubs,
             "type": type ?? NSNull(),
-            "club": club ?? NSNull()
+            "club": clubId ?? NSNull()
         ]){ err in
             if let err = err {
                 completion(nil, "Error adding event: \(err)")
@@ -283,7 +295,8 @@ struct UserApi {
                     let events = document.data()?["events"] as? [String]
                     let clubs = document.data()?["clubs"] as? [String]
                     // if user is a club, get club data
-                    if document.data()?["type"] as? String == "club", let clubID = document.data()?["club"] as? String {
+                    if document.data()?["type"] as? String == "club",
+                        let clubID = document.data()?["club"] as? String {
                         ClubsApi.getClub(id: clubID) { data, err in
                             let user = User(id: userID,
                                             club: data as? Club,
@@ -311,7 +324,9 @@ struct UserApi {
         settings.areTimestampsInSnapshotsEnabled = true
         db.settings = settings
         
-        Database.database().reference().child("users").child(User.currentUser?.id ?? "").removeValue()
+        Database.database().reference()
+            .child("users").child(User.currentUser?.id ?? "")
+            .removeValue()
         let ref = db.collection("users").document(User.currentUser?.id ?? "")
         // check if club exists, then delete it
         ref.getDocument { (document, err) in
