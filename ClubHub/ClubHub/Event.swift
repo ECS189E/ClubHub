@@ -9,6 +9,7 @@ import Foundation
 
 class Event {
     static var allEvents: [Event]?
+    static var loadLock = DispatchSemaphore(value: 1)
     
     var id: String? // id to locate event database
     var name: String?

@@ -28,6 +28,12 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         return button
     }()
     
+    lazy var reloadButton: UIBarButtonItem = {
+        let image = UIImage.init(named: "icons8-synchronize-filled-25")?.withRenderingMode(.alwaysOriginal)
+        let button  = UIBarButtonItem.init(image: image, style: .plain, target: self, action: #selector(getEvents))
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         viewInit()
@@ -45,10 +51,9 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         logo.isEnabled = false
         navigationItem.leftBarButtonItem = logo
         
-        // hide add event for users
+        // change add events button to reaload for users
         if User.currentUser?.club == nil {
-            addEventButton.isEnabled = false
-            addEventButton.tintColor = UIColor.white
+            navigationItem.rightBarButtonItem = reloadButton
         }
         
         calendar.dataSource = self
@@ -142,38 +147,59 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     }
     
     // get all events and update calendar as each event is received
-    func getEvents() {
-        Event.allEvents = []
-        
-        EventsApi.getEventsIDs(startDate: nil, limit: nil) { data, error in
-            switch(data, error){
-            case(nil, .some(let error)):
-                print(error)
-            case(.some(let data), nil):
-                if let eventIds = data as? [String?] {
-                    for id in eventIds {
-                        EventsApi.getEvent(id: id ?? "") { data, error in
-                            switch(data, error){
-                            case(nil, .some(let error)):
-                                print(error)
-                            case(.some(let data), nil):
-                                Event.allEvents?.append(data as! Event)
-                                self.getTodaysEvents()
-                                self.calendarListedEvents.reloadData()
-                                self.calendar.reloadData()
-                            default:
-                                print("Error getting event \(id ?? "")")
+    @objc func getEvents() {
+        DispatchQueue.global(qos: .default).async {
+            Event.loadLock.wait()
+            
+            Event.allEvents = []
+            var addedEvents = 0
+            
+            EventsApi.getEventsIDs(startDate: nil, limit: nil) { data, error in
+                switch(data, error){
+                case(nil, .some(let error)):
+                    print(error)
+                case(.some(let data), nil):
+                    if let eventIds = data as? [String?] {
+                        // get data for each event
+                        for id in eventIds {
+                            EventsApi.getEvent(id: id ?? "") { data, error in
+                                switch(data, error){
+                                case(nil, .some(let error)):
+                                    print(error)
+                                case(.some(let data), nil):
+                                    addedEvents = addedEvents + 1
+                                    Event.allEvents?.append(data as! Event)
+                                    
+                                    DispatchQueue.main.async {
+                                        self.calendar.select(self.calendar.selectedDate)
+                                        self.calendarListedEvents.reloadData()
+                                        self.calendar.reloadData()
+                                    }
+                                    if addedEvents == eventIds.count {
+                                        Event.loadLock.signal()
+                                    }
+                                default:
+                                    print("Error getting event \(id ?? "")")
+                                }
                             }
                         }
                     }
+                default:
+                    print("Error getting events")
+                    
                 }
-            default:
-                print("Error getting events")
-                
             }
         }
     }
     
+    func getTodaysEvents() {
+        // get todays events
+        events = Event.allEvents?.filter { event in
+            Calendar.current.isDate(Date(), equalTo: event.startTime ?? Date(), toGranularity:.day) }
+        // sort events by start time
+        events
+            = events?.sorted(by: { $0.startTime?.compare($1.startTime ?? Date()) == .orderedAscending })
+    }
 }
 
 // TableView funtions
@@ -267,14 +293,5 @@ extension CalendarViewController: UISearchResultsUpdating {
     
     func isFiltering() -> Bool {
         return searchController.isActive && !searchBarIsEmpty()
-    }
-    
-    func getTodaysEvents() {
-        // get todays events
-        events = Event.allEvents?.filter { event in
-        Calendar.current.isDate(Date(), equalTo: event.startTime ?? Date(), toGranularity:.day) }
-        // sort events by start time
-        events
-        = events?.sorted(by: { $0.startTime?.compare($1.startTime ?? Date()) == .orderedAscending })
     }
 }
