@@ -38,11 +38,13 @@ class SettingsViewController: UIViewController, EditClubDelegate {
     
     
     @IBAction func deleteTapped(_ sender: Any) {
+        // Delete user in firebase
         Auth.auth().currentUser?.delete() {
             error in
             if let error = error {
                 print(error)
             } else {
+                // Delete user data
                 UserApi.deleteUser() { data, err in
                     switch(data, err) {
                         case(.some(_), nil):
@@ -62,6 +64,7 @@ class SettingsViewController: UIViewController, EditClubDelegate {
     }
     
     
+    // logout user and show login view
     func logout() {
         UserApi.logout()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

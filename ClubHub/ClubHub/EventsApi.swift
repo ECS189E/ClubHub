@@ -22,8 +22,8 @@ struct EventsApi {
         
         var ref: DocumentReference? = nil
         
-        var hasImage: Bool = false
         // check for event image
+        var hasImage: Bool = false
         if (event?.image) != nil {
             hasImage = true
         }
@@ -76,11 +76,10 @@ struct EventsApi {
             return completion(nil, "Error updating event")
         }
         
-        // Upload event data
         let ref = db.collection("events").document(id)
         let batch = db.batch()
         
-        
+        // Upload event data
         batch.updateData([
             "name": event?.name ?? NSNull()
             ], forDocument: ref)
@@ -124,7 +123,7 @@ struct EventsApi {
             if let err = err {
                 completion(nil, "Error updating event: \(err)")
             } else {
-                // Update image
+                // Update image if it was updated
                 if let image = event?.image, imageWasUpdated {
                     let ref = Storage.storage().reference().child("eventImages").child(id)
                     if let data = image.jpeg(.lowest) {
@@ -214,6 +213,7 @@ struct EventsApi {
         
         let ref = db.collection("events").document(id);
         
+        // get data for event
         ref.getDocument { (document, err) in
             if let document = document, document.exists {
                 if let err = err {
@@ -281,6 +281,7 @@ struct EventsApi {
         
         var eventIDs: [String]? = []
         
+        // get list of events ordered by start time
         db.collection("events").order(by: "startTime")
                                .whereField("startTime", isGreaterThan: startDate ?? Date())
                                .limit(to: limit ?? 1000)

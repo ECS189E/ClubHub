@@ -15,6 +15,7 @@ struct UserApi {
     
     typealias ApiCompletion = ((_ data: Any?, _ error: String?) -> Void)
     
+    // Function to be called when a new user is created
     static func initUserData(type: String?, clubName: String?, clubId: String?,
                              completion: @escaping ApiCompletion) {
         let db = Firestore.firestore()
@@ -22,6 +23,7 @@ struct UserApi {
         settings.areTimestampsInSnapshotsEnabled = true
         db.settings = settings
         
+        // Check that user was authenticated and get id
         guard let userID = Auth.auth().currentUser?.uid else {
             completion(nil, "Error initializing user data: could not identify user")
             return
@@ -40,6 +42,8 @@ struct UserApi {
         }
         let email = Auth.auth().currentUser?.email
         let values = ["name": name, "email": email]
+        
+        // Init user messaging data
         Database.database().reference()
             .child("users").child(userID).child("credentials")
             .updateChildValues(values as [AnyHashable : Any],
@@ -56,7 +60,7 @@ struct UserApi {
             }
         })
         
-        // Add a new document with a generated ID
+        // Add a new document with a generated ID for user data
         db.collection("users").document(userID).setData([
             "events": [],
             "clubs": userClubs,
@@ -72,6 +76,7 @@ struct UserApi {
         }
     }
     
+    // To set the club id for an account if it is a club
     static func setAccountClub(club: String?, completion: @escaping ApiCompletion) {
         let db = Firestore.firestore()
         let settings = db.settings
@@ -84,11 +89,13 @@ struct UserApi {
             return
         }
         
+        // Check that user was authenticated and get id
         guard let userID = Auth.auth().currentUser?.uid else {
             completion(nil, "Error setting event: could not get user data")
             return
         }
         
+        // Update club for user
         let ref = db.collection("users").document(userID)
         ref.updateData(["club" : club])
         { err in
@@ -114,6 +121,7 @@ struct UserApi {
             return
         }
         
+        // Check that user was authenticated and get id
         guard let userID = Auth.auth().currentUser?.uid else {
             completion(nil, "Error saving event: could not get user data")
             return
@@ -121,11 +129,13 @@ struct UserApi {
             
         let ref = db.collection("users").document(userID)
         
+        // Save event to user events list
         ref.getDocument { (document, err) in
             if let document = document, document.exists {
                 if let err = err {
                     completion(nil, "Error saving event: \(err)")
                 } else {
+                    // Update user's event list to return as data
                     var userEvents = document.data()?["events"] as! [String]
                     userEvents.append(eventID)
                     
@@ -157,6 +167,7 @@ struct UserApi {
             return
         }
         
+        // Check that user was authenticated and get id
         guard let userID = Auth.auth().currentUser?.uid else {
             completion(nil, "Error deleting saved event: could not get user data")
             return
@@ -164,11 +175,13 @@ struct UserApi {
         
         let ref = db.collection("users").document(userID)
         
+        // Remove event from users event list
         ref.getDocument { (document, err) in
             if let document = document, document.exists {
                 if let err = err {
                     completion(nil, "Error deleting saved event: \(err)")
                 } else {
+                    // Update event list to return as data
                     var userEvents = document.data()?["events"] as! [String]
                     userEvents = userEvents.filter{ $0 != eventID }
                     
@@ -200,6 +213,7 @@ struct UserApi {
             return
         }
         
+        // Check that user was authenticated and get id
         guard let userID = Auth.auth().currentUser?.uid else {
             completion(nil, "Error saving club: could not get user data")
             return
@@ -207,11 +221,13 @@ struct UserApi {
         
         let ref = db.collection("users").document(userID)
         
+        // Add event to users saved clubs list
         ref.getDocument { (document, err) in
             if let document = document, document.exists {
                 if let err = err {
                     completion(nil, "Error saving club: \(err)")
                 } else {
+                    // Update club list to return as data
                     var userClubs = document.data()?["clubs"] as! [String]
                     userClubs.append(clubID)
                     
@@ -243,6 +259,7 @@ struct UserApi {
             return
         }
         
+        // Check that user was authenticated and get id
         guard let userID = Auth.auth().currentUser?.uid else {
             completion(nil, "Error deleting saved club: could not get user data")
             return
@@ -250,11 +267,13 @@ struct UserApi {
         
         let ref = db.collection("users").document(userID)
         
+        // Remove club from users saved clubs list
         ref.getDocument { (document, err) in
             if let document = document, document.exists {
                 if let err = err {
                     completion(nil, "Error deleting saved club: \(err)")
                 } else {
+                    // Update club list to return as data
                     var userClubs = document.data()?["clubs"] as! [String]
                     userClubs = userClubs.filter{ $0 != clubID }
                     
@@ -281,6 +300,7 @@ struct UserApi {
         settings.areTimestampsInSnapshotsEnabled = true
         db.settings = settings
         
+        // Check that user was authenticated and get id
         guard let userID = Auth.auth().currentUser?.uid else {
             completion(nil, "Error getting user data: could not identify user")
             return
@@ -288,6 +308,7 @@ struct UserApi {
         
         let ref = db.collection("users").document(userID)
         
+        // Get data for user
         ref.getDocument { (document, err) in
             if let document = document, document.exists {
                 if let err = err {
@@ -295,9 +316,11 @@ struct UserApi {
                 } else {
                     let events = document.data()?["events"] as? [String]
                     let clubs = document.data()?["clubs"] as? [String]
+                    
                     // if user is a club, get club data
                     if document.data()?["type"] as? String == "club",
                         let clubID = document.data()?["club"] as? String {
+                        // Get club and return data
                         ClubsApi.getClub(id: clubID) { data, err in
                             let user = User(id: userID,
                                             club: data as? Club,
@@ -305,6 +328,7 @@ struct UserApi {
                                             clubs: clubs)
                             completion(user, nil)
                         }
+                    // Else user is not a club, return data
                     } else {
                         let user = User(id: userID,
                                         club: nil,
@@ -319,17 +343,21 @@ struct UserApi {
         }
     }
     
+    // Function to call to delete user data when an account is deleted
     static func deleteUser(completion: @escaping ApiCompletion) {
         let db = Firestore.firestore()
         let settings = db.settings
         settings.areTimestampsInSnapshotsEnabled = true
         db.settings = settings
         
+        // Delete user  messaging data
         Database.database().reference()
             .child("users").child(User.currentUser?.id ?? "")
             .removeValue()
+        
         let ref = db.collection("users").document(User.currentUser?.id ?? "")
-        // check if club exists, then delete it
+        
+        // Check if user exists, then delete data
         ref.getDocument { (document, err) in
             if let document = document, document.exists {
                 if let err = err {

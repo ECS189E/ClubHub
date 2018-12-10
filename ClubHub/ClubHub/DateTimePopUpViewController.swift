@@ -30,17 +30,19 @@ class DateTimePopUpViewController: UIViewController {
     func viewInit() {
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         
+        // set picker mode based on delegate's choice
         if let pickerMode = pickerMode {
             datePicker.datePickerMode = pickerMode
         }
         datePicker.date = date ?? Date()
     }
     
-    // ???
+    // Date/Time picker resigned
     @IBAction func cancelTapped(_ sender: Any) {
         self.view.removeFromSuperview()
     }
     
+    // Date/Time chosen
     @IBAction func okTapped(_ sender: Any) {
         self.delegate?.dateSelected(date: datePicker.date)
         self.view.removeFromSuperview()

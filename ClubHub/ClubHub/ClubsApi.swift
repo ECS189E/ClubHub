@@ -202,6 +202,7 @@ struct ClubsApi {
         
         let ref = db.collection("clubs").document(id);
         
+        // get data for club from firebase
         ref.getDocument { (document, err) in
             if let document = document, document.exists {
                 if let err = err {
@@ -223,7 +224,6 @@ struct ClubsApi {
                                 // return club as data
                                 completion(club, nil)
                             default:
-                                //completion(nil, "Error getting club: could not get image")
                                 // Add club without image
                                 club = Club(id: document.documentID,
                                             name: document.data()?["name"] as? String? ?? nil,
@@ -259,6 +259,7 @@ struct ClubsApi {
         
         var clubIDs: [String]? = []
         
+        // Get a list of the ids of all clubs
         db.collection("clubs").order(by: "name")
             .whereField("name", isGreaterThan: start ?? "A")
             .limit(to: limit ?? 1000)
@@ -266,9 +267,11 @@ struct ClubsApi {
                 if let err = err {
                     completion(nil, "Error getting clubs: \(err)")
                 } else {
+                    // for each id, apped to list
                     for document in querySnapshot!.documents {
                         clubIDs?.append(document.documentID)
                     }
+                    // return club id list as data
                     completion(clubIDs, nil)
                 }
         }

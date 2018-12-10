@@ -33,6 +33,7 @@ class ClubViewController: UIViewController, EventDetailsDelegate {
     }
     
     func viewInit() {
+        // Init club info
         clubImage.image = club?.image ?? UIImage(named: "defaultImage")
         clubName.text = club?.name
         aboutClub.text = club?.details
@@ -47,7 +48,7 @@ class ClubViewController: UIViewController, EventDetailsDelegate {
         tableview.delegate = self
         tableview.dataSource = self
         
-        // init save button if event is saved already
+        // init save button if club is saved already
         if User.currentUser?.clubs?
             .contains(club?.id ?? "") ?? false {
             // show save button and change it to a filled star
@@ -58,28 +59,39 @@ class ClubViewController: UIViewController, EventDetailsDelegate {
     
     
     @IBAction func saveButtonPressed(_ sender: Any) {
+        // If club is not already saved, save it
         if !savedClub {
+            // Save club to user data in firebase
             UserApi.saveClub(clubID: club?.id) { data, error in
                 switch(data, error){
                 case(nil, .some(let error)):
                     print(error)
                 case(.some(let data), nil):
                     let clubs = data as? [String]
+                    
+                    // Update current users club list in memory
                     User.currentUser?.clubs = clubs
+                    
+                    // Change save button appearence to indicate club saved
                     self.saveButton.image = UIImage(named: "icons8-star-filled-36")
                     self.savedClub = true
                 default:
                     print("Error saving clubs")
                 }
             }
+        // Else unsaving a club
         } else {
+            // Delete club from user's saved club list
             UserApi.deleteSavedClub(clubID: club?.id) { data, error in
                 switch(data, error){
                 case(nil, .some(let error)):
                     print(error)
                 case(.some(let data), nil):
                     let clubs = data as? [String]
+                    // Update current users club list in memory
                     User.currentUser?.clubs = clubs
+                    
+                    // Change save button appearence to indicate club is no longer saved
                     self.saveButton.image = UIImage(named: "icons8-star-outline-36")
                     self.savedClub = false
                 default:
@@ -101,10 +113,12 @@ class ClubViewController: UIViewController, EventDetailsDelegate {
         getEvents()
     }
     
-
+    
+    // Get clubs events from database and reload table view as data is recieved
     func getEvents() {
         Event.allEvents = []
         
+        // Get list of events ids from database
         EventsApi.getEventsIDs(startDate: nil, limit: nil) { data, error in
             switch(data, error){
             case(nil, .some(let error)):
@@ -112,12 +126,16 @@ class ClubViewController: UIViewController, EventDetailsDelegate {
             case(.some(let data), nil):
                 if let eventIds = data as? [String?] {
                     for id in eventIds {
+                        // Get data for event
                         EventsApi.getEvent(id: id ?? "") { data, error in
                             switch(data, error){
                             case(nil, .some(let error)):
                                 print(error)
                             case(.some(let data), nil):
+                                // Add event to all events
                                 Event.allEvents?.append(data as! Event)
+                                
+                                // Filter out club events and update table view
                                 self.getEventsForClub()
                                 self.tableview.reloadData()
                             default:
@@ -152,6 +170,8 @@ class ClubViewController: UIViewController, EventDetailsDelegate {
         tableview.reloadData()
     }
 }
+
+// Table view delegate functions
 extension ClubViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -165,16 +185,18 @@ extension ClubViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         let event = events[indexPath.row]
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "clubEventCell", for: indexPath) as! EventCell
         
-        // the identifier is like the type of the cell
-        
-        cell.initEventCell(name: event.name, startTime: event.startTime, club: event.club, image: nil, dateFormat: "EE MMM dd")  //FIXME: debugging
+        cell.initEventCell(name: event.name,
+                           startTime: event.startTime,
+                           club: event.club,
+                           image: nil,
+                           dateFormat: "EE MMM dd")
         
         return cell
     }
     
+    // If events selection, show event details
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

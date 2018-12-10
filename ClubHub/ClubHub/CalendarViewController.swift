@@ -23,12 +23,14 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     var events: [Event]? = []
     var filteredEvents: [Event] = []
     
+    // App logo
     lazy var logo: UIBarButtonItem = {
         let image = UIImage.init(named: "computer-workers-group-ocean-25")?.withRenderingMode(.alwaysOriginal)
         let button  = UIBarButtonItem.init(image: image, style: .plain, target: self, action: nil)
         return button
     }()
     
+    // Reload events button
     lazy var reloadButton: UIBarButtonItem = {
         let image = UIImage.init(named: "icons8-synchronize-filled-25")?.withRenderingMode(.alwaysOriginal)
         let button  = UIBarButtonItem.init(image: image, style: .plain, target: self, action: #selector(getEvents))
@@ -57,10 +59,10 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
             navigationItem.rightBarButtonItem = reloadButton
         }
         
+        // Init calendar
         calendar.dataSource = self
         calendar.delegate = self
         view.addSubview(calendar)
-        
         calendarListedEvents.delegate = self
         calendarListedEvents.dataSource = self
         
@@ -99,8 +101,9 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         calendarListedEvents.reloadData()
     }
     
+    // Number of events (dots) for each day
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        
+        // If searching, use filtered events
         if isFiltering() {
             return filteredEvents.filter { event in
                 Calendar.current
@@ -108,7 +111,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
                             equalTo: event.startTime ?? Date(),
                             toGranularity:.day)}.count
         }
-        
+        // Else user all events
         return Event.allEvents?.filter { event in
             Calendar.current
                 .isDate(date,
@@ -116,12 +119,12 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
                         toGranularity:.day)}.count ?? 0
     }
     
+    // Create new event
     @IBAction func addEvent(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "editEventViewController") as! EditEventViewController
         viewController.delegate = self
         viewController.event = nil
-        
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
@@ -133,13 +136,13 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         getEvents()
     }
     
-    // EventDetailsDelegate function
-    // Event was edited from the details view
+    // EventDetailsDelegate function, event was edited from the details view
     func eventEditedFromDetails() {
         // update events
         getEvents()
     }
 
+    // EventDetailsDelegate function, event was deleted from details view
     func eventDeletedFromDetails() {
         // close child
         self.navigationController?.popViewController(animated: true)
@@ -147,7 +150,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         getEvents()
     }
     
-    // get all events and update calendar as each event is received
+    // get all events and update calendar and table view as each event is received
     @objc func getEvents() {
         DispatchQueue.global(qos: .default).async {
             Event.loadLock.wait()
@@ -155,6 +158,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
             Event.allEvents = []
             var addedEvents = 0
             
+            // Get list of event ids from firebase
             EventsApi.getEventsIDs(startDate: nil, limit: nil) { data, error in
                 switch(data, error){
                 case(nil, .some(let error)):
@@ -168,14 +172,18 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
                                 case(nil, .some(let error)):
                                     print(error)
                                 case(.some(let data), nil):
+                                    // Add event to all events in memory
                                     addedEvents = addedEvents + 1
                                     Event.allEvents?.append(data as! Event)
                                     
+                                    // Update calendar and table view
                                     DispatchQueue.main.async {
                                         self.calendar.select(self.calendar.selectedDate)
                                         self.calendarListedEvents.reloadData()
                                         self.calendar.reloadData()
                                     }
+                                    
+                                    // If last event loaded, release lock
                                     if addedEvents == eventIds.count {
                                         Event.loadLock.signal()
                                     }
@@ -193,6 +201,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         }
     }
     
+    // Get events for current date
     func getTodaysEvents() {
         // get todays events
         events = Event.allEvents?.filter { event in
@@ -207,6 +216,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
 extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // If seraching, use filtered events
         if isFiltering() {
             return  // Only for secected date
                 filteredEvents.filter { event in
@@ -215,7 +225,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
                                 equalTo: event.startTime ?? Date(),
                                 toGranularity:.day) }.count
         }
-        
+        // Else use all events
         return self.events?.count ?? 0
     }
     
@@ -226,6 +236,8 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         let event: Event
+        
+        // If seraching, user filtered events
         if isFiltering() {
             // Only for secected date
             event = filteredEvents.filter { event in
@@ -233,13 +245,13 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
                         .isDate(calendar.selectedDate ?? Date(),
                                 equalTo: event.startTime ?? Date(),
                                 toGranularity:.day) }[indexPath.row]
+        // Else use all events
         } else {
             event = events[indexPath.row]
         }
         
         // the identifier is like the type of the cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "calendarEventCell", for: indexPath) as! EventCell
-        
         cell.initEventCell(name: event.name,
                            startTime: event.startTime,
                            club: event.club,
@@ -249,6 +261,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    // Event event selected, sho details
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -262,21 +275,19 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
 
 
 
-// Search bar
+// Search bar delegate functions
 extension CalendarViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!)
     }
     
-    // Private instance methods
+    // Returns true if the text is empty or nil
     func searchBarIsEmpty() -> Bool {
-        // Returns true if the text is empty or nil
         return searchController.searchBar.text?.isEmpty ?? true
     }
     
     func filterContentForSearchText(_ searchText: String, scope: String = "All") {
-        
         // filter events by names and events matching the serach text
         filteredEvents = Event.allEvents?.filter{ event in
             event.name?.lowercased().contains(searchText.lowercased()) ?? false

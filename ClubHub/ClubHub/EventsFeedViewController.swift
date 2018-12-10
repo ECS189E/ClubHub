@@ -28,12 +28,14 @@ class EventsFeedViewController: UIViewController, EditEventDelegate, EventDetail
 
     let searchController = UISearchController(searchResultsController: nil)
     
+    // App logo
     lazy var logo: UIBarButtonItem = {
         let image = UIImage.init(named: "computer-workers-group-ocean-25")?.withRenderingMode(.alwaysOriginal)
         let button  = UIBarButtonItem.init(image: image, style: .plain, target: self, action: nil)
         return button
     }()
     
+    // Reload events button
     lazy var reloadButton: UIBarButtonItem = {
         let image = UIImage.init(named: "icons8-synchronize-filled-25")?.withRenderingMode(.alwaysOriginal)
         let button  = UIBarButtonItem.init(image: image, style: .plain, target: self, action: #selector(getEvents))
@@ -119,6 +121,7 @@ class EventsFeedViewController: UIViewController, EditEventDelegate, EventDetail
         }
     }
     
+    // load events for user saved clubs and set button appearence
     @IBAction func myClubsButtonTapped(_ sender: Any) {
         if let userClubs = User.currentUser?.clubs {
             searchController.isActive = false // cancel search
@@ -133,17 +136,17 @@ class EventsFeedViewController: UIViewController, EditEventDelegate, EventDetail
         }
     }
     
+    // Create new event
     @IBAction func addEvent(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "editEventViewController") as! EditEventViewController
         viewController.delegate = self
         viewController.event = nil
-        
+
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 
-    // EditEventDelegateFunction
-    // Event added, reload data
+    // EditEventDelegateFunction, event added, reload data
     func editEventCompleted(event: Event?) {
         // close child
         self.navigationController?.popViewController(animated: true)
@@ -151,22 +154,20 @@ class EventsFeedViewController: UIViewController, EditEventDelegate, EventDetail
         getEvents()
     }
     
-    // EventDetailsDelegate function
-    // Event was edited from the details view
+    // EventDetailsDelegate function, event was edited from the details view
     func eventEditedFromDetails() {
         // Update events
         getEvents()
     }
     
-    // EventDetailsDelegate function
-    // Event was deleted from the details view
+    // EventDetailsDelegate function, event was deleted from the details view
     func eventDeletedFromDetails() {
         // close child
         self.navigationController?.popViewController(animated: true)
         getEvents()
     }
     
-    // Get events loadLimit number of events from database starting from eventLoadDate
+    // get all events from firebase and update table view as events are loaded
     @objc func getEvents() {
         DispatchQueue.global().async {
             Event.loadLock.wait()
@@ -174,7 +175,8 @@ class EventsFeedViewController: UIViewController, EditEventDelegate, EventDetail
             // reset events list
             Event.allEvents = []
             var addedEvents = 0
-        
+            
+            // get list of event ids
             EventsApi.getEventsIDs(startDate: nil, limit: nil) { data, error in
                 switch(data, error){
                 case(nil, .some(let error)):
@@ -194,14 +196,18 @@ class EventsFeedViewController: UIViewController, EditEventDelegate, EventDetail
                                 case(nil, .some(let error)):
                                     print(error)
                                 case(.some(let data), nil):
+                                    // add event to event list in memory
                                     let event = data as! Event
                                     addedEvents = addedEvents + 1
                                     Event.allEvents?.append(event)
                                     
+                                    // update table view
                                     DispatchQueue.main.async {
                                         self.filterEvents()
                                         self.eventsTableView.reloadData()
                                     }
+                                    
+                                    // if all events loaded, release lock
                                     if addedEvents == eventIds.count {
                                         Event.loadLock.signal()
                                     }
@@ -249,7 +255,7 @@ class EventsFeedViewController: UIViewController, EditEventDelegate, EventDetail
     }
 }
 
-// TableView funtions
+// TableView delegate funtions
 extension EventsFeedViewController: UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -266,11 +272,14 @@ extension EventsFeedViewController: UITableViewDelegate, UITableViewDataSource, 
         }
         
         let event: Event
+        
+        // If searching use filtered events
         if isFiltering() {
             guard filteredEvents.count > indexPath.row else {
                 return UITableViewCell()
             }
             event = filteredEvents[indexPath.row]
+        // Else use all events
         } else {
             guard events.count > indexPath.row else {
                 return UITableViewCell()
@@ -290,6 +299,7 @@ extension EventsFeedViewController: UITableViewDelegate, UITableViewDataSource, 
         return cell
     }
     
+    // If event selected, display event details
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -300,16 +310,15 @@ extension EventsFeedViewController: UITableViewDelegate, UITableViewDataSource, 
     }
 }
 
-// Search bar
+// Search bar delegate functions
 extension EventsFeedViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!)
     }
     
-    // Private instance methods
+    // Returns true if the text is empty or nil
     func searchBarIsEmpty() -> Bool {
-        // Returns true if the text is empty or nil
         return searchController.searchBar.text?.isEmpty ?? true
     }
     

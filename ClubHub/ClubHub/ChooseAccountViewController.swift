@@ -19,6 +19,7 @@ class ChooseAccountViewController: UIViewController {
         
     }
     
+    // If canceling new account setup, go to login
     @IBAction func cancelClicked(_ sender: Any) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let loginViewController = storyBoard.instantiateViewController(withIdentifier: "loginViewController") as! LoginViewController

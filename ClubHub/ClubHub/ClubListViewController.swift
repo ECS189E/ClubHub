@@ -21,18 +21,21 @@ class ClubListViewController: UIViewController {
 
     let searchController = UISearchController(searchResultsController: nil)
     
+    // button to display currently logged in club's page
     lazy var profileButton: UIBarButtonItem = {
         let image = UIImage.init(named: "default profile")?.withRenderingMode(.alwaysOriginal)
         let button  = UIBarButtonItem.init(image: image, style: .plain, target: self, action: #selector(profileTapped))
         return button
     }()
     
+    // app logo
     lazy var logo: UIBarButtonItem = {
         let image = UIImage.init(named: "computer-workers-group-ocean-25")?.withRenderingMode(.alwaysOriginal)
         let button  = UIBarButtonItem.init(image: image, style: .plain, target: self, action: nil)
         return button
     }()
     
+    // reload data from firebase
     lazy var reloadButton: UIBarButtonItem = {
         let image = UIImage.init(named: "icons8-synchronize-filled-25")?.withRenderingMode(.alwaysOriginal)
         let button  = UIBarButtonItem.init(image: image, style: .plain, target: self, action: #selector(getClubs))
@@ -75,7 +78,6 @@ class ClubListViewController: UIViewController {
             navigationItem.rightBarButtonItem = reloadButton
         }
         
-        // Source: https://www.raywenderlich.com/472-uisearchcontroller-tutorial-getting-started
         // Setup the Search Controller
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -106,6 +108,7 @@ class ClubListViewController: UIViewController {
         }
     }
     
+    // Show current club's page
     @objc func profileTapped() {
         if let club = User.currentUser?.club {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -115,7 +118,7 @@ class ClubListViewController: UIViewController {
         }
     }
     
-    // Get clubs loadLimit number of clubs from database starting from clubLoadNext
+    
     @objc func getClubs() {
         DispatchQueue.global(qos: .default).async {
             Club.loadLock.wait()
@@ -124,13 +127,13 @@ class ClubListViewController: UIViewController {
             Club.allClubs = []
             var addedClubs = 0
             
+            // Get list of club ids from database
             ClubsApi.getClubsIDs(start: nil, limit: nil) { data, error in
                 switch(data, error){
                 case(nil, .some(let error)):
                     print(error)
                 case(.some(let data), nil):
                     if let clubIds = data as? [String?] {
-                        // add each club to the club list and reload table view
                         
                         // if no clubs, clear table view
                         if clubIds.count  <= 0 {
@@ -139,20 +142,24 @@ class ClubListViewController: UIViewController {
                             self.clubsTableView.reloadData()
                         }
                         
+                        // get data for each club and update table view while loading data
                         for id in clubIds {
                             ClubsApi.getClub(id: id ?? "") { data, error in
                                 switch(data, error){
                                 case(nil, .some(let error)):
                                     print(error)
                                 case(.some(let data), nil):
+                                    // add club
                                     let club = data as! Club
                                     addedClubs = addedClubs + 1
                                     Club.allClubs?.append(club)
                                     
+                                    // Update table view
                                      DispatchQueue.main.async {
                                         self.filterClubs()
                                         self.clubsTableView.reloadData()
                                      }
+                                    // If all clubs loaded, release lock
                                     if addedClubs == clubIds.count {
                                         Event.loadLock.signal()
                                     }
@@ -205,8 +212,10 @@ extension ClubListViewController: UITableViewDelegate, UITableViewDataSource, UI
         }
         
         let club: Club
+        // If seraching, get from filtered clubs
         if isFiltering() {
             club = filteredClubs[indexPath.row]
+        // Else not seraching, so get from all clubs
         } else {
             club = clubs[indexPath.row]
         }
@@ -216,10 +225,11 @@ extension ClubListViewController: UITableViewDelegate, UITableViewDataSource, UI
             tableView.dequeueReusableCell(withIdentifier: "clubCell", for: indexPath) as! ClubCell
         
         cell.initClubCell(name: club.name,
-                          image: club.image ?? UIImage(named: "defaultImage")) // FIXME: for testing
+                          image: club.image ?? UIImage(named: "defaultImage"))
         return cell
     }
-
+    
+    // Display club page if row tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -229,7 +239,7 @@ extension ClubListViewController: UITableViewDelegate, UITableViewDataSource, UI
     }
 }
 
-// Search bar
+// Search bar delegate functions
 extension ClubListViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -252,7 +262,7 @@ extension ClubListViewController: UISearchResultsUpdating {
             club.name?.lowercased().contains(searchText.lowercased()) ?? false
         }
         
-        // sort filtered clubs  FIXME: ??
+        // sort filtered clubs
         filteredClubs =
             filteredClubs.sorted(by:{UIContentSizeCategory(rawValue: $0.name!) > UIContentSizeCategory(rawValue: $1.name!) })
         

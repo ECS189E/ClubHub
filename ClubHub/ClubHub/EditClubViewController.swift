@@ -105,6 +105,7 @@ class EditClubViewController: UIViewController {
         
         // club must have id
         if let _ = club?.id {
+            // update clubs data in firebase
             ClubsApi.updateClub(club: club, imageWasDeleted: imageWasDeleted,
             imageWasUpdated: imageWasUpdated) { data, err in
                 switch(data, err) {
@@ -112,7 +113,7 @@ class EditClubViewController: UIViewController {
                     self.delegate?.editClubCompleted()
                     User.userProfileUpdated = true
                     
-                    // stop activity indicator
+                    // stop and hide activity indicator
                     self.activityIndicator.alpha = 0
                     self.activityIndicator.stopAnimating()
                 case(nil, .some(let err)):
@@ -123,11 +124,12 @@ class EditClubViewController: UIViewController {
                 
             }
         }
-        // start activity indicator
+        // start and show activity indicator
         activityIndicator.alpha = 1
         activityIndicator.startAnimating()
     }
     
+    // init image picker
     @IBAction func uploadImageTapped(_ sender: Any) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -148,14 +150,13 @@ class EditClubViewController: UIViewController {
         if hadImage {
             imageWasDeleted = true
         }
-        
     }
-    
 }
 
-// Source: https://www.youtube.com/watch?v=krZzC6abaoE
+// Image picker delegate functions
 extension EditClubViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        // Update image to picked image
         imageView.image =
             info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         imageView.backgroundColor = UIColor.clear
@@ -174,6 +175,7 @@ extension EditClubViewController : UIImagePickerControllerDelegate, UINavigation
     }
 }
 
+// Adjust scroll view contraint when keyboard shown and hidden
 extension EditClubViewController {
     // Change scroll view bottom contriant when keyboard shown
     @objc func keyboardWillShow(notification: Notification) {

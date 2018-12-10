@@ -41,6 +41,7 @@ class LoadingViewController: UIViewController, EditClubDelegate {
         }
     }
     
+    // Loading for new account creation
     func editClubCompleted() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "tabBarController")

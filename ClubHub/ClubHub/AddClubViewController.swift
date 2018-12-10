@@ -47,6 +47,7 @@ class AddClubViewController: UIViewController {
         // format text views
         detailsTextView.isEditable = true
         
+        // Init upload image
         uploadImageButton.setTitle("Upload Image", for: .normal)
         imageView.isHidden = true
         deleteImageButton.isHidden = true
@@ -86,9 +87,11 @@ class AddClubViewController: UIViewController {
                     switch(data, err) {
                     case(.some(_), nil):
                         
+                        // Stop and hide activity spinner
                         self.activityIndicator.alpha = 0
                         self.activityIndicator.stopAnimating()
                         
+                        // Set current user
                         User.currentUser = data as? User
                         User.currentUser?.club = self.club
                         
@@ -108,6 +111,7 @@ class AddClubViewController: UIViewController {
                 print("Error: could not add club")
             }
         }
+        // Show and start activity spinner
         activityIndicator.alpha = 1
         activityIndicator.startAnimating()
     }
@@ -130,9 +134,10 @@ class AddClubViewController: UIViewController {
     
 }
 
-// Source: https://www.youtube.com/watch?v=krZzC6abaoE
+// Image picker delegate functions
 extension AddClubViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        // Update image once an image is picked
         imageView.image =
             info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         imageView.backgroundColor = UIColor.clear
@@ -150,6 +155,7 @@ extension AddClubViewController : UIImagePickerControllerDelegate, UINavigationC
     }
 }
 
+// Function to adjust scroll view constraint when keyboard is shown or resigned
 extension AddClubViewController {
     // Change scroll view bottom contriant when keyboard shown
     @objc func keyboardWillShow(notification: Notification) {

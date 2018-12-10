@@ -19,12 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         FirebaseApp.configure()
         
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         
+        // If user preiously authenticatied, start on loading screen to load data, then to tab controller
         if Auth.auth().currentUser != nil{
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let initVC = storyboard.instantiateViewController(withIdentifier: "loadingViewController") as! LoadingViewController
@@ -172,6 +172,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
         }
         
+        // Show loading screen while getting user data
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let initVC = storyboard.instantiateViewController(withIdentifier: "loadingViewController")
         self.window?.rootViewController = initVC
